@@ -114,7 +114,10 @@ def write_inputs_in_data_section(input_pairs):
     temp = []
     temp.append('.global store_data;\n')
     temp.append('store_data:\n')
+    temp.append('   .global number_of_inputs\n')
+    temp.append(f"   number_of_inputs: .word {hex(len(input_pairs))}\n")
     temp.append('   .align 8\n')
+    temp.append('   .global store_data_base\n')
     temp.append('   store_data_base:\n')
     for idx,inp in enumerate(input_pairs):
         temp.append(f"   data{idx*8}: .word {hex(inp['opr1']//(2**32))}\n")
@@ -126,7 +129,7 @@ def write_inputs_in_data_section(input_pairs):
         temp.append(f"   data{idx*8 + 6}: .word 0x0\n") # expected psr
         temp.append(f"   data{idx*8 + 7}: .word 0x0\n") # real psr
 
-    data_file_path = '../Hardware/data.s'
+    data_file_path = '../C_model/data.s'
     with open(data_file_path, 'w') as data_file:
         for instr in temp:
             data_file.write(instr)

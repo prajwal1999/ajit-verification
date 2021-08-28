@@ -7,7 +7,7 @@ def get_n_lowest_grids(grid):
     lowest = []
     for i in range(grid_dim):
         for j in range(grid_dim):
-            if(grid[i][j] < nth_lowest): lowest.append((i, j))
+            if(grid[i][j] <= nth_lowest): lowest.append((i, j))
 
     return lowest
 
