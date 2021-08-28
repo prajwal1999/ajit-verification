@@ -1,8 +1,8 @@
 .global _start;
 .section .text.ajitstart
 _start:
-	set -4096, %sp
-  set -4096, %fp
+	set 0xfff01ff8, %sp
+  	set 0xfff01f00, %fp
 	!clr %fp
 
 	set 0x1, %l0		! window 1 is marked invalid...  we start at window 7
@@ -25,9 +25,10 @@ _start:
 	wr %l0, %psr
 
   	! enable mmu.
-	set 0x1, %o0
-	sta %o0, [%g0] 0x4    
+	!set 0x1, %o0
+	!sta %o0, [%g0] 0x4    
 
+	!set 0x1, %g4
 	call main
 	nop
 	call store_data

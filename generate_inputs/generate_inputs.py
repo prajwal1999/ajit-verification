@@ -137,7 +137,7 @@ def write_inputs_in_data_section(input_pairs):
 if __name__ == "__main__":
     # arg_list = sys.argv[1:]
     # opts, args = getopt.getopt(arg_list, 'i:j:')
-    input_pairs =  generate_inputs('andd', 100000)
+    input_pairs =  generate_inputs('andd', 5)
     write_inputs_in_data_section(input_pairs)
     # print(arg_list)
     # print(opts)
