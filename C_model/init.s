@@ -28,11 +28,11 @@ _start:
 	!set 0x1, %o0
 	!sta %o0, [%g0] 0x4    
 
-	!set 0x1, %g4
 	call main
 	nop
 	call store_data
 	nop
 
 	ta 0
+
 

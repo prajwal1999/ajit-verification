@@ -10,7 +10,7 @@ compileToSparcUclibc.py -N main -W ./ -D AJIT -D CLK_FREQUENCY=$CLKFREQ -U \
                 -L customLinkerScript.lnk \
                 -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -I $PT/include \
                 -c serial.c
-# python3.6 generate_results_file.py
+python3.6 generate_results_file.py
 ajit_C_system_model -m main.mmap -w -u 64 -d -r main.results -l main.log -w main.trace
 
 

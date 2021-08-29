@@ -2,20 +2,26 @@
 main:
     save
     ! run given function
-    set store_data_base, %g4 ! head of inputs data structure
-    set number_of_inputs, %g5 
-    ld [%g5], %g5 ! total number of inputs
-    umul %g5, 0x32, %g6
-!loop:
-    ldd [%g4], %l0
-    ldd [%g4 + 0x8], %l2
-    !add %l0, %l2, %l4
-    !rd %psr, %i0
-    !std %o0, [%g4 + 0x16]
-    !st %i0, [%g4 + 0x24]
-    !add %g4, 0x40, %g4
-    !cmp %g4, %g6
-    !bne loop
+    set store_data_base, %g7 ! head of inputs data structure
+    set number_of_inputs, %l1 
+    ld [%l1], %l1 ! total number of inputs
+    umul %l1, 0x16, %g4
+    add %g7, %g4, %g4
+    set 0x0, %g2
+    set 0x0, %g3
+    set 0x0, %g5
+    set 0x0, %g6
+loop:
+    ld [%g7], %g2
+    ld [%g7 + 0x4], %g3
+    add %g2, %g3, %g5
+    rd %psr, %g6
+    st %g5, [%g7 + 0x8]
+    st %g6, [%g7 + 0xc]
+    add %g7, 0x10, %g7
+    cmp %g7, %g4
+    bne loop
+    nop
     !call serial
     ta 0
     nop
