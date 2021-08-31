@@ -161,6 +161,7 @@ class Instruction_64_bit(Instruction):
         print('writing data in data section ....................')
         temp = []
         temp.append('.global store_data;\n')
+        temp.append('.section .data\n')
         temp.append('store_data:\n')
         temp.append('   .global number_of_inputs\n')
         temp.append(f"   number_of_inputs: .word {hex(len(self.inputs))}\n")

@@ -12,7 +12,7 @@ window_regs = global_reg + out_reg + local_reg + in_reg # all registers in curre
 if __name__ == "__main__":
     instr = Instruction_32_bit('and')
     instr.init_coverage()
-    instr.generate_input_pairs(10000)
+    instr.generate_input_pairs(5)
     instr.write_coverage()
     instr.write_inputs_in_data_section()
 

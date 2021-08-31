@@ -11,18 +11,19 @@ main:
     set 0x0, %g3
     set 0x0, %g5
     set 0x0, %g6
-loop:
-    ld [%g7], %g2
-    ld [%g7 + 0x4], %g3
-    add %g2, %g3, %g5
-    rd %psr, %g6
-    st %g5, [%g7 + 0x8]
-    st %g6, [%g7 + 0xc]
-    add %g7, 0x10, %g7
-    cmp %g7, %g4
-    bne loop
+!loop:
+    !ld [%g7], %g2
+    !ld [%g7 + 0x4], %g3
+    !add %g2, %g3, %g5
+    !rd %psr, %g6
+    !st %g5, [%g7 + 0x8]
+    !st %g6, [%g7 + 0xc]
+    !add %g7, 0x10, %g7
+    !cmp %g7, %g4
+    !bne loop
+    !nop
+    call serial
     nop
-    !call serial
     ta 0
     nop
     nop

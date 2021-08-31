@@ -5,7 +5,7 @@ _start:
   	set 0xfff01f00, %fp
 	!clr %fp
 
-	set 0x1, %l0		! window 1 is marked invalid...  we start at window 7
+	set 0x1, %l0		! window 0 is marked invalid...  we start at window 7
 	wr %l0, 0x0, %wim	!
 
 	! trap table.
@@ -30,8 +30,15 @@ _start:
 
 	call main
 	nop
-	!call store_data
-	nop
+	.align 8
+	.global instr_section
+	instr_section:
+	.skip	0x1ff
+	.global results_section 
+	results_section:
+	.skip	0xff
+
+	
 
 	ta 0
 

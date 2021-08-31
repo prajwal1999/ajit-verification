@@ -5,7 +5,7 @@ _start:
   	set 0xfff01f00, %fp
 	!clr %fp
 
-	set 0x1, %l0		! window 1 is marked invalid...  we start at window 7
+	set 0x1, %l0		! window 0 is marked invalid...  we start at window 7
 	wr %l0, 0x0, %wim	!
 
 	! trap table.
@@ -25,12 +25,12 @@ _start:
 	wr %l0, %psr
 
   	! enable mmu.
-	!set 0x1, %o0
-	!sta %o0, [%g0] 0x4    
+	set 0x1, %o0
+	sta %o0, [%g0] 0xa   
 
 	call main
 	nop
-	call store_data
+	!call store_data
 	nop
 
 	ta 0

@@ -4,15 +4,15 @@ PT=$AJIT_MINIMAL_PRINTF_TIMER
 CLKFREQ=80000000
 
 genVmapAsm vmap.txt setup_page_table.s
-makeLinkerScript.py -t 0x0 -d 0x8000 -o customLinkerScript.lnk
+makeLinkerScript.py -t 0x0 -d 0x40000 -o customLinkerScript.lnk
 compileToSparcUclibc.py -N main -W ./ -D AJIT -D CLK_FREQUENCY=$CLKFREQ -U \
                 -s init.s -s main.s -s data.s -s trap_handlers.s -s setup_page_table.s \
                 -L customLinkerScript.lnk \
-                -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -I $PT/include \
+                -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -C $AAR/src -I $PT/include -C $PT/src \
                 -c serial.c
 python3.6 generate_results_file.py
-ajit_C_system_model -m main.mmap -w -u 64 -d -r main.results -l main.log -w main.trace
-
+# ajit_C_system_model -m main.mmap -w -u 64 -d -r main.results -l main.log -w main.trace
+ajit_C_system_model -m main.mmap -w main.trace
 
 
 
@@ -50,3 +50,36 @@ ajit_C_system_model -m main.mmap -w -u 64 -d -r main.results -l main.log -w main
 # i5=0x0
 # i6=0x0
 # i7=0x0
+
+# 000055a4 <uart_send_char>:
+# 000055b8
+# 000055bc
+# 000055c0
+# 000055c4
+# 000055c8
+# 000055cc
+# 000055d0
+# 00005f64
+# 00005f68
+# 00005f6c
+# 00005f70
+# 00005f74
+# 00005f78
+# 00005f7c
+# 00005f80
+# 00005f84
+# 00005f88
+# 00005f8c
+# 00005f90
+# 00005f94
+# 00005f98
+# 00005fd0
+# 00005fd4
+# 00005fd8
+# 00005fdc
+# 00005fe0
+# 000055d4
+# 000055d8
+# 000055dc
+# 000055e0
+# 000055e4
