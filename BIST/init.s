@@ -28,8 +28,16 @@ _start:
 	set 0x1, %o0
 	sta %o0, [%g0] 0xa   
 
+	call generate_input_output
+	nop
+
 	call main
 	nop
+
+	!set 0x200, %g2
+	!set 0x100, %g3
+	!ba instr_section
+
 	.align 8
 	.global instr_section
 	instr_section:
@@ -37,7 +45,6 @@ _start:
 	.global results_section 
 	results_section:
 	.skip	0xff
-
 	
 
 	ta 0

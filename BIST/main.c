@@ -1,13 +1,27 @@
 #include<stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
 #include "core_portme.h"
 #include "ajit_access_routines.h"
 
-char instr_types[5][20] = {"control_transfer", "data_transfer", "floating_point", "integer_alu", "misc"};
-// char control_instrs[]
+unsigned int generate_opcode_11(unsigned int rd, unsigned int rs1, unsigned int rs2, 
+                unsigned int op_code, char i, unsigned short imm)
+{
+    unsigned int test = 0x80000000;
+    test |= rd << 25;
+    test |= op_code << 19;
+    test |= rs1 << 14;
+    test |= rs2;
+    // ee_printf("%i, %i, %i, %x\n", rd, rs1, rs2, test);
+    return test;
+}
 
-int main () {
+int DFG_for_output_0(int rs1, int rs2) {
+    
+}
+
+char instr_types[5][20] = {"control_transfer", "data_transfer", "floating_point", "integer_alu", "misc"};
+
+
+int main (int a, int b) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
     unsigned char mnemonic[2][3] = {'add', 'sub'};
     unsigned char op_codes[2] = {0x00, 0x04};
@@ -16,30 +30,13 @@ int main () {
     unsigned int tests[3];
     int i=0;
     for(i=0; i<n_tests; i++) {
-        // __asm__ __volatile__( " add %l0, %l1, %l2\n\t ");
-        unsigned char rd = 0b10010;
-        unsigned char rs1 = 0b10000;
-        unsigned char rs2 = 0b10001;
-        unsigned int test = 0x80000000;
-        test |= rd << 25;
-        test |= op_codes[0] << 19;
-        test |= rs1 << 14;
-        test |= rs2;
-        tests[0] = test;
-
-        test = 0x80000000;
-        test |= rs1 << 25;
-        test |= op_codes[1] << 19;
-        test |= rd << 14;
-        test |= rs1;
-        tests[1] = test;
-
-        test = 0x80000000;
-        test |= rs2 << 25;
-        test |= op_codes[1] << 19;
-        test |= rd << 14;
-        test |= rs2;
-        tests[2] = test;
+        unsigned char rd = 0b00100;
+        unsigned char rs1 = 0b00010;
+        unsigned char rs2 = 0b00011;
+        
+        tests[0] = generate_opcode_11(rd, rs1, rs2, op_codes[0], 0, 0);
+        tests[1] = generate_opcode_11(rs1, rd, rs1, op_codes[1], 0, 0);
+        tests[2] = generate_opcode_11(rs2, rd, rs2, op_codes[1], 0, 0);
     }
 
     __asm__ __volatile__( " set instr_section, %l0\n\t " );
@@ -50,6 +47,13 @@ int main () {
         __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
     }
 
-    ee_printf("Hey There\n");
+    ee_printf("Hey There................................\n");
     return(1);
 }
+
+
+// int abc() {
+//     int inp_out[6] = {0x100, 0x200, 0, 1, 0x200, 0x100};
+//     ee_printf("%d", 2436);
+//     return(0);
+// }
