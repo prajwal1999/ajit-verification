@@ -31,22 +31,29 @@ _start:
 	call generate_input_output
 	nop
 
+	set results_section, %o0
 	call main
 	nop
 
-	!set 0x200, %g2
-	!set 0x100, %g3
-	!ba instr_section
+	call instr_section
+	nop
+
+	set results_section, %o0
+	call checker
+	nop
+
+	ta 0
 
 	.align 8
 	.global instr_section
 	instr_section:
 	.skip	0x1ff
+
+	.align 2
 	.global results_section 
 	results_section:
 	.skip	0xff
 	
 
-	ta 0
 
 

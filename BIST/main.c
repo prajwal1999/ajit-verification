@@ -2,7 +2,7 @@
 #include "core_portme.h"
 #include "ajit_access_routines.h"
 
-unsigned int generate_opcode_11(unsigned int rd, unsigned int rs1, unsigned int rs2, 
+unsigned int generate_opcode_10(unsigned int rd, unsigned int rs1, unsigned int rs2, 
                 unsigned int op_code, char i, unsigned short imm)
 {
     unsigned int test = 0x80000000;
@@ -14,46 +14,75 @@ unsigned int generate_opcode_11(unsigned int rd, unsigned int rs1, unsigned int 
     return test;
 }
 
-int DFG_for_output_0(int rs1, int rs2) {
-    
+unsigned int generate_opcode_11(unsigned int rd, unsigned int rs1, unsigned int rs2, 
+                unsigned int op_code, char i, unsigned short imm)
+{
+    unsigned int test = 0xc0000000;
+    test |= rd << 25;
+    test |= op_code << 19;
+    test |= rs1 << 14;
+    if(i==1) {
+        test |= 1 << 13;
+        test |= imm;
+    } else {
+        test |= rs2;
+    }
+    return test;
 }
 
+int DFG_for_output_0(int rs1, int rs2) {
+
+    return(0);
+}
+
+unsigned char regs[8] = {0b10000, 0b10001, 0b10010, 0b10011, 0b10100, 0b10101, 0b10110, 0b10111};
 char instr_types[5][20] = {"control_transfer", "data_transfer", "floating_point", "integer_alu", "misc"};
+unsigned char alu_mnemonic[2][3] = {'add', 'sub'};
+unsigned char alu_op_codes[2] = {0x00, 0x04};
+
+unsigned char mem_mnemonic[2][3] = {'ld', 'st'};
+unsigned char mem_op_codes[2] = {0x00, 0x04};
 
 
-int main (int a, int b) {
+int main (int *results_section_ptr) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-    unsigned char mnemonic[2][3] = {'add', 'sub'};
-    unsigned char op_codes[2] = {0x00, 0x04};
-    unsigned char n_tests = 1;
-    unsigned char regs[8] = {0b10000, 0b10001, 0b10010, 0b10011, 0b10100, 0b10101, 0b10110, 0b10111};
-    unsigned int tests[3];
-    int i=0;
-    for(i=0; i<n_tests; i++) {
-        unsigned char rd = 0b00100;
-        unsigned char rs1 = 0b00010;
-        unsigned char rs2 = 0b00011;
-        
-        tests[0] = generate_opcode_11(rd, rs1, rs2, op_codes[0], 0, 0);
-        tests[1] = generate_opcode_11(rs1, rd, rs1, op_codes[1], 0, 0);
-        tests[2] = generate_opcode_11(rs2, rd, rs2, op_codes[1], 0, 0);
-    }
+    int n_tests = 11;
+    unsigned int tests[n_tests];
+    unsigned char rd = 0b10010;
+    unsigned char rs1 = 0b10000;
+    unsigned char rs2 = 0b10001;
+    unsigned char g0 = 0b00000;
+    
+    // save instruction 
+    tests[0] = 0x9de3bfa0;
+
+    // load inputs in rs1 and rs2
+    tests[1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, results_section_ptr);
+    tests[2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr+1));
+    
+    //  run add sub operation
+    tests[3] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
+    tests[4] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
+    tests[5] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
+
+    // store inputs in rs1 and rs2
+    tests[6] = generate_opcode_11(rs1, g0, 0, mem_op_codes[1], 1, (results_section_ptr+4));
+    tests[7] = generate_opcode_11(rs2, g0, 0, mem_op_codes[1], 1, (results_section_ptr+5));
+
+    // instruction restore; retl; nop
+    tests[8] = 0x81e80000;
+    tests[9] = 0x81c3e008;
+    tests[10] = 0x01000000;
 
     __asm__ __volatile__( " set instr_section, %l0\n\t " );
-    i=0;
-    for(i=0; i<3; i++) {
+    int i=0;
+    for(i=0; i<n_tests; i++) {
         __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (tests[i]) );
         __asm__ __volatile__( " st %l1, [%l0] \n\t " );
         __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
     }
 
-    ee_printf("Hey There................................\n");
+    ee_printf("Hey There ................................\n");
     return(1);
 }
 
-
-// int abc() {
-//     int inp_out[6] = {0x100, 0x200, 0, 1, 0x200, 0x100};
-//     ee_printf("%d", 2436);
-//     return(0);
-// }
