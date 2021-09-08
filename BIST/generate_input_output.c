@@ -19,11 +19,10 @@ int16_t prbs(int16_t lfsr)
 }
 
 
-int generate_input_output() {
+int generate_input_output(int asr31_timer) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
     uint inp_out[4];
-
-    uint16_t start_state = 0x010;  /* Any nonzero start state will work. */
+    uint16_t start_state = asr31_timer;  /* Any nonzero start state will work. */
     uint16_t lfsr = start_state;
     uint16_t count = 0;
     do
