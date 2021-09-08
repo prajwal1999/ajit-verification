@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include<time.h>
 
 int16_t prbs(int16_t lfsr)
 {
@@ -24,17 +25,18 @@ int generate_input_output(int asr31_timer) {
     uint inp_out[4];
     uint16_t start_state = asr31_timer;  /* Any nonzero start state will work. */
     uint16_t lfsr = start_state;
-    uint16_t count = 0;
-    do
-    {
-        lfsr = prbs(lfsr) ;
-        ee_printf("0x%02X\n", lfsr);
-        count++;
-    } while (count < 10);
-    /*
-    int  = {0x100, 0x200, 0x200, 0x100};
-
+    int inp_out[4];
     int i;
+
+    //Storing random values in input array
+
+    for(i=0; i<2; i++) {
+        lfsr = prbs(lfsr) ;
+        inp_out[i] = lfsr;
+        ee_printf("0x%02X\n", inp_out[i]);
+    }
+
+
     __asm__ __volatile__( " set results_section, %l0\n\t " );
     for(i=0; i<4; i++) {
         __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (inp_out[i]) );
@@ -44,7 +46,7 @@ int generate_input_output(int asr31_timer) {
 
     ee_printf("inputs outputs generated\n");
 
-    */
+    
     
     
     return(0);
