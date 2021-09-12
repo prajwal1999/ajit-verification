@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include<time.h>
+
 
 int16_t prbs(int16_t lfsr)
 {
@@ -22,21 +22,26 @@ int16_t prbs(int16_t lfsr)
 
 int generate_input_output(int asr31_timer) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-    uint inp_out[4];
-    uint16_t start_state = asr31_timer;  /* Any nonzero start state will work. */
+    uint no_of_inputs = 2;
+    uint inp_out[no_of_inputs*2];
+    uint16_t start_state = 0x10;  /* Any nonzero start state will work. */
     uint16_t lfsr = start_state;
-    int inp_out[4];
     int i;
 
-    //Storing random values in input array
 
-    for(i=0; i<2; i++) {
+
+    ee_printf("Storing random values in input array\n");
+    //int temp = time(0);
+    for(i=0; i<no_of_inputs; i++) {
         lfsr = prbs(lfsr) ;
         inp_out[i] = lfsr;
-        ee_printf("0x%02X\n", inp_out[i]);
+        inp_out[no_of_inputs*2-1-i] = inp_out[i];
+        //ee_printf("0x%02X\n", inp_out[i]);
     }
 
-
+    for(i=0; i<4; i++) {
+        ee_printf("0x%02X\n", inp_out[i]);
+    }
     __asm__ __volatile__( " set results_section, %l0\n\t " );
     for(i=0; i<4; i++) {
         __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (inp_out[i]) );

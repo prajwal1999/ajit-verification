@@ -29,7 +29,7 @@ _start:
 	sta %o0, [%g0] 0xa   
 
 
-	!rd %asr31, %o0
+	rd %asr31, %l1
 	set 0xD94B2AD2, %o0
 	call generate_input_output
 	nop

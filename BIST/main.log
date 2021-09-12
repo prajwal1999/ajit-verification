@@ -1,0 +1,8 @@
+1. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x9de3bfa0, 		addr = 0x88 (mask=0xffffffff)
+2. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0xe0002288, 		addr = 0x8c (mask=0xffffffff)
+3. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x8, 		addr = 0x288 (mask=0xffffffff)
+4. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x1004, 		addr = 0x28c (mask=0xffffffff)
+5. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x1004, 		addr = 0x290 (mask=0xffffffff)
+6. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x8, 		addr = 0x294 (mask=0xffffffff)
+7. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x1004, 		addr = 0x298 (mask=0xffffffff)
+8. ERROR : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x8, 		addr = 0x29c (mask=0xffffffff)
