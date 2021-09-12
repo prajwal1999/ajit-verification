@@ -58,13 +58,7 @@ prbs:
 	.section	".rodata"
 	.align 8
 .LC0:
-	.asciz	"Storing random values in input array\n"
-	.align 8
-.LC1:
-	.asciz	"0x%02X\n"
-	.align 8
-.LC2:
-	.asciz	"inputs outputs generated\n"
+	.asciz	"--------------------Inputs Outputs Generated----------------------\n"
 	.section	".text"
 	.align 4
 	.global generate_input_output
@@ -78,21 +72,20 @@ generate_input_output:
 	mov	3, %o0
 	call	__ajit_write_serial_control_register__, 0
 	 nop
-	mov	2, %g1
-	st	%g1, [%fp-12]
-	ld	[%fp-12], %g1
+	ld	[%fp+68], %g1
 	add	%g1, %g1, %g1
+	add	%g1, -1, %g2
+	st	%g2, [%fp-12]
 	mov	%g1, %g2
-	add	%g2, -1, %g2
-	st	%g2, [%fp-16]
+	mov	%g2, %g3
 	mov	0, %g2
-	mov	%g1, %g3
 	srl	%g3, 27, %g4
 	sll	%g2, 5, %i2
 	or	%g4, %i2, %i2
 	sll	%g3, 5, %i3
+	mov	%g1, %g2
+	mov	%g2, %g3
 	mov	0, %g2
-	mov	%g1, %g3
 	srl	%g3, 27, %g4
 	sll	%g2, 5, %i4
 	or	%g4, %i4, %i4
@@ -107,15 +100,11 @@ generate_input_output:
 	add	%g1, 3, %g1
 	srl	%g1, 2, %g1
 	sll	%g1, 2, %g1
-	st	%g1, [%fp-20]
+	st	%g1, [%fp-16]
 	mov	16, %g1
-	sth	%g1, [%fp-22]
-	lduh	[%fp-22], %g1
+	sth	%g1, [%fp-18]
+	lduh	[%fp-18], %g1
 	sth	%g1, [%fp-2]
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %o0
-	call	ee_printf, 0
-	 nop
 	st	%g0, [%fp-8]
 	b	.L4
 	 nop
@@ -131,21 +120,18 @@ generate_input_output:
 	lduh	[%fp-2], %g1
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g3
-	ld	[%fp-20], %g2
+	ld	[%fp-16], %g2
 	ld	[%fp-8], %g1
 	sll	%g1, 2, %g1
 	st	%g3, [%g2+%g1]
-	ld	[%fp-12], %g1
-	add	%g1, %g1, %g1
-	mov	%g1, %g2
+	ld	[%fp+68], %g2
 	ld	[%fp-8], %g1
-	sub	%g2, %g1, %g1
-	add	%g1, -1, %g1
-	ld	[%fp-20], %g3
+	add	%g2, %g1, %g1
+	ld	[%fp-16], %g3
 	ld	[%fp-8], %g2
 	sll	%g2, 2, %g2
 	ld	[%g3+%g2], %g3
-	ld	[%fp-20], %g2
+	ld	[%fp-16], %g2
 	sll	%g1, 2, %g1
 	st	%g3, [%g2+%g1]
 	ld	[%fp-8], %g1
@@ -153,55 +139,34 @@ generate_input_output:
 	st	%g1, [%fp-8]
 .L4:
 	ld	[%fp-8], %g2
-	ld	[%fp-12], %g1
+	ld	[%fp+68], %g1
 	cmp	%g2, %g1
-	blu	.L5
-	 nop
-	st	%g0, [%fp-8]
-	b	.L6
-	 nop
-.L7:
-	ld	[%fp-20], %g2
-	ld	[%fp-8], %g1
-	sll	%g1, 2, %g1
-	ld	[%g2+%g1], %g1
-	sethi	%hi(.LC1), %g2
-	or	%g2, %lo(.LC1), %o0
-	mov	%g1, %o1
-	call	ee_printf, 0
-	 nop
-	ld	[%fp-8], %g1
-	add	%g1, 1, %g1
-	st	%g1, [%fp-8]
-.L6:
-	ld	[%fp-8], %g1
-	cmp	%g1, 3
-	ble	.L7
+	bl	.L5
 	 nop
 #APP
-! 45 "generate_input_output.c" 1
+! 39 "generate_input_output.c" 1
 	 set results_section, %l0
 	 
 ! 0 "" 2
 #NO_APP
 	st	%g0, [%fp-8]
-	b	.L8
+	b	.L6
 	 nop
-.L9:
-	ld	[%fp-20], %g2
+.L7:
+	ld	[%fp-16], %g2
 	ld	[%fp-8], %g1
 	sll	%g1, 2, %g1
 	ld	[%g2+%g1], %g1
 #APP
-! 47 "generate_input_output.c" 1
+! 41 "generate_input_output.c" 1
 	 mov %g1, %l1 
 	 
 ! 0 "" 2
-! 48 "generate_input_output.c" 1
+! 42 "generate_input_output.c" 1
 	 st %l1, [%l0] 
 	 
 ! 0 "" 2
-! 49 "generate_input_output.c" 1
+! 43 "generate_input_output.c" 1
 	 add %l0, 0x4, %l0
 	 
 ! 0 "" 2
@@ -209,16 +174,19 @@ generate_input_output:
 	ld	[%fp-8], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-8]
-.L8:
+.L6:
+	ld	[%fp+68], %g1
+	add	%g1, %g1, %g1
+	mov	%g1, %g2
 	ld	[%fp-8], %g1
-	cmp	%g1, 3
-	ble	.L9
+	cmp	%g2, %g1
+	bg	.L7
 	 nop
-	sethi	%hi(.LC2), %g1
-	or	%g1, %lo(.LC2), %o0
+	sethi	%hi(.LC0), %g1
+	or	%g1, %lo(.LC0), %o0
 	call	ee_printf, 0
 	 nop
-	mov	0, %g1
+	ld	[%fp+68], %g1
 	mov	%i1, %sp
 	mov	%g1, %i0
 	restore

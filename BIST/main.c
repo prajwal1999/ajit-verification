@@ -68,9 +68,11 @@ unsigned char mem_mnemonic[2][3] = {'ld', 'st'};
 unsigned char mem_op_codes[2] = {0x00, 0x04};
 
 
-int main (int *results_section_ptr) {
+int main (int *results_section_ptr, int no_of_inputs) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-    int n_tests = 11;
+    
+    int n_instr = no_of_inputs/2;
+    int n_tests = 7*n_instr+4;
     uint16_t start_state = 0x10;  /* Any nonzero start state will work. */
     uint16_t lfsr = start_state;
     unsigned int tests[n_tests];
@@ -79,34 +81,35 @@ int main (int *results_section_ptr) {
     unsigned char rs1 = 0b10000;
     unsigned char rs2 = 0b10001;
     unsigned char g0 = 0b00000;
-    int i;
+    int i,j=0;
 
-    for(i=0; i<2; i++) {
-        lfsr = prbs(lfsr);
-        alu_op_codes[i] =  instr_select(prbs(lfsr) & 0x1);
-        complement_instr[i] = bring_complement_instr(alu_op_codes[i]);
-    } 
-    
     // save instruction 
     tests[0] = 0x9de3bfa0;
 
-    // load inputs in rs1 and rs2
-    tests[1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, results_section_ptr);
-    tests[2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr+1));
-    
-    //  run add sub operation
-    tests[3] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
-    tests[4] = generate_opcode_10(rs1, rd, rs1, complement_instr[0], 0, 0);
-    tests[5] = generate_opcode_10(rs2, rd, rs2, complement_instr[0], 0, 0);
+    for(i=0; i<n_instr; i++) {
+        lfsr = prbs(lfsr);
+        alu_op_codes[i] =  instr_select(prbs(lfsr) & 0x1);
+        complement_instr[i] = bring_complement_instr(alu_op_codes[i]);
+        // load inputs in rs1 and rs2
+        tests[j+1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, (results_section_ptr+2*i));
+        tests[j+2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr+2*i+1));
 
-    // store inputs in rs1 and rs2
-    tests[6] = generate_opcode_11(rs1, g0, 0, mem_op_codes[1], 1, (results_section_ptr+4));
-    tests[7] = generate_opcode_11(rs2, g0, 0, mem_op_codes[1], 1, (results_section_ptr+5));
+        //  run add sub operation
+        tests[j+3] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[i], 0, 0);
+        tests[j+4] = generate_opcode_10(rs1, rd, rs2, complement_instr[i], 0, 0);
+        tests[j+5] = generate_opcode_10(rs2, rd, rs1, complement_instr[i], 0, 0);
 
+        // store inputs in rs1 and rs2
+        tests[j+6] = generate_opcode_11(rs1, g0, 0, mem_op_codes[1], 1, (results_section_ptr+no_of_inputs*2+2*i));
+        tests[j+7] = generate_opcode_11(rs2, g0, 0, mem_op_codes[1], 1, (results_section_ptr+no_of_inputs*2+2*i+1));
+
+        j = 7*(i+1);
+    }
+ 
     // instruction restore; retl; nop
-    tests[8] = 0x81e80000;
-    tests[9] = 0x81c3e008;
-    tests[10] = 0x01000000;
+    tests[n_tests-3] = 0x81e80000;
+    tests[n_tests-2] = 0x81c3e008;
+    tests[n_tests-1] = 0x01000000;
 
     __asm__ __volatile__( " set instr_section, %l0\n\t " );
     i=0;
@@ -116,7 +119,6 @@ int main (int *results_section_ptr) {
         __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
     }
 
-    ee_printf("Hey There ................................\n");
+    ee_printf("---------Operations done-------------------\n");
     return(1);
 }
-

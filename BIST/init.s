@@ -27,21 +27,24 @@ _start:
   	! enable mmu.
 	set 0x1, %o0
 	sta %o0, [%g0] 0xa   
-
-
-	rd %asr31, %l1
-	set 0xD94B2AD2, %o0
+    
+	set number_of_inputs, %l1 
+    ld [%l1], %o0
 	call generate_input_output
 	nop
 
-	set results_section, %o0
+    set results_section, %o0
+	set number_of_inputs, %l1 
+    ld [%l1], %o1
 	call main
-	nop
+	nop 
 
 	call instr_section
 	nop
 
 	set results_section, %o0
+	set number_of_inputs, %l1 
+    ld [%l1], %o1
 	call checker
 	nop
 
@@ -56,6 +59,10 @@ _start:
 	.global results_section 
 	results_section:
 	.skip	0xff
+
+	.align 4
+	.global number_of_inputs
+    number_of_inputs: .word 0x4
 	
 
 
