@@ -6,9 +6,9 @@ Disassembly of section .text:
 
 00000000 <_start>:
        0:	1d 3f fc 07 	sethi  %hi(0xfff01c00), %sp
-       4:	9c 13 a3 f8 	or  %sp, 0x3f8, %sp	! fff01ff8 <alu_op_codes+0xffec1e20>
+       4:	9c 13 a3 f8 	or  %sp, 0x3f8, %sp	! fff01ff8 <alu_op_codes+0xffec1e18>
        8:	3d 3f fc 07 	sethi  %hi(0xfff01c00), %fp
-       c:	bc 17 a3 00 	or  %fp, 0x300, %fp	! fff01f00 <alu_op_codes+0xffec1d28>
+       c:	bc 17 a3 00 	or  %fp, 0x300, %fp	! fff01f00 <alu_op_codes+0xffec1d20>
       10:	a0 10 20 01 	mov  1, %l0
       14:	81 94 20 00 	mov  %l0, %wim
       18:	21 00 00 0c 	sethi  %hi(0x3000), %l0
@@ -33,7 +33,7 @@ Disassembly of section .text:
       64:	23 00 00 00 	sethi  %hi(0), %l1
       68:	a2 14 63 a0 	or  %l1, 0x3a0, %l1	! 3a0 <number_of_inputs>
       6c:	d2 04 40 00 	ld  [ %l1 ], %o1
-      70:	40 00 17 03 	call  5c7c <main>
+      70:	40 00 17 34 	call  5d40 <main>
       74:	01 00 00 00 	nop 
       78:	40 00 00 0a 	call  a0 <instr_section>
       7c:	01 00 00 00 	nop 
@@ -84,12 +84,12 @@ Disassembly of section .text:
      45c:	86 01 40 01 	add  %g5, %g1, %g3
      460:	c4 20 c0 00 	st  %g2, [ %g3 ]
      464:	05 00 00 20 	sethi  %hi(0x8000), %g2
-     468:	84 10 a0 8e 	or  %g2, 0x8e, %g2	! 808e <__ajit_fstoi__+0xaf6>
+     468:	84 10 a0 8e 	or  %g2, 0x8e, %g2	! 808e <__ajit_fstoi__+0x9de>
      46c:	8a 10 20 08 	mov  8, %g5
      470:	86 01 40 01 	add  %g5, %g1, %g3
      474:	c4 20 c0 00 	st  %g2, [ %g3 ]
      478:	05 00 00 30 	sethi  %hi(0xc000), %g2
-     47c:	84 10 a0 8e 	or  %g2, 0x8e, %g2	! c08e <__ajit_fstoi__+0x4af6>
+     47c:	84 10 a0 8e 	or  %g2, 0x8e, %g2	! c08e <__ajit_fstoi__+0x49de>
      480:	8a 10 20 0c 	mov  0xc, %g5
      484:	86 01 40 01 	add  %g5, %g1, %g3
      488:	c4 20 c0 00 	st  %g2, [ %g3 ]
@@ -3042,7 +3042,7 @@ Disassembly of section .text:
     4260:	f8 27 a0 54 	st  %i4, [ %fp + 0x54 ]
     4264:	fa 27 a0 58 	st  %i5, [ %fp + 0x58 ]
     4268:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    426c:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    426c:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     4270:	c2 00 40 00 	ld  [ %g1 ], %g1
     4274:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
     4278:	c2 07 a0 58 	ld  [ %fp + 0x58 ], %g1
@@ -3051,7 +3051,7 @@ Disassembly of section .text:
     4284:	02 80 00 06 	be  429c <number+0x50>
     4288:	01 00 00 00 	nop 
     428c:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    4290:	82 10 61 4c 	or  %g1, 0x14c, %g1	! 4014c <upper_digits>
+    4290:	82 10 61 54 	or  %g1, 0x154, %g1	! 40154 <upper_digits>
     4294:	c2 00 40 00 	ld  [ %g1 ], %g1
     4298:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
     429c:	c2 07 a0 58 	ld  [ %fp + 0x58 ], %g1
@@ -3266,7 +3266,7 @@ Disassembly of section .text:
     45e0:	82 00 60 01 	inc  %g1
     45e4:	c2 27 a0 44 	st  %g1, [ %fp + 0x44 ]
     45e8:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    45ec:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    45ec:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     45f0:	c2 00 40 00 	ld  [ %g1 ], %g1
     45f4:	c4 08 60 21 	ldub  [ %g1 + 0x21 ], %g2
     45f8:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
@@ -3380,7 +3380,7 @@ Disassembly of section .text:
     47a0:	f6 27 a0 50 	st  %i3, [ %fp + 0x50 ]
     47a4:	f8 27 a0 54 	st  %i4, [ %fp + 0x54 ]
     47a8:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    47ac:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    47ac:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     47b0:	c2 00 40 00 	ld  [ %g1 ], %g1
     47b4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
     47b8:	c2 07 a0 54 	ld  [ %fp + 0x54 ], %g1
@@ -3389,7 +3389,7 @@ Disassembly of section .text:
     47c4:	02 80 00 06 	be  47dc <eaddr+0x4c>
     47c8:	01 00 00 00 	nop 
     47cc:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    47d0:	82 10 61 4c 	or  %g1, 0x14c, %g1	! 4014c <upper_digits>
+    47d0:	82 10 61 54 	or  %g1, 0x154, %g1	! 40154 <upper_digits>
     47d4:	c2 00 40 00 	ld  [ %g1 ], %g1
     47d8:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
     47dc:	c0 27 bf f4 	clr  [ %fp + -12 ]
@@ -3552,7 +3552,7 @@ Disassembly of section .text:
     4a48:	12 80 00 0e 	bne  4a80 <iaddr+0xac>
     4a4c:	01 00 00 00 	nop 
     4a50:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    4a54:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    4a54:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     4a58:	c2 00 40 00 	ld  [ %g1 ], %g1
     4a5c:	c4 08 40 00 	ldub  [ %g1 ], %g2
     4a60:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
@@ -3568,7 +3568,7 @@ Disassembly of section .text:
     4a88:	04 80 00 3e 	ble  4b80 <iaddr+0x1ac>
     4a8c:	01 00 00 00 	nop 
     4a90:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    4a94:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    4a94:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     4a98:	c4 00 40 00 	ld  [ %g1 ], %g2
     4a9c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
     4aa0:	87 38 60 1f 	sra  %g1, 0x1f, %g3
@@ -3596,7 +3596,7 @@ Disassembly of section .text:
     4af8:	82 20 40 02 	sub  %g1, %g2, %g1
     4afc:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
     4b00:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    4b04:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    4b04:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     4b08:	c4 00 40 00 	ld  [ %g1 ], %g2
     4b0c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
     4b10:	87 38 60 1f 	sra  %g1, 0x1f, %g3
@@ -3632,7 +3632,7 @@ Disassembly of section .text:
     4b88:	04 80 00 20 	ble  4c08 <iaddr+0x234>
     4b8c:	01 00 00 00 	nop 
     4b90:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    4b94:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    4b94:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     4b98:	c4 00 40 00 	ld  [ %g1 ], %g2
     4b9c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
     4ba0:	87 38 60 1f 	sra  %g1, 0x1f, %g3
@@ -3662,7 +3662,7 @@ Disassembly of section .text:
     4c00:	82 20 80 01 	sub  %g2, %g1, %g1
     4c04:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
     4c08:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    4c0c:	82 10 61 48 	or  %g1, 0x148, %g1	! 40148 <digits>
+    4c0c:	82 10 61 50 	or  %g1, 0x150, %g1	! 40150 <digits>
     4c10:	c4 00 40 00 	ld  [ %g1 ], %g2
     4c14:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
     4c18:	82 00 80 01 	add  %g2, %g1, %g1
@@ -3822,7 +3822,7 @@ Disassembly of section .text:
     4e78:	c2 27 bf e8 	st  %g1, [ %fp + -24 ]
     4e7c:	10 bf ff d8 	b  4ddc <ee_vsprintf+0x64>
     4e80:	01 00 00 00 	nop 
-    4e84:	82 10 3f ff 	mov  -1, %g1	! ffffffff <alu_op_codes+0xfffbfe27>
+    4e84:	82 10 3f ff 	mov  -1, %g1	! ffffffff <alu_op_codes+0xfffbfe1f>
     4e88:	c2 27 bf e4 	st  %g1, [ %fp + -28 ]
     4e8c:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
     4e90:	c2 08 40 00 	ldub  [ %g1 ], %g1
@@ -4024,7 +4024,7 @@ Disassembly of section .text:
     51a0:	12 80 00 05 	bne  51b4 <ee_vsprintf+0x43c>
     51a4:	01 00 00 00 	nop 
     51a8:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    51ac:	82 10 60 50 	or  %g1, 0x50, %g1	! 40050 <__ajit_fstoi__+0x38ab8>
+    51ac:	82 10 60 50 	or  %g1, 0x50, %g1	! 40050 <__ajit_fstoi__+0x389a0>
     51b0:	c2 27 bf ec 	st  %g1, [ %fp + -20 ]
     51b4:	c2 07 bf e0 	ld  [ %fp + -32 ], %g1
     51b8:	d0 07 bf ec 	ld  [ %fp + -20 ], %o0
@@ -4290,7 +4290,7 @@ Disassembly of section .text:
     55c0:	83 28 60 18 	sll  %g1, 0x18, %g1
     55c4:	83 38 60 18 	sra  %g1, 0x18, %g1
     55c8:	90 10 00 01 	mov  %g1, %o0
-    55cc:	40 00 05 3b 	call  6ab8 <__ajit_serial_putchar__>
+    55cc:	40 00 05 81 	call  6bd0 <__ajit_serial_putchar__>
     55d0:	01 00 00 00 	nop 
     55d4:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
     55d8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
@@ -4303,7 +4303,7 @@ Disassembly of section .text:
     55f4:	01 00 00 00 	nop 
     55f8:	c0 27 bf f8 	clr  [ %fp + -8 ]
     55fc:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    5600:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
+    5600:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
     5604:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
     5608:	fa 27 bf f8 	st  %i5, [ %fp + -8 ]
     560c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
@@ -4425,7 +4425,7 @@ Disassembly of section .text:
     57c4:	82 10 00 0e 	mov  %sp, %g1
     57c8:	b2 10 00 01 	mov  %g1, %i1
     57cc:	90 10 20 03 	mov  3, %o0
-    57d0:	40 00 03 c1 	call  66d4 <__ajit_write_serial_control_register__>
+    57d0:	40 00 04 07 	call  67ec <__ajit_write_serial_control_register__>
     57d4:	01 00 00 00 	nop 
     57d8:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
     57dc:	82 00 40 01 	add  %g1, %g1, %g1
@@ -4519,10 +4519,10 @@ Disassembly of section .text:
     593c:	14 bf ff f1 	bg  5900 <generate_input_output+0x144>
     5940:	01 00 00 00 	nop 
     5944:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5948:	90 10 60 58 	or  %g1, 0x58, %o0	! 40058 <__ajit_fstoi__+0x38ac0>
+    5948:	90 10 60 58 	or  %g1, 0x58, %o0	! 40058 <__ajit_fstoi__+0x389a8>
     594c:	7f ff ff 3d 	call  5640 <ee_printf>
     5950:	01 00 00 00 	nop 
-    5954:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    5954:	82 10 20 00 	clr  %g1	! 0 <_start>
     5958:	9c 10 00 19 	mov  %i1, %sp
     595c:	b0 10 00 01 	mov  %g1, %i0
     5960:	81 e8 00 00 	restore 
@@ -4534,10 +4534,10 @@ Disassembly of section .text:
     5970:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
     5974:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
     5978:	90 10 20 03 	mov  3, %o0
-    597c:	40 00 03 56 	call  66d4 <__ajit_write_serial_control_register__>
+    597c:	40 00 03 9c 	call  67ec <__ajit_write_serial_control_register__>
     5980:	01 00 00 00 	nop 
     5984:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5988:	90 10 60 a0 	or  %g1, 0xa0, %o0	! 400a0 <__ajit_fstoi__+0x38b08>
+    5988:	90 10 60 a0 	or  %g1, 0xa0, %o0	! 400a0 <__ajit_fstoi__+0x389f0>
     598c:	7f ff ff 2d 	call  5640 <ee_printf>
     5990:	01 00 00 00 	nop 
     5994:	c0 27 bf fc 	clr  [ %fp + -4 ]
@@ -4565,7 +4565,7 @@ Disassembly of section .text:
     59ec:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
     59f0:	82 00 60 01 	inc  %g1
     59f4:	05 00 01 00 	sethi  %hi(0x40000), %g2
-    59f8:	90 10 a0 e0 	or  %g2, 0xe0, %o0	! 400e0 <__ajit_fstoi__+0x38b48>
+    59f8:	90 10 a0 e0 	or  %g2, 0xe0, %o0	! 400e0 <__ajit_fstoi__+0x38a30>
     59fc:	92 10 00 01 	mov  %g1, %o1
     5a00:	d4 07 a0 48 	ld  [ %fp + 0x48 ], %o2
     5a04:	7f ff ff 0f 	call  5640 <ee_printf>
@@ -4575,7 +4575,7 @@ Disassembly of section .text:
     5a14:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
     5a18:	82 00 60 01 	inc  %g1
     5a1c:	05 00 01 00 	sethi  %hi(0x40000), %g2
-    5a20:	90 10 a1 00 	or  %g2, 0x100, %o0	! 40100 <__ajit_fstoi__+0x38b68>
+    5a20:	90 10 a1 00 	or  %g2, 0x100, %o0	! 40100 <__ajit_fstoi__+0x38a50>
     5a24:	92 10 00 01 	mov  %g1, %o1
     5a28:	d4 07 a0 48 	ld  [ %fp + 0x48 ], %o2
     5a2c:	7f ff ff 05 	call  5640 <ee_printf>
@@ -4595,1888 +4595,1958 @@ Disassembly of section .text:
     5a64:	81 c3 e0 08 	retl 
     5a68:	01 00 00 00 	nop 
 
-00005a6c <instr_select>:
+00005a6c <instr_sel>:
     5a6c:	9d e3 bf a0 	save  %sp, -96, %sp
     5a70:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
     5a74:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
     5a78:	80 a0 60 00 	cmp  %g1, 0
-    5a7c:	12 80 00 05 	bne  5a90 <instr_select+0x24>
+    5a7c:	12 80 00 05 	bne  5a90 <instr_sel+0x24>
     5a80:	01 00 00 00 	nop 
     5a84:	82 10 20 00 	clr  %g1	! 0 <_start>
-    5a88:	10 80 00 03 	b  5a94 <instr_select+0x28>
+    5a88:	10 80 00 19 	b  5aec <instr_sel+0x80>
     5a8c:	01 00 00 00 	nop 
-    5a90:	82 10 20 04 	mov  4, %g1	! 4 <_start+0x4>
-    5a94:	b0 10 00 01 	mov  %g1, %i0
-    5a98:	81 e8 00 00 	restore 
-    5a9c:	81 c3 e0 08 	retl 
-    5aa0:	01 00 00 00 	nop 
-
-00005aa4 <bring_complement_instr>:
-    5aa4:	9d e3 bf a0 	save  %sp, -96, %sp
-    5aa8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    5a90:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    5a94:	80 a0 60 01 	cmp  %g1, 1
+    5a98:	12 80 00 05 	bne  5aac <instr_sel+0x40>
+    5a9c:	01 00 00 00 	nop 
+    5aa0:	82 10 20 04 	mov  4, %g1	! 4 <_start+0x4>
+    5aa4:	10 80 00 12 	b  5aec <instr_sel+0x80>
+    5aa8:	01 00 00 00 	nop 
     5aac:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    5ab0:	80 a0 60 00 	cmp  %g1, 0
-    5ab4:	12 80 00 05 	bne  5ac8 <bring_complement_instr+0x24>
+    5ab0:	80 a0 60 02 	cmp  %g1, 2
+    5ab4:	12 80 00 05 	bne  5ac8 <instr_sel+0x5c>
     5ab8:	01 00 00 00 	nop 
-    5abc:	82 10 20 04 	mov  4, %g1	! 4 <_start+0x4>
-    5ac0:	10 80 00 0b 	b  5aec <bring_complement_instr+0x48>
+    5abc:	82 10 20 0a 	mov  0xa, %g1	! a <_start+0xa>
+    5ac0:	10 80 00 0b 	b  5aec <instr_sel+0x80>
     5ac4:	01 00 00 00 	nop 
     5ac8:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    5acc:	80 a0 60 04 	cmp  %g1, 4
-    5ad0:	12 80 00 05 	bne  5ae4 <bring_complement_instr+0x40>
+    5acc:	80 a0 60 03 	cmp  %g1, 3
+    5ad0:	12 80 00 05 	bne  5ae4 <instr_sel+0x78>
     5ad4:	01 00 00 00 	nop 
-    5ad8:	82 10 20 00 	clr  %g1	! 0 <_start>
-    5adc:	10 80 00 04 	b  5aec <bring_complement_instr+0x48>
+    5ad8:	82 10 20 0e 	mov  0xe, %g1	! e <_start+0xe>
+    5adc:	10 80 00 04 	b  5aec <instr_sel+0x80>
     5ae0:	01 00 00 00 	nop 
-    5ae4:	10 80 00 02 	b  5aec <bring_complement_instr+0x48>
+    5ae4:	10 80 00 04 	b  5af4 <instr_sel+0x88>
     5ae8:	01 00 00 00 	nop 
-    5aec:	b0 10 00 01 	mov  %g1, %i0
-    5af0:	81 e8 00 00 	restore 
-    5af4:	81 c3 e0 08 	retl 
-    5af8:	01 00 00 00 	nop 
+    5aec:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5af0:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5af4:	b0 10 00 01 	mov  %g1, %i0
+    5af8:	81 e8 00 00 	restore 
+    5afc:	81 c3 e0 08 	retl 
+    5b00:	01 00 00 00 	nop 
 
-00005afc <generate_opcode_10>:
-    5afc:	9d e3 bf 98 	save  %sp, -104, %sp
-    5b00:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    5b04:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    5b08:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
-    5b0c:	f6 27 a0 50 	st  %i3, [ %fp + 0x50 ]
-    5b10:	84 10 00 1c 	mov  %i4, %g2
-    5b14:	82 10 00 1d 	mov  %i5, %g1
-    5b18:	c4 2f a0 54 	stb  %g2, [ %fp + 0x54 ]
-    5b1c:	c2 37 a0 58 	sth  %g1, [ %fp + 0x58 ]
-    5b20:	03 20 00 00 	sethi  %hi(0x80000000), %g1
-    5b24:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5b28:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    5b2c:	83 28 60 19 	sll  %g1, 0x19, %g1
-    5b30:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5b34:	82 10 80 01 	or  %g2, %g1, %g1
-    5b38:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5b3c:	c2 07 a0 50 	ld  [ %fp + 0x50 ], %g1
-    5b40:	83 28 60 13 	sll  %g1, 0x13, %g1
-    5b44:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5b48:	82 10 80 01 	or  %g2, %g1, %g1
-    5b4c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5b50:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    5b54:	83 28 60 0e 	sll  %g1, 0xe, %g1
-    5b58:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5b5c:	82 10 80 01 	or  %g2, %g1, %g1
-    5b60:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5b64:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5b68:	c2 07 a0 4c 	ld  [ %fp + 0x4c ], %g1
-    5b6c:	82 10 80 01 	or  %g2, %g1, %g1
-    5b70:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5b74:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    5b78:	b0 10 00 01 	mov  %g1, %i0
-    5b7c:	81 e8 00 00 	restore 
-    5b80:	81 c3 e0 08 	retl 
-    5b84:	01 00 00 00 	nop 
+00005b04 <bring_complement_instr>:
+    5b04:	9d e3 bf a0 	save  %sp, -96, %sp
+    5b08:	82 10 00 18 	mov  %i0, %g1
+    5b0c:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    5b10:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    5b14:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5b18:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5b1c:	80 a0 60 00 	cmp  %g1, 0
+    5b20:	12 80 00 05 	bne  5b34 <bring_complement_instr+0x30>
+    5b24:	01 00 00 00 	nop 
+    5b28:	82 10 20 04 	mov  4, %g1	! 4 <_start+0x4>
+    5b2c:	10 80 00 1f 	b  5ba8 <bring_complement_instr+0xa4>
+    5b30:	01 00 00 00 	nop 
+    5b34:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    5b38:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5b3c:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5b40:	80 a0 60 04 	cmp  %g1, 4
+    5b44:	12 80 00 05 	bne  5b58 <bring_complement_instr+0x54>
+    5b48:	01 00 00 00 	nop 
+    5b4c:	82 10 20 00 	clr  %g1	! 0 <_start>
+    5b50:	10 80 00 16 	b  5ba8 <bring_complement_instr+0xa4>
+    5b54:	01 00 00 00 	nop 
+    5b58:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    5b5c:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5b60:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5b64:	80 a0 60 0e 	cmp  %g1, 0xe
+    5b68:	12 80 00 05 	bne  5b7c <bring_complement_instr+0x78>
+    5b6c:	01 00 00 00 	nop 
+    5b70:	82 10 20 0a 	mov  0xa, %g1	! a <_start+0xa>
+    5b74:	10 80 00 0d 	b  5ba8 <bring_complement_instr+0xa4>
+    5b78:	01 00 00 00 	nop 
+    5b7c:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    5b80:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5b84:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5b88:	80 a0 60 0a 	cmp  %g1, 0xa
+    5b8c:	12 80 00 05 	bne  5ba0 <bring_complement_instr+0x9c>
+    5b90:	01 00 00 00 	nop 
+    5b94:	82 10 20 0e 	mov  0xe, %g1	! e <_start+0xe>
+    5b98:	10 80 00 04 	b  5ba8 <bring_complement_instr+0xa4>
+    5b9c:	01 00 00 00 	nop 
+    5ba0:	10 80 00 04 	b  5bb0 <bring_complement_instr+0xac>
+    5ba4:	01 00 00 00 	nop 
+    5ba8:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5bac:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5bb0:	b0 10 00 01 	mov  %g1, %i0
+    5bb4:	81 e8 00 00 	restore 
+    5bb8:	81 c3 e0 08 	retl 
+    5bbc:	01 00 00 00 	nop 
 
-00005b88 <generate_opcode_11>:
-    5b88:	9d e3 bf 98 	save  %sp, -104, %sp
-    5b8c:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    5b90:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    5b94:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
-    5b98:	f6 27 a0 50 	st  %i3, [ %fp + 0x50 ]
-    5b9c:	84 10 00 1c 	mov  %i4, %g2
-    5ba0:	82 10 00 1d 	mov  %i5, %g1
-    5ba4:	c4 2f a0 54 	stb  %g2, [ %fp + 0x54 ]
-    5ba8:	c2 37 a0 58 	sth  %g1, [ %fp + 0x58 ]
-    5bac:	03 30 00 00 	sethi  %hi(0xc0000000), %g1
-    5bb0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5bb4:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    5bb8:	83 28 60 19 	sll  %g1, 0x19, %g1
-    5bbc:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5bc0:	82 10 80 01 	or  %g2, %g1, %g1
-    5bc4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5bc8:	c2 07 a0 50 	ld  [ %fp + 0x50 ], %g1
-    5bcc:	83 28 60 13 	sll  %g1, 0x13, %g1
-    5bd0:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5bd4:	82 10 80 01 	or  %g2, %g1, %g1
-    5bd8:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5bdc:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    5be0:	83 28 60 0e 	sll  %g1, 0xe, %g1
-    5be4:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5be8:	82 10 80 01 	or  %g2, %g1, %g1
-    5bec:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5bf0:	c2 0f a0 54 	ldub  [ %fp + 0x54 ], %g1
-    5bf4:	83 28 60 18 	sll  %g1, 0x18, %g1
-    5bf8:	83 38 60 18 	sra  %g1, 0x18, %g1
-    5bfc:	80 a0 60 01 	cmp  %g1, 1
-    5c00:	12 80 00 0e 	bne  5c38 <generate_opcode_11+0xb0>
-    5c04:	01 00 00 00 	nop 
+00005bc0 <generate_opcode_10>:
+    5bc0:	9d e3 bf 98 	save  %sp, -104, %sp
+    5bc4:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    5bc8:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    5bcc:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
+    5bd0:	f6 27 a0 50 	st  %i3, [ %fp + 0x50 ]
+    5bd4:	84 10 00 1c 	mov  %i4, %g2
+    5bd8:	82 10 00 1d 	mov  %i5, %g1
+    5bdc:	c4 2f a0 54 	stb  %g2, [ %fp + 0x54 ]
+    5be0:	c2 37 a0 58 	sth  %g1, [ %fp + 0x58 ]
+    5be4:	03 20 00 00 	sethi  %hi(0x80000000), %g1
+    5be8:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5bec:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    5bf0:	83 28 60 19 	sll  %g1, 0x19, %g1
+    5bf4:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5bf8:	82 10 80 01 	or  %g2, %g1, %g1
+    5bfc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5c00:	c2 07 a0 50 	ld  [ %fp + 0x50 ], %g1
+    5c04:	83 28 60 13 	sll  %g1, 0x13, %g1
     5c08:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5c0c:	03 00 00 08 	sethi  %hi(0x2000), %g1
-    5c10:	82 10 80 01 	or  %g2, %g1, %g1
-    5c14:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5c18:	c2 17 a0 58 	lduh  [ %fp + 0x58 ], %g1
-    5c1c:	83 28 60 10 	sll  %g1, 0x10, %g1
-    5c20:	83 30 60 10 	srl  %g1, 0x10, %g1
-    5c24:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5c28:	82 10 80 01 	or  %g2, %g1, %g1
-    5c2c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5c30:	10 80 00 06 	b  5c48 <generate_opcode_11+0xc0>
-    5c34:	01 00 00 00 	nop 
-    5c38:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    5c3c:	c2 07 a0 4c 	ld  [ %fp + 0x4c ], %g1
-    5c40:	82 10 80 01 	or  %g2, %g1, %g1
-    5c44:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    5c48:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    5c4c:	b0 10 00 01 	mov  %g1, %i0
-    5c50:	81 e8 00 00 	restore 
-    5c54:	81 c3 e0 08 	retl 
-    5c58:	01 00 00 00 	nop 
+    5c0c:	82 10 80 01 	or  %g2, %g1, %g1
+    5c10:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5c14:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    5c18:	83 28 60 0e 	sll  %g1, 0xe, %g1
+    5c1c:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5c20:	82 10 80 01 	or  %g2, %g1, %g1
+    5c24:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5c28:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5c2c:	c2 07 a0 4c 	ld  [ %fp + 0x4c ], %g1
+    5c30:	82 10 80 01 	or  %g2, %g1, %g1
+    5c34:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5c38:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    5c3c:	b0 10 00 01 	mov  %g1, %i0
+    5c40:	81 e8 00 00 	restore 
+    5c44:	81 c3 e0 08 	retl 
+    5c48:	01 00 00 00 	nop 
 
-00005c5c <DFG_for_output_0>:
-    5c5c:	9d e3 bf a0 	save  %sp, -96, %sp
-    5c60:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    5c64:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    5c68:	82 10 20 00 	clr  %g1
-    5c6c:	b0 10 00 01 	mov  %g1, %i0
-    5c70:	81 e8 00 00 	restore 
-    5c74:	81 c3 e0 08 	retl 
-    5c78:	01 00 00 00 	nop 
+00005c4c <generate_opcode_11>:
+    5c4c:	9d e3 bf 98 	save  %sp, -104, %sp
+    5c50:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    5c54:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    5c58:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
+    5c5c:	f6 27 a0 50 	st  %i3, [ %fp + 0x50 ]
+    5c60:	84 10 00 1c 	mov  %i4, %g2
+    5c64:	82 10 00 1d 	mov  %i5, %g1
+    5c68:	c4 2f a0 54 	stb  %g2, [ %fp + 0x54 ]
+    5c6c:	c2 37 a0 58 	sth  %g1, [ %fp + 0x58 ]
+    5c70:	03 30 00 00 	sethi  %hi(0xc0000000), %g1
+    5c74:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5c78:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    5c7c:	83 28 60 19 	sll  %g1, 0x19, %g1
+    5c80:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5c84:	82 10 80 01 	or  %g2, %g1, %g1
+    5c88:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5c8c:	c2 07 a0 50 	ld  [ %fp + 0x50 ], %g1
+    5c90:	83 28 60 13 	sll  %g1, 0x13, %g1
+    5c94:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5c98:	82 10 80 01 	or  %g2, %g1, %g1
+    5c9c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5ca0:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    5ca4:	83 28 60 0e 	sll  %g1, 0xe, %g1
+    5ca8:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5cac:	82 10 80 01 	or  %g2, %g1, %g1
+    5cb0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5cb4:	c2 0f a0 54 	ldub  [ %fp + 0x54 ], %g1
+    5cb8:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5cbc:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5cc0:	80 a0 60 01 	cmp  %g1, 1
+    5cc4:	12 80 00 0e 	bne  5cfc <generate_opcode_11+0xb0>
+    5cc8:	01 00 00 00 	nop 
+    5ccc:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5cd0:	03 00 00 08 	sethi  %hi(0x2000), %g1
+    5cd4:	82 10 80 01 	or  %g2, %g1, %g1
+    5cd8:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5cdc:	c2 17 a0 58 	lduh  [ %fp + 0x58 ], %g1
+    5ce0:	83 28 60 10 	sll  %g1, 0x10, %g1
+    5ce4:	83 30 60 10 	srl  %g1, 0x10, %g1
+    5ce8:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5cec:	82 10 80 01 	or  %g2, %g1, %g1
+    5cf0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5cf4:	10 80 00 06 	b  5d0c <generate_opcode_11+0xc0>
+    5cf8:	01 00 00 00 	nop 
+    5cfc:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    5d00:	c2 07 a0 4c 	ld  [ %fp + 0x4c ], %g1
+    5d04:	82 10 80 01 	or  %g2, %g1, %g1
+    5d08:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    5d0c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    5d10:	b0 10 00 01 	mov  %g1, %i0
+    5d14:	81 e8 00 00 	restore 
+    5d18:	81 c3 e0 08 	retl 
+    5d1c:	01 00 00 00 	nop 
 
-00005c7c <main>:
-    5c7c:	9d e3 bf 78 	save  %sp, -136, %sp
-    5c80:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    5c84:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    5c88:	82 10 00 0e 	mov  %sp, %g1
-    5c8c:	b2 10 00 01 	mov  %g1, %i1
-    5c90:	90 10 20 03 	mov  3, %o0
-    5c94:	40 00 02 90 	call  66d4 <__ajit_write_serial_control_register__>
-    5c98:	01 00 00 00 	nop 
-    5c9c:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    5ca0:	85 30 60 1f 	srl  %g1, 0x1f, %g2
-    5ca4:	82 00 80 01 	add  %g2, %g1, %g1
-    5ca8:	83 38 60 01 	sra  %g1, 1, %g1
-    5cac:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
-    5cb0:	c4 07 bf f0 	ld  [ %fp + -16 ], %g2
-    5cb4:	82 10 00 02 	mov  %g2, %g1
-    5cb8:	83 28 60 03 	sll  %g1, 3, %g1
-    5cbc:	82 20 40 02 	sub  %g1, %g2, %g1
-    5cc0:	82 00 60 04 	add  %g1, 4, %g1
-    5cc4:	c2 27 bf ec 	st  %g1, [ %fp + -20 ]
-    5cc8:	82 10 20 10 	mov  0x10, %g1
-    5ccc:	c2 37 bf ea 	sth  %g1, [ %fp + -22 ]
-    5cd0:	c2 17 bf ea 	lduh  [ %fp + -22 ], %g1
-    5cd4:	c2 37 bf fe 	sth  %g1, [ %fp + -2 ]
-    5cd8:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
-    5cdc:	84 00 7f ff 	add  %g1, -1, %g2
-    5ce0:	c4 27 bf e4 	st  %g2, [ %fp + -28 ]
-    5ce4:	84 10 00 01 	mov  %g1, %g2
-    5ce8:	86 10 00 02 	mov  %g2, %g3
-    5cec:	84 10 20 00 	clr  %g2
-    5cf0:	89 30 e0 1b 	srl  %g3, 0x1b, %g4
-    5cf4:	b5 28 a0 05 	sll  %g2, 5, %i2
-    5cf8:	b4 11 00 1a 	or  %g4, %i2, %i2
-    5cfc:	b7 28 e0 05 	sll  %g3, 5, %i3
-    5d00:	84 10 00 01 	mov  %g1, %g2
-    5d04:	86 10 00 02 	mov  %g2, %g3
-    5d08:	84 10 20 00 	clr  %g2
-    5d0c:	89 30 e0 1b 	srl  %g3, 0x1b, %g4
-    5d10:	b9 28 a0 05 	sll  %g2, 5, %i4
-    5d14:	b8 11 00 1c 	or  %g4, %i4, %i4
-    5d18:	bb 28 e0 05 	sll  %g3, 5, %i5
-    5d1c:	83 28 60 02 	sll  %g1, 2, %g1
-    5d20:	82 00 60 03 	add  %g1, 3, %g1
-    5d24:	82 00 60 07 	add  %g1, 7, %g1
-    5d28:	83 30 60 03 	srl  %g1, 3, %g1
-    5d2c:	83 28 60 03 	sll  %g1, 3, %g1
-    5d30:	9c 23 80 01 	sub  %sp, %g1, %sp
-    5d34:	82 03 a0 5c 	add  %sp, 0x5c, %g1
-    5d38:	82 00 60 03 	add  %g1, 3, %g1
-    5d3c:	83 30 60 02 	srl  %g1, 2, %g1
-    5d40:	83 28 60 02 	sll  %g1, 2, %g1
-    5d44:	c2 27 bf e0 	st  %g1, [ %fp + -32 ]
-    5d48:	82 10 20 12 	mov  0x12, %g1
-    5d4c:	c2 2f bf df 	stb  %g1, [ %fp + -33 ]
-    5d50:	82 10 20 10 	mov  0x10, %g1
-    5d54:	c2 2f bf de 	stb  %g1, [ %fp + -34 ]
-    5d58:	82 10 20 11 	mov  0x11, %g1
-    5d5c:	c2 2f bf dd 	stb  %g1, [ %fp + -35 ]
-    5d60:	c0 2f bf dc 	clrb  [ %fp + -36 ]
-    5d64:	c0 27 bf f4 	clr  [ %fp + -12 ]
-    5d68:	c2 07 bf e0 	ld  [ %fp + -32 ], %g1
-    5d6c:	05 27 78 ef 	sethi  %hi(0x9de3bc00), %g2
-    5d70:	84 10 a3 a0 	or  %g2, 0x3a0, %g2	! 9de3bfa0 <alu_op_codes+0x9ddfbdc8>
-    5d74:	c4 20 40 00 	st  %g2, [ %g1 ]
-    5d78:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    5d7c:	10 80 00 fd 	b  6170 <main+0x4f4>
-    5d80:	01 00 00 00 	nop 
-    5d84:	c2 17 bf fe 	lduh  [ %fp + -2 ], %g1
-    5d88:	83 28 60 10 	sll  %g1, 0x10, %g1
-    5d8c:	83 30 60 10 	srl  %g1, 0x10, %g1
-    5d90:	90 10 00 01 	mov  %g1, %o0
-    5d94:	7f ff fe 59 	call  56f8 <prbs>
-    5d98:	01 00 00 00 	nop 
-    5d9c:	82 10 00 08 	mov  %o0, %g1
-    5da0:	c2 37 bf fe 	sth  %g1, [ %fp + -2 ]
-    5da4:	c2 17 bf fe 	lduh  [ %fp + -2 ], %g1
-    5da8:	83 28 60 10 	sll  %g1, 0x10, %g1
-    5dac:	83 30 60 10 	srl  %g1, 0x10, %g1
-    5db0:	90 10 00 01 	mov  %g1, %o0
-    5db4:	7f ff fe 51 	call  56f8 <prbs>
-    5db8:	01 00 00 00 	nop 
-    5dbc:	82 10 00 08 	mov  %o0, %g1
-    5dc0:	82 08 60 01 	and  %g1, 1, %g1
-    5dc4:	90 10 00 01 	mov  %g1, %o0
-    5dc8:	7f ff ff 29 	call  5a6c <instr_select>
-    5dcc:	01 00 00 00 	nop 
-    5dd0:	82 10 00 08 	mov  %o0, %g1
-    5dd4:	84 10 00 01 	mov  %g1, %g2
-    5dd8:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5ddc:	86 10 61 d8 	or  %g1, 0x1d8, %g3	! 401d8 <alu_op_codes>
-    5de0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    5de4:	82 00 c0 01 	add  %g3, %g1, %g1
-    5de8:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    5dec:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5df0:	84 10 61 d8 	or  %g1, 0x1d8, %g2	! 401d8 <alu_op_codes>
-    5df4:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    5df8:	82 00 80 01 	add  %g2, %g1, %g1
-    5dfc:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    5e00:	82 08 60 ff 	and  %g1, 0xff, %g1
-    5e04:	90 10 00 01 	mov  %g1, %o0
-    5e08:	7f ff ff 27 	call  5aa4 <bring_complement_instr>
-    5e0c:	01 00 00 00 	nop 
-    5e10:	82 10 00 08 	mov  %o0, %g1
-    5e14:	84 10 00 01 	mov  %g1, %g2
-    5e18:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5e1c:	86 10 61 d0 	or  %g1, 0x1d0, %g3	! 401d0 <complement_instr>
-    5e20:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    5e24:	82 00 c0 01 	add  %g3, %g1, %g1
-    5e28:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    5e2c:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    5e30:	ba 00 60 01 	add  %g1, 1, %i5
-    5e34:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
-    5e38:	88 08 60 ff 	and  %g1, 0xff, %g4
-    5e3c:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
-    5e40:	86 08 60 ff 	and  %g1, 0xff, %g3
-    5e44:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5e48:	82 10 61 c8 	or  %g1, 0x1c8, %g1	! 401c8 <mem_op_codes>
-    5e4c:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    5e50:	84 08 60 ff 	and  %g1, 0xff, %g2
-    5e54:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    5e58:	83 28 60 03 	sll  %g1, 3, %g1
-    5e5c:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
-    5e60:	82 07 00 01 	add  %i4, %g1, %g1
-    5e64:	83 28 60 10 	sll  %g1, 0x10, %g1
-    5e68:	83 30 60 10 	srl  %g1, 0x10, %g1
-    5e6c:	90 10 00 04 	mov  %g4, %o0
-    5e70:	92 10 00 03 	mov  %g3, %o1
-    5e74:	94 10 20 00 	clr  %o2
-    5e78:	96 10 00 02 	mov  %g2, %o3
-    5e7c:	98 10 20 01 	mov  1, %o4
-    5e80:	9a 10 00 01 	mov  %g1, %o5
-    5e84:	7f ff ff 41 	call  5b88 <generate_opcode_11>
+00005d20 <DFG_for_output_0>:
+    5d20:	9d e3 bf a0 	save  %sp, -96, %sp
+    5d24:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    5d28:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    5d2c:	82 10 20 00 	clr  %g1
+    5d30:	b0 10 00 01 	mov  %g1, %i0
+    5d34:	81 e8 00 00 	restore 
+    5d38:	81 c3 e0 08 	retl 
+    5d3c:	01 00 00 00 	nop 
+
+00005d40 <main>:
+    5d40:	9d e3 bf 78 	save  %sp, -136, %sp
+    5d44:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    5d48:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    5d4c:	82 10 00 0e 	mov  %sp, %g1
+    5d50:	b2 10 00 01 	mov  %g1, %i1
+    5d54:	90 10 20 03 	mov  3, %o0
+    5d58:	40 00 02 a5 	call  67ec <__ajit_write_serial_control_register__>
+    5d5c:	01 00 00 00 	nop 
+    5d60:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    5d64:	85 30 60 1f 	srl  %g1, 0x1f, %g2
+    5d68:	82 00 80 01 	add  %g2, %g1, %g1
+    5d6c:	83 38 60 01 	sra  %g1, 1, %g1
+    5d70:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
+    5d74:	c4 07 bf f0 	ld  [ %fp + -16 ], %g2
+    5d78:	82 10 00 02 	mov  %g2, %g1
+    5d7c:	83 28 60 03 	sll  %g1, 3, %g1
+    5d80:	82 20 40 02 	sub  %g1, %g2, %g1
+    5d84:	82 00 60 04 	add  %g1, 4, %g1
+    5d88:	c2 27 bf ec 	st  %g1, [ %fp + -20 ]
+    5d8c:	82 10 20 10 	mov  0x10, %g1
+    5d90:	c2 37 bf ea 	sth  %g1, [ %fp + -22 ]
+    5d94:	c2 17 bf ea 	lduh  [ %fp + -22 ], %g1
+    5d98:	c2 37 bf fe 	sth  %g1, [ %fp + -2 ]
+    5d9c:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
+    5da0:	84 00 7f ff 	add  %g1, -1, %g2
+    5da4:	c4 27 bf e4 	st  %g2, [ %fp + -28 ]
+    5da8:	84 10 00 01 	mov  %g1, %g2
+    5dac:	86 10 00 02 	mov  %g2, %g3
+    5db0:	84 10 20 00 	clr  %g2
+    5db4:	89 30 e0 1b 	srl  %g3, 0x1b, %g4
+    5db8:	b5 28 a0 05 	sll  %g2, 5, %i2
+    5dbc:	b4 11 00 1a 	or  %g4, %i2, %i2
+    5dc0:	b7 28 e0 05 	sll  %g3, 5, %i3
+    5dc4:	84 10 00 01 	mov  %g1, %g2
+    5dc8:	86 10 00 02 	mov  %g2, %g3
+    5dcc:	84 10 20 00 	clr  %g2
+    5dd0:	89 30 e0 1b 	srl  %g3, 0x1b, %g4
+    5dd4:	b9 28 a0 05 	sll  %g2, 5, %i4
+    5dd8:	b8 11 00 1c 	or  %g4, %i4, %i4
+    5ddc:	bb 28 e0 05 	sll  %g3, 5, %i5
+    5de0:	83 28 60 02 	sll  %g1, 2, %g1
+    5de4:	82 00 60 03 	add  %g1, 3, %g1
+    5de8:	82 00 60 07 	add  %g1, 7, %g1
+    5dec:	83 30 60 03 	srl  %g1, 3, %g1
+    5df0:	83 28 60 03 	sll  %g1, 3, %g1
+    5df4:	9c 23 80 01 	sub  %sp, %g1, %sp
+    5df8:	82 03 a0 5c 	add  %sp, 0x5c, %g1
+    5dfc:	82 00 60 03 	add  %g1, 3, %g1
+    5e00:	83 30 60 02 	srl  %g1, 2, %g1
+    5e04:	83 28 60 02 	sll  %g1, 2, %g1
+    5e08:	c2 27 bf e0 	st  %g1, [ %fp + -32 ]
+    5e0c:	82 10 20 12 	mov  0x12, %g1
+    5e10:	c2 2f bf df 	stb  %g1, [ %fp + -33 ]
+    5e14:	82 10 20 10 	mov  0x10, %g1
+    5e18:	c2 2f bf de 	stb  %g1, [ %fp + -34 ]
+    5e1c:	82 10 20 11 	mov  0x11, %g1
+    5e20:	c2 2f bf dd 	stb  %g1, [ %fp + -35 ]
+    5e24:	c0 2f bf dc 	clrb  [ %fp + -36 ]
+    5e28:	c0 27 bf f4 	clr  [ %fp + -12 ]
+    5e2c:	c2 07 bf e0 	ld  [ %fp + -32 ], %g1
+    5e30:	05 27 78 ef 	sethi  %hi(0x9de3bc00), %g2
+    5e34:	84 10 a3 a0 	or  %g2, 0x3a0, %g2	! 9de3bfa0 <alu_op_codes+0x9ddfbdc0>
+    5e38:	c4 20 40 00 	st  %g2, [ %g1 ]
+    5e3c:	82 10 20 ad 	mov  0xad, %g1
+    5e40:	c2 37 bf fe 	sth  %g1, [ %fp + -2 ]
+    5e44:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    5e48:	10 80 01 10 	b  6288 <main+0x548>
+    5e4c:	01 00 00 00 	nop 
+    5e50:	c2 17 bf fe 	lduh  [ %fp + -2 ], %g1
+    5e54:	83 28 60 10 	sll  %g1, 0x10, %g1
+    5e58:	83 30 60 10 	srl  %g1, 0x10, %g1
+    5e5c:	90 10 00 01 	mov  %g1, %o0
+    5e60:	7f ff fe 26 	call  56f8 <prbs>
+    5e64:	01 00 00 00 	nop 
+    5e68:	82 10 00 08 	mov  %o0, %g1
+    5e6c:	c2 37 bf fe 	sth  %g1, [ %fp + -2 ]
+    5e70:	c2 17 bf fe 	lduh  [ %fp + -2 ], %g1
+    5e74:	83 28 60 10 	sll  %g1, 0x10, %g1
+    5e78:	83 30 60 10 	srl  %g1, 0x10, %g1
+    5e7c:	82 08 60 03 	and  %g1, 3, %g1
+    5e80:	90 10 00 01 	mov  %g1, %o0
+    5e84:	7f ff fe fa 	call  5a6c <instr_sel>
     5e88:	01 00 00 00 	nop 
-    5e8c:	86 10 00 08 	mov  %o0, %g3
-    5e90:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    5e94:	83 2f 60 02 	sll  %i5, 2, %g1
-    5e98:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    5e9c:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    5ea0:	ba 00 60 02 	add  %g1, 2, %i5
-    5ea4:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
-    5ea8:	88 08 60 ff 	and  %g1, 0xff, %g4
-    5eac:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
-    5eb0:	86 08 60 ff 	and  %g1, 0xff, %g3
-    5eb4:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5eb8:	82 10 61 c8 	or  %g1, 0x1c8, %g1	! 401c8 <mem_op_codes>
-    5ebc:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    5ec0:	84 08 60 ff 	and  %g1, 0xff, %g2
-    5ec4:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    5ec8:	83 28 60 03 	sll  %g1, 3, %g1
-    5ecc:	82 00 60 04 	add  %g1, 4, %g1
-    5ed0:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
-    5ed4:	82 07 00 01 	add  %i4, %g1, %g1
-    5ed8:	83 28 60 10 	sll  %g1, 0x10, %g1
-    5edc:	83 30 60 10 	srl  %g1, 0x10, %g1
-    5ee0:	90 10 00 04 	mov  %g4, %o0
-    5ee4:	92 10 00 03 	mov  %g3, %o1
-    5ee8:	94 10 20 00 	clr  %o2
-    5eec:	96 10 00 02 	mov  %g2, %o3
-    5ef0:	98 10 20 01 	mov  1, %o4
-    5ef4:	9a 10 00 01 	mov  %g1, %o5
-    5ef8:	7f ff ff 24 	call  5b88 <generate_opcode_11>
-    5efc:	01 00 00 00 	nop 
-    5f00:	86 10 00 08 	mov  %o0, %g3
-    5f04:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    5f08:	83 2f 60 02 	sll  %i5, 2, %g1
-    5f0c:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    5f10:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    5f14:	ba 00 60 03 	add  %g1, 3, %i5
-    5f18:	c2 0f bf df 	ldub  [ %fp + -33 ], %g1
-    5f1c:	88 08 60 ff 	and  %g1, 0xff, %g4
-    5f20:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
-    5f24:	86 08 60 ff 	and  %g1, 0xff, %g3
-    5f28:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
-    5f2c:	84 08 60 ff 	and  %g1, 0xff, %g2
-    5f30:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5f34:	b8 10 61 d8 	or  %g1, 0x1d8, %i4	! 401d8 <alu_op_codes>
-    5f38:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    5f3c:	82 07 00 01 	add  %i4, %g1, %g1
-    5f40:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    5f44:	82 08 60 ff 	and  %g1, 0xff, %g1
-    5f48:	90 10 00 04 	mov  %g4, %o0
-    5f4c:	92 10 00 03 	mov  %g3, %o1
-    5f50:	94 10 00 02 	mov  %g2, %o2
-    5f54:	96 10 00 01 	mov  %g1, %o3
-    5f58:	98 10 20 00 	clr  %o4
-    5f5c:	9a 10 20 00 	clr  %o5
-    5f60:	7f ff fe e7 	call  5afc <generate_opcode_10>
-    5f64:	01 00 00 00 	nop 
-    5f68:	86 10 00 08 	mov  %o0, %g3
-    5f6c:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    5f70:	83 2f 60 02 	sll  %i5, 2, %g1
-    5f74:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    5f78:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    5f7c:	ba 00 60 04 	add  %g1, 4, %i5
-    5f80:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
-    5f84:	88 08 60 ff 	and  %g1, 0xff, %g4
-    5f88:	c2 0f bf df 	ldub  [ %fp + -33 ], %g1
-    5f8c:	86 08 60 ff 	and  %g1, 0xff, %g3
-    5f90:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
-    5f94:	84 08 60 ff 	and  %g1, 0xff, %g2
-    5f98:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    5f9c:	b8 10 61 d0 	or  %g1, 0x1d0, %i4	! 401d0 <complement_instr>
-    5fa0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    5fa4:	82 07 00 01 	add  %i4, %g1, %g1
-    5fa8:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    5fac:	82 08 60 ff 	and  %g1, 0xff, %g1
-    5fb0:	90 10 00 04 	mov  %g4, %o0
-    5fb4:	92 10 00 03 	mov  %g3, %o1
-    5fb8:	94 10 00 02 	mov  %g2, %o2
-    5fbc:	96 10 00 01 	mov  %g1, %o3
-    5fc0:	98 10 20 00 	clr  %o4
-    5fc4:	9a 10 20 00 	clr  %o5
-    5fc8:	7f ff fe cd 	call  5afc <generate_opcode_10>
-    5fcc:	01 00 00 00 	nop 
-    5fd0:	86 10 00 08 	mov  %o0, %g3
-    5fd4:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    5fd8:	83 2f 60 02 	sll  %i5, 2, %g1
-    5fdc:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    5fe0:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    5fe4:	ba 00 60 05 	add  %g1, 5, %i5
-    5fe8:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
-    5fec:	88 08 60 ff 	and  %g1, 0xff, %g4
-    5ff0:	c2 0f bf df 	ldub  [ %fp + -33 ], %g1
-    5ff4:	86 08 60 ff 	and  %g1, 0xff, %g3
-    5ff8:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
-    5ffc:	84 08 60 ff 	and  %g1, 0xff, %g2
-    6000:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    6004:	b8 10 61 d0 	or  %g1, 0x1d0, %i4	! 401d0 <complement_instr>
-    6008:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    600c:	82 07 00 01 	add  %i4, %g1, %g1
-    6010:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    6014:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6018:	90 10 00 04 	mov  %g4, %o0
-    601c:	92 10 00 03 	mov  %g3, %o1
-    6020:	94 10 00 02 	mov  %g2, %o2
-    6024:	96 10 00 01 	mov  %g1, %o3
-    6028:	98 10 20 00 	clr  %o4
-    602c:	9a 10 20 00 	clr  %o5
-    6030:	7f ff fe b3 	call  5afc <generate_opcode_10>
-    6034:	01 00 00 00 	nop 
-    6038:	86 10 00 08 	mov  %o0, %g3
-    603c:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    6040:	83 2f 60 02 	sll  %i5, 2, %g1
-    6044:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    6048:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    604c:	ba 00 60 06 	add  %g1, 6, %i5
-    6050:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
-    6054:	88 08 60 ff 	and  %g1, 0xff, %g4
-    6058:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
-    605c:	86 08 60 ff 	and  %g1, 0xff, %g3
-    6060:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    6064:	82 10 61 c8 	or  %g1, 0x1c8, %g1	! 401c8 <mem_op_codes>
-    6068:	c2 08 60 01 	ldub  [ %g1 + 1 ], %g1
-    606c:	84 08 60 ff 	and  %g1, 0xff, %g2
-    6070:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    6074:	83 28 60 03 	sll  %g1, 3, %g1
-    6078:	b8 10 00 01 	mov  %g1, %i4
-    607c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6080:	83 28 60 03 	sll  %g1, 3, %g1
-    6084:	82 07 00 01 	add  %i4, %g1, %g1
-    6088:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
-    608c:	82 07 00 01 	add  %i4, %g1, %g1
-    6090:	83 28 60 10 	sll  %g1, 0x10, %g1
-    6094:	83 30 60 10 	srl  %g1, 0x10, %g1
-    6098:	90 10 00 04 	mov  %g4, %o0
-    609c:	92 10 00 03 	mov  %g3, %o1
-    60a0:	94 10 20 00 	clr  %o2
-    60a4:	96 10 00 02 	mov  %g2, %o3
-    60a8:	98 10 20 01 	mov  1, %o4
-    60ac:	9a 10 00 01 	mov  %g1, %o5
-    60b0:	7f ff fe b6 	call  5b88 <generate_opcode_11>
-    60b4:	01 00 00 00 	nop 
-    60b8:	86 10 00 08 	mov  %o0, %g3
-    60bc:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    60c0:	83 2f 60 02 	sll  %i5, 2, %g1
-    60c4:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    60c8:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    60cc:	ba 00 60 07 	add  %g1, 7, %i5
-    60d0:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
-    60d4:	88 08 60 ff 	and  %g1, 0xff, %g4
-    60d8:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
-    60dc:	86 08 60 ff 	and  %g1, 0xff, %g3
-    60e0:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    60e4:	82 10 61 c8 	or  %g1, 0x1c8, %g1	! 401c8 <mem_op_codes>
-    60e8:	c2 08 60 01 	ldub  [ %g1 + 1 ], %g1
-    60ec:	84 08 60 ff 	and  %g1, 0xff, %g2
-    60f0:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    60f4:	83 28 60 03 	sll  %g1, 3, %g1
-    60f8:	b8 10 00 01 	mov  %g1, %i4
-    60fc:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6100:	83 28 60 03 	sll  %g1, 3, %g1
-    6104:	82 07 00 01 	add  %i4, %g1, %g1
-    6108:	82 00 60 04 	add  %g1, 4, %g1
-    610c:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
-    6110:	82 07 00 01 	add  %i4, %g1, %g1
-    6114:	83 28 60 10 	sll  %g1, 0x10, %g1
-    6118:	83 30 60 10 	srl  %g1, 0x10, %g1
-    611c:	90 10 00 04 	mov  %g4, %o0
-    6120:	92 10 00 03 	mov  %g3, %o1
-    6124:	94 10 20 00 	clr  %o2
-    6128:	96 10 00 02 	mov  %g2, %o3
-    612c:	98 10 20 01 	mov  1, %o4
-    6130:	9a 10 00 01 	mov  %g1, %o5
-    6134:	7f ff fe 95 	call  5b88 <generate_opcode_11>
-    6138:	01 00 00 00 	nop 
-    613c:	86 10 00 08 	mov  %o0, %g3
-    6140:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    6144:	83 2f 60 02 	sll  %i5, 2, %g1
-    6148:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    614c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6150:	84 00 60 01 	add  %g1, 1, %g2
-    6154:	82 10 00 02 	mov  %g2, %g1
-    6158:	83 28 60 03 	sll  %g1, 3, %g1
-    615c:	82 20 40 02 	sub  %g1, %g2, %g1
-    6160:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
-    6164:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6168:	82 00 60 01 	inc  %g1
-    616c:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    6170:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    6174:	c2 07 bf f0 	ld  [ %fp + -16 ], %g1
-    6178:	80 a0 80 01 	cmp  %g2, %g1
-    617c:	06 bf ff 02 	bl  5d84 <main+0x108>
-    6180:	01 00 00 00 	nop 
-    6184:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
-    6188:	82 00 7f fd 	add  %g1, -3, %g1
-    618c:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    6190:	83 28 60 02 	sll  %g1, 2, %g1
-    6194:	07 20 7a 00 	sethi  %hi(0x81e80000), %g3
-    6198:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    619c:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
-    61a0:	82 00 7f fe 	add  %g1, -2, %g1
-    61a4:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    61a8:	83 28 60 02 	sll  %g1, 2, %g1
-    61ac:	07 20 70 f8 	sethi  %hi(0x81c3e000), %g3
-    61b0:	86 10 e0 08 	or  %g3, 8, %g3	! 81c3e008 <alu_op_codes+0x81bfde30>
-    61b4:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    61b8:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
-    61bc:	82 00 7f ff 	add  %g1, -1, %g1
-    61c0:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    61c4:	83 28 60 02 	sll  %g1, 2, %g1
-    61c8:	07 00 40 00 	sethi  %hi(0x1000000), %g3
-    61cc:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
-    61d0:	21 00 00 00 	sethi  %hi(0), %l0
-    61d4:	a0 14 20 a0 	or  %l0, 0xa0, %l0	! a0 <instr_section>
-    61d8:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    61dc:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    61e0:	10 80 00 0c 	b  6210 <main+0x594>
-    61e4:	01 00 00 00 	nop 
-    61e8:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
-    61ec:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    61f0:	83 28 60 02 	sll  %g1, 2, %g1
-    61f4:	c2 00 80 01 	ld  [ %g2 + %g1 ], %g1
-    61f8:	a2 10 00 01 	mov  %g1, %l1
-    61fc:	e2 24 00 00 	st  %l1, [ %l0 ]
-    6200:	a0 04 20 04 	add  %l0, 4, %l0
-    6204:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6208:	82 00 60 01 	inc  %g1
-    620c:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    6210:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    6214:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
-    6218:	80 a0 80 01 	cmp  %g2, %g1
-    621c:	06 bf ff f3 	bl  61e8 <main+0x56c>
-    6220:	01 00 00 00 	nop 
-    6224:	03 00 01 00 	sethi  %hi(0x40000), %g1
-    6228:	90 10 61 18 	or  %g1, 0x118, %o0	! 40118 <__ajit_fstoi__+0x38b80>
-    622c:	7f ff fd 05 	call  5640 <ee_printf>
-    6230:	01 00 00 00 	nop 
-    6234:	82 10 20 01 	mov  1, %g1	! 1 <_start+0x1>
-    6238:	9c 10 00 19 	mov  %i1, %sp
-    623c:	b0 10 00 01 	mov  %g1, %i0
-    6240:	81 e8 00 00 	restore 
-    6244:	81 c3 e0 08 	retl 
-    6248:	01 00 00 00 	nop 
-
-0000624c <__ajit_clear_all_gp_registers__>:
-    624c:	9d e3 bf 98 	save  %sp, -104, %sp
-    6250:	82 10 00 00 	mov  %g0, %g1
-    6254:	84 10 00 00 	mov  %g0, %g2
-    6258:	86 10 00 00 	mov  %g0, %g3
-    625c:	88 10 00 00 	mov  %g0, %g4
-    6260:	8a 10 00 00 	mov  %g0, %g5
-    6264:	8c 10 00 00 	mov  %g0, %g6
-    6268:	8e 10 00 00 	mov  %g0, %g7
-    626c:	b0 10 00 00 	mov  %g0, %i0
-    6270:	b2 10 00 00 	mov  %g0, %i1
-    6274:	b4 10 00 00 	mov  %g0, %i2
-    6278:	b6 10 00 00 	mov  %g0, %i3
-    627c:	b8 10 00 00 	mov  %g0, %i4
-    6280:	ba 10 00 00 	mov  %g0, %i5
-    6284:	bc 10 00 00 	mov  %g0, %fp
-    6288:	be 10 00 00 	mov  %g0, %i7
-    628c:	a0 10 00 00 	mov  %g0, %l0
-    6290:	a2 10 00 00 	mov  %g0, %l1
-    6294:	a4 10 00 00 	mov  %g0, %l2
-    6298:	a6 10 00 00 	mov  %g0, %l3
-    629c:	a8 10 00 00 	mov  %g0, %l4
-    62a0:	aa 10 00 00 	mov  %g0, %l5
-    62a4:	ac 10 00 00 	mov  %g0, %l6
-    62a8:	ae 10 00 00 	mov  %g0, %l7
-    62ac:	90 10 00 00 	mov  %g0, %o0
-    62b0:	92 10 00 00 	mov  %g0, %o1
-    62b4:	94 10 00 00 	mov  %g0, %o2
-    62b8:	96 10 00 00 	mov  %g0, %o3
-    62bc:	98 10 00 00 	mov  %g0, %o4
-    62c0:	9a 10 00 00 	mov  %g0, %o5
-    62c4:	9c 10 00 00 	mov  %g0, %sp
-    62c8:	9e 10 00 00 	mov  %g0, %o7
-    62cc:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    62d0:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    62d4:	10 80 00 16 	b  632c <__ajit_clear_all_gp_registers__+0xe0>
-    62d8:	01 00 00 00 	nop 
-    62dc:	81 e0 00 00 	save 
-    62e0:	a0 10 00 00 	mov  %g0, %l0
-    62e4:	a2 10 00 00 	mov  %g0, %l1
-    62e8:	a4 10 00 00 	mov  %g0, %l2
-    62ec:	a6 10 00 00 	mov  %g0, %l3
-    62f0:	a8 10 00 00 	mov  %g0, %l4
-    62f4:	aa 10 00 00 	mov  %g0, %l5
-    62f8:	ac 10 00 00 	mov  %g0, %l6
-    62fc:	ae 10 00 00 	mov  %g0, %l7
-    6300:	90 10 00 00 	mov  %g0, %o0
-    6304:	92 10 00 00 	mov  %g0, %o1
-    6308:	94 10 00 00 	mov  %g0, %o2
-    630c:	96 10 00 00 	mov  %g0, %o3
-    6310:	98 10 00 00 	mov  %g0, %o4
-    6314:	9a 10 00 00 	mov  %g0, %o5
-    6318:	9c 10 00 00 	mov  %g0, %sp
-    631c:	9e 10 00 00 	mov  %g0, %o7
-    6320:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6324:	82 00 60 01 	inc  %g1
-    6328:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    632c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6330:	80 a0 60 06 	cmp  %g1, 6
-    6334:	04 bf ff ea 	ble  62dc <__ajit_clear_all_gp_registers__+0x90>
+    5e8c:	82 10 00 08 	mov  %o0, %g1
+    5e90:	84 10 00 01 	mov  %g1, %g2
+    5e94:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    5e98:	86 10 61 e0 	or  %g1, 0x1e0, %g3	! 401e0 <alu_op_codes>
+    5e9c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    5ea0:	82 00 c0 01 	add  %g3, %g1, %g1
+    5ea4:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    5ea8:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    5eac:	84 10 61 e0 	or  %g1, 0x1e0, %g2	! 401e0 <alu_op_codes>
+    5eb0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    5eb4:	82 00 80 01 	add  %g2, %g1, %g1
+    5eb8:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    5ebc:	82 08 60 ff 	and  %g1, 0xff, %g1
+    5ec0:	05 00 01 00 	sethi  %hi(0x40000), %g2
+    5ec4:	90 10 a1 18 	or  %g2, 0x118, %o0	! 40118 <__ajit_fstoi__+0x38a68>
+    5ec8:	92 10 00 01 	mov  %g1, %o1
+    5ecc:	7f ff fd dd 	call  5640 <ee_printf>
+    5ed0:	01 00 00 00 	nop 
+    5ed4:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    5ed8:	84 10 61 e0 	or  %g1, 0x1e0, %g2	! 401e0 <alu_op_codes>
+    5edc:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    5ee0:	82 00 80 01 	add  %g2, %g1, %g1
+    5ee4:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    5ee8:	83 28 60 18 	sll  %g1, 0x18, %g1
+    5eec:	83 38 60 18 	sra  %g1, 0x18, %g1
+    5ef0:	90 10 00 01 	mov  %g1, %o0
+    5ef4:	7f ff ff 04 	call  5b04 <bring_complement_instr>
+    5ef8:	01 00 00 00 	nop 
+    5efc:	82 10 00 08 	mov  %o0, %g1
+    5f00:	84 10 00 01 	mov  %g1, %g2
+    5f04:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    5f08:	86 10 61 d8 	or  %g1, 0x1d8, %g3	! 401d8 <complement_instr>
+    5f0c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    5f10:	82 00 c0 01 	add  %g3, %g1, %g1
+    5f14:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    5f18:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    5f1c:	84 10 61 d8 	or  %g1, 0x1d8, %g2	! 401d8 <complement_instr>
+    5f20:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    5f24:	82 00 80 01 	add  %g2, %g1, %g1
+    5f28:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    5f2c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    5f30:	05 00 01 00 	sethi  %hi(0x40000), %g2
+    5f34:	90 10 a1 18 	or  %g2, 0x118, %o0	! 40118 <__ajit_fstoi__+0x38a68>
+    5f38:	92 10 00 01 	mov  %g1, %o1
+    5f3c:	7f ff fd c1 	call  5640 <ee_printf>
+    5f40:	01 00 00 00 	nop 
+    5f44:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    5f48:	ba 00 60 01 	add  %g1, 1, %i5
+    5f4c:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
+    5f50:	88 08 60 ff 	and  %g1, 0xff, %g4
+    5f54:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
+    5f58:	86 08 60 ff 	and  %g1, 0xff, %g3
+    5f5c:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    5f60:	82 10 61 d0 	or  %g1, 0x1d0, %g1	! 401d0 <mem_op_codes>
+    5f64:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    5f68:	84 08 60 ff 	and  %g1, 0xff, %g2
+    5f6c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    5f70:	83 28 60 03 	sll  %g1, 3, %g1
+    5f74:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
+    5f78:	82 07 00 01 	add  %i4, %g1, %g1
+    5f7c:	83 28 60 10 	sll  %g1, 0x10, %g1
+    5f80:	83 30 60 10 	srl  %g1, 0x10, %g1
+    5f84:	90 10 00 04 	mov  %g4, %o0
+    5f88:	92 10 00 03 	mov  %g3, %o1
+    5f8c:	94 10 20 00 	clr  %o2
+    5f90:	96 10 00 02 	mov  %g2, %o3
+    5f94:	98 10 20 01 	mov  1, %o4
+    5f98:	9a 10 00 01 	mov  %g1, %o5
+    5f9c:	7f ff ff 2c 	call  5c4c <generate_opcode_11>
+    5fa0:	01 00 00 00 	nop 
+    5fa4:	86 10 00 08 	mov  %o0, %g3
+    5fa8:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    5fac:	83 2f 60 02 	sll  %i5, 2, %g1
+    5fb0:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    5fb4:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    5fb8:	ba 00 60 02 	add  %g1, 2, %i5
+    5fbc:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
+    5fc0:	88 08 60 ff 	and  %g1, 0xff, %g4
+    5fc4:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
+    5fc8:	86 08 60 ff 	and  %g1, 0xff, %g3
+    5fcc:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    5fd0:	82 10 61 d0 	or  %g1, 0x1d0, %g1	! 401d0 <mem_op_codes>
+    5fd4:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    5fd8:	84 08 60 ff 	and  %g1, 0xff, %g2
+    5fdc:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    5fe0:	83 28 60 03 	sll  %g1, 3, %g1
+    5fe4:	82 00 60 04 	add  %g1, 4, %g1
+    5fe8:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
+    5fec:	82 07 00 01 	add  %i4, %g1, %g1
+    5ff0:	83 28 60 10 	sll  %g1, 0x10, %g1
+    5ff4:	83 30 60 10 	srl  %g1, 0x10, %g1
+    5ff8:	90 10 00 04 	mov  %g4, %o0
+    5ffc:	92 10 00 03 	mov  %g3, %o1
+    6000:	94 10 20 00 	clr  %o2
+    6004:	96 10 00 02 	mov  %g2, %o3
+    6008:	98 10 20 01 	mov  1, %o4
+    600c:	9a 10 00 01 	mov  %g1, %o5
+    6010:	7f ff ff 0f 	call  5c4c <generate_opcode_11>
+    6014:	01 00 00 00 	nop 
+    6018:	86 10 00 08 	mov  %o0, %g3
+    601c:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    6020:	83 2f 60 02 	sll  %i5, 2, %g1
+    6024:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    6028:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    602c:	ba 00 60 03 	add  %g1, 3, %i5
+    6030:	c2 0f bf df 	ldub  [ %fp + -33 ], %g1
+    6034:	88 08 60 ff 	and  %g1, 0xff, %g4
+    6038:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
+    603c:	86 08 60 ff 	and  %g1, 0xff, %g3
+    6040:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
+    6044:	84 08 60 ff 	and  %g1, 0xff, %g2
+    6048:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    604c:	b8 10 61 e0 	or  %g1, 0x1e0, %i4	! 401e0 <alu_op_codes>
+    6050:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6054:	82 07 00 01 	add  %i4, %g1, %g1
+    6058:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    605c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6060:	90 10 00 04 	mov  %g4, %o0
+    6064:	92 10 00 03 	mov  %g3, %o1
+    6068:	94 10 00 02 	mov  %g2, %o2
+    606c:	96 10 00 01 	mov  %g1, %o3
+    6070:	98 10 20 00 	clr  %o4
+    6074:	9a 10 20 00 	clr  %o5
+    6078:	7f ff fe d2 	call  5bc0 <generate_opcode_10>
+    607c:	01 00 00 00 	nop 
+    6080:	86 10 00 08 	mov  %o0, %g3
+    6084:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    6088:	83 2f 60 02 	sll  %i5, 2, %g1
+    608c:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    6090:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    6094:	ba 00 60 04 	add  %g1, 4, %i5
+    6098:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
+    609c:	88 08 60 ff 	and  %g1, 0xff, %g4
+    60a0:	c2 0f bf df 	ldub  [ %fp + -33 ], %g1
+    60a4:	86 08 60 ff 	and  %g1, 0xff, %g3
+    60a8:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
+    60ac:	84 08 60 ff 	and  %g1, 0xff, %g2
+    60b0:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    60b4:	b8 10 61 d8 	or  %g1, 0x1d8, %i4	! 401d8 <complement_instr>
+    60b8:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    60bc:	82 07 00 01 	add  %i4, %g1, %g1
+    60c0:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    60c4:	82 08 60 ff 	and  %g1, 0xff, %g1
+    60c8:	90 10 00 04 	mov  %g4, %o0
+    60cc:	92 10 00 03 	mov  %g3, %o1
+    60d0:	94 10 00 02 	mov  %g2, %o2
+    60d4:	96 10 00 01 	mov  %g1, %o3
+    60d8:	98 10 20 00 	clr  %o4
+    60dc:	9a 10 20 00 	clr  %o5
+    60e0:	7f ff fe b8 	call  5bc0 <generate_opcode_10>
+    60e4:	01 00 00 00 	nop 
+    60e8:	86 10 00 08 	mov  %o0, %g3
+    60ec:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    60f0:	83 2f 60 02 	sll  %i5, 2, %g1
+    60f4:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    60f8:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    60fc:	ba 00 60 05 	add  %g1, 5, %i5
+    6100:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
+    6104:	88 08 60 ff 	and  %g1, 0xff, %g4
+    6108:	c2 0f bf df 	ldub  [ %fp + -33 ], %g1
+    610c:	86 08 60 ff 	and  %g1, 0xff, %g3
+    6110:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
+    6114:	84 08 60 ff 	and  %g1, 0xff, %g2
+    6118:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    611c:	b8 10 61 d8 	or  %g1, 0x1d8, %i4	! 401d8 <complement_instr>
+    6120:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6124:	82 07 00 01 	add  %i4, %g1, %g1
+    6128:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    612c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6130:	90 10 00 04 	mov  %g4, %o0
+    6134:	92 10 00 03 	mov  %g3, %o1
+    6138:	94 10 00 02 	mov  %g2, %o2
+    613c:	96 10 00 01 	mov  %g1, %o3
+    6140:	98 10 20 00 	clr  %o4
+    6144:	9a 10 20 00 	clr  %o5
+    6148:	7f ff fe 9e 	call  5bc0 <generate_opcode_10>
+    614c:	01 00 00 00 	nop 
+    6150:	86 10 00 08 	mov  %o0, %g3
+    6154:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    6158:	83 2f 60 02 	sll  %i5, 2, %g1
+    615c:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    6160:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    6164:	ba 00 60 06 	add  %g1, 6, %i5
+    6168:	c2 0f bf de 	ldub  [ %fp + -34 ], %g1
+    616c:	88 08 60 ff 	and  %g1, 0xff, %g4
+    6170:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
+    6174:	86 08 60 ff 	and  %g1, 0xff, %g3
+    6178:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    617c:	82 10 61 d0 	or  %g1, 0x1d0, %g1	! 401d0 <mem_op_codes>
+    6180:	c2 08 60 01 	ldub  [ %g1 + 1 ], %g1
+    6184:	84 08 60 ff 	and  %g1, 0xff, %g2
+    6188:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    618c:	83 28 60 03 	sll  %g1, 3, %g1
+    6190:	b8 10 00 01 	mov  %g1, %i4
+    6194:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6198:	83 28 60 03 	sll  %g1, 3, %g1
+    619c:	82 07 00 01 	add  %i4, %g1, %g1
+    61a0:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
+    61a4:	82 07 00 01 	add  %i4, %g1, %g1
+    61a8:	83 28 60 10 	sll  %g1, 0x10, %g1
+    61ac:	83 30 60 10 	srl  %g1, 0x10, %g1
+    61b0:	90 10 00 04 	mov  %g4, %o0
+    61b4:	92 10 00 03 	mov  %g3, %o1
+    61b8:	94 10 20 00 	clr  %o2
+    61bc:	96 10 00 02 	mov  %g2, %o3
+    61c0:	98 10 20 01 	mov  1, %o4
+    61c4:	9a 10 00 01 	mov  %g1, %o5
+    61c8:	7f ff fe a1 	call  5c4c <generate_opcode_11>
+    61cc:	01 00 00 00 	nop 
+    61d0:	86 10 00 08 	mov  %o0, %g3
+    61d4:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    61d8:	83 2f 60 02 	sll  %i5, 2, %g1
+    61dc:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    61e0:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    61e4:	ba 00 60 07 	add  %g1, 7, %i5
+    61e8:	c2 0f bf dd 	ldub  [ %fp + -35 ], %g1
+    61ec:	88 08 60 ff 	and  %g1, 0xff, %g4
+    61f0:	c2 0f bf dc 	ldub  [ %fp + -36 ], %g1
+    61f4:	86 08 60 ff 	and  %g1, 0xff, %g3
+    61f8:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    61fc:	82 10 61 d0 	or  %g1, 0x1d0, %g1	! 401d0 <mem_op_codes>
+    6200:	c2 08 60 01 	ldub  [ %g1 + 1 ], %g1
+    6204:	84 08 60 ff 	and  %g1, 0xff, %g2
+    6208:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    620c:	83 28 60 03 	sll  %g1, 3, %g1
+    6210:	b8 10 00 01 	mov  %g1, %i4
+    6214:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6218:	83 28 60 03 	sll  %g1, 3, %g1
+    621c:	82 07 00 01 	add  %i4, %g1, %g1
+    6220:	82 00 60 04 	add  %g1, 4, %g1
+    6224:	f8 07 a0 44 	ld  [ %fp + 0x44 ], %i4
+    6228:	82 07 00 01 	add  %i4, %g1, %g1
+    622c:	83 28 60 10 	sll  %g1, 0x10, %g1
+    6230:	83 30 60 10 	srl  %g1, 0x10, %g1
+    6234:	90 10 00 04 	mov  %g4, %o0
+    6238:	92 10 00 03 	mov  %g3, %o1
+    623c:	94 10 20 00 	clr  %o2
+    6240:	96 10 00 02 	mov  %g2, %o3
+    6244:	98 10 20 01 	mov  1, %o4
+    6248:	9a 10 00 01 	mov  %g1, %o5
+    624c:	7f ff fe 80 	call  5c4c <generate_opcode_11>
+    6250:	01 00 00 00 	nop 
+    6254:	86 10 00 08 	mov  %o0, %g3
+    6258:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    625c:	83 2f 60 02 	sll  %i5, 2, %g1
+    6260:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    6264:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6268:	84 00 60 01 	add  %g1, 1, %g2
+    626c:	82 10 00 02 	mov  %g2, %g1
+    6270:	83 28 60 03 	sll  %g1, 3, %g1
+    6274:	82 20 40 02 	sub  %g1, %g2, %g1
+    6278:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
+    627c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6280:	82 00 60 01 	inc  %g1
+    6284:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    6288:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    628c:	c2 07 bf f0 	ld  [ %fp + -16 ], %g1
+    6290:	80 a0 80 01 	cmp  %g2, %g1
+    6294:	06 bf fe ef 	bl  5e50 <main+0x110>
+    6298:	01 00 00 00 	nop 
+    629c:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
+    62a0:	82 00 7f fd 	add  %g1, -3, %g1
+    62a4:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    62a8:	83 28 60 02 	sll  %g1, 2, %g1
+    62ac:	07 20 7a 00 	sethi  %hi(0x81e80000), %g3
+    62b0:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    62b4:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
+    62b8:	82 00 7f fe 	add  %g1, -2, %g1
+    62bc:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    62c0:	83 28 60 02 	sll  %g1, 2, %g1
+    62c4:	07 20 70 f8 	sethi  %hi(0x81c3e000), %g3
+    62c8:	86 10 e0 08 	or  %g3, 8, %g3	! 81c3e008 <alu_op_codes+0x81bfde28>
+    62cc:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    62d0:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
+    62d4:	82 00 7f ff 	add  %g1, -1, %g1
+    62d8:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    62dc:	83 28 60 02 	sll  %g1, 2, %g1
+    62e0:	07 00 40 00 	sethi  %hi(0x1000000), %g3
+    62e4:	c6 20 80 01 	st  %g3, [ %g2 + %g1 ]
+    62e8:	21 00 00 00 	sethi  %hi(0), %l0
+    62ec:	a0 14 20 a0 	or  %l0, 0xa0, %l0	! a0 <instr_section>
+    62f0:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    62f4:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    62f8:	10 80 00 0c 	b  6328 <main+0x5e8>
+    62fc:	01 00 00 00 	nop 
+    6300:	c4 07 bf e0 	ld  [ %fp + -32 ], %g2
+    6304:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6308:	83 28 60 02 	sll  %g1, 2, %g1
+    630c:	c2 00 80 01 	ld  [ %g2 + %g1 ], %g1
+    6310:	a2 10 00 01 	mov  %g1, %l1
+    6314:	e2 24 00 00 	st  %l1, [ %l0 ]
+    6318:	a0 04 20 04 	add  %l0, 4, %l0
+    631c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6320:	82 00 60 01 	inc  %g1
+    6324:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    6328:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    632c:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
+    6330:	80 a0 80 01 	cmp  %g2, %g1
+    6334:	06 bf ff f3 	bl  6300 <main+0x5c0>
     6338:	01 00 00 00 	nop 
-    633c:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6340:	10 80 00 06 	b  6358 <__ajit_clear_all_gp_registers__+0x10c>
-    6344:	01 00 00 00 	nop 
-    6348:	81 e8 00 00 	restore 
-    634c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6350:	82 00 60 01 	inc  %g1
-    6354:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6358:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    635c:	80 a0 60 06 	cmp  %g1, 6
-    6360:	04 bf ff fa 	ble  6348 <__ajit_clear_all_gp_registers__+0xfc>
-    6364:	01 00 00 00 	nop 
-    6368:	81 e8 00 00 	restore 
-    636c:	81 c3 e0 08 	retl 
-    6370:	01 00 00 00 	nop 
+    633c:	03 00 01 00 	sethi  %hi(0x40000), %g1
+    6340:	90 10 61 20 	or  %g1, 0x120, %o0	! 40120 <__ajit_fstoi__+0x38a70>
+    6344:	7f ff fc bf 	call  5640 <ee_printf>
+    6348:	01 00 00 00 	nop 
+    634c:	82 10 20 01 	mov  1, %g1	! 1 <_start+0x1>
+    6350:	9c 10 00 19 	mov  %i1, %sp
+    6354:	b0 10 00 01 	mov  %g1, %i0
+    6358:	81 e8 00 00 	restore 
+    635c:	81 c3 e0 08 	retl 
+    6360:	01 00 00 00 	nop 
 
-00006374 <__ajit_read_core_thread_id_word__>:
-    6374:	9d e3 bf 98 	save  %sp, -104, %sp
-    6378:	bb 47 40 00 	rd  %asr29, %i5
-    637c:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
-    6380:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6384:	b0 10 00 01 	mov  %g1, %i0
-    6388:	81 e8 00 00 	restore 
-    638c:	81 c3 e0 08 	retl 
-    6390:	01 00 00 00 	nop 
-
-00006394 <ajit_get_core_and_thread_id>:
-    6394:	9d e3 bf 98 	save  %sp, -104, %sp
-    6398:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    639c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    63a0:	7f ff ff f5 	call  6374 <__ajit_read_core_thread_id_word__>
-    63a4:	01 00 00 00 	nop 
-    63a8:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
-    63ac:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    63b0:	83 30 60 08 	srl  %g1, 8, %g1
-    63b4:	84 10 00 01 	mov  %g1, %g2
-    63b8:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    63bc:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    63c0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    63c4:	84 10 00 01 	mov  %g1, %g2
-    63c8:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    63cc:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    63d0:	81 e8 00 00 	restore 
-    63d4:	81 c3 e0 08 	retl 
-    63d8:	01 00 00 00 	nop 
-
-000063dc <__ajit_read_cycle_count_register_high__>:
-    63dc:	9d e3 bf 98 	save  %sp, -104, %sp
-    63e0:	bb 47 80 00 	rd  %asr30, %i5
-    63e4:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
-    63e8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    63ec:	b0 10 00 01 	mov  %g1, %i0
-    63f0:	81 e8 00 00 	restore 
-    63f4:	81 c3 e0 08 	retl 
-    63f8:	01 00 00 00 	nop 
-
-000063fc <__ajit_read_cycle_count_register_low__>:
-    63fc:	9d e3 bf 98 	save  %sp, -104, %sp
-    6400:	bb 47 c0 00 	rd  %asr31, %i5
-    6404:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
-    6408:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    640c:	b0 10 00 01 	mov  %g1, %i0
-    6410:	81 e8 00 00 	restore 
-    6414:	81 c3 e0 08 	retl 
-    6418:	01 00 00 00 	nop 
-
-0000641c <__ajit_get_clock_time>:
-    641c:	9d e3 bf 90 	save  %sp, -112, %sp
-    6420:	7f ff ff f7 	call  63fc <__ajit_read_cycle_count_register_low__>
-    6424:	01 00 00 00 	nop 
-    6428:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
-    642c:	7f ff ff ec 	call  63dc <__ajit_read_cycle_count_register_high__>
-    6430:	01 00 00 00 	nop 
-    6434:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    6438:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    643c:	84 10 20 00 	clr  %g2
-    6440:	86 10 00 01 	mov  %g1, %g3
-    6444:	c4 3f bf f0 	std  %g2, [ %fp + -16 ]
-    6448:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    644c:	83 28 60 00 	sll  %g1, 0, %g1
-    6450:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
-    6454:	c0 27 bf f4 	clr  [ %fp + -12 ]
-    6458:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    645c:	84 10 20 00 	clr  %g2
-    6460:	86 10 00 01 	mov  %g1, %g3
-    6464:	f8 1f bf f0 	ldd  [ %fp + -16 ], %i4
-    6468:	84 17 00 02 	or  %i4, %g2, %g2
-    646c:	86 17 40 03 	or  %i5, %g3, %g3
-    6470:	c4 3f bf f0 	std  %g2, [ %fp + -16 ]
-    6474:	c4 1f bf f0 	ldd  [ %fp + -16 ], %g2
-    6478:	b0 10 00 02 	mov  %g2, %i0
-    647c:	b2 10 00 03 	mov  %g3, %i1
+00006364 <__ajit_clear_all_gp_registers__>:
+    6364:	9d e3 bf 98 	save  %sp, -104, %sp
+    6368:	82 10 00 00 	mov  %g0, %g1
+    636c:	84 10 00 00 	mov  %g0, %g2
+    6370:	86 10 00 00 	mov  %g0, %g3
+    6374:	88 10 00 00 	mov  %g0, %g4
+    6378:	8a 10 00 00 	mov  %g0, %g5
+    637c:	8c 10 00 00 	mov  %g0, %g6
+    6380:	8e 10 00 00 	mov  %g0, %g7
+    6384:	b0 10 00 00 	mov  %g0, %i0
+    6388:	b2 10 00 00 	mov  %g0, %i1
+    638c:	b4 10 00 00 	mov  %g0, %i2
+    6390:	b6 10 00 00 	mov  %g0, %i3
+    6394:	b8 10 00 00 	mov  %g0, %i4
+    6398:	ba 10 00 00 	mov  %g0, %i5
+    639c:	bc 10 00 00 	mov  %g0, %fp
+    63a0:	be 10 00 00 	mov  %g0, %i7
+    63a4:	a0 10 00 00 	mov  %g0, %l0
+    63a8:	a2 10 00 00 	mov  %g0, %l1
+    63ac:	a4 10 00 00 	mov  %g0, %l2
+    63b0:	a6 10 00 00 	mov  %g0, %l3
+    63b4:	a8 10 00 00 	mov  %g0, %l4
+    63b8:	aa 10 00 00 	mov  %g0, %l5
+    63bc:	ac 10 00 00 	mov  %g0, %l6
+    63c0:	ae 10 00 00 	mov  %g0, %l7
+    63c4:	90 10 00 00 	mov  %g0, %o0
+    63c8:	92 10 00 00 	mov  %g0, %o1
+    63cc:	94 10 00 00 	mov  %g0, %o2
+    63d0:	96 10 00 00 	mov  %g0, %o3
+    63d4:	98 10 00 00 	mov  %g0, %o4
+    63d8:	9a 10 00 00 	mov  %g0, %o5
+    63dc:	9c 10 00 00 	mov  %g0, %sp
+    63e0:	9e 10 00 00 	mov  %g0, %o7
+    63e4:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    63e8:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    63ec:	10 80 00 16 	b  6444 <__ajit_clear_all_gp_registers__+0xe0>
+    63f0:	01 00 00 00 	nop 
+    63f4:	81 e0 00 00 	save 
+    63f8:	a0 10 00 00 	mov  %g0, %l0
+    63fc:	a2 10 00 00 	mov  %g0, %l1
+    6400:	a4 10 00 00 	mov  %g0, %l2
+    6404:	a6 10 00 00 	mov  %g0, %l3
+    6408:	a8 10 00 00 	mov  %g0, %l4
+    640c:	aa 10 00 00 	mov  %g0, %l5
+    6410:	ac 10 00 00 	mov  %g0, %l6
+    6414:	ae 10 00 00 	mov  %g0, %l7
+    6418:	90 10 00 00 	mov  %g0, %o0
+    641c:	92 10 00 00 	mov  %g0, %o1
+    6420:	94 10 00 00 	mov  %g0, %o2
+    6424:	96 10 00 00 	mov  %g0, %o3
+    6428:	98 10 00 00 	mov  %g0, %o4
+    642c:	9a 10 00 00 	mov  %g0, %o5
+    6430:	9c 10 00 00 	mov  %g0, %sp
+    6434:	9e 10 00 00 	mov  %g0, %o7
+    6438:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    643c:	82 00 60 01 	inc  %g1
+    6440:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6444:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6448:	80 a0 60 06 	cmp  %g1, 6
+    644c:	04 bf ff ea 	ble  63f4 <__ajit_clear_all_gp_registers__+0x90>
+    6450:	01 00 00 00 	nop 
+    6454:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6458:	10 80 00 06 	b  6470 <__ajit_clear_all_gp_registers__+0x10c>
+    645c:	01 00 00 00 	nop 
+    6460:	81 e8 00 00 	restore 
+    6464:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6468:	82 00 60 01 	inc  %g1
+    646c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6470:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6474:	80 a0 60 06 	cmp  %g1, 6
+    6478:	04 bf ff fa 	ble  6460 <__ajit_clear_all_gp_registers__+0xfc>
+    647c:	01 00 00 00 	nop 
     6480:	81 e8 00 00 	restore 
     6484:	81 c3 e0 08 	retl 
     6488:	01 00 00 00 	nop 
 
-0000648c <__ajit_sleep__>:
-    648c:	9d e3 bf 90 	save  %sp, -112, %sp
-    6490:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6494:	7f ff ff e2 	call  641c <__ajit_get_clock_time>
-    6498:	01 00 00 00 	nop 
-    649c:	d0 3f bf f8 	std  %o0, [ %fp + -8 ]
-    64a0:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    64a4:	b4 10 20 00 	clr  %i2
-    64a8:	b6 10 00 01 	mov  %g1, %i3
-    64ac:	f8 1f bf f8 	ldd  [ %fp + -8 ], %i4
-    64b0:	86 86 c0 1d 	addcc  %i3, %i5, %g3
-    64b4:	84 46 80 1c 	addx  %i2, %i4, %g2
-    64b8:	c4 3f bf f0 	std  %g2, [ %fp + -16 ]
-    64bc:	10 80 00 05 	b  64d0 <__ajit_sleep__+0x44>
-    64c0:	01 00 00 00 	nop 
-    64c4:	7f ff ff d6 	call  641c <__ajit_get_clock_time>
-    64c8:	01 00 00 00 	nop 
-    64cc:	d0 3f bf f8 	std  %o0, [ %fp + -8 ]
-    64d0:	c4 07 bf f0 	ld  [ %fp + -16 ], %g2
-    64d4:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    64d8:	80 a0 80 01 	cmp  %g2, %g1
-    64dc:	18 bf ff fa 	bgu  64c4 <__ajit_sleep__+0x38>
-    64e0:	01 00 00 00 	nop 
-    64e4:	c4 07 bf f0 	ld  [ %fp + -16 ], %g2
-    64e8:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    64ec:	80 a0 80 01 	cmp  %g2, %g1
-    64f0:	12 80 00 07 	bne  650c <__ajit_sleep__+0x80>
-    64f4:	01 00 00 00 	nop 
-    64f8:	c4 07 bf f4 	ld  [ %fp + -12 ], %g2
-    64fc:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6500:	80 a0 80 01 	cmp  %g2, %g1
-    6504:	18 bf ff f0 	bgu  64c4 <__ajit_sleep__+0x38>
-    6508:	01 00 00 00 	nop 
-    650c:	01 00 00 00 	nop 
-    6510:	81 e8 00 00 	restore 
-    6514:	81 c3 e0 08 	retl 
-    6518:	01 00 00 00 	nop 
+0000648c <__ajit_read_core_thread_id_word__>:
+    648c:	9d e3 bf 98 	save  %sp, -104, %sp
+    6490:	bb 47 40 00 	rd  %asr29, %i5
+    6494:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
+    6498:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    649c:	b0 10 00 01 	mov  %g1, %i0
+    64a0:	81 e8 00 00 	restore 
+    64a4:	81 c3 e0 08 	retl 
+    64a8:	01 00 00 00 	nop 
 
-0000651c <__ajit_set_mmu_default_cacheable_bit__>:
-    651c:	9d e3 bf 98 	save  %sp, -104, %sp
-    6520:	82 10 00 18 	mov  %i0, %g1
-    6524:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    6528:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    652c:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6530:	80 a0 60 00 	cmp  %g1, 0
-    6534:	02 80 00 05 	be  6548 <__ajit_set_mmu_default_cacheable_bit__+0x2c>
-    6538:	01 00 00 00 	nop 
-    653c:	82 10 21 00 	mov  0x100, %g1	! 100 <instr_section+0x60>
-    6540:	10 80 00 03 	b  654c <__ajit_set_mmu_default_cacheable_bit__+0x30>
-    6544:	01 00 00 00 	nop 
-    6548:	82 10 20 00 	clr  %g1	! 0 <_start>
-    654c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6550:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    6554:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6558:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    655c:	c2 a0 80 80 	sta  %g1, [ %g2 ] #ASI_N
-    6560:	81 e8 00 00 	restore 
-    6564:	81 c3 e0 08 	retl 
-    6568:	01 00 00 00 	nop 
+000064ac <ajit_get_core_and_thread_id>:
+    64ac:	9d e3 bf 98 	save  %sp, -104, %sp
+    64b0:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    64b4:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    64b8:	7f ff ff f5 	call  648c <__ajit_read_core_thread_id_word__>
+    64bc:	01 00 00 00 	nop 
+    64c0:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
+    64c4:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    64c8:	83 30 60 08 	srl  %g1, 8, %g1
+    64cc:	84 10 00 01 	mov  %g1, %g2
+    64d0:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    64d4:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    64d8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    64dc:	84 10 00 01 	mov  %g1, %g2
+    64e0:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    64e4:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    64e8:	81 e8 00 00 	restore 
+    64ec:	81 c3 e0 08 	retl 
+    64f0:	01 00 00 00 	nop 
 
-0000656c <__ajit_store_word_mmu_reg__>:
-    656c:	9d e3 bf a0 	save  %sp, -96, %sp
-    6570:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6574:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6578:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    657c:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    6580:	c2 a0 80 80 	sta  %g1, [ %g2 ] #ASI_N
-    6584:	81 e8 00 00 	restore 
-    6588:	81 c3 e0 08 	retl 
-    658c:	01 00 00 00 	nop 
+000064f4 <__ajit_read_cycle_count_register_high__>:
+    64f4:	9d e3 bf 98 	save  %sp, -104, %sp
+    64f8:	bb 47 80 00 	rd  %asr30, %i5
+    64fc:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
+    6500:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6504:	b0 10 00 01 	mov  %g1, %i0
+    6508:	81 e8 00 00 	restore 
+    650c:	81 c3 e0 08 	retl 
+    6510:	01 00 00 00 	nop 
 
-00006590 <__ajit_store_word_mmu_bypass__>:
-    6590:	9d e3 bf a0 	save  %sp, -96, %sp
-    6594:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6598:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    659c:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    65a0:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    65a4:	c2 a0 84 00 	sta  %g1, [ %g2 ] #ASI_SCRATCHPAD
-    65a8:	81 e8 00 00 	restore 
-    65ac:	81 c3 e0 08 	retl 
+00006514 <__ajit_read_cycle_count_register_low__>:
+    6514:	9d e3 bf 98 	save  %sp, -104, %sp
+    6518:	bb 47 c0 00 	rd  %asr31, %i5
+    651c:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
+    6520:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6524:	b0 10 00 01 	mov  %g1, %i0
+    6528:	81 e8 00 00 	restore 
+    652c:	81 c3 e0 08 	retl 
+    6530:	01 00 00 00 	nop 
+
+00006534 <__ajit_get_clock_time>:
+    6534:	9d e3 bf 90 	save  %sp, -112, %sp
+    6538:	7f ff ff f7 	call  6514 <__ajit_read_cycle_count_register_low__>
+    653c:	01 00 00 00 	nop 
+    6540:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
+    6544:	7f ff ff ec 	call  64f4 <__ajit_read_cycle_count_register_high__>
+    6548:	01 00 00 00 	nop 
+    654c:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    6550:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6554:	84 10 20 00 	clr  %g2
+    6558:	86 10 00 01 	mov  %g1, %g3
+    655c:	c4 3f bf f0 	std  %g2, [ %fp + -16 ]
+    6560:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    6564:	83 28 60 00 	sll  %g1, 0, %g1
+    6568:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
+    656c:	c0 27 bf f4 	clr  [ %fp + -12 ]
+    6570:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6574:	84 10 20 00 	clr  %g2
+    6578:	86 10 00 01 	mov  %g1, %g3
+    657c:	f8 1f bf f0 	ldd  [ %fp + -16 ], %i4
+    6580:	84 17 00 02 	or  %i4, %g2, %g2
+    6584:	86 17 40 03 	or  %i5, %g3, %g3
+    6588:	c4 3f bf f0 	std  %g2, [ %fp + -16 ]
+    658c:	c4 1f bf f0 	ldd  [ %fp + -16 ], %g2
+    6590:	b0 10 00 02 	mov  %g2, %i0
+    6594:	b2 10 00 03 	mov  %g3, %i1
+    6598:	81 e8 00 00 	restore 
+    659c:	81 c3 e0 08 	retl 
+    65a0:	01 00 00 00 	nop 
+
+000065a4 <__ajit_sleep__>:
+    65a4:	9d e3 bf 90 	save  %sp, -112, %sp
+    65a8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    65ac:	7f ff ff e2 	call  6534 <__ajit_get_clock_time>
     65b0:	01 00 00 00 	nop 
-
-000065b4 <__ajit_load_word_mmu_reg__>:
-    65b4:	9d e3 bf 98 	save  %sp, -104, %sp
-    65b8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    65bc:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    65c0:	fa 80 40 80 	lda  [ %g1 ] #ASI_N, %i5
-    65c4:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
-    65c8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    65cc:	b0 10 00 01 	mov  %g1, %i0
-    65d0:	81 e8 00 00 	restore 
-    65d4:	81 c3 e0 08 	retl 
+    65b4:	d0 3f bf f8 	std  %o0, [ %fp + -8 ]
+    65b8:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    65bc:	b4 10 20 00 	clr  %i2
+    65c0:	b6 10 00 01 	mov  %g1, %i3
+    65c4:	f8 1f bf f8 	ldd  [ %fp + -8 ], %i4
+    65c8:	86 86 c0 1d 	addcc  %i3, %i5, %g3
+    65cc:	84 46 80 1c 	addx  %i2, %i4, %g2
+    65d0:	c4 3f bf f0 	std  %g2, [ %fp + -16 ]
+    65d4:	10 80 00 05 	b  65e8 <__ajit_sleep__+0x44>
     65d8:	01 00 00 00 	nop 
+    65dc:	7f ff ff d6 	call  6534 <__ajit_get_clock_time>
+    65e0:	01 00 00 00 	nop 
+    65e4:	d0 3f bf f8 	std  %o0, [ %fp + -8 ]
+    65e8:	c4 07 bf f0 	ld  [ %fp + -16 ], %g2
+    65ec:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    65f0:	80 a0 80 01 	cmp  %g2, %g1
+    65f4:	18 bf ff fa 	bgu  65dc <__ajit_sleep__+0x38>
+    65f8:	01 00 00 00 	nop 
+    65fc:	c4 07 bf f0 	ld  [ %fp + -16 ], %g2
+    6600:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6604:	80 a0 80 01 	cmp  %g2, %g1
+    6608:	12 80 00 07 	bne  6624 <__ajit_sleep__+0x80>
+    660c:	01 00 00 00 	nop 
+    6610:	c4 07 bf f4 	ld  [ %fp + -12 ], %g2
+    6614:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6618:	80 a0 80 01 	cmp  %g2, %g1
+    661c:	18 bf ff f0 	bgu  65dc <__ajit_sleep__+0x38>
+    6620:	01 00 00 00 	nop 
+    6624:	01 00 00 00 	nop 
+    6628:	81 e8 00 00 	restore 
+    662c:	81 c3 e0 08 	retl 
+    6630:	01 00 00 00 	nop 
 
-000065dc <__ajit_load_word_mmu_bypass__>:
-    65dc:	9d e3 bf 98 	save  %sp, -104, %sp
-    65e0:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    65e4:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    65e8:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
-    65ec:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
-    65f0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    65f4:	b0 10 00 01 	mov  %g1, %i0
-    65f8:	81 e8 00 00 	restore 
-    65fc:	81 c3 e0 08 	retl 
-    6600:	01 00 00 00 	nop 
+00006634 <__ajit_set_mmu_default_cacheable_bit__>:
+    6634:	9d e3 bf 98 	save  %sp, -104, %sp
+    6638:	82 10 00 18 	mov  %i0, %g1
+    663c:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    6640:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    6644:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6648:	80 a0 60 00 	cmp  %g1, 0
+    664c:	02 80 00 05 	be  6660 <__ajit_set_mmu_default_cacheable_bit__+0x2c>
+    6650:	01 00 00 00 	nop 
+    6654:	82 10 21 00 	mov  0x100, %g1	! 100 <instr_section+0x60>
+    6658:	10 80 00 03 	b  6664 <__ajit_set_mmu_default_cacheable_bit__+0x30>
+    665c:	01 00 00 00 	nop 
+    6660:	82 10 20 00 	clr  %g1	! 0 <_start>
+    6664:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6668:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    666c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6670:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    6674:	c2 a0 80 80 	sta  %g1, [ %g2 ] #ASI_N
+    6678:	81 e8 00 00 	restore 
+    667c:	81 c3 e0 08 	retl 
+    6680:	01 00 00 00 	nop 
 
-00006604 <__ajit_flush_icache__>:
-    6604:	9d e3 bf a0 	save  %sp, -96, %sp
-    6608:	81 d8 20 00 	flush  %g0
-    660c:	81 e8 00 00 	restore 
-    6610:	81 c3 e0 08 	retl 
-    6614:	01 00 00 00 	nop 
+00006684 <__ajit_store_word_mmu_reg__>:
+    6684:	9d e3 bf a0 	save  %sp, -96, %sp
+    6688:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    668c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6690:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    6694:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    6698:	c2 a0 80 80 	sta  %g1, [ %g2 ] #ASI_N
+    669c:	81 e8 00 00 	restore 
+    66a0:	81 c3 e0 08 	retl 
+    66a4:	01 00 00 00 	nop 
 
-00006618 <__ajit_flush_dcache__>:
-    6618:	9d e3 bf a0 	save  %sp, -96, %sp
-    661c:	c0 a0 02 60 	sta  %g0, [ %g0 ] (19)
-    6620:	81 e8 00 00 	restore 
-    6624:	81 c3 e0 08 	retl 
-    6628:	01 00 00 00 	nop 
+000066a8 <__ajit_store_word_mmu_bypass__>:
+    66a8:	9d e3 bf a0 	save  %sp, -96, %sp
+    66ac:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    66b0:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    66b4:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    66b8:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    66bc:	c2 a0 84 00 	sta  %g1, [ %g2 ] #ASI_SCRATCHPAD
+    66c0:	81 e8 00 00 	restore 
+    66c4:	81 c3 e0 08 	retl 
+    66c8:	01 00 00 00 	nop 
 
-0000662c <__ajit_write_timer_control_register__>:
-    662c:	9d e3 bf 98 	save  %sp, -104, %sp
-    6630:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6634:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6638:	82 10 61 00 	or  %g1, 0x100, %g1	! ffff3100 <alu_op_codes+0xfffb2f28>
-    663c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6640:	d0 07 a0 44 	ld  [ %fp + 0x44 ], %o0
-    6644:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
-    6648:	7f ff ff d2 	call  6590 <__ajit_store_word_mmu_bypass__>
-    664c:	01 00 00 00 	nop 
-    6650:	81 e8 00 00 	restore 
-    6654:	81 c3 e0 08 	retl 
-    6658:	01 00 00 00 	nop 
+000066cc <__ajit_load_word_mmu_reg__>:
+    66cc:	9d e3 bf 98 	save  %sp, -104, %sp
+    66d0:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    66d4:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    66d8:	fa 80 40 80 	lda  [ %g1 ] #ASI_N, %i5
+    66dc:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
+    66e0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    66e4:	b0 10 00 01 	mov  %g1, %i0
+    66e8:	81 e8 00 00 	restore 
+    66ec:	81 c3 e0 08 	retl 
+    66f0:	01 00 00 00 	nop 
 
-0000665c <__ajit_read_timer_control_register__>:
-    665c:	9d e3 bf 98 	save  %sp, -104, %sp
-    6660:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6664:	90 10 61 00 	or  %g1, 0x100, %o0	! ffff3100 <alu_op_codes+0xfffb2f28>
-    6668:	7f ff ff dd 	call  65dc <__ajit_load_word_mmu_bypass__>
-    666c:	01 00 00 00 	nop 
-    6670:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
-    6674:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6678:	b0 10 00 01 	mov  %g1, %i0
-    667c:	81 e8 00 00 	restore 
-    6680:	81 c3 e0 08 	retl 
-    6684:	01 00 00 00 	nop 
+000066f4 <__ajit_load_word_mmu_bypass__>:
+    66f4:	9d e3 bf 98 	save  %sp, -104, %sp
+    66f8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    66fc:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    6700:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
+    6704:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
+    6708:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    670c:	b0 10 00 01 	mov  %g1, %i0
+    6710:	81 e8 00 00 	restore 
+    6714:	81 c3 e0 08 	retl 
+    6718:	01 00 00 00 	nop 
 
-00006688 <__ajit_write_timer_control_register_via_vmap__>:
-    6688:	9d e3 bf a0 	save  %sp, -96, %sp
-    668c:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6690:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6694:	82 10 61 00 	or  %g1, 0x100, %g1	! ffff3100 <alu_op_codes+0xfffb2f28>
-    6698:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
-    669c:	c4 20 40 00 	st  %g2, [ %g1 ]
-    66a0:	81 e8 00 00 	restore 
-    66a4:	81 c3 e0 08 	retl 
-    66a8:	01 00 00 00 	nop 
+0000671c <__ajit_flush_icache__>:
+    671c:	9d e3 bf a0 	save  %sp, -96, %sp
+    6720:	81 d8 20 00 	flush  %g0
+    6724:	81 e8 00 00 	restore 
+    6728:	81 c3 e0 08 	retl 
+    672c:	01 00 00 00 	nop 
 
-000066ac <__ajit_read_timer_control_register_via_vmap__>:
-    66ac:	9d e3 bf 98 	save  %sp, -104, %sp
-    66b0:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    66b4:	82 10 61 00 	or  %g1, 0x100, %g1	! ffff3100 <alu_op_codes+0xfffb2f28>
-    66b8:	c2 00 40 00 	ld  [ %g1 ], %g1
-    66bc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    66c0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    66c4:	b0 10 00 01 	mov  %g1, %i0
-    66c8:	81 e8 00 00 	restore 
-    66cc:	81 c3 e0 08 	retl 
-    66d0:	01 00 00 00 	nop 
-
-000066d4 <__ajit_write_serial_control_register__>:
-    66d4:	9d e3 bf 98 	save  %sp, -104, %sp
-    66d8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    66dc:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    66e0:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    66e4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    66e8:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    66ec:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    66f0:	c2 a0 84 00 	sta  %g1, [ %g2 ] #ASI_SCRATCHPAD
-    66f4:	81 e8 00 00 	restore 
-    66f8:	81 c3 e0 08 	retl 
-    66fc:	01 00 00 00 	nop 
-
-00006700 <__ajit_serial_configure__>:
-    6700:	9d e3 bf 98 	save  %sp, -104, %sp
-    6704:	86 10 00 18 	mov  %i0, %g3
-    6708:	84 10 00 19 	mov  %i1, %g2
-    670c:	82 10 00 1a 	mov  %i2, %g1
-    6710:	c6 2f a0 44 	stb  %g3, [ %fp + 0x44 ]
-    6714:	c4 2f a0 48 	stb  %g2, [ %fp + 0x48 ]
-    6718:	c2 2f a0 4c 	stb  %g1, [ %fp + 0x4c ]
-    671c:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6720:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6724:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    6728:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
-    672c:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
-    6730:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    6734:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6738:	80 a0 60 00 	cmp  %g1, 0
-    673c:	02 80 00 07 	be  6758 <__ajit_serial_configure__+0x58>
+00006730 <__ajit_flush_dcache__>:
+    6730:	9d e3 bf a0 	save  %sp, -96, %sp
+    6734:	c0 a0 02 60 	sta  %g0, [ %g0 ] (19)
+    6738:	81 e8 00 00 	restore 
+    673c:	81 c3 e0 08 	retl 
     6740:	01 00 00 00 	nop 
-    6744:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6748:	82 10 60 01 	or  %g1, 1, %g1
-    674c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6750:	10 80 00 05 	b  6764 <__ajit_serial_configure__+0x64>
-    6754:	01 00 00 00 	nop 
-    6758:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    675c:	82 08 7f fe 	and  %g1, -2, %g1
-    6760:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6764:	c2 0f a0 48 	ldub  [ %fp + 0x48 ], %g1
-    6768:	82 08 60 ff 	and  %g1, 0xff, %g1
-    676c:	80 a0 60 00 	cmp  %g1, 0
-    6770:	02 80 00 07 	be  678c <__ajit_serial_configure__+0x8c>
-    6774:	01 00 00 00 	nop 
-    6778:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    677c:	82 10 60 02 	or  %g1, 2, %g1
-    6780:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6784:	10 80 00 05 	b  6798 <__ajit_serial_configure__+0x98>
-    6788:	01 00 00 00 	nop 
+
+00006744 <__ajit_write_timer_control_register__>:
+    6744:	9d e3 bf 98 	save  %sp, -104, %sp
+    6748:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    674c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6750:	82 10 61 00 	or  %g1, 0x100, %g1	! ffff3100 <alu_op_codes+0xfffb2f20>
+    6754:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6758:	d0 07 a0 44 	ld  [ %fp + 0x44 ], %o0
+    675c:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
+    6760:	7f ff ff d2 	call  66a8 <__ajit_store_word_mmu_bypass__>
+    6764:	01 00 00 00 	nop 
+    6768:	81 e8 00 00 	restore 
+    676c:	81 c3 e0 08 	retl 
+    6770:	01 00 00 00 	nop 
+
+00006774 <__ajit_read_timer_control_register__>:
+    6774:	9d e3 bf 98 	save  %sp, -104, %sp
+    6778:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    677c:	90 10 61 00 	or  %g1, 0x100, %o0	! ffff3100 <alu_op_codes+0xfffb2f20>
+    6780:	7f ff ff dd 	call  66f4 <__ajit_load_word_mmu_bypass__>
+    6784:	01 00 00 00 	nop 
+    6788:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
     678c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6790:	82 08 7f fd 	and  %g1, -3, %g1
-    6794:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6798:	c2 0f a0 4c 	ldub  [ %fp + 0x4c ], %g1
-    679c:	82 08 60 ff 	and  %g1, 0xff, %g1
-    67a0:	80 a0 60 00 	cmp  %g1, 0
-    67a4:	02 80 00 07 	be  67c0 <__ajit_serial_configure__+0xc0>
-    67a8:	01 00 00 00 	nop 
-    67ac:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    67b0:	82 10 60 04 	or  %g1, 4, %g1
-    67b4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    67b8:	10 80 00 05 	b  67cc <__ajit_serial_configure__+0xcc>
-    67bc:	01 00 00 00 	nop 
-    67c0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    67c4:	82 08 7f fb 	and  %g1, -5, %g1
-    67c8:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    67cc:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    67d0:	05 3f ff cc 	sethi  %hi(0xffff3000), %g2
-    67d4:	84 10 a2 00 	or  %g2, 0x200, %g2	! ffff3200 <alu_op_codes+0xfffb3028>
-    67d8:	c2 a0 84 00 	sta  %g1, [ %g2 ] #ASI_SCRATCHPAD
-    67dc:	81 e8 00 00 	restore 
-    67e0:	81 c3 e0 08 	retl 
-    67e4:	01 00 00 00 	nop 
+    6790:	b0 10 00 01 	mov  %g1, %i0
+    6794:	81 e8 00 00 	restore 
+    6798:	81 c3 e0 08 	retl 
+    679c:	01 00 00 00 	nop 
 
-000067e8 <__ajit_serial_uart_reset__>:
-    67e8:	9d e3 bf a0 	save  %sp, -96, %sp
-    67ec:	90 10 20 00 	clr  %o0
-    67f0:	40 00 02 22 	call  7078 <__ajit_serial_uart_reset_inner__>
-    67f4:	01 00 00 00 	nop 
-    67f8:	81 e8 00 00 	restore 
-    67fc:	81 c3 e0 08 	retl 
-    6800:	01 00 00 00 	nop 
+000067a0 <__ajit_write_timer_control_register_via_vmap__>:
+    67a0:	9d e3 bf a0 	save  %sp, -96, %sp
+    67a4:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    67a8:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    67ac:	82 10 61 00 	or  %g1, 0x100, %g1	! ffff3100 <alu_op_codes+0xfffb2f20>
+    67b0:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
+    67b4:	c4 20 40 00 	st  %g2, [ %g1 ]
+    67b8:	81 e8 00 00 	restore 
+    67bc:	81 c3 e0 08 	retl 
+    67c0:	01 00 00 00 	nop 
 
-00006804 <__ajit_serial_set_baudrate__>:
-    6804:	9d e3 bf a0 	save  %sp, -96, %sp
-    6808:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    680c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6810:	90 10 20 00 	clr  %o0
-    6814:	d2 07 a0 44 	ld  [ %fp + 0x44 ], %o1
-    6818:	d4 07 a0 48 	ld  [ %fp + 0x48 ], %o2
-    681c:	40 00 00 54 	call  696c <__ajit_serial_set_baudrate_inner__>
-    6820:	01 00 00 00 	nop 
-    6824:	81 e8 00 00 	restore 
-    6828:	81 c3 e0 08 	retl 
-    682c:	01 00 00 00 	nop 
+000067c4 <__ajit_read_timer_control_register_via_vmap__>:
+    67c4:	9d e3 bf 98 	save  %sp, -104, %sp
+    67c8:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    67cc:	82 10 61 00 	or  %g1, 0x100, %g1	! ffff3100 <alu_op_codes+0xfffb2f20>
+    67d0:	c2 00 40 00 	ld  [ %g1 ], %g1
+    67d4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    67d8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    67dc:	b0 10 00 01 	mov  %g1, %i0
+    67e0:	81 e8 00 00 	restore 
+    67e4:	81 c3 e0 08 	retl 
+    67e8:	01 00 00 00 	nop 
 
-00006830 <__ajit_serial_set_baudrate_via_vmap__>:
-    6830:	9d e3 bf a0 	save  %sp, -96, %sp
-    6834:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6838:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    683c:	90 10 20 01 	mov  1, %o0
-    6840:	d2 07 a0 44 	ld  [ %fp + 0x44 ], %o1
-    6844:	d4 07 a0 48 	ld  [ %fp + 0x48 ], %o2
-    6848:	40 00 00 49 	call  696c <__ajit_serial_set_baudrate_inner__>
-    684c:	01 00 00 00 	nop 
-    6850:	81 e8 00 00 	restore 
-    6854:	81 c3 e0 08 	retl 
+000067ec <__ajit_write_serial_control_register__>:
+    67ec:	9d e3 bf 98 	save  %sp, -104, %sp
+    67f0:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    67f4:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    67f8:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    67fc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6800:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    6804:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    6808:	c2 a0 84 00 	sta  %g1, [ %g2 ] #ASI_SCRATCHPAD
+    680c:	81 e8 00 00 	restore 
+    6810:	81 c3 e0 08 	retl 
+    6814:	01 00 00 00 	nop 
+
+00006818 <__ajit_serial_configure__>:
+    6818:	9d e3 bf 98 	save  %sp, -104, %sp
+    681c:	86 10 00 18 	mov  %i0, %g3
+    6820:	84 10 00 19 	mov  %i1, %g2
+    6824:	82 10 00 1a 	mov  %i2, %g1
+    6828:	c6 2f a0 44 	stb  %g3, [ %fp + 0x44 ]
+    682c:	c4 2f a0 48 	stb  %g2, [ %fp + 0x48 ]
+    6830:	c2 2f a0 4c 	stb  %g1, [ %fp + 0x4c ]
+    6834:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6838:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    683c:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    6840:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
+    6844:	fa 27 bf fc 	st  %i5, [ %fp + -4 ]
+    6848:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    684c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6850:	80 a0 60 00 	cmp  %g1, 0
+    6854:	02 80 00 07 	be  6870 <__ajit_serial_configure__+0x58>
     6858:	01 00 00 00 	nop 
-
-0000685c <calculate_baud_control_word_for_uart>:
-    685c:	9d e3 bf 88 	save  %sp, -120, %sp
-    6860:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6864:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6868:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    686c:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    6870:	83 28 60 04 	sll  %g1, 4, %g1
-    6874:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    6878:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    687c:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
-    6880:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    685c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6860:	82 10 60 01 	or  %g1, 1, %g1
+    6864:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6868:	10 80 00 05 	b  687c <__ajit_serial_configure__+0x64>
+    686c:	01 00 00 00 	nop 
+    6870:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6874:	82 08 7f fe 	and  %g1, -2, %g1
+    6878:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    687c:	c2 0f a0 48 	ldub  [ %fp + 0x48 ], %g1
+    6880:	82 08 60 ff 	and  %g1, 0xff, %g1
     6884:	80 a0 60 00 	cmp  %g1, 0
-    6888:	02 80 00 34 	be  6958 <calculate_baud_control_word_for_uart+0xfc>
+    6888:	02 80 00 07 	be  68a4 <__ajit_serial_configure__+0x8c>
     688c:	01 00 00 00 	nop 
-    6890:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    6894:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    6898:	80 a0 80 01 	cmp  %g2, %g1
-    689c:	1a 80 00 2f 	bcc  6958 <calculate_baud_control_word_for_uart+0xfc>
+    6890:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6894:	82 10 60 02 	or  %g1, 2, %g1
+    6898:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    689c:	10 80 00 05 	b  68b0 <__ajit_serial_configure__+0x98>
     68a0:	01 00 00 00 	nop 
-    68a4:	10 80 00 03 	b  68b0 <calculate_baud_control_word_for_uart+0x54>
-    68a8:	01 00 00 00 	nop 
-    68ac:	01 00 00 00 	nop 
-    68b0:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    68b4:	81 80 20 00 	mov  %g0, %y
-    68b8:	c6 07 bf f8 	ld  [ %fp + -8 ], %g3
-    68bc:	01 00 00 00 	nop 
+    68a4:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    68a8:	82 08 7f fd 	and  %g1, -3, %g1
+    68ac:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    68b0:	c2 0f a0 4c 	ldub  [ %fp + 0x4c ], %g1
+    68b4:	82 08 60 ff 	and  %g1, 0xff, %g1
+    68b8:	80 a0 60 00 	cmp  %g1, 0
+    68bc:	02 80 00 07 	be  68d8 <__ajit_serial_configure__+0xc0>
     68c0:	01 00 00 00 	nop 
-    68c4:	86 70 40 03 	udiv  %g1, %g3, %g3
-    68c8:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    68cc:	84 58 c0 02 	smul  %g3, %g2, %g2
-    68d0:	82 20 40 02 	sub  %g1, %g2, %g1
-    68d4:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
-    68d8:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    68dc:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
-    68e0:	c2 07 bf f0 	ld  [ %fp + -16 ], %g1
-    68e4:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    68e8:	c2 07 bf f0 	ld  [ %fp + -16 ], %g1
-    68ec:	80 a0 60 00 	cmp  %g1, 0
-    68f0:	12 bf ff ef 	bne  68ac <calculate_baud_control_word_for_uart+0x50>
-    68f4:	01 00 00 00 	nop 
-    68f8:	01 00 00 00 	nop 
-    68fc:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    6900:	85 28 60 04 	sll  %g1, 4, %g2
-    6904:	81 80 20 00 	mov  %g0, %y
-    6908:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    68c4:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    68c8:	82 10 60 04 	or  %g1, 4, %g1
+    68cc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    68d0:	10 80 00 05 	b  68e4 <__ajit_serial_configure__+0xcc>
+    68d4:	01 00 00 00 	nop 
+    68d8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    68dc:	82 08 7f fb 	and  %g1, -5, %g1
+    68e0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    68e4:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    68e8:	05 3f ff cc 	sethi  %hi(0xffff3000), %g2
+    68ec:	84 10 a2 00 	or  %g2, 0x200, %g2	! ffff3200 <alu_op_codes+0xfffb3020>
+    68f0:	c2 a0 84 00 	sta  %g1, [ %g2 ] #ASI_SCRATCHPAD
+    68f4:	81 e8 00 00 	restore 
+    68f8:	81 c3 e0 08 	retl 
+    68fc:	01 00 00 00 	nop 
+
+00006900 <__ajit_serial_uart_reset__>:
+    6900:	9d e3 bf a0 	save  %sp, -96, %sp
+    6904:	90 10 20 00 	clr  %o0
+    6908:	40 00 02 22 	call  7190 <__ajit_serial_uart_reset_inner__>
     690c:	01 00 00 00 	nop 
-    6910:	01 00 00 00 	nop 
-    6914:	82 70 80 01 	udiv  %g2, %g1, %g1
-    6918:	c2 27 bf ec 	st  %g1, [ %fp + -20 ]
-    691c:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    6920:	81 80 20 00 	mov  %g0, %y
-    6924:	c4 07 bf f4 	ld  [ %fp + -12 ], %g2
-    6928:	01 00 00 00 	nop 
-    692c:	01 00 00 00 	nop 
-    6930:	84 70 40 02 	udiv  %g1, %g2, %g2
-    6934:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
-    6938:	82 20 80 01 	sub  %g2, %g1, %g1
-    693c:	c2 27 bf e8 	st  %g1, [ %fp + -24 ]
-    6940:	c2 07 bf e8 	ld  [ %fp + -24 ], %g1
-    6944:	85 28 60 10 	sll  %g1, 0x10, %g2
-    6948:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
-    694c:	82 08 6f ff 	and  %g1, 0xfff, %g1
-    6950:	82 10 80 01 	or  %g2, %g1, %g1
-    6954:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6958:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    695c:	b0 10 00 01 	mov  %g1, %i0
-    6960:	81 e8 00 00 	restore 
-    6964:	81 c3 e0 08 	retl 
-    6968:	01 00 00 00 	nop 
+    6910:	81 e8 00 00 	restore 
+    6914:	81 c3 e0 08 	retl 
+    6918:	01 00 00 00 	nop 
 
-0000696c <__ajit_serial_set_baudrate_inner__>:
-    696c:	9d e3 bf 98 	save  %sp, -104, %sp
-    6970:	82 10 00 18 	mov  %i0, %g1
-    6974:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6978:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
-    697c:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    6980:	03 3f ff cd 	sethi  %hi(0xffff3400), %g1
-    6984:	82 10 60 08 	or  %g1, 8, %g1	! ffff3408 <alu_op_codes+0xfffb3230>
-    6988:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    698c:	d0 07 a0 48 	ld  [ %fp + 0x48 ], %o0
-    6990:	d2 07 a0 4c 	ld  [ %fp + 0x4c ], %o1
-    6994:	7f ff ff b2 	call  685c <calculate_baud_control_word_for_uart>
-    6998:	01 00 00 00 	nop 
-    699c:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    69a0:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    69a4:	82 08 60 ff 	and  %g1, 0xff, %g1
-    69a8:	80 a0 60 00 	cmp  %g1, 0
-    69ac:	02 80 00 07 	be  69c8 <__ajit_serial_set_baudrate_inner__+0x5c>
-    69b0:	01 00 00 00 	nop 
-    69b4:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    69b8:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    69bc:	c4 20 40 00 	st  %g2, [ %g1 ]
-    69c0:	10 80 00 06 	b  69d8 <__ajit_serial_set_baudrate_inner__+0x6c>
+0000691c <__ajit_serial_set_baudrate__>:
+    691c:	9d e3 bf a0 	save  %sp, -96, %sp
+    6920:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    6924:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6928:	90 10 20 00 	clr  %o0
+    692c:	d2 07 a0 44 	ld  [ %fp + 0x44 ], %o1
+    6930:	d4 07 a0 48 	ld  [ %fp + 0x48 ], %o2
+    6934:	40 00 00 54 	call  6a84 <__ajit_serial_set_baudrate_inner__>
+    6938:	01 00 00 00 	nop 
+    693c:	81 e8 00 00 	restore 
+    6940:	81 c3 e0 08 	retl 
+    6944:	01 00 00 00 	nop 
+
+00006948 <__ajit_serial_set_baudrate_via_vmap__>:
+    6948:	9d e3 bf a0 	save  %sp, -96, %sp
+    694c:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    6950:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6954:	90 10 20 01 	mov  1, %o0
+    6958:	d2 07 a0 44 	ld  [ %fp + 0x44 ], %o1
+    695c:	d4 07 a0 48 	ld  [ %fp + 0x48 ], %o2
+    6960:	40 00 00 49 	call  6a84 <__ajit_serial_set_baudrate_inner__>
+    6964:	01 00 00 00 	nop 
+    6968:	81 e8 00 00 	restore 
+    696c:	81 c3 e0 08 	retl 
+    6970:	01 00 00 00 	nop 
+
+00006974 <calculate_baud_control_word_for_uart>:
+    6974:	9d e3 bf 88 	save  %sp, -120, %sp
+    6978:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    697c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6980:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6984:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    6988:	83 28 60 04 	sll  %g1, 4, %g1
+    698c:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    6990:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    6994:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
+    6998:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    699c:	80 a0 60 00 	cmp  %g1, 0
+    69a0:	02 80 00 34 	be  6a70 <calculate_baud_control_word_for_uart+0xfc>
+    69a4:	01 00 00 00 	nop 
+    69a8:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    69ac:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    69b0:	80 a0 80 01 	cmp  %g2, %g1
+    69b4:	1a 80 00 2f 	bcc  6a70 <calculate_baud_control_word_for_uart+0xfc>
+    69b8:	01 00 00 00 	nop 
+    69bc:	10 80 00 03 	b  69c8 <calculate_baud_control_word_for_uart+0x54>
+    69c0:	01 00 00 00 	nop 
     69c4:	01 00 00 00 	nop 
-    69c8:	d0 07 bf f8 	ld  [ %fp + -8 ], %o0
-    69cc:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
-    69d0:	7f ff fe f0 	call  6590 <__ajit_store_word_mmu_bypass__>
+    69c8:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    69cc:	81 80 20 00 	mov  %g0, %y
+    69d0:	c6 07 bf f8 	ld  [ %fp + -8 ], %g3
     69d4:	01 00 00 00 	nop 
-    69d8:	81 e8 00 00 	restore 
-    69dc:	81 c3 e0 08 	retl 
-    69e0:	01 00 00 00 	nop 
-
-000069e4 <__ajit_read_serial_control_register__>:
-    69e4:	9d e3 bf 98 	save  %sp, -104, %sp
-    69e8:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    69ec:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    69f0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    69f4:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    69f8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    69fc:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
-    6a00:	fa 27 bf f8 	st  %i5, [ %fp + -8 ]
-    6a04:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6a08:	b0 10 00 01 	mov  %g1, %i0
-    6a0c:	81 e8 00 00 	restore 
-    6a10:	81 c3 e0 08 	retl 
-    6a14:	01 00 00 00 	nop 
-
-00006a18 <__ajit_write_serial_tx_register__>:
-    6a18:	9d e3 bf 98 	save  %sp, -104, %sp
-    6a1c:	82 10 00 18 	mov  %i0, %g1
-    6a20:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    6a24:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6a28:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb302c>
-    6a2c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6a30:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    6a34:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    6a38:	c2 a8 84 00 	stba  %g1, [ %g2 ] #ASI_SCRATCHPAD
-    6a3c:	81 e8 00 00 	restore 
-    6a40:	81 c3 e0 08 	retl 
+    69d8:	01 00 00 00 	nop 
+    69dc:	86 70 40 03 	udiv  %g1, %g3, %g3
+    69e0:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    69e4:	84 58 c0 02 	smul  %g3, %g2, %g2
+    69e8:	82 20 40 02 	sub  %g1, %g2, %g1
+    69ec:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
+    69f0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    69f4:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
+    69f8:	c2 07 bf f0 	ld  [ %fp + -16 ], %g1
+    69fc:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    6a00:	c2 07 bf f0 	ld  [ %fp + -16 ], %g1
+    6a04:	80 a0 60 00 	cmp  %g1, 0
+    6a08:	12 bf ff ef 	bne  69c4 <calculate_baud_control_word_for_uart+0x50>
+    6a0c:	01 00 00 00 	nop 
+    6a10:	01 00 00 00 	nop 
+    6a14:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    6a18:	85 28 60 04 	sll  %g1, 4, %g2
+    6a1c:	81 80 20 00 	mov  %g0, %y
+    6a20:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    6a24:	01 00 00 00 	nop 
+    6a28:	01 00 00 00 	nop 
+    6a2c:	82 70 80 01 	udiv  %g2, %g1, %g1
+    6a30:	c2 27 bf ec 	st  %g1, [ %fp + -20 ]
+    6a34:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    6a38:	81 80 20 00 	mov  %g0, %y
+    6a3c:	c4 07 bf f4 	ld  [ %fp + -12 ], %g2
+    6a40:	01 00 00 00 	nop 
     6a44:	01 00 00 00 	nop 
+    6a48:	84 70 40 02 	udiv  %g1, %g2, %g2
+    6a4c:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
+    6a50:	82 20 80 01 	sub  %g2, %g1, %g1
+    6a54:	c2 27 bf e8 	st  %g1, [ %fp + -24 ]
+    6a58:	c2 07 bf e8 	ld  [ %fp + -24 ], %g1
+    6a5c:	85 28 60 10 	sll  %g1, 0x10, %g2
+    6a60:	c2 07 bf ec 	ld  [ %fp + -20 ], %g1
+    6a64:	82 08 6f ff 	and  %g1, 0xfff, %g1
+    6a68:	82 10 80 01 	or  %g2, %g1, %g1
+    6a6c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6a70:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6a74:	b0 10 00 01 	mov  %g1, %i0
+    6a78:	81 e8 00 00 	restore 
+    6a7c:	81 c3 e0 08 	retl 
+    6a80:	01 00 00 00 	nop 
 
-00006a48 <__ajit_read_serial_tx_register__>:
-    6a48:	9d e3 bf 98 	save  %sp, -104, %sp
-    6a4c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6a50:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb302c>
-    6a54:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6a58:	c0 2f bf fb 	clrb  [ %fp + -5 ]
-    6a5c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6a60:	fa 88 44 00 	lduba  [ %g1 ] #ASI_SCRATCHPAD, %i5
-    6a64:	fa 2f bf fb 	stb  %i5, [ %fp + -5 ]
-    6a68:	c2 0f bf fb 	ldub  [ %fp + -5 ], %g1
-    6a6c:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6a70:	b0 10 00 01 	mov  %g1, %i0
-    6a74:	81 e8 00 00 	restore 
-    6a78:	81 c3 e0 08 	retl 
-    6a7c:	01 00 00 00 	nop 
-
-00006a80 <__ajit_read_serial_rx_register__>:
-    6a80:	9d e3 bf 98 	save  %sp, -104, %sp
-    6a84:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6a88:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3030>
-    6a8c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6a90:	c0 2f bf fb 	clrb  [ %fp + -5 ]
-    6a94:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6a98:	fa 88 44 00 	lduba  [ %g1 ] #ASI_SCRATCHPAD, %i5
-    6a9c:	fa 2f bf fb 	stb  %i5, [ %fp + -5 ]
-    6aa0:	c2 0f bf fb 	ldub  [ %fp + -5 ], %g1
-    6aa4:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6aa8:	b0 10 00 01 	mov  %g1, %i0
-    6aac:	81 e8 00 00 	restore 
-    6ab0:	81 c3 e0 08 	retl 
-    6ab4:	01 00 00 00 	nop 
-
-00006ab8 <__ajit_serial_putchar__>:
-    6ab8:	9d e3 bf 98 	save  %sp, -104, %sp
-    6abc:	82 10 00 18 	mov  %i0, %g1
-    6ac0:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    6ac4:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    6ac8:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6acc:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    6ad0:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
-    6ad4:	fa 27 bf f8 	st  %i5, [ %fp + -8 ]
-    6ad8:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6adc:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6ae0:	82 08 60 01 	and  %g1, 1, %g1
-    6ae4:	80 a0 60 00 	cmp  %g1, 0
-    6ae8:	02 80 00 0f 	be  6b24 <__ajit_serial_putchar__+0x6c>
+00006a84 <__ajit_serial_set_baudrate_inner__>:
+    6a84:	9d e3 bf 98 	save  %sp, -104, %sp
+    6a88:	82 10 00 18 	mov  %i0, %g1
+    6a8c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6a90:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
+    6a94:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    6a98:	03 3f ff cd 	sethi  %hi(0xffff3400), %g1
+    6a9c:	82 10 60 08 	or  %g1, 8, %g1	! ffff3408 <alu_op_codes+0xfffb3228>
+    6aa0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6aa4:	d0 07 a0 48 	ld  [ %fp + 0x48 ], %o0
+    6aa8:	d2 07 a0 4c 	ld  [ %fp + 0x4c ], %o1
+    6aac:	7f ff ff b2 	call  6974 <calculate_baud_control_word_for_uart>
+    6ab0:	01 00 00 00 	nop 
+    6ab4:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    6ab8:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    6abc:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6ac0:	80 a0 60 00 	cmp  %g1, 0
+    6ac4:	02 80 00 07 	be  6ae0 <__ajit_serial_set_baudrate_inner__+0x5c>
+    6ac8:	01 00 00 00 	nop 
+    6acc:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6ad0:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    6ad4:	c4 20 40 00 	st  %g2, [ %g1 ]
+    6ad8:	10 80 00 06 	b  6af0 <__ajit_serial_set_baudrate_inner__+0x6c>
+    6adc:	01 00 00 00 	nop 
+    6ae0:	d0 07 bf f8 	ld  [ %fp + -8 ], %o0
+    6ae4:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
+    6ae8:	7f ff fe f0 	call  66a8 <__ajit_store_word_mmu_bypass__>
     6aec:	01 00 00 00 	nop 
-    6af0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6af4:	82 08 60 08 	and  %g1, 8, %g1
-    6af8:	80 a0 60 00 	cmp  %g1, 0
-    6afc:	12 80 00 0a 	bne  6b24 <__ajit_serial_putchar__+0x6c>
-    6b00:	01 00 00 00 	nop 
-    6b04:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    6b08:	05 3f ff cc 	sethi  %hi(0xffff3000), %g2
-    6b0c:	84 10 a2 04 	or  %g2, 0x204, %g2	! ffff3204 <alu_op_codes+0xfffb302c>
-    6b10:	c2 a8 84 00 	stba  %g1, [ %g2 ] #ASI_SCRATCHPAD
-    6b14:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    6b18:	83 28 60 18 	sll  %g1, 0x18, %g1
-    6b1c:	83 38 60 18 	sra  %g1, 0x18, %g1
-    6b20:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6b24:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6b28:	b0 10 00 01 	mov  %g1, %i0
-    6b2c:	81 e8 00 00 	restore 
-    6b30:	81 c3 e0 08 	retl 
-    6b34:	01 00 00 00 	nop 
+    6af0:	81 e8 00 00 	restore 
+    6af4:	81 c3 e0 08 	retl 
+    6af8:	01 00 00 00 	nop 
 
-00006b38 <__ajit_serial_getchar__>:
-    6b38:	9d e3 bf 90 	save  %sp, -112, %sp
-    6b3c:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6b40:	7f ff ff a9 	call  69e4 <__ajit_read_serial_control_register__>
-    6b44:	01 00 00 00 	nop 
-    6b48:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    6b4c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6b50:	82 08 60 02 	and  %g1, 2, %g1
-    6b54:	80 a0 60 00 	cmp  %g1, 0
-    6b58:	02 80 00 0e 	be  6b90 <__ajit_serial_getchar__+0x58>
+00006afc <__ajit_read_serial_control_register__>:
+    6afc:	9d e3 bf 98 	save  %sp, -104, %sp
+    6b00:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6b04:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    6b08:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6b0c:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    6b10:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6b14:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
+    6b18:	fa 27 bf f8 	st  %i5, [ %fp + -8 ]
+    6b1c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6b20:	b0 10 00 01 	mov  %g1, %i0
+    6b24:	81 e8 00 00 	restore 
+    6b28:	81 c3 e0 08 	retl 
+    6b2c:	01 00 00 00 	nop 
+
+00006b30 <__ajit_write_serial_tx_register__>:
+    6b30:	9d e3 bf 98 	save  %sp, -104, %sp
+    6b34:	82 10 00 18 	mov  %i0, %g1
+    6b38:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    6b3c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6b40:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb3024>
+    6b44:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6b48:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    6b4c:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    6b50:	c2 a8 84 00 	stba  %g1, [ %g2 ] #ASI_SCRATCHPAD
+    6b54:	81 e8 00 00 	restore 
+    6b58:	81 c3 e0 08 	retl 
     6b5c:	01 00 00 00 	nop 
-    6b60:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6b64:	82 08 60 10 	and  %g1, 0x10, %g1
-    6b68:	80 a0 60 00 	cmp  %g1, 0
-    6b6c:	02 80 00 09 	be  6b90 <__ajit_serial_getchar__+0x58>
-    6b70:	01 00 00 00 	nop 
-    6b74:	c0 27 bf f4 	clr  [ %fp + -12 ]
-    6b78:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6b7c:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3030>
-    6b80:	fa 88 44 00 	lduba  [ %g1 ] #ASI_SCRATCHPAD, %i5
-    6b84:	fa 27 bf f4 	st  %i5, [ %fp + -12 ]
-    6b88:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    6b8c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6b90:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6b94:	b0 10 00 01 	mov  %g1, %i0
-    6b98:	81 e8 00 00 	restore 
-    6b9c:	81 c3 e0 08 	retl 
-    6ba0:	01 00 00 00 	nop 
 
-00006ba4 <__ajit_serial_puts__>:
-    6ba4:	9d e3 bf 98 	save  %sp, -104, %sp
-    6ba8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6bac:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6bb0:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6bb4:	10 80 00 16 	b  6c0c <__ajit_serial_puts__+0x68>
-    6bb8:	01 00 00 00 	nop 
-    6bbc:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    6bc0:	10 80 00 0c 	b  6bf0 <__ajit_serial_puts__+0x4c>
-    6bc4:	01 00 00 00 	nop 
-    6bc8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6bcc:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
-    6bd0:	82 00 80 01 	add  %g2, %g1, %g1
-    6bd4:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    6bd8:	83 28 60 18 	sll  %g1, 0x18, %g1
-    6bdc:	83 38 60 18 	sra  %g1, 0x18, %g1
-    6be0:	90 10 00 01 	mov  %g1, %o0
-    6be4:	7f ff ff b5 	call  6ab8 <__ajit_serial_putchar__>
-    6be8:	01 00 00 00 	nop 
-    6bec:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    6bf0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6bf4:	80 a0 60 00 	cmp  %g1, 0
-    6bf8:	02 bf ff f4 	be  6bc8 <__ajit_serial_puts__+0x24>
-    6bfc:	01 00 00 00 	nop 
-    6c00:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6c04:	82 00 60 01 	inc  %g1
-    6c08:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6c0c:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    6c10:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    6c14:	80 a0 80 01 	cmp  %g2, %g1
-    6c18:	0a bf ff e9 	bcs  6bbc <__ajit_serial_puts__+0x18>
-    6c1c:	01 00 00 00 	nop 
-    6c20:	81 e8 00 00 	restore 
-    6c24:	81 c3 e0 08 	retl 
-    6c28:	01 00 00 00 	nop 
+00006b60 <__ajit_read_serial_tx_register__>:
+    6b60:	9d e3 bf 98 	save  %sp, -104, %sp
+    6b64:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6b68:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb3024>
+    6b6c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6b70:	c0 2f bf fb 	clrb  [ %fp + -5 ]
+    6b74:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6b78:	fa 88 44 00 	lduba  [ %g1 ] #ASI_SCRATCHPAD, %i5
+    6b7c:	fa 2f bf fb 	stb  %i5, [ %fp + -5 ]
+    6b80:	c2 0f bf fb 	ldub  [ %fp + -5 ], %g1
+    6b84:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6b88:	b0 10 00 01 	mov  %g1, %i0
+    6b8c:	81 e8 00 00 	restore 
+    6b90:	81 c3 e0 08 	retl 
+    6b94:	01 00 00 00 	nop 
 
-00006c2c <__ajit_serial_gets__>:
-    6c2c:	9d e3 bf 98 	save  %sp, -104, %sp
-    6c30:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6c34:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6c38:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6c3c:	10 80 00 14 	b  6c8c <__ajit_serial_gets__+0x60>
-    6c40:	01 00 00 00 	nop 
-    6c44:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    6c48:	10 80 00 05 	b  6c5c <__ajit_serial_gets__+0x30>
+00006b98 <__ajit_read_serial_rx_register__>:
+    6b98:	9d e3 bf 98 	save  %sp, -104, %sp
+    6b9c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6ba0:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3028>
+    6ba4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6ba8:	c0 2f bf fb 	clrb  [ %fp + -5 ]
+    6bac:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6bb0:	fa 88 44 00 	lduba  [ %g1 ] #ASI_SCRATCHPAD, %i5
+    6bb4:	fa 2f bf fb 	stb  %i5, [ %fp + -5 ]
+    6bb8:	c2 0f bf fb 	ldub  [ %fp + -5 ], %g1
+    6bbc:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6bc0:	b0 10 00 01 	mov  %g1, %i0
+    6bc4:	81 e8 00 00 	restore 
+    6bc8:	81 c3 e0 08 	retl 
+    6bcc:	01 00 00 00 	nop 
+
+00006bd0 <__ajit_serial_putchar__>:
+    6bd0:	9d e3 bf 98 	save  %sp, -104, %sp
+    6bd4:	82 10 00 18 	mov  %i0, %g1
+    6bd8:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    6bdc:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    6be0:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6be4:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    6be8:	fa 80 44 00 	lda  [ %g1 ] #ASI_SCRATCHPAD, %i5
+    6bec:	fa 27 bf f8 	st  %i5, [ %fp + -8 ]
+    6bf0:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6bf4:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6bf8:	82 08 60 01 	and  %g1, 1, %g1
+    6bfc:	80 a0 60 00 	cmp  %g1, 0
+    6c00:	02 80 00 0f 	be  6c3c <__ajit_serial_putchar__+0x6c>
+    6c04:	01 00 00 00 	nop 
+    6c08:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6c0c:	82 08 60 08 	and  %g1, 8, %g1
+    6c10:	80 a0 60 00 	cmp  %g1, 0
+    6c14:	12 80 00 0a 	bne  6c3c <__ajit_serial_putchar__+0x6c>
+    6c18:	01 00 00 00 	nop 
+    6c1c:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    6c20:	05 3f ff cc 	sethi  %hi(0xffff3000), %g2
+    6c24:	84 10 a2 04 	or  %g2, 0x204, %g2	! ffff3204 <alu_op_codes+0xfffb3024>
+    6c28:	c2 a8 84 00 	stba  %g1, [ %g2 ] #ASI_SCRATCHPAD
+    6c2c:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    6c30:	83 28 60 18 	sll  %g1, 0x18, %g1
+    6c34:	83 38 60 18 	sra  %g1, 0x18, %g1
+    6c38:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6c3c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6c40:	b0 10 00 01 	mov  %g1, %i0
+    6c44:	81 e8 00 00 	restore 
+    6c48:	81 c3 e0 08 	retl 
     6c4c:	01 00 00 00 	nop 
-    6c50:	7f ff ff ba 	call  6b38 <__ajit_serial_getchar__>
-    6c54:	01 00 00 00 	nop 
-    6c58:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    6c5c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6c60:	80 a0 60 00 	cmp  %g1, 0
-    6c64:	02 bf ff fb 	be  6c50 <__ajit_serial_gets__+0x24>
-    6c68:	01 00 00 00 	nop 
-    6c6c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6c70:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
-    6c74:	82 00 80 01 	add  %g2, %g1, %g1
-    6c78:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    6c7c:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    6c80:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6c84:	82 00 60 01 	inc  %g1
-    6c88:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6c8c:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    6c90:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    6c94:	80 a0 80 01 	cmp  %g2, %g1
-    6c98:	0a bf ff eb 	bcs  6c44 <__ajit_serial_gets__+0x18>
-    6c9c:	01 00 00 00 	nop 
-    6ca0:	81 e8 00 00 	restore 
-    6ca4:	81 c3 e0 08 	retl 
-    6ca8:	01 00 00 00 	nop 
 
-00006cac <__ajit_write_serial_control_register_via_vmap__>:
-    6cac:	9d e3 bf a0 	save  %sp, -96, %sp
-    6cb0:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6cb4:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6cb8:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    6cbc:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
-    6cc0:	c4 20 40 00 	st  %g2, [ %g1 ]
-    6cc4:	81 e8 00 00 	restore 
-    6cc8:	81 c3 e0 08 	retl 
-    6ccc:	01 00 00 00 	nop 
+00006c50 <__ajit_serial_getchar__>:
+    6c50:	9d e3 bf 90 	save  %sp, -112, %sp
+    6c54:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6c58:	7f ff ff a9 	call  6afc <__ajit_read_serial_control_register__>
+    6c5c:	01 00 00 00 	nop 
+    6c60:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    6c64:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6c68:	82 08 60 02 	and  %g1, 2, %g1
+    6c6c:	80 a0 60 00 	cmp  %g1, 0
+    6c70:	02 80 00 0e 	be  6ca8 <__ajit_serial_getchar__+0x58>
+    6c74:	01 00 00 00 	nop 
+    6c78:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6c7c:	82 08 60 10 	and  %g1, 0x10, %g1
+    6c80:	80 a0 60 00 	cmp  %g1, 0
+    6c84:	02 80 00 09 	be  6ca8 <__ajit_serial_getchar__+0x58>
+    6c88:	01 00 00 00 	nop 
+    6c8c:	c0 27 bf f4 	clr  [ %fp + -12 ]
+    6c90:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6c94:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3028>
+    6c98:	fa 88 44 00 	lduba  [ %g1 ] #ASI_SCRATCHPAD, %i5
+    6c9c:	fa 27 bf f4 	st  %i5, [ %fp + -12 ]
+    6ca0:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    6ca4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6ca8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6cac:	b0 10 00 01 	mov  %g1, %i0
+    6cb0:	81 e8 00 00 	restore 
+    6cb4:	81 c3 e0 08 	retl 
+    6cb8:	01 00 00 00 	nop 
 
-00006cd0 <__ajit_read_serial_control_register_via_vmap__>:
-    6cd0:	9d e3 bf 98 	save  %sp, -104, %sp
-    6cd4:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6cd8:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    6cdc:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    6ce0:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6ce4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6ce8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6cec:	b0 10 00 01 	mov  %g1, %i0
-    6cf0:	81 e8 00 00 	restore 
-    6cf4:	81 c3 e0 08 	retl 
-    6cf8:	01 00 00 00 	nop 
+00006cbc <__ajit_serial_puts__>:
+    6cbc:	9d e3 bf 98 	save  %sp, -104, %sp
+    6cc0:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    6cc4:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6cc8:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6ccc:	10 80 00 16 	b  6d24 <__ajit_serial_puts__+0x68>
+    6cd0:	01 00 00 00 	nop 
+    6cd4:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    6cd8:	10 80 00 0c 	b  6d08 <__ajit_serial_puts__+0x4c>
+    6cdc:	01 00 00 00 	nop 
+    6ce0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6ce4:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
+    6ce8:	82 00 80 01 	add  %g2, %g1, %g1
+    6cec:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    6cf0:	83 28 60 18 	sll  %g1, 0x18, %g1
+    6cf4:	83 38 60 18 	sra  %g1, 0x18, %g1
+    6cf8:	90 10 00 01 	mov  %g1, %o0
+    6cfc:	7f ff ff b5 	call  6bd0 <__ajit_serial_putchar__>
+    6d00:	01 00 00 00 	nop 
+    6d04:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    6d08:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6d0c:	80 a0 60 00 	cmp  %g1, 0
+    6d10:	02 bf ff f4 	be  6ce0 <__ajit_serial_puts__+0x24>
+    6d14:	01 00 00 00 	nop 
+    6d18:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6d1c:	82 00 60 01 	inc  %g1
+    6d20:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6d24:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    6d28:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    6d2c:	80 a0 80 01 	cmp  %g2, %g1
+    6d30:	0a bf ff e9 	bcs  6cd4 <__ajit_serial_puts__+0x18>
+    6d34:	01 00 00 00 	nop 
+    6d38:	81 e8 00 00 	restore 
+    6d3c:	81 c3 e0 08 	retl 
+    6d40:	01 00 00 00 	nop 
 
-00006cfc <__ajit_write_serial_tx_register_via_vmap__>:
-    6cfc:	9d e3 bf a0 	save  %sp, -96, %sp
-    6d00:	82 10 00 18 	mov  %i0, %g1
-    6d04:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    6d08:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6d0c:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb302c>
-    6d10:	c4 0f a0 44 	ldub  [ %fp + 0x44 ], %g2
-    6d14:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    6d18:	81 e8 00 00 	restore 
-    6d1c:	81 c3 e0 08 	retl 
-    6d20:	01 00 00 00 	nop 
+00006d44 <__ajit_serial_gets__>:
+    6d44:	9d e3 bf 98 	save  %sp, -104, %sp
+    6d48:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    6d4c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6d50:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6d54:	10 80 00 14 	b  6da4 <__ajit_serial_gets__+0x60>
+    6d58:	01 00 00 00 	nop 
+    6d5c:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    6d60:	10 80 00 05 	b  6d74 <__ajit_serial_gets__+0x30>
+    6d64:	01 00 00 00 	nop 
+    6d68:	7f ff ff ba 	call  6c50 <__ajit_serial_getchar__>
+    6d6c:	01 00 00 00 	nop 
+    6d70:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    6d74:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6d78:	80 a0 60 00 	cmp  %g1, 0
+    6d7c:	02 bf ff fb 	be  6d68 <__ajit_serial_gets__+0x24>
+    6d80:	01 00 00 00 	nop 
+    6d84:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6d88:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
+    6d8c:	82 00 80 01 	add  %g2, %g1, %g1
+    6d90:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    6d94:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    6d98:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6d9c:	82 00 60 01 	inc  %g1
+    6da0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6da4:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    6da8:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    6dac:	80 a0 80 01 	cmp  %g2, %g1
+    6db0:	0a bf ff eb 	bcs  6d5c <__ajit_serial_gets__+0x18>
+    6db4:	01 00 00 00 	nop 
+    6db8:	81 e8 00 00 	restore 
+    6dbc:	81 c3 e0 08 	retl 
+    6dc0:	01 00 00 00 	nop 
 
-00006d24 <__ajit_read_serial_tx_register_via_vmap__>:
-    6d24:	9d e3 bf 98 	save  %sp, -104, %sp
-    6d28:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6d2c:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb302c>
-    6d30:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    6d34:	c2 2f bf ff 	stb  %g1, [ %fp + -1 ]
-    6d38:	c2 0f bf ff 	ldub  [ %fp + -1 ], %g1
-    6d3c:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6d40:	b0 10 00 01 	mov  %g1, %i0
-    6d44:	81 e8 00 00 	restore 
-    6d48:	81 c3 e0 08 	retl 
-    6d4c:	01 00 00 00 	nop 
+00006dc4 <__ajit_write_serial_control_register_via_vmap__>:
+    6dc4:	9d e3 bf a0 	save  %sp, -96, %sp
+    6dc8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    6dcc:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6dd0:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    6dd4:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
+    6dd8:	c4 20 40 00 	st  %g2, [ %g1 ]
+    6ddc:	81 e8 00 00 	restore 
+    6de0:	81 c3 e0 08 	retl 
+    6de4:	01 00 00 00 	nop 
 
-00006d50 <__ajit_read_serial_rx_register_via_vmap__>:
-    6d50:	9d e3 bf 98 	save  %sp, -104, %sp
-    6d54:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6d58:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3030>
-    6d5c:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    6d60:	c2 2f bf ff 	stb  %g1, [ %fp + -1 ]
-    6d64:	c2 0f bf ff 	ldub  [ %fp + -1 ], %g1
-    6d68:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6d6c:	b0 10 00 01 	mov  %g1, %i0
-    6d70:	81 e8 00 00 	restore 
-    6d74:	81 c3 e0 08 	retl 
-    6d78:	01 00 00 00 	nop 
+00006de8 <__ajit_read_serial_control_register_via_vmap__>:
+    6de8:	9d e3 bf 98 	save  %sp, -104, %sp
+    6dec:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6df0:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    6df4:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    6df8:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6dfc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6e00:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6e04:	b0 10 00 01 	mov  %g1, %i0
+    6e08:	81 e8 00 00 	restore 
+    6e0c:	81 c3 e0 08 	retl 
+    6e10:	01 00 00 00 	nop 
 
-00006d7c <__ajit_serial_putchar_via_vmap__>:
-    6d7c:	9d e3 bf 98 	save  %sp, -104, %sp
-    6d80:	82 10 00 18 	mov  %i0, %g1
-    6d84:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    6d88:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    6d8c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6d90:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    6d94:	c2 00 40 00 	ld  [ %g1 ], %g1
-    6d98:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    6d9c:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6da0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6da4:	82 08 60 01 	and  %g1, 1, %g1
-    6da8:	80 a0 60 00 	cmp  %g1, 0
-    6dac:	02 80 00 0f 	be  6de8 <__ajit_serial_putchar_via_vmap__+0x6c>
-    6db0:	01 00 00 00 	nop 
-    6db4:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6db8:	82 08 60 08 	and  %g1, 8, %g1
-    6dbc:	80 a0 60 00 	cmp  %g1, 0
-    6dc0:	12 80 00 0a 	bne  6de8 <__ajit_serial_putchar_via_vmap__+0x6c>
-    6dc4:	01 00 00 00 	nop 
-    6dc8:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6dcc:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb302c>
-    6dd0:	c4 0f a0 44 	ldub  [ %fp + 0x44 ], %g2
-    6dd4:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    6dd8:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    6ddc:	83 28 60 18 	sll  %g1, 0x18, %g1
-    6de0:	83 38 60 18 	sra  %g1, 0x18, %g1
-    6de4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6de8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6dec:	b0 10 00 01 	mov  %g1, %i0
-    6df0:	81 e8 00 00 	restore 
-    6df4:	81 c3 e0 08 	retl 
-    6df8:	01 00 00 00 	nop 
-
-00006dfc <__ajit_serial_getchar_via_vmap__>:
-    6dfc:	9d e3 bf 90 	save  %sp, -112, %sp
-    6e00:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6e04:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6e08:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    6e0c:	c2 00 40 00 	ld  [ %g1 ], %g1
-    6e10:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    6e14:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6e18:	82 08 60 02 	and  %g1, 2, %g1
-    6e1c:	80 a0 60 00 	cmp  %g1, 0
-    6e20:	02 80 00 0f 	be  6e5c <__ajit_serial_getchar_via_vmap__+0x60>
-    6e24:	01 00 00 00 	nop 
-    6e28:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6e2c:	82 08 60 10 	and  %g1, 0x10, %g1
-    6e30:	80 a0 60 00 	cmp  %g1, 0
-    6e34:	02 80 00 0a 	be  6e5c <__ajit_serial_getchar_via_vmap__+0x60>
+00006e14 <__ajit_write_serial_tx_register_via_vmap__>:
+    6e14:	9d e3 bf a0 	save  %sp, -96, %sp
+    6e18:	82 10 00 18 	mov  %i0, %g1
+    6e1c:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    6e20:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6e24:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb3024>
+    6e28:	c4 0f a0 44 	ldub  [ %fp + 0x44 ], %g2
+    6e2c:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    6e30:	81 e8 00 00 	restore 
+    6e34:	81 c3 e0 08 	retl 
     6e38:	01 00 00 00 	nop 
-    6e3c:	c0 27 bf f4 	clr  [ %fp + -12 ]
+
+00006e3c <__ajit_read_serial_tx_register_via_vmap__>:
+    6e3c:	9d e3 bf 98 	save  %sp, -104, %sp
     6e40:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6e44:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3030>
+    6e44:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb3024>
     6e48:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    6e4c:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6e50:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
-    6e54:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    6e58:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6e5c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6e60:	b0 10 00 01 	mov  %g1, %i0
-    6e64:	81 e8 00 00 	restore 
-    6e68:	81 c3 e0 08 	retl 
-    6e6c:	01 00 00 00 	nop 
+    6e4c:	c2 2f bf ff 	stb  %g1, [ %fp + -1 ]
+    6e50:	c2 0f bf ff 	ldub  [ %fp + -1 ], %g1
+    6e54:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6e58:	b0 10 00 01 	mov  %g1, %i0
+    6e5c:	81 e8 00 00 	restore 
+    6e60:	81 c3 e0 08 	retl 
+    6e64:	01 00 00 00 	nop 
 
-00006e70 <__ajit_serial_puts_via_vmap__>:
-    6e70:	9d e3 bf 98 	save  %sp, -104, %sp
-    6e74:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6e78:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6e7c:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6e80:	10 80 00 16 	b  6ed8 <__ajit_serial_puts_via_vmap__+0x68>
-    6e84:	01 00 00 00 	nop 
-    6e88:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    6e8c:	10 80 00 0c 	b  6ebc <__ajit_serial_puts_via_vmap__+0x4c>
+00006e68 <__ajit_read_serial_rx_register_via_vmap__>:
+    6e68:	9d e3 bf 98 	save  %sp, -104, %sp
+    6e6c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6e70:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3028>
+    6e74:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    6e78:	c2 2f bf ff 	stb  %g1, [ %fp + -1 ]
+    6e7c:	c2 0f bf ff 	ldub  [ %fp + -1 ], %g1
+    6e80:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6e84:	b0 10 00 01 	mov  %g1, %i0
+    6e88:	81 e8 00 00 	restore 
+    6e8c:	81 c3 e0 08 	retl 
     6e90:	01 00 00 00 	nop 
-    6e94:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6e98:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
-    6e9c:	82 00 80 01 	add  %g2, %g1, %g1
-    6ea0:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    6ea4:	83 28 60 18 	sll  %g1, 0x18, %g1
-    6ea8:	83 38 60 18 	sra  %g1, 0x18, %g1
-    6eac:	90 10 00 01 	mov  %g1, %o0
-    6eb0:	7f ff ff b3 	call  6d7c <__ajit_serial_putchar_via_vmap__>
-    6eb4:	01 00 00 00 	nop 
-    6eb8:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    6ebc:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+
+00006e94 <__ajit_serial_putchar_via_vmap__>:
+    6e94:	9d e3 bf 98 	save  %sp, -104, %sp
+    6e98:	82 10 00 18 	mov  %i0, %g1
+    6e9c:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    6ea0:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    6ea4:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6ea8:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    6eac:	c2 00 40 00 	ld  [ %g1 ], %g1
+    6eb0:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    6eb4:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6eb8:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6ebc:	82 08 60 01 	and  %g1, 1, %g1
     6ec0:	80 a0 60 00 	cmp  %g1, 0
-    6ec4:	02 bf ff f4 	be  6e94 <__ajit_serial_puts_via_vmap__+0x24>
+    6ec4:	02 80 00 0f 	be  6f00 <__ajit_serial_putchar_via_vmap__+0x6c>
     6ec8:	01 00 00 00 	nop 
-    6ecc:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6ed0:	82 00 60 01 	inc  %g1
-    6ed4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6ed8:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    6edc:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    6ee0:	80 a0 80 01 	cmp  %g2, %g1
-    6ee4:	0a bf ff e9 	bcs  6e88 <__ajit_serial_puts_via_vmap__+0x18>
-    6ee8:	01 00 00 00 	nop 
-    6eec:	81 e8 00 00 	restore 
-    6ef0:	81 c3 e0 08 	retl 
-    6ef4:	01 00 00 00 	nop 
+    6ecc:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6ed0:	82 08 60 08 	and  %g1, 8, %g1
+    6ed4:	80 a0 60 00 	cmp  %g1, 0
+    6ed8:	12 80 00 0a 	bne  6f00 <__ajit_serial_putchar_via_vmap__+0x6c>
+    6edc:	01 00 00 00 	nop 
+    6ee0:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6ee4:	82 10 62 04 	or  %g1, 0x204, %g1	! ffff3204 <alu_op_codes+0xfffb3024>
+    6ee8:	c4 0f a0 44 	ldub  [ %fp + 0x44 ], %g2
+    6eec:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    6ef0:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    6ef4:	83 28 60 18 	sll  %g1, 0x18, %g1
+    6ef8:	83 38 60 18 	sra  %g1, 0x18, %g1
+    6efc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6f00:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6f04:	b0 10 00 01 	mov  %g1, %i0
+    6f08:	81 e8 00 00 	restore 
+    6f0c:	81 c3 e0 08 	retl 
+    6f10:	01 00 00 00 	nop 
 
-00006ef8 <__ajit_serial_gets_via_vmap__>:
-    6ef8:	9d e3 bf 98 	save  %sp, -104, %sp
-    6efc:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    6f00:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    6f04:	c0 27 bf fc 	clr  [ %fp + -4 ]
-    6f08:	10 80 00 14 	b  6f58 <__ajit_serial_gets_via_vmap__+0x60>
-    6f0c:	01 00 00 00 	nop 
-    6f10:	c0 27 bf f8 	clr  [ %fp + -8 ]
-    6f14:	10 80 00 05 	b  6f28 <__ajit_serial_gets_via_vmap__+0x30>
-    6f18:	01 00 00 00 	nop 
-    6f1c:	7f ff ff b8 	call  6dfc <__ajit_serial_getchar_via_vmap__>
-    6f20:	01 00 00 00 	nop 
-    6f24:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    6f28:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    6f2c:	80 a0 60 00 	cmp  %g1, 0
-    6f30:	02 bf ff fb 	be  6f1c <__ajit_serial_gets_via_vmap__+0x24>
-    6f34:	01 00 00 00 	nop 
-    6f38:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6f3c:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
-    6f40:	82 00 80 01 	add  %g2, %g1, %g1
-    6f44:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
-    6f48:	c4 28 40 00 	stb  %g2, [ %g1 ]
-    6f4c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6f50:	82 00 60 01 	inc  %g1
-    6f54:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6f58:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    6f5c:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
-    6f60:	80 a0 80 01 	cmp  %g2, %g1
-    6f64:	0a bf ff eb 	bcs  6f10 <__ajit_serial_gets_via_vmap__+0x18>
-    6f68:	01 00 00 00 	nop 
-    6f6c:	81 e8 00 00 	restore 
-    6f70:	81 c3 e0 08 	retl 
-    6f74:	01 00 00 00 	nop 
+00006f14 <__ajit_serial_getchar_via_vmap__>:
+    6f14:	9d e3 bf 90 	save  %sp, -112, %sp
+    6f18:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6f1c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6f20:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    6f24:	c2 00 40 00 	ld  [ %g1 ], %g1
+    6f28:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    6f2c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6f30:	82 08 60 02 	and  %g1, 2, %g1
+    6f34:	80 a0 60 00 	cmp  %g1, 0
+    6f38:	02 80 00 0f 	be  6f74 <__ajit_serial_getchar_via_vmap__+0x60>
+    6f3c:	01 00 00 00 	nop 
+    6f40:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6f44:	82 08 60 10 	and  %g1, 0x10, %g1
+    6f48:	80 a0 60 00 	cmp  %g1, 0
+    6f4c:	02 80 00 0a 	be  6f74 <__ajit_serial_getchar_via_vmap__+0x60>
+    6f50:	01 00 00 00 	nop 
+    6f54:	c0 27 bf f4 	clr  [ %fp + -12 ]
+    6f58:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    6f5c:	82 10 62 08 	or  %g1, 0x208, %g1	! ffff3208 <alu_op_codes+0xfffb3028>
+    6f60:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    6f64:	82 08 60 ff 	and  %g1, 0xff, %g1
+    6f68:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
+    6f6c:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    6f70:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6f74:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6f78:	b0 10 00 01 	mov  %g1, %i0
+    6f7c:	81 e8 00 00 	restore 
+    6f80:	81 c3 e0 08 	retl 
+    6f84:	01 00 00 00 	nop 
 
-00006f78 <__ajit_serial_configure_via_vmap__>:
-    6f78:	9d e3 bf 98 	save  %sp, -104, %sp
-    6f7c:	86 10 00 18 	mov  %i0, %g3
-    6f80:	84 10 00 19 	mov  %i1, %g2
-    6f84:	82 10 00 1a 	mov  %i2, %g1
-    6f88:	c6 2f a0 44 	stb  %g3, [ %fp + 0x44 ]
-    6f8c:	c4 2f a0 48 	stb  %g2, [ %fp + 0x48 ]
-    6f90:	c2 2f a0 4c 	stb  %g1, [ %fp + 0x4c ]
-    6f94:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    6f98:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    6f9c:	c2 00 40 00 	ld  [ %g1 ], %g1
-    6fa0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6fa4:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    6fa8:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6fac:	80 a0 60 00 	cmp  %g1, 0
-    6fb0:	02 80 00 07 	be  6fcc <__ajit_serial_configure_via_vmap__+0x54>
-    6fb4:	01 00 00 00 	nop 
-    6fb8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6fbc:	82 10 60 01 	or  %g1, 1, %g1
-    6fc0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6fc4:	10 80 00 05 	b  6fd8 <__ajit_serial_configure_via_vmap__+0x60>
-    6fc8:	01 00 00 00 	nop 
-    6fcc:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6fd0:	82 08 7f fe 	and  %g1, -2, %g1
-    6fd4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6fd8:	c2 0f a0 48 	ldub  [ %fp + 0x48 ], %g1
-    6fdc:	82 08 60 ff 	and  %g1, 0xff, %g1
-    6fe0:	80 a0 60 00 	cmp  %g1, 0
-    6fe4:	02 80 00 07 	be  7000 <__ajit_serial_configure_via_vmap__+0x88>
-    6fe8:	01 00 00 00 	nop 
-    6fec:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    6ff0:	82 10 60 02 	or  %g1, 2, %g1
-    6ff4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    6ff8:	10 80 00 05 	b  700c <__ajit_serial_configure_via_vmap__+0x94>
-    6ffc:	01 00 00 00 	nop 
-    7000:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7004:	82 08 7f fd 	and  %g1, -3, %g1
-    7008:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    700c:	c2 0f a0 4c 	ldub  [ %fp + 0x4c ], %g1
-    7010:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7014:	80 a0 60 00 	cmp  %g1, 0
-    7018:	02 80 00 07 	be  7034 <__ajit_serial_configure_via_vmap__+0xbc>
-    701c:	01 00 00 00 	nop 
-    7020:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7024:	82 10 60 04 	or  %g1, 4, %g1
-    7028:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    702c:	10 80 00 05 	b  7040 <__ajit_serial_configure_via_vmap__+0xc8>
+00006f88 <__ajit_serial_puts_via_vmap__>:
+    6f88:	9d e3 bf 98 	save  %sp, -104, %sp
+    6f8c:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    6f90:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    6f94:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    6f98:	10 80 00 16 	b  6ff0 <__ajit_serial_puts_via_vmap__+0x68>
+    6f9c:	01 00 00 00 	nop 
+    6fa0:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    6fa4:	10 80 00 0c 	b  6fd4 <__ajit_serial_puts_via_vmap__+0x4c>
+    6fa8:	01 00 00 00 	nop 
+    6fac:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6fb0:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
+    6fb4:	82 00 80 01 	add  %g2, %g1, %g1
+    6fb8:	c2 08 40 00 	ldub  [ %g1 ], %g1
+    6fbc:	83 28 60 18 	sll  %g1, 0x18, %g1
+    6fc0:	83 38 60 18 	sra  %g1, 0x18, %g1
+    6fc4:	90 10 00 01 	mov  %g1, %o0
+    6fc8:	7f ff ff b3 	call  6e94 <__ajit_serial_putchar_via_vmap__>
+    6fcc:	01 00 00 00 	nop 
+    6fd0:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    6fd4:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    6fd8:	80 a0 60 00 	cmp  %g1, 0
+    6fdc:	02 bf ff f4 	be  6fac <__ajit_serial_puts_via_vmap__+0x24>
+    6fe0:	01 00 00 00 	nop 
+    6fe4:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    6fe8:	82 00 60 01 	inc  %g1
+    6fec:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    6ff0:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    6ff4:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    6ff8:	80 a0 80 01 	cmp  %g2, %g1
+    6ffc:	0a bf ff e9 	bcs  6fa0 <__ajit_serial_puts_via_vmap__+0x18>
+    7000:	01 00 00 00 	nop 
+    7004:	81 e8 00 00 	restore 
+    7008:	81 c3 e0 08 	retl 
+    700c:	01 00 00 00 	nop 
+
+00007010 <__ajit_serial_gets_via_vmap__>:
+    7010:	9d e3 bf 98 	save  %sp, -104, %sp
+    7014:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    7018:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    701c:	c0 27 bf fc 	clr  [ %fp + -4 ]
+    7020:	10 80 00 14 	b  7070 <__ajit_serial_gets_via_vmap__+0x60>
+    7024:	01 00 00 00 	nop 
+    7028:	c0 27 bf f8 	clr  [ %fp + -8 ]
+    702c:	10 80 00 05 	b  7040 <__ajit_serial_gets_via_vmap__+0x30>
     7030:	01 00 00 00 	nop 
-    7034:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7038:	82 08 7f fb 	and  %g1, -5, %g1
-    703c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    7040:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    7044:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3028>
-    7048:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
-    704c:	c4 20 40 00 	st  %g2, [ %g1 ]
-    7050:	81 e8 00 00 	restore 
-    7054:	81 c3 e0 08 	retl 
-    7058:	01 00 00 00 	nop 
+    7034:	7f ff ff b8 	call  6f14 <__ajit_serial_getchar_via_vmap__>
+    7038:	01 00 00 00 	nop 
+    703c:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    7040:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    7044:	80 a0 60 00 	cmp  %g1, 0
+    7048:	02 bf ff fb 	be  7034 <__ajit_serial_gets_via_vmap__+0x24>
+    704c:	01 00 00 00 	nop 
+    7050:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7054:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
+    7058:	82 00 80 01 	add  %g2, %g1, %g1
+    705c:	c4 07 bf f8 	ld  [ %fp + -8 ], %g2
+    7060:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    7064:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7068:	82 00 60 01 	inc  %g1
+    706c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7070:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    7074:	c2 07 a0 48 	ld  [ %fp + 0x48 ], %g1
+    7078:	80 a0 80 01 	cmp  %g2, %g1
+    707c:	0a bf ff eb 	bcs  7028 <__ajit_serial_gets_via_vmap__+0x18>
+    7080:	01 00 00 00 	nop 
+    7084:	81 e8 00 00 	restore 
+    7088:	81 c3 e0 08 	retl 
+    708c:	01 00 00 00 	nop 
 
-0000705c <__ajit_serial_uart_reset_via_vmap__>:
-    705c:	9d e3 bf a0 	save  %sp, -96, %sp
-    7060:	90 10 20 01 	mov  1, %o0
-    7064:	40 00 00 05 	call  7078 <__ajit_serial_uart_reset_inner__>
-    7068:	01 00 00 00 	nop 
-    706c:	81 e8 00 00 	restore 
-    7070:	81 c3 e0 08 	retl 
-    7074:	01 00 00 00 	nop 
-
-00007078 <__ajit_serial_uart_reset_inner__>:
-    7078:	9d e3 bf 98 	save  %sp, -104, %sp
-    707c:	82 10 00 18 	mov  %i0, %g1
-    7080:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    7084:	82 10 20 08 	mov  8, %g1
-    7088:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    708c:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    7090:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7094:	80 a0 60 00 	cmp  %g1, 0
-    7098:	02 80 00 0d 	be  70cc <__ajit_serial_uart_reset_inner__+0x54>
-    709c:	01 00 00 00 	nop 
-    70a0:	7f ff ff 0c 	call  6cd0 <__ajit_read_serial_control_register_via_vmap__>
-    70a4:	01 00 00 00 	nop 
-    70a8:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    70ac:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
-    70b0:	7f ff fe ff 	call  6cac <__ajit_write_serial_control_register_via_vmap__>
-    70b4:	01 00 00 00 	nop 
-    70b8:	d0 07 bf f8 	ld  [ %fp + -8 ], %o0
-    70bc:	7f ff fe fc 	call  6cac <__ajit_write_serial_control_register_via_vmap__>
-    70c0:	01 00 00 00 	nop 
-    70c4:	10 80 00 0b 	b  70f0 <__ajit_serial_uart_reset_inner__+0x78>
-    70c8:	01 00 00 00 	nop 
-    70cc:	7f ff fe 46 	call  69e4 <__ajit_read_serial_control_register__>
-    70d0:	01 00 00 00 	nop 
-    70d4:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    70d8:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
-    70dc:	7f ff fd 7e 	call  66d4 <__ajit_write_serial_control_register__>
+00007090 <__ajit_serial_configure_via_vmap__>:
+    7090:	9d e3 bf 98 	save  %sp, -104, %sp
+    7094:	86 10 00 18 	mov  %i0, %g3
+    7098:	84 10 00 19 	mov  %i1, %g2
+    709c:	82 10 00 1a 	mov  %i2, %g1
+    70a0:	c6 2f a0 44 	stb  %g3, [ %fp + 0x44 ]
+    70a4:	c4 2f a0 48 	stb  %g2, [ %fp + 0x48 ]
+    70a8:	c2 2f a0 4c 	stb  %g1, [ %fp + 0x4c ]
+    70ac:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    70b0:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    70b4:	c2 00 40 00 	ld  [ %g1 ], %g1
+    70b8:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    70bc:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    70c0:	82 08 60 ff 	and  %g1, 0xff, %g1
+    70c4:	80 a0 60 00 	cmp  %g1, 0
+    70c8:	02 80 00 07 	be  70e4 <__ajit_serial_configure_via_vmap__+0x54>
+    70cc:	01 00 00 00 	nop 
+    70d0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    70d4:	82 10 60 01 	or  %g1, 1, %g1
+    70d8:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    70dc:	10 80 00 05 	b  70f0 <__ajit_serial_configure_via_vmap__+0x60>
     70e0:	01 00 00 00 	nop 
-    70e4:	d0 07 bf f8 	ld  [ %fp + -8 ], %o0
-    70e8:	7f ff fd 7b 	call  66d4 <__ajit_write_serial_control_register__>
-    70ec:	01 00 00 00 	nop 
-    70f0:	81 e8 00 00 	restore 
-    70f4:	81 c3 e0 08 	retl 
-    70f8:	01 00 00 00 	nop 
+    70e4:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    70e8:	82 08 7f fe 	and  %g1, -2, %g1
+    70ec:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    70f0:	c2 0f a0 48 	ldub  [ %fp + 0x48 ], %g1
+    70f4:	82 08 60 ff 	and  %g1, 0xff, %g1
+    70f8:	80 a0 60 00 	cmp  %g1, 0
+    70fc:	02 80 00 07 	be  7118 <__ajit_serial_configure_via_vmap__+0x88>
+    7100:	01 00 00 00 	nop 
+    7104:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7108:	82 10 60 02 	or  %g1, 2, %g1
+    710c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7110:	10 80 00 05 	b  7124 <__ajit_serial_configure_via_vmap__+0x94>
+    7114:	01 00 00 00 	nop 
+    7118:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    711c:	82 08 7f fd 	and  %g1, -3, %g1
+    7120:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7124:	c2 0f a0 4c 	ldub  [ %fp + 0x4c ], %g1
+    7128:	82 08 60 ff 	and  %g1, 0xff, %g1
+    712c:	80 a0 60 00 	cmp  %g1, 0
+    7130:	02 80 00 07 	be  714c <__ajit_serial_configure_via_vmap__+0xbc>
+    7134:	01 00 00 00 	nop 
+    7138:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    713c:	82 10 60 04 	or  %g1, 4, %g1
+    7140:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7144:	10 80 00 05 	b  7158 <__ajit_serial_configure_via_vmap__+0xc8>
+    7148:	01 00 00 00 	nop 
+    714c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7150:	82 08 7f fb 	and  %g1, -5, %g1
+    7154:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7158:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    715c:	82 10 62 00 	or  %g1, 0x200, %g1	! ffff3200 <alu_op_codes+0xfffb3020>
+    7160:	c4 07 bf fc 	ld  [ %fp + -4 ], %g2
+    7164:	c4 20 40 00 	st  %g2, [ %g1 ]
+    7168:	81 e8 00 00 	restore 
+    716c:	81 c3 e0 08 	retl 
+    7170:	01 00 00 00 	nop 
 
-000070fc <__ajit_write_irc_control_register__>:
-    70fc:	9d e3 bf 98 	save  %sp, -104, %sp
-    7100:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    7104:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    7108:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    710c:	d0 07 a0 44 	ld  [ %fp + 0x44 ], %o0
-    7110:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
-    7114:	7f ff fd 1f 	call  6590 <__ajit_store_word_mmu_bypass__>
-    7118:	01 00 00 00 	nop 
-    711c:	81 e8 00 00 	restore 
-    7120:	81 c3 e0 08 	retl 
-    7124:	01 00 00 00 	nop 
+00007174 <__ajit_serial_uart_reset_via_vmap__>:
+    7174:	9d e3 bf a0 	save  %sp, -96, %sp
+    7178:	90 10 20 01 	mov  1, %o0
+    717c:	40 00 00 05 	call  7190 <__ajit_serial_uart_reset_inner__>
+    7180:	01 00 00 00 	nop 
+    7184:	81 e8 00 00 	restore 
+    7188:	81 c3 e0 08 	retl 
+    718c:	01 00 00 00 	nop 
 
-00007128 <__ajit_read_irc_control_register__>:
-    7128:	9d e3 bf 98 	save  %sp, -104, %sp
-    712c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    7130:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    7134:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
-    7138:	7f ff fd 29 	call  65dc <__ajit_load_word_mmu_bypass__>
-    713c:	01 00 00 00 	nop 
-    7140:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    7144:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    7148:	b0 10 00 01 	mov  %g1, %i0
-    714c:	81 e8 00 00 	restore 
-    7150:	81 c3 e0 08 	retl 
-    7154:	01 00 00 00 	nop 
+00007190 <__ajit_serial_uart_reset_inner__>:
+    7190:	9d e3 bf 98 	save  %sp, -104, %sp
+    7194:	82 10 00 18 	mov  %i0, %g1
+    7198:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    719c:	82 10 20 08 	mov  8, %g1
+    71a0:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    71a4:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    71a8:	82 08 60 ff 	and  %g1, 0xff, %g1
+    71ac:	80 a0 60 00 	cmp  %g1, 0
+    71b0:	02 80 00 0d 	be  71e4 <__ajit_serial_uart_reset_inner__+0x54>
+    71b4:	01 00 00 00 	nop 
+    71b8:	7f ff ff 0c 	call  6de8 <__ajit_read_serial_control_register_via_vmap__>
+    71bc:	01 00 00 00 	nop 
+    71c0:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    71c4:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
+    71c8:	7f ff fe ff 	call  6dc4 <__ajit_write_serial_control_register_via_vmap__>
+    71cc:	01 00 00 00 	nop 
+    71d0:	d0 07 bf f8 	ld  [ %fp + -8 ], %o0
+    71d4:	7f ff fe fc 	call  6dc4 <__ajit_write_serial_control_register_via_vmap__>
+    71d8:	01 00 00 00 	nop 
+    71dc:	10 80 00 0b 	b  7208 <__ajit_serial_uart_reset_inner__+0x78>
+    71e0:	01 00 00 00 	nop 
+    71e4:	7f ff fe 46 	call  6afc <__ajit_read_serial_control_register__>
+    71e8:	01 00 00 00 	nop 
+    71ec:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    71f0:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
+    71f4:	7f ff fd 7e 	call  67ec <__ajit_write_serial_control_register__>
+    71f8:	01 00 00 00 	nop 
+    71fc:	d0 07 bf f8 	ld  [ %fp + -8 ], %o0
+    7200:	7f ff fd 7b 	call  67ec <__ajit_write_serial_control_register__>
+    7204:	01 00 00 00 	nop 
+    7208:	81 e8 00 00 	restore 
+    720c:	81 c3 e0 08 	retl 
+    7210:	01 00 00 00 	nop 
 
-00007158 <__ajit_write_irc_control_register_via_vmap__>:
-    7158:	9d e3 bf a0 	save  %sp, -96, %sp
-    715c:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    7160:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    7164:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
-    7168:	c4 20 40 00 	st  %g2, [ %g1 ]
-    716c:	81 e8 00 00 	restore 
-    7170:	81 c3 e0 08 	retl 
-    7174:	01 00 00 00 	nop 
-
-00007178 <__ajit_read_irc_control_register_via_vmap__>:
-    7178:	9d e3 bf 98 	save  %sp, -104, %sp
-    717c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    7180:	c2 00 40 00 	ld  [ %g1 ], %g1
-    7184:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    7188:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    718c:	b0 10 00 01 	mov  %g1, %i0
-    7190:	81 e8 00 00 	restore 
-    7194:	81 c3 e0 08 	retl 
-    7198:	01 00 00 00 	nop 
-
-0000719c <__ajit_write_spi_master_register__>:
-    719c:	9d e3 bf 98 	save  %sp, -104, %sp
-    71a0:	84 10 00 18 	mov  %i0, %g2
-    71a4:	82 10 00 19 	mov  %i1, %g1
-    71a8:	c4 2f a0 44 	stb  %g2, [ %fp + 0x44 ]
-    71ac:	c2 2f a0 48 	stb  %g1, [ %fp + 0x48 ]
-    71b0:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    71b4:	82 08 60 ff 	and  %g1, 0xff, %g1
-    71b8:	83 28 60 02 	sll  %g1, 2, %g1
-    71bc:	84 10 00 01 	mov  %g1, %g2
-    71c0:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    71c4:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3128>
-    71c8:	82 00 80 01 	add  %g2, %g1, %g1
-    71cc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    71d0:	c2 0f a0 48 	ldub  [ %fp + 0x48 ], %g1
-    71d4:	82 08 60 ff 	and  %g1, 0xff, %g1
-    71d8:	90 10 00 01 	mov  %g1, %o0
-    71dc:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
-    71e0:	7f ff fc ec 	call  6590 <__ajit_store_word_mmu_bypass__>
-    71e4:	01 00 00 00 	nop 
-    71e8:	81 e8 00 00 	restore 
-    71ec:	81 c3 e0 08 	retl 
-    71f0:	01 00 00 00 	nop 
-
-000071f4 <__ajit_write_spi_master_register_via_vmap__>:
-    71f4:	9d e3 bf 98 	save  %sp, -104, %sp
-    71f8:	84 10 00 18 	mov  %i0, %g2
-    71fc:	82 10 00 19 	mov  %i1, %g1
-    7200:	c4 2f a0 44 	stb  %g2, [ %fp + 0x44 ]
-    7204:	c2 2f a0 48 	stb  %g1, [ %fp + 0x48 ]
-    7208:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    720c:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7210:	83 28 60 02 	sll  %g1, 2, %g1
-    7214:	84 10 00 01 	mov  %g1, %g2
-    7218:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    721c:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3128>
-    7220:	82 00 80 01 	add  %g2, %g1, %g1
-    7224:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    7228:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    722c:	c4 0f a0 48 	ldub  [ %fp + 0x48 ], %g2
-    7230:	c4 28 40 00 	stb  %g2, [ %g1 ]
+00007214 <__ajit_write_irc_control_register__>:
+    7214:	9d e3 bf 98 	save  %sp, -104, %sp
+    7218:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    721c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    7220:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7224:	d0 07 a0 44 	ld  [ %fp + 0x44 ], %o0
+    7228:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
+    722c:	7f ff fd 1f 	call  66a8 <__ajit_store_word_mmu_bypass__>
+    7230:	01 00 00 00 	nop 
     7234:	81 e8 00 00 	restore 
     7238:	81 c3 e0 08 	retl 
     723c:	01 00 00 00 	nop 
 
-00007240 <__ajit_read_spi_master_register__>:
+00007240 <__ajit_read_irc_control_register__>:
     7240:	9d e3 bf 98 	save  %sp, -104, %sp
-    7244:	82 10 00 18 	mov  %i0, %g1
-    7248:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    724c:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    7250:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7254:	83 28 60 02 	sll  %g1, 2, %g1
-    7258:	84 10 00 01 	mov  %g1, %g2
-    725c:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    7260:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3128>
-    7264:	82 00 80 01 	add  %g2, %g1, %g1
-    7268:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    726c:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
-    7270:	7f ff fc db 	call  65dc <__ajit_load_word_mmu_bypass__>
-    7274:	01 00 00 00 	nop 
-    7278:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    727c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    7280:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7284:	b0 10 00 01 	mov  %g1, %i0
-    7288:	81 e8 00 00 	restore 
-    728c:	81 c3 e0 08 	retl 
-    7290:	01 00 00 00 	nop 
+    7244:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    7248:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    724c:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
+    7250:	7f ff fd 29 	call  66f4 <__ajit_load_word_mmu_bypass__>
+    7254:	01 00 00 00 	nop 
+    7258:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    725c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    7260:	b0 10 00 01 	mov  %g1, %i0
+    7264:	81 e8 00 00 	restore 
+    7268:	81 c3 e0 08 	retl 
+    726c:	01 00 00 00 	nop 
 
-00007294 <__ajit_read_spi_master_register_via_vmap__>:
-    7294:	9d e3 bf 98 	save  %sp, -104, %sp
-    7298:	82 10 00 18 	mov  %i0, %g1
-    729c:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    72a0:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    72a4:	82 08 60 ff 	and  %g1, 0xff, %g1
-    72a8:	83 28 60 02 	sll  %g1, 2, %g1
-    72ac:	84 10 00 01 	mov  %g1, %g2
-    72b0:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
-    72b4:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3128>
-    72b8:	82 00 80 01 	add  %g2, %g1, %g1
-    72bc:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    72c0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    72c4:	c2 08 40 00 	ldub  [ %g1 ], %g1
-    72c8:	82 08 60 ff 	and  %g1, 0xff, %g1
-    72cc:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    72d0:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    72d4:	82 08 60 ff 	and  %g1, 0xff, %g1
-    72d8:	b0 10 00 01 	mov  %g1, %i0
-    72dc:	81 e8 00 00 	restore 
-    72e0:	81 c3 e0 08 	retl 
-    72e4:	01 00 00 00 	nop 
+00007270 <__ajit_write_irc_control_register_via_vmap__>:
+    7270:	9d e3 bf a0 	save  %sp, -96, %sp
+    7274:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    7278:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    727c:	c4 07 a0 44 	ld  [ %fp + 0x44 ], %g2
+    7280:	c4 20 40 00 	st  %g2, [ %g1 ]
+    7284:	81 e8 00 00 	restore 
+    7288:	81 c3 e0 08 	retl 
+    728c:	01 00 00 00 	nop 
 
-000072e8 <__ajit_gpio_xfer__>:
-    72e8:	9d e3 bf 90 	save  %sp, -112, %sp
-    72ec:	82 10 00 18 	mov  %i0, %g1
-    72f0:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    72f4:	c0 27 bf f4 	clr  [ %fp + -12 ]
-    72f8:	82 10 20 01 	mov  1, %g1
-    72fc:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    7300:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
-    7304:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7308:	90 10 20 00 	clr  %o0
-    730c:	92 10 00 01 	mov  %g1, %o1
-    7310:	7f ff ff a3 	call  719c <__ajit_write_spi_master_register__>
-    7314:	01 00 00 00 	nop 
-    7318:	82 10 20 13 	mov  0x13, %g1	! 13 <_start+0x13>
-    731c:	c2 2f bf f3 	stb  %g1, [ %fp + -13 ]
-    7320:	c2 0f bf f3 	ldub  [ %fp + -13 ], %g1
+00007290 <__ajit_read_irc_control_register_via_vmap__>:
+    7290:	9d e3 bf 98 	save  %sp, -104, %sp
+    7294:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    7298:	c2 00 40 00 	ld  [ %g1 ], %g1
+    729c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    72a0:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    72a4:	b0 10 00 01 	mov  %g1, %i0
+    72a8:	81 e8 00 00 	restore 
+    72ac:	81 c3 e0 08 	retl 
+    72b0:	01 00 00 00 	nop 
+
+000072b4 <__ajit_write_spi_master_register__>:
+    72b4:	9d e3 bf 98 	save  %sp, -104, %sp
+    72b8:	84 10 00 18 	mov  %i0, %g2
+    72bc:	82 10 00 19 	mov  %i1, %g1
+    72c0:	c4 2f a0 44 	stb  %g2, [ %fp + 0x44 ]
+    72c4:	c2 2f a0 48 	stb  %g1, [ %fp + 0x48 ]
+    72c8:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    72cc:	82 08 60 ff 	and  %g1, 0xff, %g1
+    72d0:	83 28 60 02 	sll  %g1, 2, %g1
+    72d4:	84 10 00 01 	mov  %g1, %g2
+    72d8:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    72dc:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3120>
+    72e0:	82 00 80 01 	add  %g2, %g1, %g1
+    72e4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    72e8:	c2 0f a0 48 	ldub  [ %fp + 0x48 ], %g1
+    72ec:	82 08 60 ff 	and  %g1, 0xff, %g1
+    72f0:	90 10 00 01 	mov  %g1, %o0
+    72f4:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
+    72f8:	7f ff fc ec 	call  66a8 <__ajit_store_word_mmu_bypass__>
+    72fc:	01 00 00 00 	nop 
+    7300:	81 e8 00 00 	restore 
+    7304:	81 c3 e0 08 	retl 
+    7308:	01 00 00 00 	nop 
+
+0000730c <__ajit_write_spi_master_register_via_vmap__>:
+    730c:	9d e3 bf 98 	save  %sp, -104, %sp
+    7310:	84 10 00 18 	mov  %i0, %g2
+    7314:	82 10 00 19 	mov  %i1, %g1
+    7318:	c4 2f a0 44 	stb  %g2, [ %fp + 0x44 ]
+    731c:	c2 2f a0 48 	stb  %g1, [ %fp + 0x48 ]
+    7320:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
     7324:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7328:	90 10 20 02 	mov  2, %o0
-    732c:	92 10 00 01 	mov  %g1, %o1
-    7330:	7f ff ff 9b 	call  719c <__ajit_write_spi_master_register__>
-    7334:	01 00 00 00 	nop 
-    7338:	82 10 21 00 	mov  0x100, %g1	! 100 <instr_section+0x60>
+    7328:	83 28 60 02 	sll  %g1, 2, %g1
+    732c:	84 10 00 01 	mov  %g1, %g2
+    7330:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    7334:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3120>
+    7338:	82 00 80 01 	add  %g2, %g1, %g1
     733c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    7340:	10 80 00 0b 	b  736c <__ajit_gpio_xfer__+0x84>
-    7344:	01 00 00 00 	nop 
-    7348:	90 10 20 02 	mov  2, %o0	! 2 <_start+0x2>
-    734c:	7f ff ff bd 	call  7240 <__ajit_read_spi_master_register__>
-    7350:	01 00 00 00 	nop 
-    7354:	82 10 00 08 	mov  %o0, %g1
-    7358:	82 08 60 ff 	and  %g1, 0xff, %g1
-    735c:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    7360:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7364:	82 00 7f ff 	add  %g1, -1, %g1
-    7368:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    736c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7370:	85 38 60 1f 	sra  %g1, 0x1f, %g2
-    7374:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7378:	82 20 80 01 	sub  %g2, %g1, %g1
-    737c:	83 30 60 1f 	srl  %g1, 0x1f, %g1
-    7380:	84 08 60 ff 	and  %g1, 0xff, %g2
-    7384:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    7388:	82 08 80 01 	and  %g2, %g1, %g1
-    738c:	80 a0 60 00 	cmp  %g1, 0
-    7390:	12 bf ff ee 	bne  7348 <__ajit_gpio_xfer__+0x60>
-    7394:	01 00 00 00 	nop 
-    7398:	90 10 20 00 	clr  %o0	! 0 <_start>
-    739c:	7f ff ff a9 	call  7240 <__ajit_read_spi_master_register__>
-    73a0:	01 00 00 00 	nop 
-    73a4:	82 10 00 08 	mov  %o0, %g1
-    73a8:	82 08 60 ff 	and  %g1, 0xff, %g1
-    73ac:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
-    73b0:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    73b4:	b0 10 00 01 	mov  %g1, %i0
-    73b8:	81 e8 00 00 	restore 
-    73bc:	81 c3 e0 08 	retl 
-    73c0:	01 00 00 00 	nop 
+    7340:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7344:	c4 0f a0 48 	ldub  [ %fp + 0x48 ], %g2
+    7348:	c4 28 40 00 	stb  %g2, [ %g1 ]
+    734c:	81 e8 00 00 	restore 
+    7350:	81 c3 e0 08 	retl 
+    7354:	01 00 00 00 	nop 
 
-000073c4 <__ajit_gpio_xfer_via_vmap__>:
-    73c4:	9d e3 bf 90 	save  %sp, -112, %sp
-    73c8:	82 10 00 18 	mov  %i0, %g1
-    73cc:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
-    73d0:	c0 27 bf f4 	clr  [ %fp + -12 ]
-    73d4:	82 10 20 01 	mov  1, %g1
-    73d8:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    73dc:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+00007358 <__ajit_read_spi_master_register__>:
+    7358:	9d e3 bf 98 	save  %sp, -104, %sp
+    735c:	82 10 00 18 	mov  %i0, %g1
+    7360:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    7364:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    7368:	82 08 60 ff 	and  %g1, 0xff, %g1
+    736c:	83 28 60 02 	sll  %g1, 2, %g1
+    7370:	84 10 00 01 	mov  %g1, %g2
+    7374:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    7378:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3120>
+    737c:	82 00 80 01 	add  %g2, %g1, %g1
+    7380:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7384:	d0 07 bf fc 	ld  [ %fp + -4 ], %o0
+    7388:	7f ff fc db 	call  66f4 <__ajit_load_word_mmu_bypass__>
+    738c:	01 00 00 00 	nop 
+    7390:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
+    7394:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    7398:	82 08 60 ff 	and  %g1, 0xff, %g1
+    739c:	b0 10 00 01 	mov  %g1, %i0
+    73a0:	81 e8 00 00 	restore 
+    73a4:	81 c3 e0 08 	retl 
+    73a8:	01 00 00 00 	nop 
+
+000073ac <__ajit_read_spi_master_register_via_vmap__>:
+    73ac:	9d e3 bf 98 	save  %sp, -104, %sp
+    73b0:	82 10 00 18 	mov  %i0, %g1
+    73b4:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    73b8:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    73bc:	82 08 60 ff 	and  %g1, 0xff, %g1
+    73c0:	83 28 60 02 	sll  %g1, 2, %g1
+    73c4:	84 10 00 01 	mov  %g1, %g2
+    73c8:	03 3f ff cc 	sethi  %hi(0xffff3000), %g1
+    73cc:	82 10 63 00 	or  %g1, 0x300, %g1	! ffff3300 <alu_op_codes+0xfffb3120>
+    73d0:	82 00 80 01 	add  %g2, %g1, %g1
+    73d4:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    73d8:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    73dc:	c2 08 40 00 	ldub  [ %g1 ], %g1
     73e0:	82 08 60 ff 	and  %g1, 0xff, %g1
-    73e4:	90 10 20 00 	clr  %o0
-    73e8:	92 10 00 01 	mov  %g1, %o1
-    73ec:	7f ff ff 82 	call  71f4 <__ajit_write_spi_master_register_via_vmap__>
-    73f0:	01 00 00 00 	nop 
-    73f4:	82 10 20 13 	mov  0x13, %g1	! 13 <_start+0x13>
-    73f8:	c2 2f bf f3 	stb  %g1, [ %fp + -13 ]
-    73fc:	c2 0f bf f3 	ldub  [ %fp + -13 ], %g1
-    7400:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7404:	90 10 20 02 	mov  2, %o0
-    7408:	92 10 00 01 	mov  %g1, %o1
-    740c:	7f ff ff 7a 	call  71f4 <__ajit_write_spi_master_register_via_vmap__>
-    7410:	01 00 00 00 	nop 
-    7414:	82 10 21 00 	mov  0x100, %g1	! 100 <instr_section+0x60>
-    7418:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    741c:	10 80 00 0b 	b  7448 <__ajit_gpio_xfer_via_vmap__+0x84>
-    7420:	01 00 00 00 	nop 
-    7424:	90 10 20 02 	mov  2, %o0	! 2 <_start+0x2>
-    7428:	7f ff ff 9b 	call  7294 <__ajit_read_spi_master_register_via_vmap__>
+    73e4:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    73e8:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    73ec:	82 08 60 ff 	and  %g1, 0xff, %g1
+    73f0:	b0 10 00 01 	mov  %g1, %i0
+    73f4:	81 e8 00 00 	restore 
+    73f8:	81 c3 e0 08 	retl 
+    73fc:	01 00 00 00 	nop 
+
+00007400 <__ajit_gpio_xfer__>:
+    7400:	9d e3 bf 90 	save  %sp, -112, %sp
+    7404:	82 10 00 18 	mov  %i0, %g1
+    7408:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    740c:	c0 27 bf f4 	clr  [ %fp + -12 ]
+    7410:	82 10 20 01 	mov  1, %g1
+    7414:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    7418:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    741c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    7420:	90 10 20 00 	clr  %o0
+    7424:	92 10 00 01 	mov  %g1, %o1
+    7428:	7f ff ff a3 	call  72b4 <__ajit_write_spi_master_register__>
     742c:	01 00 00 00 	nop 
-    7430:	82 10 00 08 	mov  %o0, %g1
-    7434:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7438:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
-    743c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7440:	82 00 7f ff 	add  %g1, -1, %g1
-    7444:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
-    7448:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    744c:	85 38 60 1f 	sra  %g1, 0x1f, %g2
-    7450:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
-    7454:	82 20 80 01 	sub  %g2, %g1, %g1
-    7458:	83 30 60 1f 	srl  %g1, 0x1f, %g1
-    745c:	84 08 60 ff 	and  %g1, 0xff, %g2
-    7460:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
-    7464:	82 08 80 01 	and  %g2, %g1, %g1
-    7468:	80 a0 60 00 	cmp  %g1, 0
-    746c:	12 bf ff ee 	bne  7424 <__ajit_gpio_xfer_via_vmap__+0x60>
-    7470:	01 00 00 00 	nop 
-    7474:	90 10 20 00 	clr  %o0	! 0 <_start>
-    7478:	7f ff ff 87 	call  7294 <__ajit_read_spi_master_register_via_vmap__>
-    747c:	01 00 00 00 	nop 
-    7480:	82 10 00 08 	mov  %o0, %g1
-    7484:	82 08 60 ff 	and  %g1, 0xff, %g1
-    7488:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
-    748c:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
-    7490:	b0 10 00 01 	mov  %g1, %i0
-    7494:	81 e8 00 00 	restore 
-    7498:	81 c3 e0 08 	retl 
-    749c:	01 00 00 00 	nop 
-
-000074a0 <__ajit_ta_0__>:
-    74a0:	9d e3 bf a0 	save  %sp, -96, %sp
-    74a4:	91 d0 20 00 	ta  0
-    74a8:	01 00 00 00 	nop 
+    7430:	82 10 20 13 	mov  0x13, %g1	! 13 <_start+0x13>
+    7434:	c2 2f bf f3 	stb  %g1, [ %fp + -13 ]
+    7438:	c2 0f bf f3 	ldub  [ %fp + -13 ], %g1
+    743c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    7440:	90 10 20 02 	mov  2, %o0
+    7444:	92 10 00 01 	mov  %g1, %o1
+    7448:	7f ff ff 9b 	call  72b4 <__ajit_write_spi_master_register__>
+    744c:	01 00 00 00 	nop 
+    7450:	82 10 21 00 	mov  0x100, %g1	! 100 <instr_section+0x60>
+    7454:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7458:	10 80 00 0b 	b  7484 <__ajit_gpio_xfer__+0x84>
+    745c:	01 00 00 00 	nop 
+    7460:	90 10 20 02 	mov  2, %o0	! 2 <_start+0x2>
+    7464:	7f ff ff bd 	call  7358 <__ajit_read_spi_master_register__>
+    7468:	01 00 00 00 	nop 
+    746c:	82 10 00 08 	mov  %o0, %g1
+    7470:	82 08 60 ff 	and  %g1, 0xff, %g1
+    7474:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    7478:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    747c:	82 00 7f ff 	add  %g1, -1, %g1
+    7480:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7484:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7488:	85 38 60 1f 	sra  %g1, 0x1f, %g2
+    748c:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7490:	82 20 80 01 	sub  %g2, %g1, %g1
+    7494:	83 30 60 1f 	srl  %g1, 0x1f, %g1
+    7498:	84 08 60 ff 	and  %g1, 0xff, %g2
+    749c:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    74a0:	82 08 80 01 	and  %g2, %g1, %g1
+    74a4:	80 a0 60 00 	cmp  %g1, 0
+    74a8:	12 bf ff ee 	bne  7460 <__ajit_gpio_xfer__+0x60>
     74ac:	01 00 00 00 	nop 
-    74b0:	81 e8 00 00 	restore 
-    74b4:	81 c3 e0 08 	retl 
+    74b0:	90 10 20 00 	clr  %o0	! 0 <_start>
+    74b4:	7f ff ff a9 	call  7358 <__ajit_read_spi_master_register__>
     74b8:	01 00 00 00 	nop 
+    74bc:	82 10 00 08 	mov  %o0, %g1
+    74c0:	82 08 60 ff 	and  %g1, 0xff, %g1
+    74c4:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
+    74c8:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    74cc:	b0 10 00 01 	mov  %g1, %i0
+    74d0:	81 e8 00 00 	restore 
+    74d4:	81 c3 e0 08 	retl 
+    74d8:	01 00 00 00 	nop 
 
-000074bc <__ajit_fsqrtd__>:
-    74bc:	9d e3 bf a0 	save  %sp, -96, %sp
-    74c0:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    74c4:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    74c8:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    74cc:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    74d0:	c1 18 40 00 	ldd  [ %g1 ], %f0
-    74d4:	85 a0 05 40 	fsqrtd  %f0, %f2
-    74d8:	c5 38 80 00 	std  %f2, [ %g2 ]
-    74dc:	81 e8 00 00 	restore 
-    74e0:	81 c3 e0 08 	retl 
-    74e4:	01 00 00 00 	nop 
-
-000074e8 <__ajit_fsqrts__>:
-    74e8:	9d e3 bf a0 	save  %sp, -96, %sp
-    74ec:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    74f0:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    74f4:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    74f8:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    74fc:	c1 00 40 00 	ld  [ %g1 ], %f0
-    7500:	83 a0 05 20 	fsqrts  %f0, %f1
-    7504:	c3 20 80 00 	st  %f1, [ %g2 ]
-    7508:	81 e8 00 00 	restore 
-    750c:	81 c3 e0 08 	retl 
-    7510:	01 00 00 00 	nop 
-
-00007514 <__ajit_fitod__>:
-    7514:	9d e3 bf a0 	save  %sp, -96, %sp
-    7518:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    751c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    7520:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    7524:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    7528:	c1 00 40 00 	ld  [ %g1 ], %f0
-    752c:	85 a0 19 00 	fitod  %f0, %f2
-    7530:	c5 38 80 00 	std  %f2, [ %g2 ]
-    7534:	81 e8 00 00 	restore 
-    7538:	81 c3 e0 08 	retl 
-    753c:	01 00 00 00 	nop 
-
-00007540 <__ajit_fitos__>:
-    7540:	9d e3 bf a0 	save  %sp, -96, %sp
-    7544:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    7548:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    754c:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    7550:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    7554:	c1 00 40 00 	ld  [ %g1 ], %f0
-    7558:	83 a0 18 80 	fitos  %f0, %f1
-    755c:	c3 20 80 00 	st  %f1, [ %g2 ]
-    7560:	81 e8 00 00 	restore 
-    7564:	81 c3 e0 08 	retl 
-    7568:	01 00 00 00 	nop 
-
-0000756c <__ajit_fdtoi__>:
-    756c:	9d e3 bf a0 	save  %sp, -96, %sp
-    7570:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    7574:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    7578:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    757c:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    7580:	c1 18 40 00 	ldd  [ %g1 ], %f0
-    7584:	85 a0 1a 40 	fdtoi  %f0, %f2
-    7588:	c5 20 80 00 	st  %f2, [ %g2 ]
-    758c:	81 e8 00 00 	restore 
-    7590:	81 c3 e0 08 	retl 
+000074dc <__ajit_gpio_xfer_via_vmap__>:
+    74dc:	9d e3 bf 90 	save  %sp, -112, %sp
+    74e0:	82 10 00 18 	mov  %i0, %g1
+    74e4:	c2 2f a0 44 	stb  %g1, [ %fp + 0x44 ]
+    74e8:	c0 27 bf f4 	clr  [ %fp + -12 ]
+    74ec:	82 10 20 01 	mov  1, %g1
+    74f0:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    74f4:	c2 0f a0 44 	ldub  [ %fp + 0x44 ], %g1
+    74f8:	82 08 60 ff 	and  %g1, 0xff, %g1
+    74fc:	90 10 20 00 	clr  %o0
+    7500:	92 10 00 01 	mov  %g1, %o1
+    7504:	7f ff ff 82 	call  730c <__ajit_write_spi_master_register_via_vmap__>
+    7508:	01 00 00 00 	nop 
+    750c:	82 10 20 13 	mov  0x13, %g1	! 13 <_start+0x13>
+    7510:	c2 2f bf f3 	stb  %g1, [ %fp + -13 ]
+    7514:	c2 0f bf f3 	ldub  [ %fp + -13 ], %g1
+    7518:	82 08 60 ff 	and  %g1, 0xff, %g1
+    751c:	90 10 20 02 	mov  2, %o0
+    7520:	92 10 00 01 	mov  %g1, %o1
+    7524:	7f ff ff 7a 	call  730c <__ajit_write_spi_master_register_via_vmap__>
+    7528:	01 00 00 00 	nop 
+    752c:	82 10 21 00 	mov  0x100, %g1	! 100 <instr_section+0x60>
+    7530:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7534:	10 80 00 0b 	b  7560 <__ajit_gpio_xfer_via_vmap__+0x84>
+    7538:	01 00 00 00 	nop 
+    753c:	90 10 20 02 	mov  2, %o0	! 2 <_start+0x2>
+    7540:	7f ff ff 9b 	call  73ac <__ajit_read_spi_master_register_via_vmap__>
+    7544:	01 00 00 00 	nop 
+    7548:	82 10 00 08 	mov  %o0, %g1
+    754c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    7550:	c2 27 bf f8 	st  %g1, [ %fp + -8 ]
+    7554:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7558:	82 00 7f ff 	add  %g1, -1, %g1
+    755c:	c2 27 bf fc 	st  %g1, [ %fp + -4 ]
+    7560:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    7564:	85 38 60 1f 	sra  %g1, 0x1f, %g2
+    7568:	c2 07 bf fc 	ld  [ %fp + -4 ], %g1
+    756c:	82 20 80 01 	sub  %g2, %g1, %g1
+    7570:	83 30 60 1f 	srl  %g1, 0x1f, %g1
+    7574:	84 08 60 ff 	and  %g1, 0xff, %g2
+    7578:	c2 07 bf f8 	ld  [ %fp + -8 ], %g1
+    757c:	82 08 80 01 	and  %g2, %g1, %g1
+    7580:	80 a0 60 00 	cmp  %g1, 0
+    7584:	12 bf ff ee 	bne  753c <__ajit_gpio_xfer_via_vmap__+0x60>
+    7588:	01 00 00 00 	nop 
+    758c:	90 10 20 00 	clr  %o0	! 0 <_start>
+    7590:	7f ff ff 87 	call  73ac <__ajit_read_spi_master_register_via_vmap__>
     7594:	01 00 00 00 	nop 
+    7598:	82 10 00 08 	mov  %o0, %g1
+    759c:	82 08 60 ff 	and  %g1, 0xff, %g1
+    75a0:	c2 27 bf f4 	st  %g1, [ %fp + -12 ]
+    75a4:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
+    75a8:	b0 10 00 01 	mov  %g1, %i0
+    75ac:	81 e8 00 00 	restore 
+    75b0:	81 c3 e0 08 	retl 
+    75b4:	01 00 00 00 	nop 
 
-00007598 <__ajit_fstoi__>:
-    7598:	9d e3 bf a0 	save  %sp, -96, %sp
-    759c:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-    75a0:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-    75a4:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
-    75a8:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
-    75ac:	c1 00 40 00 	ld  [ %g1 ], %f0
-    75b0:	83 a0 1a 20 	fstoi  %f0, %f1
-    75b4:	c3 20 80 00 	st  %f1, [ %g2 ]
-    75b8:	81 e8 00 00 	restore 
-    75bc:	81 c3 e0 08 	retl 
+000075b8 <__ajit_ta_0__>:
+    75b8:	9d e3 bf a0 	save  %sp, -96, %sp
+    75bc:	91 d0 20 00 	ta  0
     75c0:	01 00 00 00 	nop 
+    75c4:	01 00 00 00 	nop 
+    75c8:	81 e8 00 00 	restore 
+    75cc:	81 c3 e0 08 	retl 
+    75d0:	01 00 00 00 	nop 
+
+000075d4 <__ajit_fsqrtd__>:
+    75d4:	9d e3 bf a0 	save  %sp, -96, %sp
+    75d8:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    75dc:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    75e0:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    75e4:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    75e8:	c1 18 40 00 	ldd  [ %g1 ], %f0
+    75ec:	85 a0 05 40 	fsqrtd  %f0, %f2
+    75f0:	c5 38 80 00 	std  %f2, [ %g2 ]
+    75f4:	81 e8 00 00 	restore 
+    75f8:	81 c3 e0 08 	retl 
+    75fc:	01 00 00 00 	nop 
+
+00007600 <__ajit_fsqrts__>:
+    7600:	9d e3 bf a0 	save  %sp, -96, %sp
+    7604:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    7608:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    760c:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    7610:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    7614:	c1 00 40 00 	ld  [ %g1 ], %f0
+    7618:	83 a0 05 20 	fsqrts  %f0, %f1
+    761c:	c3 20 80 00 	st  %f1, [ %g2 ]
+    7620:	81 e8 00 00 	restore 
+    7624:	81 c3 e0 08 	retl 
+    7628:	01 00 00 00 	nop 
+
+0000762c <__ajit_fitod__>:
+    762c:	9d e3 bf a0 	save  %sp, -96, %sp
+    7630:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    7634:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    7638:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    763c:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    7640:	c1 00 40 00 	ld  [ %g1 ], %f0
+    7644:	85 a0 19 00 	fitod  %f0, %f2
+    7648:	c5 38 80 00 	std  %f2, [ %g2 ]
+    764c:	81 e8 00 00 	restore 
+    7650:	81 c3 e0 08 	retl 
+    7654:	01 00 00 00 	nop 
+
+00007658 <__ajit_fitos__>:
+    7658:	9d e3 bf a0 	save  %sp, -96, %sp
+    765c:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    7660:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    7664:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    7668:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    766c:	c1 00 40 00 	ld  [ %g1 ], %f0
+    7670:	83 a0 18 80 	fitos  %f0, %f1
+    7674:	c3 20 80 00 	st  %f1, [ %g2 ]
+    7678:	81 e8 00 00 	restore 
+    767c:	81 c3 e0 08 	retl 
+    7680:	01 00 00 00 	nop 
+
+00007684 <__ajit_fdtoi__>:
+    7684:	9d e3 bf a0 	save  %sp, -96, %sp
+    7688:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    768c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    7690:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    7694:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    7698:	c1 18 40 00 	ldd  [ %g1 ], %f0
+    769c:	85 a0 1a 40 	fdtoi  %f0, %f2
+    76a0:	c5 20 80 00 	st  %f2, [ %g2 ]
+    76a4:	81 e8 00 00 	restore 
+    76a8:	81 c3 e0 08 	retl 
+    76ac:	01 00 00 00 	nop 
+
+000076b0 <__ajit_fstoi__>:
+    76b0:	9d e3 bf a0 	save  %sp, -96, %sp
+    76b4:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+    76b8:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+    76bc:	c2 07 a0 44 	ld  [ %fp + 0x44 ], %g1
+    76c0:	c4 07 a0 48 	ld  [ %fp + 0x48 ], %g2
+    76c4:	c1 00 40 00 	ld  [ %g1 ], %f0
+    76c8:	83 a0 1a 20 	fstoi  %f0, %f1
+    76cc:	c3 20 80 00 	st  %f1, [ %g2 ]
+    76d0:	81 e8 00 00 	restore 
+    76d4:	81 c3 e0 08 	retl 
+    76d8:	01 00 00 00 	nop 

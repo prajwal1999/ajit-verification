@@ -144,7 +144,7 @@ generate_input_output:
 	bl	.L5
 	 nop
 #APP
-! 39 "generate_input_output.c" 1
+! 38 "generate_input_output.c" 1
 	 set results_section, %l0
 	 
 ! 0 "" 2
@@ -158,15 +158,15 @@ generate_input_output:
 	sll	%g1, 2, %g1
 	ld	[%g2+%g1], %g1
 #APP
-! 41 "generate_input_output.c" 1
+! 40 "generate_input_output.c" 1
 	 mov %g1, %l1 
 	 
 ! 0 "" 2
-! 42 "generate_input_output.c" 1
+! 41 "generate_input_output.c" 1
 	 st %l1, [%l0] 
 	 
 ! 0 "" 2
-! 43 "generate_input_output.c" 1
+! 42 "generate_input_output.c" 1
 	 add %l0, 0x4, %l0
 	 
 ! 0 "" 2
@@ -186,7 +186,7 @@ generate_input_output:
 	or	%g1, %lo(.LC0), %o0
 	call	ee_printf, 0
 	 nop
-	ld	[%fp+68], %g1
+	mov	0, %g1
 	mov	%i1, %sp
 	mov	%g1, %i0
 	restore

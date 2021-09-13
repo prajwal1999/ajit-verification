@@ -32,7 +32,7 @@ _start:
     ld [%l1], %o0
 	call generate_input_output
 	nop
-
+	
     set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1

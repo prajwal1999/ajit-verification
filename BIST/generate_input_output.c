@@ -13,7 +13,6 @@ int16_t prbs(int16_t lfsr)
     /* taps: 16 14 13 11; feedback polynomial: x^16 + x^14 + x^13 + x^11 + 1 */
     bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
     
-    //bit  = ((lfsr >> 0) ^ (lfsr >> 2) ) & 1;
     lfsr =  (lfsr >> 1) | (bit << 12);
     //lfsr =  (lfsr >> 1) | (bit << 15);
     return lfsr;
@@ -44,9 +43,5 @@ int generate_input_output(int no_of_inputs) {
     }
 
     ee_printf("--------------------Inputs Outputs Generated----------------------\n");
-
-    
-    
-    
-    return(no_of_inputs);
+    return(0);
 }

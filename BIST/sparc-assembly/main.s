@@ -1,60 +1,6 @@
 	.file	"main.c"
 	.section	".text"
 	.align 4
-	.global instr_select
-	.type	instr_select, #function
-	.proc	04
-instr_select:
-	save	%sp, -96, %sp
-	st	%i0, [%fp+68]
-	ld	[%fp+68], %g1
-	cmp	%g1, 0
-	bne	.L2
-	 nop
-	mov	0, %g1
-	b	.L3
-	 nop
-.L2:
-	mov	4, %g1
-.L3:
-	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
-	.size	instr_select, .-instr_select
-	.align 4
-	.global bring_complement_instr
-	.type	bring_complement_instr, #function
-	.proc	04
-bring_complement_instr:
-	save	%sp, -96, %sp
-	st	%i0, [%fp+68]
-	ld	[%fp+68], %g1
-	cmp	%g1, 0
-	bne	.L5
-	 nop
-	mov	4, %g1
-	b	.L6
-	 nop
-.L5:
-	ld	[%fp+68], %g1
-	cmp	%g1, 4
-	bne	.L7
-	 nop
-	mov	0, %g1
-	b	.L6
-	 nop
-.L7:
-	b	.L4
-	 nop
-.L6:
-.L4:
-	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
-	.size	bring_complement_instr, .-bring_complement_instr
-	.align 4
 	.global generate_opcode_10
 	.type	generate_opcode_10, #function
 	.proc	016
@@ -130,7 +76,7 @@ generate_opcode_11:
 	sll	%g1, 24, %g1
 	sra	%g1, 24, %g1
 	cmp	%g1, 1
-	bne	.L11
+	bne	.L4
 	 nop
 	ld	[%fp-4], %g2
 	sethi	%hi(8192), %g1
@@ -142,14 +88,14 @@ generate_opcode_11:
 	ld	[%fp-4], %g2
 	or	%g2, %g1, %g1
 	st	%g1, [%fp-4]
-	b	.L12
+	b	.L5
 	 nop
-.L11:
+.L4:
 	ld	[%fp-4], %g2
 	ld	[%fp+76], %g1
 	or	%g2, %g1, %g1
 	st	%g1, [%fp-4]
-.L12:
+.L5:
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
 	restore
@@ -226,6 +172,9 @@ mem_op_codes:
 	.section	".rodata"
 	.align 8
 .LC0:
+	.asciz	"%c\n"
+	.align 8
+.LC1:
 	.asciz	"---------Operations done-------------------\n"
 	.section	".text"
 	.align 4
@@ -296,10 +245,12 @@ main:
 	sethi	%hi(-1646019584), %g2
 	or	%g2, 928, %g2
 	st	%g2, [%g1]
+	mov	173, %g1
+	sth	%g1, [%fp-2]
 	st	%g0, [%fp-8]
-	b	.L17
+	b	.L10
 	 nop
-.L18:
+.L11:
 	lduh	[%fp-2], %g1
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g1
@@ -311,13 +262,9 @@ main:
 	lduh	[%fp-2], %g1
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g1
+	and	%g1, 3, %g1
 	mov	%g1, %o0
-	call	prbs, 0
-	 nop
-	mov	%o0, %g1
-	and	%g1, 1, %g1
-	mov	%g1, %o0
-	call	instr_select, 0
+	call	instr_sel, 0
 	 nop
 	mov	%o0, %g1
 	mov	%g1, %g2
@@ -332,6 +279,18 @@ main:
 	add	%g2, %g1, %g1
 	ldub	[%g1], %g1
 	and	%g1, 0xff, %g1
+	sethi	%hi(.LC0), %g2
+	or	%g2, %lo(.LC0), %o0
+	mov	%g1, %o1
+	call	ee_printf, 0
+	 nop
+	sethi	%hi(alu_op_codes), %g1
+	or	%g1, %lo(alu_op_codes), %g2
+	ld	[%fp-8], %g1
+	add	%g2, %g1, %g1
+	ldub	[%g1], %g1
+	sll	%g1, 24, %g1
+	sra	%g1, 24, %g1
 	mov	%g1, %o0
 	call	bring_complement_instr, 0
 	 nop
@@ -342,6 +301,17 @@ main:
 	ld	[%fp-8], %g1
 	add	%g3, %g1, %g1
 	stb	%g2, [%g1]
+	sethi	%hi(complement_instr), %g1
+	or	%g1, %lo(complement_instr), %g2
+	ld	[%fp-8], %g1
+	add	%g2, %g1, %g1
+	ldub	[%g1], %g1
+	and	%g1, 0xff, %g1
+	sethi	%hi(.LC0), %g2
+	or	%g2, %lo(.LC0), %o0
+	mov	%g1, %o1
+	call	ee_printf, 0
+	 nop
 	ld	[%fp-12], %g1
 	add	%g1, 1, %i5
 	ldub	[%fp-34], %g1
@@ -551,11 +521,11 @@ main:
 	ld	[%fp-8], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-8]
-.L17:
+.L10:
 	ld	[%fp-8], %g2
 	ld	[%fp-16], %g1
 	cmp	%g2, %g1
-	bl	.L18
+	bl	.L11
 	 nop
 	ld	[%fp-20], %g1
 	add	%g1, -3, %g1
@@ -577,30 +547,30 @@ main:
 	sethi	%hi(16777216), %g3
 	st	%g3, [%g2+%g1]
 #APP
-! 114 "main.c" 1
+! 99 "main.c" 1
 	 set instr_section, %l0
 	 
 ! 0 "" 2
 #NO_APP
 	st	%g0, [%fp-8]
 	st	%g0, [%fp-8]
-	b	.L19
+	b	.L12
 	 nop
-.L20:
+.L13:
 	ld	[%fp-32], %g2
 	ld	[%fp-8], %g1
 	sll	%g1, 2, %g1
 	ld	[%g2+%g1], %g1
 #APP
-! 117 "main.c" 1
+! 102 "main.c" 1
 	 mov %g1, %l1 
 	 
 ! 0 "" 2
-! 118 "main.c" 1
+! 103 "main.c" 1
 	 st %l1, [%l0] 
 	 
 ! 0 "" 2
-! 119 "main.c" 1
+! 104 "main.c" 1
 	 add %l0, 0x4, %l0
 	 
 ! 0 "" 2
@@ -608,14 +578,14 @@ main:
 	ld	[%fp-8], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-8]
-.L19:
+.L12:
 	ld	[%fp-8], %g2
 	ld	[%fp-20], %g1
 	cmp	%g2, %g1
-	bl	.L20
+	bl	.L13
 	 nop
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %o0
+	sethi	%hi(.LC1), %g1
+	or	%g1, %lo(.LC1), %o0
 	call	ee_printf, 0
 	 nop
 	mov	1, %g1

@@ -4,26 +4,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "instr_select.h"
 
-int instr_select(uint random_no)
-{
-    if (random_no == 0){
-        return 0x00;
-    }
-    else{
-        return 0x04;
-    }
-}
-
-int bring_complement_instr(uint instr)
-{
-    if (instr == 0x00){
-        return 0x04;
-    }
-    if (instr == 0x04){
-        return 0x00;
-    }
-}
 
 unsigned int generate_opcode_10(unsigned int rd, unsigned int rs1, unsigned int rs2, 
                 unsigned int op_code, char i, unsigned short imm)
@@ -85,11 +67,13 @@ int main (int *results_section_ptr, int no_of_inputs) {
 
     // save instruction 
     tests[0] = 0x9de3bfa0;
+    lfsr = 0xAD;
 
     for(i=0; i<n_instr; i++) {
         lfsr = prbs(lfsr);
-        alu_op_codes[i] =  instr_select(prbs(lfsr) & 0x1);
+        alu_op_codes[i] =  instr_sel(lfsr & 0x3);
         complement_instr[i] = bring_complement_instr(alu_op_codes[i]);
+        
         // load inputs in rs1 and rs2
         tests[j+1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, (results_section_ptr+2*i));
         tests[j+2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr+2*i+1));
