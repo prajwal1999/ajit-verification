@@ -22,7 +22,7 @@ int16_t prbs(int16_t lfsr)
 int generate_input_output(int no_of_inputs) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
-    uint inp_out[no_of_inputs*2];
+    uint inp_out[no_of_inputs];
     uint16_t start_state = 0x10;  /* Any nonzero start state will work. */
     uint16_t lfsr = start_state;
     int i;
@@ -31,7 +31,6 @@ int generate_input_output(int no_of_inputs) {
     for(i=0; i<no_of_inputs; i++) {
         lfsr = prbs(lfsr) ;
         inp_out[i] = lfsr;
-        inp_out[no_of_inputs+i] = inp_out[i];
         //ee_printf("0x%02X\n", inp_out[i]);
     }
 

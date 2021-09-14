@@ -73,7 +73,6 @@ generate_input_output:
 	call	__ajit_write_serial_control_register__, 0
 	 nop
 	ld	[%fp+68], %g1
-	add	%g1, %g1, %g1
 	add	%g1, -1, %g2
 	st	%g2, [%fp-12]
 	mov	%g1, %g2
@@ -124,16 +123,6 @@ generate_input_output:
 	ld	[%fp-8], %g1
 	sll	%g1, 2, %g1
 	st	%g3, [%g2+%g1]
-	ld	[%fp+68], %g2
-	ld	[%fp-8], %g1
-	add	%g2, %g1, %g1
-	ld	[%fp-16], %g3
-	ld	[%fp-8], %g2
-	sll	%g2, 2, %g2
-	ld	[%g3+%g2], %g3
-	ld	[%fp-16], %g2
-	sll	%g1, 2, %g1
-	st	%g3, [%g2+%g1]
 	ld	[%fp-8], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-8]
@@ -144,7 +133,7 @@ generate_input_output:
 	bl	.L5
 	 nop
 #APP
-! 38 "generate_input_output.c" 1
+! 37 "generate_input_output.c" 1
 	 set results_section, %l0
 	 
 ! 0 "" 2
@@ -158,15 +147,15 @@ generate_input_output:
 	sll	%g1, 2, %g1
 	ld	[%g2+%g1], %g1
 #APP
-! 40 "generate_input_output.c" 1
+! 39 "generate_input_output.c" 1
 	 mov %g1, %l1 
 	 
 ! 0 "" 2
-! 41 "generate_input_output.c" 1
+! 40 "generate_input_output.c" 1
 	 st %l1, [%l0] 
 	 
 ! 0 "" 2
-! 42 "generate_input_output.c" 1
+! 41 "generate_input_output.c" 1
 	 add %l0, 0x4, %l0
 	 
 ! 0 "" 2

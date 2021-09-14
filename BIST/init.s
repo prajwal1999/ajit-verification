@@ -36,6 +36,8 @@ _start:
     set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1
+	set number_of_instrs, %l1 
+    ld [%l1], %o2
 	call main
 	nop 
 
@@ -45,6 +47,9 @@ _start:
 	set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1
+	set instr_section, %o2
+	set number_of_instrs, %l1 
+    ld [%l1], %o3
 	call checker
 	nop
 
@@ -62,7 +67,9 @@ _start:
 
 	.align 4
 	.global number_of_inputs
-    number_of_inputs: .word 0x4
+    number_of_inputs: .word 0x8
+	.global number_of_instrs
+    number_of_instrs: .word 0x4
 	
 
 
