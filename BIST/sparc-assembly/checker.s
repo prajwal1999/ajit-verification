@@ -109,7 +109,7 @@ checker:
 	call	ee_printf, 0
 	 nop
 #APP
-! 28 "checker.c" 1
+! 29 "checker.c" 1
 	 ta 0 
 	 
 ! 0 "" 2
@@ -150,7 +150,7 @@ checker:
 	call	ee_printf, 0
 	 nop
 #APP
-! 38 "checker.c" 1
+! 39 "checker.c" 1
 	 ta 0 
 	 
 ! 0 "" 2

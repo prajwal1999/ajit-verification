@@ -8,7 +8,8 @@ int checker(int *results_section_ptr, int number_of_inputs) {
 
     ee_printf("------------------------Starting tests-------------------\n");
 
-    int i;
+    int i,j;
+    int instr;
 
     for(i=0; i<number_of_inputs; i++) {
         int expected_out_1 = *(results_section_ptr + 2*i + 1);
