@@ -1608,7 +1608,7 @@ uart_send_char:
 	sethi	%hi(-53248), %g1
 	or	%g1, 512, %g1
 #APP
-! 624 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c" 1
+! 624 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c" 1
 	lda [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -1683,5 +1683,5 @@ ee_printf:
 	jmp	%o7+8
 	 nop
 	.size	ee_printf, .-ee_printf
-	.ident	"GCC: (Buildroot 2014.08-gacf8924) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-g230601f) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

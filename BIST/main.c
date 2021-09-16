@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include "core_portme.h"
 #include "ajit_access_routines.h"
 #include <stdlib.h>
@@ -32,8 +32,12 @@ unsigned int generate_opcode_10(unsigned int rd, unsigned int rs1, unsigned int 
     test |= rd << 25;
     test |= op_code << 19;
     test |= rs1 << 14;
-    test |= rs2;
-    // ee_printf("%i, %i, %i, %x\n", rd, rs1, rs2, test);
+    if(i==1) {
+        test |= 1 << 13;
+        test |= imm;
+    } else {
+        test |= rs2;
+    }
     return test;
 }
 
@@ -83,7 +87,7 @@ int main (int *results_section_ptr, int no_of_inputs) {
     unsigned char g0 = 0b00000;
     int i,j=0;
 
-    // save instruction 
+    // save instruction
     tests[0] = 0x9de3bfa0;
 
     for(i=0; i<n_instr; i++) {

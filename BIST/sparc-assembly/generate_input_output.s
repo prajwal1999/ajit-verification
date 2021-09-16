@@ -101,7 +101,8 @@ generate_input_output:
 	srl	%g1, 2, %g1
 	sll	%g1, 2, %g1
 	st	%g1, [%fp-16]
-	mov	16, %g1
+	sethi	%hi(25600), %g1
+	or	%g1, 852, %g1
 	sth	%g1, [%fp-18]
 	lduh	[%fp-18], %g1
 	sth	%g1, [%fp-2]
@@ -124,13 +125,20 @@ generate_input_output:
 	ld	[%fp-8], %g1
 	sll	%g1, 2, %g1
 	st	%g3, [%g2+%g1]
+	lduh	[%fp-2], %g1
+	sll	%g1, 16, %g1
+	sra	%g1, 16, %g1
+	mov	%g1, %o0
+	call	prbs, 0
+	 nop
+	mov	%o0, %g1
+	sth	%g1, [%fp-2]
 	ld	[%fp+68], %g2
 	ld	[%fp-8], %g1
 	add	%g2, %g1, %g1
-	ld	[%fp-16], %g3
-	ld	[%fp-8], %g2
-	sll	%g2, 2, %g2
-	ld	[%g3+%g2], %g3
+	lduh	[%fp-2], %g2
+	sll	%g2, 16, %g2
+	srl	%g2, 16, %g3
 	ld	[%fp-16], %g2
 	sll	%g1, 2, %g1
 	st	%g3, [%g2+%g1]
@@ -144,7 +152,7 @@ generate_input_output:
 	bl	.L5
 	 nop
 #APP
-! 39 "generate_input_output.c" 1
+! 38 "generate_input_output.c" 1
 	 set results_section, %l0
 	 
 ! 0 "" 2
@@ -158,15 +166,15 @@ generate_input_output:
 	sll	%g1, 2, %g1
 	ld	[%g2+%g1], %g1
 #APP
-! 41 "generate_input_output.c" 1
+! 40 "generate_input_output.c" 1
 	 mov %g1, %l1 
 	 
 ! 0 "" 2
-! 42 "generate_input_output.c" 1
+! 41 "generate_input_output.c" 1
 	 st %l1, [%l0] 
 	 
 ! 0 "" 2
-! 43 "generate_input_output.c" 1
+! 42 "generate_input_output.c" 1
 	 add %l0, 0x4, %l0
 	 
 ! 0 "" 2
@@ -193,5 +201,5 @@ generate_input_output:
 	jmp	%o7+8
 	 nop
 	.size	generate_input_output, .-generate_input_output
-	.ident	"GCC: (Buildroot 2014.08-gacf8924) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-g230601f) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

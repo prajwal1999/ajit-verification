@@ -7,127 +7,127 @@
 __ajit_clear_all_gp_registers__:
 	save	%sp, -104, %sp
 #APP
-! 12 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 12 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %g1 
 	 
 ! 0 "" 2
-! 12 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 12 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %g2 
 	 
 ! 0 "" 2
-! 13 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 13 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %g3 
 	 
 ! 0 "" 2
-! 13 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 13 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %g4 
 	 
 ! 0 "" 2
-! 14 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 14 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %g5 
 	 
 ! 0 "" 2
-! 14 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 14 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %g6 
 	 
 ! 0 "" 2
-! 15 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 15 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %g7 
 	 
 ! 0 "" 2
-! 17 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 17 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i0 
 	 
 ! 0 "" 2
-! 17 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 17 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i1 
 	 
 ! 0 "" 2
-! 18 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 18 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i2 
 	 
 ! 0 "" 2
-! 18 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 18 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i3 
 	 
 ! 0 "" 2
-! 19 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 19 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i4 
 	 
 ! 0 "" 2
-! 19 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 19 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i5 
 	 
 ! 0 "" 2
-! 20 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 20 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i6 
 	 
 ! 0 "" 2
-! 20 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 20 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %i7 
 	 
 ! 0 "" 2
-! 22 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 22 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l0 
 	 
 ! 0 "" 2
-! 22 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 22 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l1 
 	 
 ! 0 "" 2
-! 23 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 23 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l2 
 	 
 ! 0 "" 2
-! 23 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 23 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l3 
 	 
 ! 0 "" 2
-! 24 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 24 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l4 
 	 
 ! 0 "" 2
-! 24 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 24 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l5 
 	 
 ! 0 "" 2
-! 25 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 25 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l6 
 	 
 ! 0 "" 2
-! 25 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 25 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l7 
 	 
 ! 0 "" 2
-! 27 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 27 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o0 
 	 
 ! 0 "" 2
-! 27 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 27 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o1 
 	 
 ! 0 "" 2
-! 28 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 28 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o2 
 	 
 ! 0 "" 2
-! 28 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 28 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o3 
 	 
 ! 0 "" 2
-! 29 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 29 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o4 
 	 
 ! 0 "" 2
-! 29 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 29 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o5 
 	 
 ! 0 "" 2
-! 30 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 30 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o6 
 	 
 ! 0 "" 2
-! 30 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 30 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o7 
 	 
 ! 0 "" 2
@@ -138,71 +138,71 @@ __ajit_clear_all_gp_registers__:
 	 nop
 .L3:
 #APP
-! 36 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 36 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	save
 	 
 ! 0 "" 2
-! 38 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 38 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l0 
 	 
 ! 0 "" 2
-! 38 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 38 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l1 
 	 
 ! 0 "" 2
-! 39 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 39 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l2 
 	 
 ! 0 "" 2
-! 39 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 39 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l3 
 	 
 ! 0 "" 2
-! 40 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 40 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l4 
 	 
 ! 0 "" 2
-! 40 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 40 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l5 
 	 
 ! 0 "" 2
-! 41 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 41 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l6 
 	 
 ! 0 "" 2
-! 41 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 41 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %l7 
 	 
 ! 0 "" 2
-! 43 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 43 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o0 
 	 
 ! 0 "" 2
-! 43 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 43 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o1 
 	 
 ! 0 "" 2
-! 44 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 44 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o2 
 	 
 ! 0 "" 2
-! 44 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 44 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o3 
 	 
 ! 0 "" 2
-! 45 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 45 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o4 
 	 
 ! 0 "" 2
-! 45 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 45 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o5 
 	 
 ! 0 "" 2
-! 46 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 46 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o6 
 	 
 ! 0 "" 2
-! 46 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 46 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	mov %g0, %o7 
 	 
 ! 0 "" 2
@@ -220,7 +220,7 @@ __ajit_clear_all_gp_registers__:
 	 nop
 .L5:
 #APP
-! 52 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 52 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	restore
 	 
 ! 0 "" 2
@@ -244,7 +244,7 @@ __ajit_clear_all_gp_registers__:
 __ajit_read_core_thread_id_word__:
 	save	%sp, -104, %sp
 #APP
-! 70 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 70 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr29, %i5 
 ! 0 "" 2
 #NO_APP
@@ -286,7 +286,7 @@ ajit_get_core_and_thread_id:
 __ajit_read_cycle_count_register_high__:
 	save	%sp, -104, %sp
 #APP
-! 94 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 94 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr30, %i5 
 ! 0 "" 2
 #NO_APP
@@ -304,7 +304,7 @@ __ajit_read_cycle_count_register_high__:
 __ajit_read_cycle_count_register_low__:
 	save	%sp, -104, %sp
 #APP
-! 101 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 101 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr31, %i5 
 ! 0 "" 2
 #NO_APP
@@ -419,7 +419,7 @@ __ajit_set_mmu_default_cacheable_bit__:
 	ld	[%fp-4], %g1
 	ld	[%fp-8], %g2
 #APP
-! 168 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 168 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g1, [%g2] 4
 	
 ! 0 "" 2
@@ -439,7 +439,7 @@ __ajit_store_word_mmu_reg__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 179 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 179 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g1, [%g2] 4
 	
 ! 0 "" 2
@@ -459,7 +459,7 @@ __ajit_store_word_mmu_bypass__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 186 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 186 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g1, [%g2] 32
 	
 ! 0 "" 2
@@ -477,7 +477,7 @@ __ajit_load_word_mmu_reg__:
 	st	%i0, [%fp+68]
 	ld	[%fp+68], %g1
 #APP
-! 198 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 198 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%g1] 4, %i5
 	
 ! 0 "" 2
@@ -498,7 +498,7 @@ __ajit_load_word_mmu_bypass__:
 	st	%i0, [%fp+68]
 	ld	[%fp+68], %g1
 #APP
-! 207 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 207 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -517,7 +517,7 @@ __ajit_load_word_mmu_bypass__:
 __ajit_flush_icache__:
 	save	%sp, -96, %sp
 #APP
-! 221 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 221 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	 flush 
 ! 0 "" 2
 #NO_APP
@@ -532,7 +532,7 @@ __ajit_flush_icache__:
 __ajit_flush_dcache__:
 	save	%sp, -96, %sp
 #APP
-! 230 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 230 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g0, [%g0] 19
 	
 ! 0 "" 2
@@ -620,7 +620,7 @@ __ajit_write_serial_control_register__:
 	ld	[%fp+68], %g1
 	ld	[%fp-4], %g2
 #APP
-! 275 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 275 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g1, [%g2] 32
 	
 ! 0 "" 2
@@ -645,7 +645,7 @@ __ajit_serial_configure__:
 	sethi	%hi(-53248), %g1
 	or	%g1, 512, %g1
 #APP
-! 281 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 281 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -700,7 +700,7 @@ __ajit_serial_configure__:
 	sethi	%hi(-53248), %g2
 	or	%g2, 512, %g2
 #APP
-! 309 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 309 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g1, [%g2] 32
 	
 ! 0 "" 2
@@ -883,7 +883,7 @@ __ajit_read_serial_control_register__:
 	st	%g0, [%fp-8]
 	ld	[%fp-4], %g1
 #APP
-! 384 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 384 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -909,7 +909,7 @@ __ajit_write_serial_tx_register__:
 	ldub	[%fp+68], %g1
 	ld	[%fp-4], %g2
 #APP
-! 392 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 392 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	stuba %g1, [%g2] 32
 	
 ! 0 "" 2
@@ -930,7 +930,7 @@ __ajit_read_serial_tx_register__:
 	stb	%g0, [%fp-5]
 	ld	[%fp-4], %g1
 #APP
-! 399 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 399 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lduba [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -955,7 +955,7 @@ __ajit_read_serial_rx_register__:
 	stb	%g0, [%fp-5]
 	ld	[%fp-4], %g1
 #APP
-! 407 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 407 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lduba [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -980,7 +980,7 @@ __ajit_serial_putchar__:
 	sethi	%hi(-53248), %g1
 	or	%g1, 512, %g1
 #APP
-! 416 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 416 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -1001,7 +1001,7 @@ __ajit_serial_putchar__:
 	sethi	%hi(-53248), %g2
 	or	%g2, 516, %g2
 #APP
-! 423 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 423 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	stuba %g1, [%g2] 32
 	
 ! 0 "" 2
@@ -1041,7 +1041,7 @@ __ajit_serial_getchar__:
 	sethi	%hi(-53248), %g1
 	or	%g1, 520, %g1
 #APP
-! 442 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 442 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lduba [%g1] 32, %i5
 	
 ! 0 "" 2
@@ -1812,7 +1812,7 @@ __ajit_gpio_xfer_via_vmap__:
 __ajit_ta_0__:
 	save	%sp, -96, %sp
 #APP
-! 778 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 778 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ta 0; nop; nop;
 ! 0 "" 2
 #NO_APP
@@ -1831,7 +1831,7 @@ __ajit_fsqrtd__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 783 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 783 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ldd [%g1], %f0; fsqrtd %f0, %f2; std %f2, [%g2];
 ! 0 "" 2
 #NO_APP
@@ -1850,7 +1850,7 @@ __ajit_fsqrts__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 788 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 788 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%g1], %f0; fsqrts %f0, %f1; st %f1, [%g2];
 ! 0 "" 2
 #NO_APP
@@ -1869,7 +1869,7 @@ __ajit_fitod__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 793 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 793 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%g1], %f0; fitod %f0, %f2; std %f2, [%g2];
 ! 0 "" 2
 #NO_APP
@@ -1888,7 +1888,7 @@ __ajit_fitos__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 798 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 798 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%g1], %f0; fitos %f0, %f1; st %f1, [%g2];
 ! 0 "" 2
 #NO_APP
@@ -1907,7 +1907,7 @@ __ajit_fdtoi__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 803 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 803 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ldd [%g1], %f0; fdtoi %f0, %f2; st %f2, [%g2];
 ! 0 "" 2
 #NO_APP
@@ -1926,7 +1926,7 @@ __ajit_fstoi__:
 	ld	[%fp+68], %g1
 	ld	[%fp+72], %g2
 #APP
-! 808 "/home/shailee/Desktop/AJIT/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 808 "/home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%g1], %f0; fstoi %f0, %f1; st %f1, [%g2];
 ! 0 "" 2
 #NO_APP
@@ -1934,5 +1934,5 @@ __ajit_fstoi__:
 	jmp	%o7+8
 	 nop
 	.size	__ajit_fstoi__, .-__ajit_fstoi__
-	.ident	"GCC: (Buildroot 2014.08-gacf8924) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-g230601f) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

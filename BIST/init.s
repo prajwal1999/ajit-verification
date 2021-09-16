@@ -28,16 +28,14 @@ _start:
 	set 0x1, %o0
 	sta %o0, [%g0] 0xa   
     
-	set number_of_inputs, %l1 
-    ld [%l1], %o0
-	call generate_input_output
-	nop
 
-    set results_section, %o0
+	!-------------------------------
+loop:
+	set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1
-	call main
-	nop 
+	call add_sub
+	nop
 
 	call instr_section
 	nop
@@ -48,7 +46,10 @@ _start:
 	call checker
 	nop
 
+	ba loop
+	nop
 	ta 0
+	!----------------------------------
 
 	.align 8
 	.global instr_section
@@ -62,7 +63,7 @@ _start:
 
 	.align 4
 	.global number_of_inputs
-    number_of_inputs: .word 0x4
+    number_of_inputs: .word 0xf
 	
 
 

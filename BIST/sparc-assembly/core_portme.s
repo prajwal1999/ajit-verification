@@ -39,5 +39,5 @@ ajit_barebones_clock:
 	jmp	%o7+8
 	 nop
 	.size	ajit_barebones_clock, .-ajit_barebones_clock
-	.ident	"GCC: (Buildroot 2014.08-gacf8924) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-g230601f) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits
