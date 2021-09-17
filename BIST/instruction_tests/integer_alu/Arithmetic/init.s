@@ -34,7 +34,8 @@ loop:
 	set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1
-	call add_sub
+	!call add_sub
+	call store_in_result_section
 	nop
 
 	call instr_section
@@ -63,7 +64,7 @@ loop:
 
 	.align 4
 	.global number_of_inputs
-    number_of_inputs: .word 0xf
+    number_of_inputs: .word 0x1
 	
 
 

@@ -23,9 +23,9 @@ int checker(int *results_section_ptr, int number_of_inputs) {
             sub_test_1_correct = 1;
         } else {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
-            ee_printf("Expected Output %d, %d\n",expected_out_1, expected_out_2);
-            ee_printf("Actual Output %d, %d\n",actual_out_1, actual_out_2);
-            ee_printf("----------------------------------------------------");
+            ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
+            ee_printf("----------------------------------------------------\n");
             __asm__ __volatile__( " ta 0 \n\t " );
         }
 
@@ -33,9 +33,9 @@ int checker(int *results_section_ptr, int number_of_inputs) {
             sub_test_2_correct = 1;
         } else {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
-            ee_printf("Expected Output %d, %d\n",expected_out_1, expected_out_2);
-            ee_printf("Actual Output %d, %d\n",actual_out_1, actual_out_2);
-            ee_printf("----------------------------------------------------");
+            ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
+            ee_printf("----------------------------------------------------\n");
             __asm__ __volatile__( " ta 0 \n\t " );
         }
 
