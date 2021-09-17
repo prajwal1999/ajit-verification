@@ -58,6 +58,9 @@ prbs:
 	.section	".rodata"
 	.align 8
 .LC0:
+	.asciz	"stored %d in results section\n"
+	.align 8
+.LC1:
 	.asciz	"--------------------Inputs Outputs Generated----------------------\n"
 	.section	".text"
 	.align 4
@@ -179,6 +182,15 @@ generate_input_output:
 	 
 ! 0 "" 2
 #NO_APP
+	ld	[%fp-16], %g2
+	ld	[%fp-8], %g1
+	sll	%g1, 2, %g1
+	ld	[%g2+%g1], %g1
+	sethi	%hi(.LC0), %g2
+	or	%g2, %lo(.LC0), %o0
+	mov	%g1, %o1
+	call	ee_printf, 0
+	 nop
 	ld	[%fp-8], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-8]
@@ -190,8 +202,8 @@ generate_input_output:
 	cmp	%g2, %g1
 	bg	.L7
 	 nop
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %o0
+	sethi	%hi(.LC1), %g1
+	or	%g1, %lo(.LC1), %o0
 	call	ee_printf, 0
 	 nop
 	ld	[%fp+68], %g1

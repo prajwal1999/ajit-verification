@@ -131,15 +131,15 @@ store_instr_in_instr_area_immediate:
 	st	%i0, [%fp+68]
 	ld	[%fp+68], %g1
 #APP
-! 43 "instruction_tests/integer_alu/Arithmetic/add_sub.c" 1
+! 43 "add_sub.c" 1
 	 mov %g1, %l1 
 	 
 ! 0 "" 2
-! 44 "instruction_tests/integer_alu/Arithmetic/add_sub.c" 1
+! 44 "add_sub.c" 1
 	 st %l1, [%l0] 
 	 
 ! 0 "" 2
-! 45 "instruction_tests/integer_alu/Arithmetic/add_sub.c" 1
+! 45 "add_sub.c" 1
 	 add %l0, 0x4, %l0
 	 
 ! 0 "" 2
@@ -151,6 +151,9 @@ store_instr_in_instr_area_immediate:
 	.section	".rodata"
 	.align 8
 .LC0:
+	.asciz	"stored %d in instructions section\n"
+	.align 8
+.LC1:
 	.asciz	"------------------- Instructions generation done -------------------\n"
 	.section	".text"
 	.align 4
@@ -234,6 +237,13 @@ add_sub:
 	sethi	%hi(-1646019584), %g2
 	or	%g2, 928, %g2
 	st	%g2, [%g1]
+	ld	[%fp-20], %g1
+	ld	[%g1], %g1
+	sethi	%hi(.LC0), %g2
+	or	%g2, %lo(.LC0), %o0
+	mov	%g1, %o1
+	call	ee_printf, 0
+	 nop
 	st	%g0, [%fp-4]
 	b	.L11
 	 nop
@@ -470,7 +480,7 @@ add_sub:
 	sethi	%hi(16777216), %g3
 	st	%g3, [%g2+%g1]
 #APP
-! 94 "instruction_tests/integer_alu/Arithmetic/add_sub.c" 1
+! 95 "add_sub.c" 1
 	 set instr_section, %l0
 	 
 ! 0 "" 2
@@ -484,19 +494,28 @@ add_sub:
 	sll	%g1, 2, %g1
 	ld	[%g2+%g1], %g1
 #APP
-! 96 "instruction_tests/integer_alu/Arithmetic/add_sub.c" 1
+! 97 "add_sub.c" 1
 	 mov %g1, %l1 
 	 
 ! 0 "" 2
-! 97 "instruction_tests/integer_alu/Arithmetic/add_sub.c" 1
+! 98 "add_sub.c" 1
 	 st %l1, [%l0] 
 	 
 ! 0 "" 2
-! 98 "instruction_tests/integer_alu/Arithmetic/add_sub.c" 1
+! 99 "add_sub.c" 1
 	 add %l0, 0x4, %l0
 	 
 ! 0 "" 2
 #NO_APP
+	ld	[%fp-20], %g2
+	ld	[%fp-4], %g1
+	sll	%g1, 2, %g1
+	ld	[%g2+%g1], %g1
+	sethi	%hi(.LC0), %g2
+	or	%g2, %lo(.LC0), %o0
+	mov	%g1, %o1
+	call	ee_printf, 0
+	 nop
 	ld	[%fp-4], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-4]
@@ -506,8 +525,8 @@ add_sub:
 	cmp	%g2, %g1
 	bl	.L14
 	 nop
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %o0
+	sethi	%hi(.LC1), %g1
+	or	%g1, %lo(.LC1), %o0
 	call	ee_printf, 0
 	 nop
 	mov	1, %g1

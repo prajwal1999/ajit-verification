@@ -1,4 +1,4 @@
-	.file	"checker.c"
+	.file	"add_sub_checker.c"
 	.section	".rodata"
 	.align 8
 .LC0:
@@ -109,7 +109,7 @@ checker:
 	call	ee_printf, 0
 	 nop
 #APP
-! 29 "checker.c" 1
+! 29 "add_sub_checker.c" 1
 	 ta 0 
 	 
 ! 0 "" 2
@@ -150,7 +150,7 @@ checker:
 	call	ee_printf, 0
 	 nop
 #APP
-! 39 "checker.c" 1
+! 39 "add_sub_checker.c" 1
 	 ta 0 
 	 
 ! 0 "" 2

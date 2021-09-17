@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
-<<<<<<< HEAD
 
 int instr_select(uint random_no)
 {
@@ -62,9 +61,6 @@ int DFG_for_output_0(int rs1, int rs2) {
 
     return(0);
 }
-=======
-#include "instr_select.h"
->>>>>>> 6fc48c65d67172c999d5bf4f82050f27327a16c1
 
 unsigned char regs[8] = {0b10000, 0b10001, 0b10010, 0b10011, 0b10100, 0b10101, 0b10110, 0b10111};
 char instr_types[5][20] = {"control_transfer", "data_transfer", "floating_point", "integer_alu", "misc"};

@@ -67,7 +67,8 @@ int add_sub (int results_section_ptr, int number_of_inputs)
         unsigned int tests[n_tests];
 
         // save instruction
-        tests[0] = 0x9de3bfa0; 
+        tests[0] = 0x9de3bfa0;
+        ee_printf("stored %d in instructions section\n", tests[0]); 
 
         int i;
         for(i=0; i<number_of_inputs; i++)
@@ -96,6 +97,7 @@ int add_sub (int results_section_ptr, int number_of_inputs)
             __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (tests[i]) );
             __asm__ __volatile__( " st %l1, [%l0] \n\t " );
             __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
+            ee_printf("stored %d in instructions section\n", tests[i]);
         }
 
         ee_printf("------------------- Instructions generation done -------------------\n");
