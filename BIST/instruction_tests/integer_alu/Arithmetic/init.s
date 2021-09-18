@@ -34,8 +34,8 @@ loop:
 	set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1
-	!call add_sub
-	call store_in_result_section
+	call add_sub
+	!call store_in_result_section
 	nop
 
 	call instr_section

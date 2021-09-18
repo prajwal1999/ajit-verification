@@ -39,7 +39,7 @@ unsigned int generate_opcode_11(unsigned int rd, unsigned int rs1, unsigned int 
 
 
 
-int add_sub (int results_section_ptr, int number_of_inputs)
+int add_sub (int *results_section_ptr, int number_of_inputs)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
@@ -65,8 +65,9 @@ int add_sub (int results_section_ptr, int number_of_inputs)
         for(i=0; i<number_of_inputs; i++)
         {
             // load inputs in rs1 and rs2
-            tests[7*i+1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 8*i));
-            tests[7*i+2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 8*i + 4));
+            tests[7*i+1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 2*i));
+            tests[7*i+2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 2*i + 1));
+            ee_printf("data loaded from 0x%x and 0x%x", results_section_ptr + 2*i, results_section_ptr + 2*i + 1);
 
             //  run add sub operation
             tests[7*i+3] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
@@ -74,8 +75,9 @@ int add_sub (int results_section_ptr, int number_of_inputs)
             tests[7*i+5] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
 
             // store inputs in rs1 and rs2
-            tests[7*i+6] = generate_opcode_11(rs1, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*8 + 8*i));
-            tests[7*i+7] = generate_opcode_11(rs2, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*8 + 8*i + 4));
+            tests[7*i+6] = generate_opcode_11(rs1, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*2 + 2*i))
+            tests[7*i+7] = generate_opcode_11(rs2, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*2 + 2*i + 1));
+            ee_printf("data stored into 0x%x and 0x%x", results_section_ptr + number_of_inputs*2 + 2*i, results_section_ptr + number_of_inputs*2 + 2*i + 1);
         }
 
         // instruction restore; retl; nop
