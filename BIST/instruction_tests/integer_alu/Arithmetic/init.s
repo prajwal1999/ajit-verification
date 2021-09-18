@@ -31,15 +31,28 @@ _start:
 
 	!-------------------------------
 loop:
+
+	set 0x0, %g2
+	set 0x0, %g3
+	set 0x0, %g4
+
+	sethi %hi(0x0), %g2
+	or %g2, 0x1098, %g3
+	add %g2, 0x1098, %g4
+	ta 0 
+
+
+
 	set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1
 	call add_sub
-	!call store_in_result_section
 	nop
 
 	call instr_section
 	nop
+
+	ta 0
 
 	set results_section, %o0
 	set number_of_inputs, %l1 
@@ -55,12 +68,12 @@ loop:
 	.align 8
 	.global instr_section
 	instr_section:
-	.skip	0x1ff
+	.skip	0x1000
 
 	.align 2
 	.global results_section 
 	results_section:
-	.skip	0xff
+	.skip	0x1000
 
 	.align 4
 	.global number_of_inputs

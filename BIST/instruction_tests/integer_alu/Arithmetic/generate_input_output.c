@@ -36,11 +36,17 @@ int generate_input_output(int no_of_inputs) {
     }
 
     __asm__ __volatile__( " set results_section, %l0\n\t " );
-    for(i=0; i<no_of_inputs*2; i++) {
+    for(i=0; i<no_of_inputs; i++) {
         __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (inp_out[i]) );
         __asm__ __volatile__( " st %l1, [%l0] \n\t " );
         __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
-        ee_printf("stored 0x%x in results section\n", inp_out[i]);
+
+        __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (inp_out[no_of_inputs + i]) );
+        __asm__ __volatile__( " st %l1, [%l0] \n\t " );
+        __asm__ __volatile__( " add %l0, 0x10, %l0\n\t " );
+
+
+        ee_printf("stored 0x%x and 0x%x in results section\n", inp_out[i], inp_out[no_of_inputs + i]);
     }
 
     ee_printf("--------------------Inputs Outputs Generated----------------------\n");

@@ -12,11 +12,11 @@ int checker(int *results_section_ptr, int number_of_inputs) {
     int instr;
 
     for(i=0; i<number_of_inputs; i++) {
-        int expected_out_1 = *(results_section_ptr + 2*i + 1);
-        int expected_out_2 = *(results_section_ptr + 2*i);
+        int expected_out_1 = *(results_section_ptr + 4*i + 1);
+        int expected_out_2 = *(results_section_ptr + 4*i);
 
-        int actual_out_1 = *(results_section_ptr + 2*number_of_inputs + 2*i);
-        int actual_out_2 = *(results_section_ptr + 2*number_of_inputs + 2*i + 1);
+        int actual_out_1 = *(results_section_ptr + 4*i + 2);
+        int actual_out_2 = *(results_section_ptr + 4*i + 3);
 
         char sub_test_1_correct = 0, sub_test_2_correct = 0;
         if(expected_out_1 == actual_out_1) {
