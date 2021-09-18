@@ -31,18 +31,6 @@ _start:
 
 	!-------------------------------
 loop:
-
-	set 0x0, %g2
-	set 0x0, %g3
-	set 0x0, %g4
-
-	sethi %hi(0x0), %g2
-	or %g2, 0x1098, %g3
-	add %g2, 0x1098, %g4
-	ta 0 
-
-
-
 	set results_section, %o0
 	set number_of_inputs, %l1 
     ld [%l1], %o1
@@ -51,8 +39,6 @@ loop:
 
 	call instr_section
 	nop
-
-	ta 0
 
 	set results_section, %o0
 	set number_of_inputs, %l1 
