@@ -40,7 +40,7 @@ int generate_input_output(int no_of_inputs) {
         __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (inp_out[i]) );
         __asm__ __volatile__( " st %l1, [%l0] \n\t " );
         __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
-        ee_printf("stored %d in results section\n", inp_out[i]);
+        ee_printf("stored 0x%x in results section\n", inp_out[i]);
     }
 
     ee_printf("--------------------Inputs Outputs Generated----------------------\n");

@@ -38,15 +38,8 @@ unsigned int generate_opcode_11(unsigned int rd, unsigned int rs1, unsigned int 
 }
 
 
-void store_instr_in_instr_area_immediate(unsigned int test)
-{
-    __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (test) );
-    __asm__ __volatile__( " st %l1, [%l0] \n\t " );
-    __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
-}
 
-
-int add_sub (int results_section_ptr, int number_of_inputs)
+int add_sub (int *results_section_ptr, int number_of_inputs)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
@@ -56,10 +49,9 @@ int add_sub (int results_section_ptr, int number_of_inputs)
     unsigned char mem_mnemonic[2][3] = {'ld', 'st'};
     unsigned char mem_op_codes[2] = {0x00, 0x04};
 
-    // while(1) {
-        unsigned char rd = 0b10010;
-        unsigned char rs1 = 0b10000;
-        unsigned char rs2 = 0b10001;
+        unsigned char rd = 0b00100;
+        unsigned char rs1 = 0b00010;
+        unsigned char rs2 = 0b00011;
         unsigned char g0 = 0b00000;
         generate_input_output(number_of_inputs);
         unsigned int test;
@@ -73,8 +65,9 @@ int add_sub (int results_section_ptr, int number_of_inputs)
         for(i=0; i<number_of_inputs; i++)
         {
             // load inputs in rs1 and rs2
-            tests[7*i+1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 8*i));
-            tests[7*i+2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 8*i + 4));
+            tests[7*i+1] = generate_opcode_11(rs1, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 2*i));
+            tests[7*i+2] = generate_opcode_11(rs2, g0, 0, mem_op_codes[0], 1, (results_section_ptr + 2*i + 1));
+            ee_printf("data loaded from 0x%x and 0x%x", results_section_ptr + 2*i, results_section_ptr + 2*i + 1);
 
             //  run add sub operation
             tests[7*i+3] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
@@ -82,8 +75,9 @@ int add_sub (int results_section_ptr, int number_of_inputs)
             tests[7*i+5] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
 
             // store inputs in rs1 and rs2
-            tests[7*i+6] = generate_opcode_11(rs1, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*8 + 8*i));
-            tests[7*i+7] = generate_opcode_11(rs2, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*8 + 8*i + 4));
+            tests[7*i+6] = generate_opcode_11(rs1, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*2 + 2*i))
+            tests[7*i+7] = generate_opcode_11(rs2, g0, 0, mem_op_codes[1], 1, (results_section_ptr + number_of_inputs*2 + 2*i + 1));
+            ee_printf("data stored into 0x%x and 0x%x", results_section_ptr + number_of_inputs*2 + 2*i, results_section_ptr + number_of_inputs*2 + 2*i + 1);
         }
 
         // instruction restore; retl; nop
@@ -96,13 +90,23 @@ int add_sub (int results_section_ptr, int number_of_inputs)
             __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (tests[i]) );
             __asm__ __volatile__( " st %l1, [%l0] \n\t " );
             __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
+            ee_printf("stored 0x%x in instructions section\n", tests[i]);
         }
 
         ee_printf("------------------- Instructions generation done -------------------\n");
 
-    // }
-
 
     return(1);
 
+}
+
+
+int store_in_result_section(int *results_section_ptr)
+{
+    __asm__ __volatile__( " sethi %hi(0x5566), %g2 \n\t " );
+    *results_section_ptr = 0x15;
+    *(results_section_ptr + 1) = 0x30;
+    *(results_section_ptr + 2) = 0x45;
+    *(results_section_ptr + 3) = 0x60;
+    return(1);
 }
