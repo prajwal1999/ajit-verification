@@ -9,14 +9,13 @@ int run_test(int length, unsigned int* arr1, unsigned int* arr2, double* t);
 
 int32_t prbs(int32_t lfsr)
 {
-    bool bit;    
-	//bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
-    //lfsr =  (lfsr >> 1) | (bit << 12);
-                
+    bool bit;                    
     
 	bit  = ((lfsr >> 31) ^ (lfsr >> 30) ^ (lfsr >> 25) ^ (lfsr >> 26) ) & 1;
     lfsr =  (lfsr >> 1) | (lfsr << 31) ;
-	//lfsr = 
+	lfsr = 0x40040000 | lfsr;
+	lfsr = lfsr * 4;
+	lfsr = 0x7FFFFFFF & lfsr;
     return lfsr;
 }
 
@@ -64,22 +63,19 @@ int main()
 {
 	__ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
-    uint32_t start_state = 0x000A0001;  /* Any nonzero start state will work. */
-    uint32_t lfsr = start_state;
-	int i;
-	lfsr = prbs(lfsr);
-	unsigned int *array_1 = (unsigned int *) lfsr; //index: 0x000 
-	//lfsr = prbs(lfsr);
-	//unsigned int *array_2 = (unsigned int *) lfsr; //index: 0x040
-	for(i=0; i<50; i++) {
-        lfsr = prbs(lfsr);
-        
-		ee_printf("0x%X\n", lfsr);
-    }
-
+    /* Any nonzero start state will work. */
+	//ee_printf("%X\n", start_state);
+    uint32_t lfsr = __ajit_get_clock_time();
 	
-	//ee_printf("0x%X\n", array_2);
-	/*
+	lfsr = prbs(lfsr);
+	unsigned int *array_1 = (unsigned int *) lfsr;  
+	lfsr = prbs(lfsr);
+	unsigned int *array_2 = (unsigned int *) lfsr;
+	
+
+	ee_printf("0x%X\n", array_1);
+	ee_printf("0x%X\n", array_2);
+	
 	ee_printf("Starting \n");
 	int err = 0;
 	int i;
@@ -93,8 +89,8 @@ int main()
 		ee_printf("Error: Failure! for 256 bypass loads, time elapsed is t=%f seconds\n", t);
 
 	return(status);
-	*/
-	return(0);
+	
+	//return(0);
 }
 
 

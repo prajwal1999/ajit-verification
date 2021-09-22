@@ -47,8 +47,8 @@ writeInterruptControlRegister:
 	sethi	%hi(-53248), %g1
 	add	%g2, %g1, %g1
 	st	%g1, [%fp-4]
-	ld	[%fp-4], %o0
-	ld	[%fp+76], %o1
+	ld	[%fp+76], %o0
+	ld	[%fp-4], %o1
 	call	__ajit_store_word_mmu_bypass__, 0
 	 nop
 	restore
@@ -161,6 +161,24 @@ enableAllInterrupts:
 	jmp	%o7+8
 	 nop
 	.size	enableAllInterrupts, .-enableAllInterrupts
+	.align 4
+	.global enableInterruptControllerAndAllInterrupts
+	.type	enableInterruptControllerAndAllInterrupts, #function
+	.proc	020
+enableInterruptControllerAndAllInterrupts:
+	save	%sp, -96, %sp
+	st	%i0, [%fp+68]
+	st	%i1, [%fp+72]
+	ld	[%fp+68], %o0
+	ld	[%fp+72], %o1
+	sethi	%hi(64512), %g1
+	or	%g1, 1023, %o2
+	call	writeInterruptControlRegister, 0
+	 nop
+	restore
+	jmp	%o7+8
+	 nop
+	.size	enableInterruptControllerAndAllInterrupts, .-enableInterruptControllerAndAllInterrupts
 	.align 4
 	.global setInterruptMask
 	.type	setInterruptMask, #function

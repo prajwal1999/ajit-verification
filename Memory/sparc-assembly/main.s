@@ -29,6 +29,18 @@ prbs:
 	sll	%g1, 31, %g1
 	or	%g2, %g1, %g1
 	st	%g1, [%fp+68]
+	ld	[%fp+68], %g2
+	sethi	%hi(1074003968), %g1
+	or	%g2, %g1, %g1
+	st	%g1, [%fp+68]
+	ld	[%fp+68], %g1
+	sll	%g1, 2, %g1
+	st	%g1, [%fp+68]
+	ld	[%fp+68], %g2
+	sethi	%hi(2147482624), %g1
+	or	%g1, 1023, %g1
+	and	%g2, %g1, %g1
+	st	%g1, [%fp+68]
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
 	restore
@@ -174,53 +186,96 @@ run_test:
 	.align 8
 .LC1:
 	.asciz	"0x%X\n"
+	.align 8
+.LC2:
+	.asciz	"Starting \n"
+	.align 8
+.LC3:
+	.asciz	"Success! for 256 bypass loads, time elapsed is t=%f seconds\n"
+	.align 8
+.LC4:
+	.asciz	"Error: Failure! for 256 bypass loads, time elapsed is t=%f seconds\n"
 	.section	".text"
 	.align 4
 	.global main
 	.type	main, #function
 	.proc	04
 main:
-	save	%sp, -112, %sp
+	save	%sp, -136, %sp
 	mov	3, %o0
 	call	__ajit_write_serial_control_register__, 0
 	 nop
-	sethi	%hi(655360), %g1
-	or	%g1, 1, %g1
+	call	__ajit_get_clock_time, 0
+	 nop
+	mov	%o0, %g2
+	mov	%o1, %g3
+	st	%g3, [%fp-4]
+	ld	[%fp-4], %g1
+	mov	%g1, %o0
+	call	prbs, 0
+	 nop
+	mov	%o0, %g1
+	st	%g1, [%fp-4]
+	ld	[%fp-4], %g1
+	st	%g1, [%fp-8]
+	ld	[%fp-4], %g1
+	mov	%g1, %o0
+	call	prbs, 0
+	 nop
+	mov	%o0, %g1
+	st	%g1, [%fp-4]
+	ld	[%fp-4], %g1
 	st	%g1, [%fp-12]
-	ld	[%fp-12], %g1
-	st	%g1, [%fp-4]
-	ld	[%fp-4], %g1
-	mov	%g1, %o0
-	call	prbs, 0
-	 nop
-	mov	%o0, %g1
-	st	%g1, [%fp-4]
-	ld	[%fp-4], %g1
-	st	%g1, [%fp-16]
-	st	%g0, [%fp-8]
-	b	.L13
-	 nop
-.L14:
-	ld	[%fp-4], %g1
-	mov	%g1, %o0
-	call	prbs, 0
-	 nop
-	mov	%o0, %g1
-	st	%g1, [%fp-4]
 	sethi	%hi(.LC1), %g1
 	or	%g1, %lo(.LC1), %o0
-	ld	[%fp-4], %o1
+	ld	[%fp-8], %o1
 	call	ee_printf, 0
 	 nop
-	ld	[%fp-8], %g1
-	add	%g1, 1, %g1
-	st	%g1, [%fp-8]
-.L13:
-	ld	[%fp-8], %g1
-	cmp	%g1, 49
-	ble	.L14
+	sethi	%hi(.LC1), %g1
+	or	%g1, %lo(.LC1), %o0
+	ld	[%fp-12], %o1
+	call	ee_printf, 0
 	 nop
-	mov	0, %g1
+	sethi	%hi(.LC2), %g1
+	or	%g1, %lo(.LC2), %o0
+	call	ee_printf, 0
+	 nop
+	st	%g0, [%fp-16]
+	add	%fp, -32, %g1
+	mov	256, %o0
+	ld	[%fp-8], %o1
+	ld	[%fp-12], %o2
+	mov	%g1, %o3
+	call	run_test, 0
+	 nop
+	st	%o0, [%fp-20]
+	ld	[%fp-20], %g1
+	cmp	%g1, 0
+	bne	.L13
+	 nop
+	ldd	[%fp-32], %f8
+	sethi	%hi(.LC3), %g1
+	or	%g1, %lo(.LC3), %o0
+	std	%f8, [%fp-40]
+	ldd	[%fp-40], %g2
+	mov	%g2, %o1
+	mov	%g3, %o2
+	call	ee_printf, 0
+	 nop
+	b	.L14
+	 nop
+.L13:
+	ldd	[%fp-32], %f8
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %o0
+	std	%f8, [%fp-40]
+	ldd	[%fp-40], %g2
+	mov	%g2, %o1
+	mov	%g3, %o2
+	call	ee_printf, 0
+	 nop
+.L14:
+	ld	[%fp-20], %g1
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
