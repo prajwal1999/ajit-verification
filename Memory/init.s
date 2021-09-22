@@ -30,22 +30,13 @@ _start:
 
 	 
 loop:
-	!set start_state, %l1
-	!ld [%l1], %o0
-	!add %o0,1,%o0
-	!st %o0, [%l1]
 	call main
 	nop 
 	ba loop
 
 	nop
 	ta 0
-	!----------------------------------
 
-	!.align 2
-	!.global start_state
-    !start_state: .word 0x000A
-	!.word 0xA000
 
 
 
