@@ -4,7 +4,8 @@
 #include "core_portme.h"
 #include "math.h" 
 #include <stdbool.h>
- 
+#include <float.h>
+
 int run_test(int length, unsigned int* arr1, unsigned int* arr2, double* t);
 
 int32_t prbs(int32_t lfsr)
@@ -39,7 +40,8 @@ int run_test(int length, unsigned int* arr1, unsigned int* arr2, double* t)
 		__ajit_store_word_mmu_bypass__((uint32_t) ((2*i)+1),(uint32_t) (arr2 + i));
 	}
 
-	uint64_t start_time  = __ajit_get_clock_time();					
+	uint64_t start_time  = __ajit_get_clock_time();	
+				
 
 	for(i = 0; i < length; i++)
 	{

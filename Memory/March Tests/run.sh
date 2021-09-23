@@ -18,7 +18,6 @@ makeLinkerScript.py -t $TEXTBASE -d $DATABASE -o customLinkerScript.lnk
 compileToSparcUclibc.py -N main -W ./ -D AJIT -D CLK_FREQUENCY=$CLKFREQ -U \
                 -s init.s -c main.c -s trap_handlers.s -s setup_page_table.s \
                 -L customLinkerScript.lnk \
-                -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -C $AAR/src -I $PT/include -C $PT/src
-		-V $VMAP
+                -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -C $AAR/src -I $PT/include -C $PT/src -V $VMAP
 ajit_C_system_model -m main.mmap -w -u 64 -d -r main.results -l main.log -w main.trace
 # ajit_C_system_model -m main.mmap
