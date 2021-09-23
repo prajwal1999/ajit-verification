@@ -46,7 +46,7 @@ loop:
 	call checker
 	nop
 
-	ba loop
+	!ba loop
 	nop
 	ta 0
 	!----------------------------------
