@@ -13,10 +13,10 @@ genVmapAsm low_vmap.txt setup_page_table.s
 makeLinkerScript.py -t $TEXTBASE -d $DATABASE -o customLinkerScript.lnk
 
 echo $grid_dim
-compileToSparcUclibc.py -N main -W ./ -D AJIT -D VA_DATA_SECTION_START=$DATABASE -D CLK_FREQUENCY=$CLKFREQ -D N_INPUTS=2 -D Imm=0 -D GRID_DIM=30 -U \
+compileToSparcUclibc.py -N main -W ./ -D AJIT -D VA_DATA_SECTION_START=$DATABASE -D CLK_FREQUENCY=$CLKFREQ -D N_INPUTS=10 -D Imm=0 -D GRID_DIM=29 -U \
                 -s init.s -s trap_handlers.s -s setup_page_table.s \
                 -c add/add.c \
-                -c generate_input_output.c -c checker.c \
+                -c generate_input_output.c -c checker.c -c print_coverage.c \
                 -L customLinkerScript.lnk \
                 -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -C $AAR/src -I $PT/include -C $PT/src
                 

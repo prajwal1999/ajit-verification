@@ -3,7 +3,7 @@
 #include "ajit_access_routines.h"
 #include <math.h>
 
-int checker(int *results_section_ptr, int *register_coverage, int *data_coverage) {
+int checker(int *results_section_ptr, int *data_coverage) {
     int number_of_inputs = N_INPUTS;
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
@@ -48,18 +48,16 @@ int checker(int *results_section_ptr, int *register_coverage, int *data_coverage
         // store data coverage
         int in1 = *(results_section_ptr + 6*i);
         int in2 = *(results_section_ptr + 6*i + 1);
-        unsigned int grid_dim = (int)pow(2, GRID_DIM);
+        int grid_dim = (int)pow(2, GRID_DIM);
         unsigned int grids_in_row = (unsigned int)(pow(2, 32) / grid_dim);
-        int grid_row = (in1 / grid_dim) + grids_in_row/2 - 1;
-        int grid_col = (in2 / grid_dim) + grids_in_row/2 - 1;
+        int grid_row = ( (unsigned int)(in1 + (int)pow(2, 31)) / grid_dim );
+        int grid_col = ( (unsigned int)(in2 + (int)pow(2, 31)) / grid_dim );
 
-        ee_printf("%d, %d, %d\n", grid_row, grid_col, grids_in_row);
+        *(data_coverage + grid_row*grids_in_row + grid_col) += 1;
+        // ee_printf("%d, %d %d\n", grid_row, grid_col, grids_in_row);
     }
 
-    // print register coverage
-    for(i=0; i<8; i++) {
-        ee_printf("l%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage + i*3), *(register_coverage + i*3 + 1), *(register_coverage + i*3 + 2));
-    }
+    
 
     return(0);
 }

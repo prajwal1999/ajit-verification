@@ -40,11 +40,25 @@ loop:
 	nop
 
 	set results_section, %o0
-	set register_coverage, %o1
-	set data_coverage, %o2
+	set data_coverage, %o1
 	call checker
 	nop
 
+	! print coverage in certain time interval
+	rd %asr31, %g3
+	set 0x07ffffff, %g4
+	and %g3, %g4, %g5
+	be print
+	nop
+	!ba loop
+	nop
+	ta 0
+
+print:
+	set register_coverage, %o0
+	set data_coverage, %o1
+	call print_coverage
+	nop
 	!ba loop
 	nop
 	ta 0
@@ -71,11 +85,11 @@ loop:
 	
 	.global data_coverage
 	data_coverage:
-	.skip 4096
+	.skip 16384
 	
 	.global ccr_coverage
 	ccr_coverage:
-	.skip 16384 
+	.skip 65536
 
 
 	
