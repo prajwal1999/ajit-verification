@@ -32,39 +32,54 @@ _start:
 	!-------------------------------
 loop:
 	set results_section, %o0
-	set number_of_inputs, %l1 
-    ld [%l1], %o1
-	call add_sub
+	set register_coverage, %o1
+	call add
 	nop
 
 	call instr_section
 	nop
 
 	set results_section, %o0
-	set number_of_inputs, %l1 
-    ld [%l1], %o1
+	set register_coverage, %o1
+	set data_coverage, %o2
 	call checker
 	nop
 
 	!ba loop
 	nop
 	ta 0
-	!----------------------------------
+!-------------------------------------------
 
 	.align 8
 	.global instr_section
 	instr_section:
-	.skip	0x1000
+	.skip	4000
 
 	.align 2
 	.global results_section 
 	results_section:
-	.skip	0x1000
+	.skip	2400
 
+!------------------------------------------
 	.align 4
-	.global number_of_inputs
-    number_of_inputs: .word 0x1
+	.global coverage_section
+	coverage_section:
+
+	.global register_coverage
+	register_coverage:
+	.skip 96
+	
+	.global data_coverage
+	data_coverage:
+	.skip 4096
+	
+	.global ccr_coverage
+	ccr_coverage:
+	.skip 16384 
+
+
 	
 
+	ta 0
 
 

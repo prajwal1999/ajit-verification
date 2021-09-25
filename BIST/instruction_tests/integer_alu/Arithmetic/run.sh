@@ -7,10 +7,13 @@ TEXTBASE=0x0
 DATABASE=0x40000000
 CLKFREQ=80000000
 
+clear
+sh clean.sh
 genVmapAsm low_vmap.txt setup_page_table.s
 makeLinkerScript.py -t $TEXTBASE -d $DATABASE -o customLinkerScript.lnk
 
-compileToSparcUclibc.py -N main -W ./ -D AJIT -D VA_DATA_SECTION_START=$DATABASE -D CLK_FREQUENCY=$CLKFREQ -U \
+echo $grid_dim
+compileToSparcUclibc.py -N main -W ./ -D AJIT -D VA_DATA_SECTION_START=$DATABASE -D CLK_FREQUENCY=$CLKFREQ -D N_INPUTS=2 -D Imm=0 -D GRID_DIM=30 -U \
                 -s init.s -s trap_handlers.s -s setup_page_table.s \
                 -c add/add.c \
                 -c generate_input_output.c -c checker.c \
