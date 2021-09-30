@@ -39,6 +39,8 @@ int generate_input_output(int *results_section_ptr)
         inp_out[i] = lfsr;
         lfsr = prbs_32(lfsr);
         inp_out[number_of_inputs+i] = lfsr;
+        if(lfsr == 0xffffffff)
+            ee_printf("lfsr is 0xffffffff");
     }
 
     for(i=0; i<number_of_inputs; i++) {

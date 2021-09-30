@@ -21,7 +21,7 @@ _start:
 	nop
 
 	! enable traps.
-	set 0x10E7, %l0	
+	set 0x10E0, %l0	
 	wr %l0, %psr
 
   	! enable mmu.
@@ -41,14 +41,15 @@ loop:
 
 	set results_section, %o0
 	set data_coverage, %o1
+	set ccr_coverage, %o2
 	call checker
 	nop
 
 	! print coverage in certain time interval
-	rd %asr31, %g3
-	set 0x07ffffff, %g4
-	and %g3, %g4, %g5
-	be print
+	!rd %asr31, %g3
+	!set 0x07ffffff, %g4
+	!and %g3, %g4, %g5
+	ba print
 	nop
 	!ba loop
 	nop
@@ -57,6 +58,7 @@ loop:
 print:
 	set register_coverage, %o0
 	set data_coverage, %o1
+	set ccr_coverage, %o2
 	call print_coverage
 	nop
 	!ba loop
@@ -67,12 +69,12 @@ print:
 	.align 8
 	.global instr_section
 	instr_section:
-	.skip	4000
+	.skip	40000
 
 	.align 2
 	.global results_section 
 	results_section:
-	.skip	2400
+	.skip	28000
 
 !------------------------------------------
 	.align 4

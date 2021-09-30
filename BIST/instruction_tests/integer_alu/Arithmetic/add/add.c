@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+
 unsigned int generate_opcode_10(unsigned int rd, unsigned int rs1, unsigned int rs2, 
                 unsigned int op_code, char i, unsigned short imm)
 {
@@ -60,17 +61,35 @@ int add (int results_section_ptr, int *register_coverage)
     int number_of_inputs = N_INPUTS;
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
-    unsigned char alu_mnemonic[2][3] = {'add', 'sub', 'or'};
-    unsigned char alu_op_codes[2] = {0x00, 0x04, 0x02};
+    unsigned char alu_op_codes[2];
 
-    unsigned char mem_mnemonic[2][3] = {'ld', 'st'};
-    unsigned char mem_op_codes[2] = {0x00, 0x04};
+    switch(INSTR_OP) {
+        case 0x00:
+            alu_op_codes[0] = 0x00; // add
+            alu_op_codes[1] = 0x04; // sub
+            break;
+        case 0x04:
+            alu_op_codes[0] = 0x04; // sub
+            alu_op_codes[1] = 0x00; // add
+            break;
+        case 0x10:
+             alu_op_codes[0] = 0x10; // addcc
+             alu_op_codes[1] = 0x04; // sub
+            break;
+        case 0x14:
+            alu_op_codes[0] = 0x14; // subcc
+            alu_op_codes[1] = 0x00; // add
+            break;
+    }
+
+    unsigned char mem_mnemonic[3][3] = {'ld', 'st'};
+    unsigned char mem_op_codes[3] = {0x00, 0x04};
 
     char g2 =  0b00010; // g2
 
     generate_input_output(results_section_ptr);
     unsigned int test;
-    int n_tests = 9*number_of_inputs+6;
+    int n_tests = 10*number_of_inputs+6;
     unsigned int tests[n_tests];
 
     // save instruction
@@ -78,7 +97,7 @@ int add (int results_section_ptr, int *register_coverage)
     unsigned int result_section_base = (results_section_ptr >> 10) << 10;
     tests[1] = generate_opcode_00(g2, 0b100, result_section_base); //sethi %hi(0x40000000), %g2
     result_section_base = (results_section_ptr << 22) >> 22;
-    tests[2] = generate_opcode_10(g2, g2, 0, alu_op_codes[2], 1, result_section_base); // or %g2, 0x2a8, %g2
+    tests[2] = generate_opcode_10(g2, g2, 0, 0x02, 1, result_section_base); // or %g2, 0x2a8, %g2
     int i;
     char seed_3 = 4;
     char rd, rs1, rs2;
@@ -92,21 +111,26 @@ int add (int results_section_ptr, int *register_coverage)
         rs2 = seed_3 | 16;
 
         // load inputs in rs1 and rs2
-        tests[9*i+3] = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, (6*4*i));
-        tests[9*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, (6*4*i + 4));
+        tests[10*i+3] = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, 0);
+        tests[10*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
 
-        //  run add sub operation
-        tests[9*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
-        tests[9*i+6] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
-        tests[9*i+7] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
+        //  run add operation
+        tests[10*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
+        // store psr
+        tests[10*i+6] = generate_opcode_10(0b00100, 0, 0, 0b101001, 0, 0);
+        tests[10*i+7] = generate_opcode_11(0b00100, g2, 0, mem_op_codes[1], 1, 16);
+        //  run sub operation
+        tests[10*i+8] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
+        tests[10*i+9] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
 
         // store inputs in rs1 and rs2
-        tests[9*i+8] = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, (6*4*i + 8));
-        tests[9*i+9] = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, (6*4*i + 12)); 
+        tests[10*i+10] = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, 8);
+        tests[10*i+11] = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, 12); 
 
-        // store psr
-        tests[9*i+10] = generate_opcode_10(0b00100, 0, 0, 0b101001, 0, 0);
-        tests[9*i+11] = generate_opcode_11(0b00100, g2, 0, mem_op_codes[1], 1, (6*4*i + 16));
+        // increment g2 = g2 + 24
+        tests[10*i+12] = generate_opcode_10(g2, g2, 0, 0b000000, 1, 24); 
+
+
 
         // store register coverage
         *(register_coverage + (rs1 & 7)*3 ) += 1;
