@@ -14,8 +14,8 @@ int print_coverage(int *register_coverage, int *data_coverage, int *ccr_coverage
     // print register coverage
     int i;
     ee_printf(">>> Register Coverage\n");
-    for(i=0; i<8; i++) {
-        ee_printf(">>> l%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage + i*3), *(register_coverage + i*3 + 1), *(register_coverage + i*3 + 2));
+    for(i=0; i<32; i++) {
+        ee_printf(">>> r%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage + i*3), *(register_coverage + i*3 + 1), *(register_coverage + i*3 + 2));
     }
 
     ee_printf("\n");

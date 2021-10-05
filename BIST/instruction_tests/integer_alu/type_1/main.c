@@ -119,7 +119,7 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
         tests[11*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
 
         //  run add operation
-        ee_printf("add %d %d %d\n", rs1, rs2, rd);
+        // ee_printf("add %d %d %d\n", rs1, rs2, rd);
         tests[11*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
         //store result
         tests[11*i+6] = generate_opcode_11(rd, g2, 0, mem_op_codes[1], 1, 8);
@@ -140,9 +140,9 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
 
 
         // store register coverage
-        *(register_coverage + (rs1 & 7)*3 ) += 1;
-        *(register_coverage + (rs2 & 7)*3 + 1) += 1;
-        *(register_coverage + (rd & 7)*3 + 2) += 1;
+        *(register_coverage + (rs1 & 0xf)*3 ) += 1;
+        *(register_coverage + (rs2 & 0xf)*3 + 1) += 1;
+        *(register_coverage + (rd & 0xf)*3 + 2) += 1;
         // ee_printf("----------------------------------------------------\n");
 
     }

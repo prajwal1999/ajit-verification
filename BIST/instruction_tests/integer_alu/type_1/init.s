@@ -42,11 +42,6 @@ loop:
 	call main
 	nop
 
-	!set 0x2c0e1521, %g4
-	!set 0xe149728d, %g5
-	!add %g4, %g5, %g6
-	!sub %g6, %g4, %g4
-	!sub %g6, %g5, %g5
 	call instr_section
 	nop
 
@@ -59,7 +54,7 @@ loop:
 
 	ba print
 	nop
-	!ba loop
+	ba loop
 	nop
 	ta 0
 
@@ -69,7 +64,7 @@ print:
 	set ccr_coverage, %o2
 	call print_coverage
 	nop
-	!ba loop
+	ba loop
 	nop
 	ta 0
 !-------------------------------------------
@@ -77,7 +72,7 @@ print:
 	.align 8
 	.global instr_section
 	instr_section:
-	.skip	40000
+	.skip	48000
 
 	.align 2
 	.global results_section 
@@ -91,7 +86,7 @@ print:
 
 	.global register_coverage
 	register_coverage:
-	.skip 96
+	.skip 384
 	
 	.global data_coverage
 	data_coverage:

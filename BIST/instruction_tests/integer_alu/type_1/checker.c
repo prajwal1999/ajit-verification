@@ -11,7 +11,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
 
     int i;
     int instr;
-
+    ee_printf(">>> Tests for Instruction with opcode 0x%x\n", INSTR_OP);
     for(i=0; i<number_of_inputs; i++) {
         int expected_out_1 = *(results_section_ptr + 6*i + 1);
         int expected_out_2 = *(results_section_ptr + 6*i);
@@ -33,7 +33,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
             ee_printf("Actual result 0x%x\n", instr_result);
             ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
             // ee_printf("----------------------------------------------------\n");
-            // __asm__ __volatile__( " ta 0 \n\t " );
+            __asm__ __volatile__( " ta 0 \n\t " );
         }
 
         if(expected_out_2 == actual_out_2) {
@@ -44,11 +44,11 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
             ee_printf("Actual result 0x%x\n", instr_result);
             ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
             // ee_printf("----------------------------------------------------\n");
-            // __asm__ __volatile__( " ta 0 \n\t " );
+            __asm__ __volatile__( " ta 0 \n\t " );
         }
 
         if(sub_test_1_correct && sub_test_2_correct) {
-            // if((ceil(log2(i+1)) == floor(log2(i+1))))
+            if((ceil(log2(i+1)) == floor(log2(i+1))))
                 ee_printf("Test %d passed\n", i+1);
         }
 
