@@ -14,13 +14,12 @@ int16_t prbs(int16_t lfsr)
     return lfsr;
 }
 
-uint32_t prbs_32(uint32_t lfsr)
+uint32_t prbs_32(uint32_t x)
 {
-    bool bit;                    
-	bit  = ((lfsr >> 31) ^ (lfsr >> 30) ^ (lfsr >> 25) ^ (lfsr >> 26) ) & 1;
-    lfsr =  (lfsr >> 1) | (lfsr << 31);
-    // ee_printf("%x\n", lfsr);
-    return lfsr;
+    x ^= x << 13;
+	x ^= x >> 17;
+	x ^= x << 5;
+    return x;
 }
 
 
@@ -30,7 +29,7 @@ int generate_input_output(int *results_section_ptr)
 
     int number_of_inputs = N_INPUTS;
     uint inp_out[number_of_inputs*2];
-    int start_state = 0x96BD843D;  /* Any nonzero start state will work. */
+    int start_state = 0x96BD8430;  /* Any nonzero start state will work. */
     int lfsr = start_state;
 
     int i;
@@ -49,6 +48,8 @@ int generate_input_output(int *results_section_ptr)
 
         // ee_printf("stored 0x%x and 0x%x in results section\n", inp_out[i], inp_out[number_of_inputs + i]);
         // ee_printf("%d   %d\n", inp_out[i], inp_out[number_of_inputs + i]);
+        // ee_printf("----------------------------------------------------\n");
+
     }
 
     ee_printf("--------------------Inputs Outputs Generated----------------------\n");

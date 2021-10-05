@@ -47,16 +47,20 @@ unsigned int generate_opcode_00(unsigned int rd, unsigned char op_code, unsigned
     return test;
 }
 
-unsigned char prbs_3(unsigned char lfsr_3)
+unsigned char prbs_5(unsigned char x)
 {
-    unsigned char bit_0 = lfsr_3 & 1;
-    unsigned char bit_1 = ((lfsr_3 & 2)>>1); 
-    lfsr_3 = (lfsr_3 >> 1) | ( (bit_0 ^ bit_1) << 2);
-    return lfsr_3;
+    // ee_printf("input to 3 bit prbs = %x ", x);
+    x ^= x << 2;
+    x &= 0b11111;
+    x ^= x >> 1;
+    x &= 0b11111;
+    if(x==14 || x==15 || x==30 || x==31 || x==2 || x==1 || x==0 ) x=prbs_5(x);
+    // ee_printf("output = %x \n", x);
+    return x;
 }
 
 
-int add (int results_section_ptr, int *register_coverage)
+int main (int *instr_section_ptr, int results_section_ptr, int *register_coverage)
 {   
     int number_of_inputs = N_INPUTS;
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
@@ -84,12 +88,12 @@ int add (int results_section_ptr, int *register_coverage)
 
     unsigned char mem_mnemonic[3][3] = {'ld', 'st'};
     unsigned char mem_op_codes[3] = {0x00, 0x04};
-
     char g2 =  0b00010; // g2
 
-    generate_input_output(results_section_ptr);
+    // generate_input_output(results_section_ptr);
+
     unsigned int test;
-    int n_tests = 10*number_of_inputs+6;
+    int n_tests = 11*number_of_inputs+6;
     unsigned int tests[n_tests];
 
     // save instruction
@@ -99,36 +103,39 @@ int add (int results_section_ptr, int *register_coverage)
     result_section_base = (results_section_ptr << 22) >> 22;
     tests[2] = generate_opcode_10(g2, g2, 0, 0x02, 1, result_section_base); // or %g2, 0x2a8, %g2
     int i;
-    char seed_3 = 4;
+    char seed_5 = 11;
     char rd, rs1, rs2;
     for(i=0; i<number_of_inputs; i++)
     {
-        seed_3 = prbs_3(seed_3);
-        rd = seed_3 | 16;
-        seed_3 = prbs_3(seed_3);
-        rs1 = seed_3 | 16;
-        seed_3 = prbs_3(seed_3);
-        rs2 = seed_3 | 16;
+        seed_5 = prbs_5(seed_5);
+        rs1 = seed_5;
+        seed_5 = prbs_5(seed_5);
+        rs2 = seed_5;
+        seed_5 = prbs_5(seed_5);
+        rd = seed_5;
 
         // load inputs in rs1 and rs2
-        tests[10*i+3] = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, 0);
-        tests[10*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
+        tests[11*i+3] = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, 0);
+        tests[11*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
 
         //  run add operation
-        tests[10*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
+        ee_printf("add %d %d %d\n", rs1, rs2, rd);
+        tests[11*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
+        //store result
+        tests[11*i+6] = generate_opcode_11(rd, g2, 0, mem_op_codes[1], 1, 8);
         // store psr
-        tests[10*i+6] = generate_opcode_10(0b00100, 0, 0, 0b101001, 0, 0);
-        tests[10*i+7] = generate_opcode_11(0b00100, g2, 0, mem_op_codes[1], 1, 16);
+        tests[11*i+7] = generate_opcode_10(0b00001, 0, 0, 0b101001, 0, 0);
+        tests[11*i+8] = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 12);
         //  run sub operation
-        tests[10*i+8] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
-        tests[10*i+9] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
+        tests[11*i+9] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
+        tests[11*i+10] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
 
         // store inputs in rs1 and rs2
-        tests[10*i+10] = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, 8);
-        tests[10*i+11] = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, 12); 
+        tests[11*i+11] = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, 16);
+        tests[11*i+12] = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, 20); 
 
         // increment g2 = g2 + 24
-        tests[10*i+12] = generate_opcode_10(g2, g2, 0, 0b000000, 1, 24); 
+        tests[11*i+13] = generate_opcode_10(g2, g2, 0, 0b000000, 1, 24); 
 
 
 
@@ -136,6 +143,7 @@ int add (int results_section_ptr, int *register_coverage)
         *(register_coverage + (rs1 & 7)*3 ) += 1;
         *(register_coverage + (rs2 & 7)*3 + 1) += 1;
         *(register_coverage + (rd & 7)*3 + 2) += 1;
+        // ee_printf("----------------------------------------------------\n");
 
     }
 
@@ -144,13 +152,14 @@ int add (int results_section_ptr, int *register_coverage)
     tests[n_tests-2] = 0x81c3e008;
     tests[n_tests-1] = 0x01000000;
 
-    __asm__ __volatile__( " set instr_section, %l0\n\t " );
+    // __asm__ __volatile__( " set instr_section, %l0\n\t " );
     for(i=0; i<n_tests; i++) {
-        __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (tests[i]) );
-        __asm__ __volatile__( " st %l1, [%l0] \n\t " );
-        __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
+        *(instr_section_ptr + i) = tests[i];
+        // __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (tests[i]) );
+        // __asm__ __volatile__( " st %l1, [%l0] \n\t " );
+        // __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );
     }
-
+    ee_printf("last address written 0x%x\n", instr_section_ptr+n_tests-1);
     ee_printf("------------------- Instructions generation done -------------------\n");
     return(1);
 

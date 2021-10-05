@@ -16,21 +16,24 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
         int expected_out_1 = *(results_section_ptr + 6*i + 1);
         int expected_out_2 = *(results_section_ptr + 6*i);
 
-        int actual_out_1 = *(results_section_ptr + 6*i + 2);
-        int actual_out_2 = *(results_section_ptr + 6*i + 3);
+        int actual_out_1 = *(results_section_ptr + 6*i + 4);
+        int actual_out_2 = *(results_section_ptr + 6*i + 5);
+        int instr_result = *(results_section_ptr + 6*i + 2);
 
         char sub_test_1_correct = 0, sub_test_2_correct = 0;
 
-        // ee_printf("%d   %d\n", *(results_section_ptr + 6*i), *(results_section_ptr + 6*i + 1));
+        // ee_printf("result section head %x\n", (results_section_ptr + 6*i));
+        // ee_printf("result %x\n", *(results_section_ptr + 6*i + 2));
 
         if(expected_out_1 == actual_out_1) {
             sub_test_1_correct = 1;
         } else {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("Actual result 0x%x\n", instr_result);
             ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
-            ee_printf("----------------------------------------------------\n");
-            __asm__ __volatile__( " ta 0 \n\t " );
+            // ee_printf("----------------------------------------------------\n");
+            // __asm__ __volatile__( " ta 0 \n\t " );
         }
 
         if(expected_out_2 == actual_out_2) {
@@ -38,13 +41,14 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
         } else {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("Actual result 0x%x\n", instr_result);
             ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
-            ee_printf("----------------------------------------------------\n");
-            __asm__ __volatile__( " ta 0 \n\t " );
+            // ee_printf("----------------------------------------------------\n");
+            // __asm__ __volatile__( " ta 0 \n\t " );
         }
 
         if(sub_test_1_correct && sub_test_2_correct) {
-            if((ceil(log2(i+1)) == floor(log2(i+1))))
+            // if((ceil(log2(i+1)) == floor(log2(i+1))))
                 ee_printf("Test %d passed\n", i+1);
         }
 
@@ -59,7 +63,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
 
 
         // store ccr codes
-        unsigned int psr = *(results_section_ptr + 6*i + 4);
+        unsigned int psr = *(results_section_ptr + 6*i + 3);
         unsigned int ccr = (psr & 0x00f00000) >> 20; 
         *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col) += ((ccr & 0b1000)>>3); // n
         *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 1) += ((ccr & 0b0100)>>2); // z

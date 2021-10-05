@@ -11,7 +11,7 @@ CLKFREQ=80000000
 n_inputs=10
 imm=0
 grid_dim=29
-instr_op=0x00
+instr_op=0x10
 
 clear
 sh clean.sh
@@ -21,7 +21,7 @@ makeLinkerScript.py -t $TEXTBASE -d $DATABASE -o customLinkerScript.lnk
 compileToSparcUclibc.py -N main -W ./ \
                 -D AJIT -D VA_DATA_SECTION_START=$DATABASE -D CLK_FREQUENCY=$CLKFREQ -D INSTR_OP=$instr_op -D N_INPUTS=$n_inputs -D Imm=$imm -D GRID_DIM=$grid_dim -U \
                 -s init.s -s trap_handlers.s -s setup_page_table.s \
-                -c add/add.c \
+                -c main.c \
                 -c generate_input_output.c -c checker.c -c print_coverage.c \
                 -L customLinkerScript.lnk \
                 -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -C $AAR/src -I $PT/include -C $PT/src

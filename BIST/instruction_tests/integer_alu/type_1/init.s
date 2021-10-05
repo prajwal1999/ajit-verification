@@ -31,11 +31,22 @@ _start:
 
 	!-------------------------------
 loop:
+	
 	set results_section, %o0
-	set register_coverage, %o1
-	call add
+	call generate_input_output
 	nop
 
+	set instr_section, %o0
+	set results_section, %o1
+	set register_coverage, %o2
+	call main
+	nop
+
+	!set 0x2c0e1521, %g4
+	!set 0xe149728d, %g5
+	!add %g4, %g5, %g6
+	!sub %g6, %g4, %g4
+	!sub %g6, %g5, %g5
 	call instr_section
 	nop
 
@@ -44,11 +55,8 @@ loop:
 	set ccr_coverage, %o2
 	call checker
 	nop
+	nop
 
-	! print coverage in certain time interval
-	!rd %asr31, %g3
-	!set 0x07ffffff, %g4
-	!and %g3, %g4, %g5
 	ba print
 	nop
 	!ba loop
