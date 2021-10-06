@@ -6,11 +6,15 @@
 #include <stdbool.h>
 
 
-int print_coverage(int *register_coverage, int *data_coverage, int *ccr_coverage)
+int print_coverage(int *register_coverage, int *data_coverage, int *ccr_coverage,
+                   int inputs_seed, int register_seed )
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
     ee_printf("\n");
+    ee_printf(">>> Coverage for Instruction with opcode 0x%x\n", INSTR_OP);
+    ee_printf(">>> Inputs seed is %d\n", inputs_seed);
+    ee_printf(">>> Register seed is %d\n", register_seed);
     // print register coverage
     int i;
     ee_printf(">>> Register Coverage\n");

@@ -23,14 +23,13 @@ uint32_t prbs_32(uint32_t x)
 }
 
 
-int generate_input_output(int *results_section_ptr)
+int generate_input_output(int *results_section_ptr, int inputs_seed)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
     int number_of_inputs = N_INPUTS;
     uint inp_out[number_of_inputs*2];
-    int start_state = 0x96BD8430;  /* Any nonzero start state will work. */
-    int lfsr = start_state;
+    int lfsr = inputs_seed;
 
     int i;
     for(i=0; i<number_of_inputs; i++) {

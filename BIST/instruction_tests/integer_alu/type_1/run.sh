@@ -10,7 +10,7 @@ CLKFREQ=80000000
 
 n_inputs=1000
 imm=0
-grid_dim=29
+grid_dim=26
 instr_op=0x10
 
 clear

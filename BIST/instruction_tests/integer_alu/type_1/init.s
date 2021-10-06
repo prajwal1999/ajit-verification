@@ -33,12 +33,16 @@ _start:
 loop:
 	
 	set results_section, %o0
+	set 0x1, %l1
+	mov %l1, %o1 				! seed for generating input pairs
 	call generate_input_output
 	nop
 
 	set instr_section, %o0
 	set results_section, %o1
 	set register_coverage, %o2
+	set 0x1, %l2				
+	mov %l2, %o3				! seed for register - register_seed
 	call main
 	nop
 
@@ -54,15 +58,20 @@ loop:
 
 	ba print
 	nop
-	ba loop
-	nop
 	ta 0
 
 print:
 	set register_coverage, %o0
 	set data_coverage, %o1
 	set ccr_coverage, %o2
+	mov %l1, %o3
+	mov %l2, %o4
 	call print_coverage
+	
+	!increment seed
+	add %l1, 0x1, %l1
+	add %l2, 0x1, %l2
+
 	nop
 	ba loop
 	nop

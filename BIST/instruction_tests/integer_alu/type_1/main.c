@@ -60,7 +60,7 @@ unsigned char prbs_5(unsigned char x)
 }
 
 
-int main (int *instr_section_ptr, int results_section_ptr, int *register_coverage)
+int main (int *instr_section_ptr, int results_section_ptr, int *register_coverage, int register_seed)
 {   
     int number_of_inputs = N_INPUTS;
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
@@ -103,7 +103,7 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
     result_section_base = (results_section_ptr << 22) >> 22;
     tests[2] = generate_opcode_10(g2, g2, 0, 0x02, 1, result_section_base); // or %g2, 0x2a8, %g2
     int i;
-    char seed_5 = 11;
+    char seed_5 = register_seed;
     char rd, rs1, rs2;
     for(i=0; i<number_of_inputs; i++)
     {
@@ -140,9 +140,9 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
 
 
         // store register coverage
-        *(register_coverage + (rs1 & 0xf)*3 ) += 1;
-        *(register_coverage + (rs2 & 0xf)*3 + 1) += 1;
-        *(register_coverage + (rd & 0xf)*3 + 2) += 1;
+        *(register_coverage + (rs1 & 0x1f)*3 ) += 1;
+        *(register_coverage + (rs2 & 0x1f)*3 + 1) += 1;
+        *(register_coverage + (rd & 0x1f)*3 + 2) += 1;
         // ee_printf("----------------------------------------------------\n");
 
     }
