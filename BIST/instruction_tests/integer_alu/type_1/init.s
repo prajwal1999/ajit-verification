@@ -56,7 +56,7 @@ loop:
 	nop
 	nop
 
-	ba print
+	!ba print
 	nop
 	ta 0
 
@@ -73,7 +73,7 @@ print:
 	add %l2, 0x1, %l2
 
 	nop
-	ba loop
+	!ba loop
 	nop
 	ta 0
 !-------------------------------------------
