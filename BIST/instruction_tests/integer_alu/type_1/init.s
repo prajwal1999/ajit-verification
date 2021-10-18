@@ -50,20 +50,20 @@ loop:
 	nop
 
 	set results_section, %o0
-	set data_coverage, %o1
-	set ccr_coverage, %o2
+	!set data_coverage, %o1
+	!set ccr_coverage, %o2
 	call checker
 	nop
 	nop
 
-	ba print
+	!ba print
 	nop
 	ta 0
 
 print:
 	set register_coverage, %o0
-	set data_coverage, %o1
-	set ccr_coverage, %o2
+	!set data_coverage, %o1
+	!set ccr_coverage, %o2
 	mov %l1, %o3
 	mov %l2, %o4
 	call print_coverage
@@ -78,15 +78,15 @@ print:
 	ta 0
 !-------------------------------------------
 
-	.align 8
+	.align 4
 	.global instr_section
 	instr_section:
-	.skip	48000
+	.skip	28000
 
-	.align 2
+	.align 8
 	.global results_section 
 	results_section:
-	.skip	28000
+	.skip	20000
 
 !------------------------------------------
 	.align 4
@@ -97,17 +97,12 @@ print:
 	register_coverage:
 	.skip 384
 	
-	.global data_coverage
-	data_coverage:
-	.skip 16384
+	!.global data_coverage
+	!data_coverage:
+	!.skip 16384
 	
-	.global ccr_coverage
-	ccr_coverage:
-	.skip 65536
-
-
-	
-
-	ta 0
+	!.global ccr_coverage
+	!ccr_coverage:
+!.skip 65536
 
 

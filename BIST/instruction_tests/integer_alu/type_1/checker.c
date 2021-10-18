@@ -63,22 +63,22 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
         }
 
         // store data coverage
-        int in1 = *(results_section_ptr + 8*i);
-        int in2 = *(results_section_ptr + 8*i + 1);
-        int grid_dim = (int)pow(2, GRID_DIM);
-        int grids_in_row = 1 << (32-GRID_DIM);
-        int grid_row = ( (unsigned int)(in1 + (int)pow(2, 31)) / grid_dim );
-        int grid_col = ( (unsigned int)(in2 + (int)pow(2, 31)) / grid_dim );
-        *(data_coverage + grid_row*grids_in_row + grid_col) += 1;
+        // int in1 = *(results_section_ptr + 8*i);
+        // int in2 = *(results_section_ptr + 8*i + 1);
+        // int grid_dim = (int)pow(2, GRID_DIM);
+        // int grids_in_row = 1 << (32-GRID_DIM);
+        // int grid_row = ( (unsigned int)(in1 + (int)pow(2, 31)) / grid_dim );
+        // int grid_col = ( (unsigned int)(in2 + (int)pow(2, 31)) / grid_dim );
+        // *(data_coverage + grid_row*grids_in_row + grid_col) += 1;
 
 
         // store ccr codes
-        unsigned int psr = *(results_section_ptr + 8*i + 4);
-        unsigned int ccr = (psr & 0x00f00000) >> 20; 
-        *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col) += ((ccr & 0b1000)>>3); // n
-        *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 1) += ((ccr & 0b0100)>>2); // z
-        *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 2) += ((ccr & 0b0010)>>1); // v
-        *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 3) += ((ccr & 0b0001)>>0); // c
+        // unsigned int psr = *(results_section_ptr + 8*i + 4);
+        // unsigned int ccr = (psr & 0x00f00000) >> 20; 
+        // *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col) += ((ccr & 0b1000)>>3); // n
+        // *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 1) += ((ccr & 0b0100)>>2); // z
+        // *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 2) += ((ccr & 0b0010)>>1); // v
+        // *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 3) += ((ccr & 0b0001)>>0); // c
         
         // ee_printf("%x   %x\n", in1, in2);
         // ee_printf("%d, %d\n", grid_row, grid_col);

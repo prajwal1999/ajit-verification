@@ -129,10 +129,14 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
     unsigned int tests[n_tests];
 
     // save instruction
-    tests[0] = 0x9de3bfa0; // save %o6, -96, %o6 
+    tests[0] = 0x9de3bfa0; // save %o6, -96, %o6
+    // ee_printf("results_section_ptr 0x%x\n", results_section_ptr);
     unsigned int result_section_base = (results_section_ptr >> 10) << 10;
+    // ee_printf("result_section_base 0x%x\n", result_section_base);
     tests[1] = generate_opcode_00(g2, 0b100, result_section_base); //sethi %hi(0x40000000), %g2
     result_section_base = (results_section_ptr << 22) >> 22;
+    result_section_base &= 0x000003ff; 
+    // ee_printf("result_section_base 0x%x\n", result_section_base);
     tests[2] = generate_opcode_10(g2, g2, 0, 0x02, 1, result_section_base); // or %g2, 0x2a8, %g2
     int i;
     char seed_5 = register_seed;
