@@ -72,13 +72,13 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
             alu_op_codes[0] = 0x00; // add
             alu_op_codes[1] = 0x04; // sub
             break;
-        case 0x04:
-            alu_op_codes[0] = 0x04; // sub
-            alu_op_codes[1] = 0x00; // add
-            break;
         case 0x10:
              alu_op_codes[0] = 0x10; // addcc
              alu_op_codes[1] = 0x04; // sub
+            break;
+        case 0x04:
+            alu_op_codes[0] = 0x04; // sub
+            alu_op_codes[1] = 0x00; // add
             break;
         case 0x14:
             alu_op_codes[0] = 0x14; // subcc
@@ -100,6 +100,22 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
             alu_op_codes[0] = 0x17; // xnorcc
             alu_op_codes[1] = 0x07; // xnor
             break;
+        case 0x0a:
+            alu_op_codes[0] = 0x0a; // umul
+            alu_op_codes[1] = 0x0e; // udiv
+            break;
+        case 0x1a:
+            alu_op_codes[0] = 0x1a; // umulcc
+            alu_op_codes[1] = 0x0e; // udiv
+            break;
+        case 0x0b:
+            alu_op_codes[0] = 0x0b; // smul
+            alu_op_codes[1] = 0x0f; // sdiv
+            break;
+        case 0x1b:
+            alu_op_codes[0] = 0x1b; // smulcc
+            alu_op_codes[1] = 0x0f; // sdiv
+            break;
     }
 
     unsigned char mem_mnemonic[3][3] = {'ld', 'st'};
@@ -109,11 +125,11 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
     // generate_input_output(results_section_ptr);
 
     unsigned int test;
-    int n_tests = 11*number_of_inputs+6;
+    int n_tests = 13*number_of_inputs+6;
     unsigned int tests[n_tests];
 
     // save instruction
-    tests[0] = 0x9de3bfa0; 
+    tests[0] = 0x9de3bfa0; // save %o6, -96, %o6 
     unsigned int result_section_base = (results_section_ptr >> 10) << 10;
     tests[1] = generate_opcode_00(g2, 0b100, result_section_base); //sethi %hi(0x40000000), %g2
     result_section_base = (results_section_ptr << 22) >> 22;
@@ -129,41 +145,40 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
         rs2 = seed_5;
         seed_5 = prbs_5(seed_5);
         rd = seed_5;
-        // ee_printf("add %d %d %d\n", rs1, rs2, rd);
+        // ee_printf("mul %d %d %d\n", rs1, rs2, rd);
 
         // load inputs in rs1 and rs2
-        tests[11*i+3] = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, 0);
-        tests[11*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
+        tests[13*i+3] = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, 0);
+        tests[13*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
 
         //  run main instruction operation
-        tests[11*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
-        if(INSTR_OP==0x04 || INSTR_OP==0x14) {
+        tests[13*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
+        //store result msb which is in Y for some instructions
+        tests[13*i+6] = generate_opcode_10(0b00001, 0, 0, 0b101000, 0, 0);
+        tests[13*i+7] = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 8);
+        //store result
+        tests[13*i+8] = generate_opcode_11(rd, g2, 0, mem_op_codes[1], 1, 12);
+        // store psr
+        tests[13*i+9] = generate_opcode_10(0b00001, 0, 0, 0b101001, 0, 0);
+        tests[13*i+10] = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 16);
+
+        if(INSTR_OP==0x04 || INSTR_OP==0x14 || INSTR_OP==0x0e || INSTR_OP==0x1e) {
             //  run inverse instruction operation without CCR code update
-            tests[11*i+6] = generate_opcode_10(rs1, rs1, rd, alu_op_codes[0], 0, 0);
-            tests[11*i+7] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
+            tests[13*i+11] = generate_opcode_10(rs1, rs1, rd, alu_op_codes[0], 0, 0);
+            tests[13*i+12] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
         }
         else {
             //  run inverse instruction operation without CCR code update
-            tests[11*i+6] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
-            tests[11*i+7] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
+            tests[13*i+11] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
+            tests[13*i+12] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
         }
 
-
-
-
-
-
-        //store result
-        tests[11*i+8] = generate_opcode_11(rd, g2, 0, mem_op_codes[1], 1, 8);
-        // store psr
-        tests[11*i+9] = generate_opcode_10(0b00001, 0, 0, 0b101001, 0, 0);
-        tests[11*i+10] = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 12);
         // store inputs in rs1 and rs2
-        tests[11*i+11] = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, 16);
-        tests[11*i+12] = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, 20); 
+        tests[13*i+13] = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, 20);
+        tests[13*i+14] = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, 24); 
 
         // increment g2 = g2 + 24
-        tests[11*i+13] = generate_opcode_10(g2, g2, 0, 0b000000, 1, 24); 
+        tests[13*i+15] = generate_opcode_10(g2, g2, 0, 0b000000, 1, 32); 
 
 
 

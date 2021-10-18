@@ -42,8 +42,8 @@ int generate_input_output(int *results_section_ptr, int inputs_seed)
     }
 
     for(i=0; i<number_of_inputs; i++) {
-        *(results_section_ptr + 6*i) = inp_out[i];
-        *(results_section_ptr + 6*i + 1) = inp_out[number_of_inputs + i];
+        *(results_section_ptr + 8*i) = inp_out[i];
+        *(results_section_ptr + 8*i + 1) = inp_out[number_of_inputs + i];
 
         // ee_printf("stored 0x%x and 0x%x in results section\n", inp_out[i], inp_out[number_of_inputs + i]);
         // ee_printf("%d   %d\n", inp_out[i], inp_out[number_of_inputs + i]);

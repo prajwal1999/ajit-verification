@@ -1,0 +1,273 @@
+[3;J[H[2JInfo: text-section-begins-at  = 0x0.
+Info: data-section-begins-at  = 0x40000000.
+Info: output-file (linker-script-file)  = customLinkerScript.lnk.
+Info: application name  = main.
+Info: work_area  = ./.
+Info: added define_string = AJIT.
+Info: added define_string = VA_DATA_SECTION_START=0x40000000.
+Info: added define_string = CLK_FREQUENCY=80000000.
+Info: added define_string = INSTR_OP=0x1b.
+Info: added define_string = N_INPUTS=500.
+Info: added define_string = Imm=0.
+Info: added define_string = GRID_DIM=29.
+Info: uclibc_flag enabled.
+Info: added assembly-file = init.s.
+Info: added assembly-file = trap_handlers.s.
+Info: added assembly-file = setup_page_table.s.
+Info: added src-file = main.c.
+Info: added src-file = generate_input_output.c.
+Info: added src-file = checker.c.
+Info: added src-file = print_coverage.c.
+Info: linker_script_file  = customLinkerScript.lnk.
+Info: added include-directory = /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include.
+Info: added include-directory = /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include.
+Info: added src-directory = /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src.
+Info: added include-directory = /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include.
+Info: added src-directory = /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src.
+Info: Executing:
+	rm -rf .//sparc-assembly
+Info: Executing:
+	mkdir .//sparc-assembly
+Info: Executing:
+	rm -rf .//sparc-obj
+Info: Executing:
+	mkdir .//sparc-obj
+Info: Executing:
+	sparc-linux-as   -Av8  init.s -o .//sparc-obj/init.o
+Info: Executing:
+	sparc-linux-as   -Av8  trap_handlers.s -o .//sparc-obj/trap_handlers.o
+Info: Executing:
+	sparc-linux-as   -Av8  setup_page_table.s -o .//sparc-obj/setup_page_table.o
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  main.c -o .//sparc-assembly/main.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  generate_input_output.c -o .//sparc-assembly/generate_input_output.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  checker.c -o .//sparc-assembly/checker.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  print_coverage.c -o .//sparc-assembly/print_coverage.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c -o .//sparc-assembly/ajit_access_routines.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_mt_irc.c -o .//sparc-assembly/ajit_mt_irc.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/cvt.c -o .//sparc-assembly/cvt.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c -o .//sparc-assembly/ee_printf.s
+Info: Executing:
+	sparc-linux-gcc  -c  -S -m32 -mcpu=v8 -nostdlib -ffreestanding    -O0  -ffreestanding     -I /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/include  -I /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/include  -D AJIT  -D VA_DATA_SECTION_START=0x40000000  -D CLK_FREQUENCY=80000000  -D INSTR_OP=0x1b  -D N_INPUTS=500  -D Imm=0  -D GRID_DIM=29  /home/prajwal/Ajit/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/core_portme.c -o .//sparc-assembly/core_portme.s
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/checker.s  -o .//sparc-obj/checker.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/ee_printf.s  -o .//sparc-obj/ee_printf.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/ajit_access_routines.s  -o .//sparc-obj/ajit_access_routines.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/ajit_mt_irc.s  -o .//sparc-obj/ajit_mt_irc.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/core_portme.s  -o .//sparc-obj/core_portme.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/print_coverage.s  -o .//sparc-obj/print_coverage.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/main.s  -o .//sparc-obj/main.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/generate_input_output.s  -o .//sparc-obj/generate_input_output.o
+Info: Executing:
+	sparc-linux-as   -Av8 .//sparc-assembly/cvt.s  -o .//sparc-obj/cvt.o
+('AJIT:', '/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/..')
+Info: Executing:
+	sparc-linux-ld  --verbose=5 -L /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib/ -e main -T customLinkerScript.lnk .//sparc-obj/init.o  .//sparc-obj/trap_handlers.o  .//sparc-obj/setup_page_table.o  .//sparc-obj/checker.o  .//sparc-obj/ee_printf.o  .//sparc-obj/ajit_access_routines.o  .//sparc-obj/ajit_mt_irc.o  .//sparc-obj/core_portme.o  .//sparc-obj/print_coverage.o  .//sparc-obj/main.o  .//sparc-obj/generate_input_output.o  .//sparc-obj/cvt.o   -o .//main.elf -L/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/..//lib -L/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4  -static -lm -lc -lgcc  --gc-sections
+GNU ld (GNU Binutils) 2.22
+  Supported emulations:
+   elf32_sparc
+   sparclinux
+   elf64_sparc
+   sun4
+opened script file customLinkerScript.lnk
+using external linker script:
+==================================================
+/* Linker script generated for AJIT standalone application */
+/* command: makeLinkerScript.py -t 0x0 -d 0x40000000 -o customLinkerScript.lnk */
+ENTRY (_start)
+__DYNAMIC = 0;
+SECTIONS
+{
+    . = 0x0;
+    .text ALIGN(4) : { 
+     KEEP(*(.text.ajitstart))
+     KEEP(*(.text.pagetablesetup))
+     KEEP(*(.text.traphandlers))
+     KEEP(*(.text.traptablebase))
+     *(.text) *(.text.*) }
+    . = 0x40000000;
+    .rodata ALIGN(4) : { *(.rodata) *(.rodata.*) }
+    .data ALIGN(4) : { *(.data) *(.data.*) *(.bss)}
+}
+
+==================================================
+attempt to open .//sparc-obj/init.o succeeded
+.//sparc-obj/init.o
+attempt to open .//sparc-obj/trap_handlers.o succeeded
+.//sparc-obj/trap_handlers.o
+attempt to open .//sparc-obj/setup_page_table.o succeeded
+.//sparc-obj/setup_page_table.o
+attempt to open .//sparc-obj/checker.o succeeded
+.//sparc-obj/checker.o
+attempt to open .//sparc-obj/ee_printf.o succeeded
+.//sparc-obj/ee_printf.o
+attempt to open .//sparc-obj/ajit_access_routines.o succeeded
+.//sparc-obj/ajit_access_routines.o
+attempt to open .//sparc-obj/ajit_mt_irc.o succeeded
+.//sparc-obj/ajit_mt_irc.o
+attempt to open .//sparc-obj/core_portme.o succeeded
+.//sparc-obj/core_portme.o
+attempt to open .//sparc-obj/print_coverage.o succeeded
+.//sparc-obj/print_coverage.o
+attempt to open .//sparc-obj/main.o succeeded
+.//sparc-obj/main.o
+attempt to open .//sparc-obj/generate_input_output.o succeeded
+.//sparc-obj/generate_input_output.o
+attempt to open .//sparc-obj/cvt.o succeeded
+.//sparc-obj/cvt.o
+attempt to open /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a succeeded
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)e_log2.os
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)e_pow.os
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)e_sqrt.os
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)s_ceil.os
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)s_fabs.os
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)s_floor.os
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)s_scalbn.os
+(/home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libm.a)s_copysign.os
+attempt to open /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libc.a succeeded
+attempt to open /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/../lib//libgcc.a failed
+attempt to open /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/sparc-buildroot-linux-uclibc/sysroot/usr/lib/..//lib/libgcc.a failed
+attempt to open /home/prajwal/Ajit/ajit-toolchain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/libgcc.a succeeded
+Info: Executing:
+	sparc-linux-readelf  --symbols .//main.elf  > .//main.vars
+Info: Executing:
+	sparc-linux-objdump -d  .//main.elf > .//main.objdump
+Info: Executing:
+	sparc-linux-readelf  `pt_load_sections.py main.elf` main.elf | grep 0x > main.hex
+Info: Executing:
+	generateMemoryMap_Byte main.hex > main.mmap
+Connection established with HW Server !
+--------------------Inputs Outputs Generated----------------------
+last address written 0x669c
+------------------- Instructions generation done -------------------
+------------------------Starting tests-------------------
+>>> Tests for Instruction with opcode 0x1b
+Test 1 passed
+Test 2 passed
+Test 4 passed
+Test 8 passed
+Test 16 passed
+Test 32 passed
+Test 64 passed
+Test 128 passed
+Test 256 passed
+
+>>> Coverage for Instruction with opcode 0x1b
+>>> Inputs seed is 0
+>>> Register seed is 1
+>>> Register Coverage
+>>> r0 --- rs1 - 0, rs2 - 0, rd - 0
+>>> r1 --- rs1 - 0, rs2 - 0, rd - 0
+>>> r2 --- rs1 - 0, rs2 - 0, rd - 0
+>>> r3 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r4 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r5 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r6 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r7 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r8 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r9 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r10 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r11 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r12 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r13 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r14 --- rs1 - 0, rs2 - 0, rd - 0
+>>> r15 --- rs1 - 0, rs2 - 0, rd - 0
+>>> r16 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r17 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r18 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r19 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r20 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r21 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r22 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r23 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r24 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r25 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r26 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r27 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r28 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r29 --- rs1 - 20, rs2 - 20, rd - 20
+>>> r30 --- rs1 - 0, rs2 - 0, rd - 0
+>>> r31 --- rs1 - 0, rs2 - 0, rd - 0
+
+>>> Data Grid
+>>> 4   8   8   7   5   8   9   7   
+>>> 4   10   10   5   13   8   9   6   
+>>> 5   7   6   8   8   7   7   2   
+>>> 3   16   8   9   5   7   10   6   
+>>> 5   9   10   8   9   6   9   12   
+>>> 11   5   5   9   7   13   4   9   
+>>> 11   8   14   6   8   11   9   9   
+>>> 7   6   9   5   9   5   9   8   
+
+>>> n Grid
+>>> 2   5   5   3   3   5   4   3   
+>>> 1   6   6   2   6   4   6   3   
+>>> 2   3   2   1   3   5   3   2   
+>>> 2   7   3   6   3   2   6   3   
+>>> 4   2   5   5   4   4   6   7   
+>>> 5   1   3   1   3   6   2   4   
+>>> 7   3   6   5   3   3   3   6   
+>>> 4   2   5   4   6   1   2   1   
+
+>>> z Grid
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+
+>>> v Grid
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+
+>>> c Grid
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+>>> 0   0   0   0   0   0   0   0   
+
+Reached HwServer - TA 0 (cpu-id=0)
+
+Mmu statistics for cpuid=0: MMU ENABLED = 0
+	TLB size (L0 2 L1 8 L2 16 L3 64)
+	Accesses with Mmu bypassed or disabled 	= 3037022
+	Mmu_probe_requests  	= 0
+	Mmu_flush_requests  	= 0
+	Mmu_register_reads   	= 0
+	Mmu_register_writes 	= 1
+	Mmu_translated_accesses = 0
+	Mmu_TLB_hits            = 0
+
+Mmu Register values :
+	Control register 	= 0x0
+	Context table ptr 	= 0x2781
+	Context register   	= 0x0
+	FSR		   	= 0x0
+	FAR		 	= 0x0

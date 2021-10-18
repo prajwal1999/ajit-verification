@@ -13,12 +13,20 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
     int instr;
     ee_printf(">>> Tests for Instruction with opcode 0x%x\n", INSTR_OP);
     for(i=0; i<number_of_inputs; i++) {
-        int expected_out_1 = *(results_section_ptr + 6*i + 1);
-        int expected_out_2 = *(results_section_ptr + 6*i);
+        int expected_out_1 = *(results_section_ptr + 8*i + 1);
+        int expected_out_2 = *(results_section_ptr + 8*i);
 
-        int actual_out_1 = *(results_section_ptr + 6*i + 4);
-        int actual_out_2 = *(results_section_ptr + 6*i + 5);
-        int instr_result = *(results_section_ptr + 6*i + 2);
+        // ee_printf(">>> expected_out_1 0x%x expected_out_2 0x%x\n", expected_out_1, expected_out_2);
+
+        int actual_out_1 = *(results_section_ptr + 8*i + 5);
+        int actual_out_2 = *(results_section_ptr + 8*i + 6);
+
+        // ee_printf(">>> actual_out_1 0x%x actual_out_2 0x%x\n", actual_out_1, actual_out_2);
+
+        int result_msb = *(results_section_ptr + 8*i + 2);
+        int instr_result = *(results_section_ptr + 8*i + 3);
+
+        // ee_printf(">>> result_msb 0x%x instr_result 0x%x\n", result_msb, instr_result);
 
         char sub_test_1_correct = 0, sub_test_2_correct = 0;
 
@@ -30,6 +38,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
         } else {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("result_msb 0x%x\n", result_msb);
             ee_printf("Actual result 0x%x\n", instr_result);
             ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
             // ee_printf("----------------------------------------------------\n");
@@ -41,6 +50,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
         } else {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("result_msb 0x%x\n", result_msb);
             ee_printf("Actual result 0x%x\n", instr_result);
             ee_printf("Actual Output 0x%x, 0x%x\n",actual_out_1, actual_out_2);
             // ee_printf("----------------------------------------------------\n");
@@ -53,8 +63,8 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
         }
 
         // store data coverage
-        int in1 = *(results_section_ptr + 6*i);
-        int in2 = *(results_section_ptr + 6*i + 1);
+        int in1 = *(results_section_ptr + 8*i);
+        int in2 = *(results_section_ptr + 8*i + 1);
         int grid_dim = (int)pow(2, GRID_DIM);
         int grids_in_row = 1 << (32-GRID_DIM);
         int grid_row = ( (unsigned int)(in1 + (int)pow(2, 31)) / grid_dim );
@@ -63,7 +73,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
 
 
         // store ccr codes
-        unsigned int psr = *(results_section_ptr + 6*i + 3);
+        unsigned int psr = *(results_section_ptr + 8*i + 4);
         unsigned int ccr = (psr & 0x00f00000) >> 20; 
         *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col) += ((ccr & 0b1000)>>3); // n
         *(ccr_coverage + grid_row*grids_in_row*4 + 4*grid_col + 1) += ((ccr & 0b0100)>>2); // z

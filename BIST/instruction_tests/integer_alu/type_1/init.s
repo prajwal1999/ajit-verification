@@ -56,7 +56,7 @@ loop:
 	nop
 	nop
 
-	!ba print
+	ba print
 	nop
 	ta 0
 
