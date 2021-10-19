@@ -58,7 +58,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
         }
 
         if(sub_test_1_correct && sub_test_2_correct) {
-            if((ceil(log2(i+1)) == floor(log2(i+1))))
+            // if((ceil(log2(i+1)) == floor(log2(i+1))))
                 ee_printf("Test %d passed\n", i+1);
         }
 

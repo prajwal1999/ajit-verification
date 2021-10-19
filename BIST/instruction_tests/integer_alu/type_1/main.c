@@ -128,6 +128,10 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
     int n_tests = 13*number_of_inputs+6;
     unsigned int tests[n_tests];
 
+    ee_printf("address of tests start from 0x%x\n", tests);
+    ee_printf("address of tests ends to 0x%x\n", tests+n_tests-1);
+
+
     // save instruction
     tests[0] = 0x9de3bfa0; // save %o6, -96, %o6
     // ee_printf("results_section_ptr 0x%x\n", results_section_ptr);

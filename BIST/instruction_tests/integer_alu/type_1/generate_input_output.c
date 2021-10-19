@@ -27,6 +27,9 @@ int generate_input_output(int *results_section_ptr, int inputs_seed)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
+    int *a = 0;
+    ee_printf("at start of generate_input_output function value at 0x0 is 0x%x\n", *a);
+
     int number_of_inputs = N_INPUTS;
     uint inp_out[number_of_inputs*2];
     int lfsr = inputs_seed;
@@ -41,10 +44,13 @@ int generate_input_output(int *results_section_ptr, int inputs_seed)
             ee_printf("lfsr is 0xffffffff");
     }
 
+    ee_printf("number_of_inputs are %d\n", number_of_inputs);
     for(i=0; i<number_of_inputs; i++) {
+    ee_printf("going to save %d 0x%x 0x%x\n", i, (results_section_ptr + 8*i), inp_out + i);
         *(results_section_ptr + 8*i) = inp_out[i];
-        *(results_section_ptr + 8*i + 1) = inp_out[number_of_inputs + i];
-
+    ee_printf("going to save %d 0x%x 0x%x\n", i, (results_section_ptr + 8*i + 1), inp_out + number_of_inputs + i);
+    ee_printf("%d   0x%x  %d\n", i, number_of_inputs, (i==number_of_inputs) );
+        // *(results_section_ptr + 8*i + 1) = inp_out[number_of_inputs + i];
         // ee_printf("stored 0x%x and 0x%x in results section\n", inp_out[i], inp_out[number_of_inputs + i]);
         // ee_printf("%d   %d\n", inp_out[i], inp_out[number_of_inputs + i]);
         // ee_printf("----------------------------------------------------\n");

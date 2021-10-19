@@ -32,8 +32,11 @@ _start:
 	!-------------------------------
 loop:
 	
+	call temp
+	nop
+
 	set results_section, %o0
-	set 0x1, %l1
+	set 0x3, %l1
 	mov %l1, %o1 				! seed for generating input pairs
 	call generate_input_output
 	nop
@@ -41,13 +44,22 @@ loop:
 	set instr_section, %o0
 	set results_section, %o1
 	set register_coverage, %o2
-	set 0x1, %l2				
+	set 0x5, %l2				
 	mov %l2, %o3				! seed for register - register_seed
 	call main
+	nop	
+
+	call temp
+	nop
 	nop
 
 	call instr_section
 	nop
+
+	call temp
+	nop
+	nop
+
 
 	set results_section, %o0
 	!set data_coverage, %o1
@@ -55,7 +67,9 @@ loop:
 	call checker
 	nop
 	nop
-
+	ta 0
+	nop
+	ba loop
 	!ba print
 	nop
 	ta 0
@@ -81,12 +95,12 @@ print:
 	.align 4
 	.global instr_section
 	instr_section:
-	.skip	28000
+	.skip	6000
 
 	.align 8
 	.global results_section 
 	results_section:
-	.skip	20000
+	.skip	4000
 
 !------------------------------------------
 	.align 4
