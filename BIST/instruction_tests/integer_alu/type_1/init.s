@@ -31,53 +31,41 @@ _start:
 
 	!-------------------------------
 loop:
-	
-	call temp
-	nop
 
 	set results_section, %o0
-	set 0x3, %l1
+	set 0x1, %l1
 	mov %l1, %o1 				! seed for generating input pairs
 	call generate_input_output
 	nop
 
-	set instr_section, %o0
+	set test_program, %o0
 	set results_section, %o1
 	set register_coverage, %o2
-	set 0x5, %l2				
+	set 0x1, %l2				
 	mov %l2, %o3				! seed for register - register_seed
 	call main
 	nop	
 
-	call temp
-	nop
-	nop
-
-	call instr_section
+	call test_program
 	nop
 
-	call temp
-	nop
-	nop
 
 
 	set results_section, %o0
-	!set data_coverage, %o1
-	!set ccr_coverage, %o2
+	set data_coverage, %o1
+	set ccr_coverage, %o2
 	call checker
 	nop
-	nop
-	ta 0
-	nop
-	ba loop
-	!ba print
+
+
+	ba print
 	nop
 	ta 0
 
 print:
 	set register_coverage, %o0
-	!set data_coverage, %o1
-	!set ccr_coverage, %o2
+	set data_coverage, %o1
+	set ccr_coverage, %o2
 	mov %l1, %o3
 	mov %l2, %o4
 	call print_coverage
@@ -93,10 +81,12 @@ print:
 !-------------------------------------------
 
 	.align 4
-	.global instr_section
-	instr_section:
+	.global test_program
+	test_program:
 	.skip	6000
 
+
+	.data
 	.align 8
 	.global results_section 
 	results_section:
@@ -111,12 +101,12 @@ print:
 	register_coverage:
 	.skip 384
 	
-	!.global data_coverage
-	!data_coverage:
-	!.skip 16384
+	.global data_coverage
+	data_coverage:
+	.skip 16384
 	
-	!.global ccr_coverage
-	!ccr_coverage:
+	.global ccr_coverage
+	ccr_coverage:
 !.skip 65536
 
 

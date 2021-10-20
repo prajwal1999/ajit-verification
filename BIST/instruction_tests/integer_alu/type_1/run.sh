@@ -9,10 +9,10 @@ DATABASE=0x30000
 CLKFREQ=80000000
 
 
-n_inputs=59 
+n_inputs=100 
 imm=0
 grid_dim=29
-instr_op=0x10
+instr_op=0x1f
 
 clear
 sh clean.sh
