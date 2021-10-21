@@ -50,13 +50,13 @@ loop:
 	nop
 
 
-
 	set results_section, %o0
 	set data_coverage, %o1
 	set ccr_coverage, %o2
+	mov %l1, %o3
+	mov %l2, %o4
 	call checker
 	nop
-
 
 	ba print
 	nop
@@ -86,7 +86,23 @@ print:
 	.skip	6000
 
 
-	.data
+	!.data
+
+	.align 16
+	add: 	.byte 0x00
+	addcc: 	.byte 0x10
+	sub:	.byte 0x04
+	subcc:	.byte 0x14
+	xor:	.byte 0x03
+	xorcc:	.byte 0x13
+	xnor:	.byte 0x07
+	xnorcc:	.byte 0x17
+	umul:	.byte 0x0a
+	umulcc:	.byte 0x1a
+	smul:	.byte 0x0b
+	smulcc:	.byte 0x1b
+
+
 	.align 8
 	.global results_section 
 	results_section:
@@ -107,6 +123,6 @@ print:
 	
 	.global ccr_coverage
 	ccr_coverage:
-!.skip 65536
+	.skip 65536
 
 

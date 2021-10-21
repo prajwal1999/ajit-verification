@@ -23,20 +23,18 @@ uint32_t prbs_32(uint32_t x)
 }
 
 
-int generate_input_output(int *results_section_ptr, int inputs_seed)
+int generate_input_output(int *results_section_ptr, int input_seed)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
 
     int number_of_inputs = N_INPUTS;
-    int lfsr = inputs_seed;
+    int lfsr = input_seed;
 
-    ee_printf("inputs generation started\n");
+    ee_printf("inputs generation started. input seed is %x\n", input_seed);
 
     int i;
     for(i=0; i<N_INPUTS; i++) {
-        // ee_printf("number of inputs are %d and it is stores at 0x%x\n", number_of_inputs, &number_of_inputs);
-
         lfsr = prbs_32(lfsr);
         *(results_section_ptr + 8*i) = lfsr;
         // ee_printf("%d 0x%x 0x%x 0x%x\n", i, lfsr, (results_section_ptr + 8*i), *(results_section_ptr + 8*i));

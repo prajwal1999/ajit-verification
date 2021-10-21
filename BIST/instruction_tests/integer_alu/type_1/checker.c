@@ -3,8 +3,8 @@
 #include "ajit_access_routines.h"
 #include <math.h>
 
-int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
-    int number_of_inputs = N_INPUTS;
+int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage, int input_seed, int register_seed) {
+
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
     ee_printf("------------------------Starting tests-------------------\n");
@@ -12,42 +12,45 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
     int i;
     int instr;
     ee_printf(">>> Tests for Instruction with opcode 0x%x\n", INSTR_OP);
-    for(i=0; i<number_of_inputs; i++) {
+    ee_printf(">>> Input seed is 0x%x | Register seed is 0x%x\n", input_seed, register_seed);
+
+    for(i=0; i<N_INPUTS; i++) {
         int expected_out_2 = *(results_section_ptr + 8*i);
         int expected_out_1 = *(results_section_ptr + 8*i + 1);
 
         int result_msb = *(results_section_ptr + 8*i + 2);
-        int instr_result = *(results_section_ptr + 8*i + 3);
+        int actual_result = *(results_section_ptr + 8*i + 3);
 
 
         int actual_out_1 = *(results_section_ptr + 8*i + 5);
         int actual_out_2 = *(results_section_ptr + 8*i + 6);
 
 
-        unsigned int psr = *(results_section_ptr + 8*i + 4);
-        unsigned int ccr = (psr & 0x00f00000) >> 20; 
+        int psr = *(results_section_ptr + 8*i + 4);
+        int ccr = (psr & 0x00f00000) >> 20; 
+        int N =  ((ccr & 0b1000)>>3);
+        int Z = ((ccr & 0b0100)>>2);
+        int V = ((ccr & 0b0010)>>1);
+        int C = (ccr & 0b0001);
+
 
         char sub_test_1_correct = 0, sub_test_2_correct = 0;
 
-        if(expected_out_1 == actual_out_1) {
-            sub_test_1_correct = 1;
-        } else {
-            ee_printf("Test failed - i - %d/%d\n", i+1, number_of_inputs);
+        if(expected_out_1 == actual_out_1) sub_test_1_correct = 1;
+        else {
+            ee_printf("Test failed - i - %d/%d\n", i+1, N_INPUTS);
             ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
-            ee_printf("result_msb 0x%x\n", result_msb);
-            ee_printf("Actual result 0x%x\n", instr_result);
+            ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
             ee_printf("----------------------------------------------------\n");
             __asm__ __volatile__( " ta 0 \n\t " );
         }
 
-        if(expected_out_2 == actual_out_2) {
-            sub_test_2_correct = 1;
-        } else {
-            ee_printf("Test failed - ii - %d/%d\n", i+1, number_of_inputs);
+        if(expected_out_2 == actual_out_2) sub_test_2_correct = 1;
+        else {
+            ee_printf("Test failed - ii - %d/%d\n", i+1, N_INPUTS);
             ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
-            ee_printf("result_msb 0x%x\n", result_msb);
-            ee_printf("Actual result 0x%x\n", instr_result);
+            ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
             ee_printf("----------------------------------------------------\n");
             __asm__ __volatile__( " ta 0 \n\t " );
@@ -57,6 +60,31 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage) {
             // if((ceil(log2(i+1)) == floor(log2(i+1))))
                 ee_printf("Test %d passed\n", i+1);
         }
+
+        // verify ccr code
+        int e_N = (actual_result >> 31) & 1;
+        int e_Z = (actual_result == 0) ? 1 : 0;
+        int e_V;
+        int e_C;
+        if(INSTR_OP == 0x13 || INSTR_OP == 0x17 || INSTR_OP == 0x1a || INSTR_OP == 0x1b)
+        {
+            e_V = 0;
+            e_C = 0;
+        }
+        else if(INSTR_OP == 0x10 || INSTR_OP == 0x14)
+        {
+            int operand1_sign = (expected_out_1 >> 31) & 1;
+            int operand2_sign = (expected_out_2 >> 31) & 1;
+
+            e_V = ((operand1_sign & operand2_sign & !e_N) | (!operand1_sign & !operand2_sign & e_N));
+            e_C = (operand1_sign & operand2_sign) | ((!e_N) & (operand1_sign | operand2_sign));
+        }
+
+        if(N!=e_N || Z!=e_Z || V!=e_V || C!=e_C){
+            ee_printf("CCR wrong in test %d/%d\n", i+1, N_INPUTS);
+            ee_printf("Actual %x | Expected %x \n", ccr, N*8+Z*4+V*2+C);
+            __asm__ __volatile__( " ta 0 \n\t " );
+        } 
 
         // store data coverage
         int in1 = *(results_section_ptr + 8*i);

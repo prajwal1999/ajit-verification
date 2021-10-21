@@ -12,7 +12,7 @@ CLKFREQ=80000000
 n_inputs=100 
 imm=0
 grid_dim=29
-instr_op=0x1f
+instr_op=0x1b
 
 clear
 sh clean.sh
