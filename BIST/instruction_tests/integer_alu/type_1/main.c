@@ -49,25 +49,31 @@ unsigned int generate_opcode_00(unsigned int rd, unsigned char op_code, unsigned
 
 unsigned char prbs_5(unsigned char x)
 {
-    // ee_printf("input to 3 bit prbs = %x ", x);
+    ee_printf("input to 3 bit prbs = %x \n", x);
     x ^= x << 2;
     x &= 0b11111;
     x ^= x >> 1;
     x &= 0b11111;
-    if(x==14 || x==15 || x==30 || x==31 || x==2 || x==1 || x==0 ) x=prbs_5(x);
+    if(x==14 || x==15 || x==30 || x==31 || x==2 || x==1 ) x=prbs_5(x);
+    if(x==0) x=prbs_5(1);
     // ee_printf("output = %x \n", x);
     return x;
 }
 
 
-int main (int *instr_section_ptr, int results_section_ptr, int *register_coverage, int register_seed)
+int main (int *instr_section_ptr, int results_section_ptr, int *register_coverage, int register_seed, int instr_opcode)
 {   
+    
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
+    ee_printf("%x\n", register_seed);
+
+    ee_printf("reached here\n");
+
     unsigned char alu_op_codes[2];
 
-    switch(INSTR_OP) {
+    switch(instr_opcode) {
         case 0x00:
             alu_op_codes[0] = 0x00; // add
             alu_op_codes[1] = 0x04; // sub
@@ -145,9 +151,15 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
     int i;
     char seed_5 = register_seed;
     char rd, rs1, rs2;
+
+
     for(i=0; i<N_INPUTS; i++)
     {
+    ee_printf("reached here i= %d\n", i);
+
         seed_5 = prbs_5(seed_5);
+        ee_printf("reached here\n");
+
         rs1 = seed_5;
         seed_5 = prbs_5(seed_5);
         rs2 = seed_5;
@@ -179,7 +191,7 @@ int main (int *instr_section_ptr, int results_section_ptr, int *register_coverag
         // tests[13*i+10] = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 16);
         *(instr_section_ptr + 13*i + 10) = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 16);
 
-        if(INSTR_OP==0x04 || INSTR_OP==0x14 || INSTR_OP==0x0e || INSTR_OP==0x1e) {
+        if(instr_opcode==0x04 || instr_opcode==0x14 || instr_opcode==0x0e || instr_opcode==0x1e) {
             //  run inverse instruction operation without CCR code update
             // tests[13*i+11] = generate_opcode_10(rs1, rs1, rd, alu_op_codes[0], 0, 0);
             // tests[13*i+12] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);

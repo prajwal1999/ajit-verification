@@ -3,7 +3,7 @@
 #include "ajit_access_routines.h"
 #include <math.h>
 
-int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage, int input_seed, int register_seed) {
+int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage, int input_seed, int register_seed, int instr_opcode) {
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
@@ -11,7 +11,7 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage, int
 
     int i;
     int instr;
-    ee_printf(">>> Tests for Instruction with opcode 0x%x\n", INSTR_OP);
+    ee_printf(">>> Tests for Instruction with opcode 0x%x\n", instr_opcode);
     ee_printf(">>> Input seed is 0x%x | Register seed is 0x%x\n", input_seed, register_seed);
 
     for(i=0; i<N_INPUTS; i++) {
@@ -66,12 +66,12 @@ int checker(int *results_section_ptr, int *data_coverage, int *ccr_coverage, int
         int e_Z = (actual_result == 0) ? 1 : 0;
         int e_V;
         int e_C;
-        if(INSTR_OP == 0x13 || INSTR_OP == 0x17 || INSTR_OP == 0x1a || INSTR_OP == 0x1b)
+        if(instr_opcode == 0x13 || instr_opcode == 0x17 || instr_opcode == 0x1a || instr_opcode == 0x1b)
         {
             e_V = 0;
             e_C = 0;
         }
-        else if(INSTR_OP == 0x10 || INSTR_OP == 0x14)
+        else if(instr_opcode == 0x10 || instr_opcode == 0x14)
         {
             int operand1_sign = (expected_out_1 >> 31) & 1;
             int operand2_sign = (expected_out_2 >> 31) & 1;

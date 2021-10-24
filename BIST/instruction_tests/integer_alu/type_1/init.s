@@ -32,8 +32,13 @@ _start:
 	!-------------------------------
 loop:
 
+	set 0x1, %l1				! seed for generating input pairs
+	set 0x1, %l2				! seed for register - register_seed
+	set instr_arr_base, %l0
+	set 0x0, %l3				! instr_arr counter
+
+
 	set results_section, %o0
-	set 0x1, %l1
 	mov %l1, %o1 				! seed for generating input pairs
 	call generate_input_output
 	nop
@@ -41,10 +46,13 @@ loop:
 	set test_program, %o0
 	set results_section, %o1
 	set register_coverage, %o2
-	set 0x1, %l2				
 	mov %l2, %o3				! seed for register - register_seed
+	ldub [%l0 + %l3], %o4
 	call main
 	nop	
+		
+	ta 0
+	nop
 
 	call test_program
 	nop
@@ -55,6 +63,7 @@ loop:
 	set ccr_coverage, %o2
 	mov %l1, %o3
 	mov %l2, %o4
+	ldub [%l0 + %l3], %o5
 	call checker
 	nop
 
@@ -74,8 +83,20 @@ print:
 	add %l1, 0x1, %l1
 	add %l2, 0x1, %l2
 
+	add %l3, 0x1, %l3
+	cmp %l3, 0xc
+	be rewind
+
+
 	nop
-	!ba loop
+	ba loop
+	nop
+	ta 0
+
+rewind:
+	set instr_arr_base, %l0
+	nop
+	ba loop
 	nop
 	ta 0
 !-------------------------------------------
@@ -89,6 +110,7 @@ print:
 	!.data
 
 	.align 16
+	instr_arr_base:
 	add: 	.byte 0x00
 	addcc: 	.byte 0x10
 	sub:	.byte 0x04

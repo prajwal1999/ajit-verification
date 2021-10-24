@@ -9,7 +9,7 @@ DATABASE=0x30000
 CLKFREQ=80000000
 
 
-n_inputs=100 
+n_inputs=1
 imm=0
 grid_dim=29
 instr_op=0x1b
@@ -32,4 +32,3 @@ ajit_C_system_model -m main.mmap -w -u 64 -d -r main.results -l main.log -w main
 # ajit_C_system_model -m main.mmap
 
 
-# -c generate_input_output.c -c main.c -c checker.c
