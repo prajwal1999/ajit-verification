@@ -39,7 +39,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         if(expected_out_1 == actual_out_1) sub_test_1_correct = 1;
         else {
             ee_printf("Test failed - i - %d/%d\n", i+1, N_INPUTS);
-            ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("Inputs are %x, %x\n",expected_out_2, expected_out_1);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
             ee_printf("----------------------------------------------------\n");
@@ -49,7 +49,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         if(expected_out_2 == actual_out_2) sub_test_2_correct = 1;
         else {
             ee_printf("Test failed - ii - %d/%d\n", i+1, N_INPUTS);
-            ee_printf("Expected Output 0x%x, 0x%x\n",expected_out_1, expected_out_2);
+            ee_printf("Inputs are %x, %x\n",expected_out_2, expected_out_1);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
             ee_printf("----------------------------------------------------\n");
@@ -57,23 +57,30 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         }
 
         if(sub_test_1_correct && sub_test_2_correct) {
-            // if((ceil(log2(i+1)) == floor(log2(i+1))))
+            if((ceil(log2(i+1)) == floor(log2(i+1))))
                 ee_printf("Test %d passed\n", i+1);
         }
 
         // verify ccr code
-        int e_N = (actual_result >> 31) & 1;
-        int e_Z = (actual_result == 0) ? 1 : 0;
-        int e_V;
-        int e_C;
         int operand1_sign = (expected_out_1 >> 31) & 1;
         int operand2_sign = (expected_out_2 >> 31) & 1;
-        if(instr_opcode == 0x13 || instr_opcode == 0x17 || instr_opcode == 0x1a || instr_opcode == 0x1b)
+        int e_N;
+        int e_Z;
+        int e_V;
+        int e_C;
+
+        if( (instr_opcode >> 4) == 0x1)
         {
-            e_V = 0;
-            e_C = 0;
+            e_N = (actual_result >> 31) & 1;
+            e_Z = (actual_result == 0) ? 1 : 0;
         }
-        else if(instr_opcode == 0x10 )
+        else
+        {
+            e_N = 0;
+            e_Z = 0;
+        }
+
+        if(instr_opcode == 0x10 )
         {
             e_V = ((operand1_sign & operand2_sign & !e_N) | (!operand1_sign & !operand2_sign & e_N));
             e_C = (operand1_sign & operand2_sign) | ((!e_N) & (operand1_sign | operand2_sign));
@@ -81,6 +88,11 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         else if(instr_opcode == 0x14) {
             e_V = ((operand1_sign && (!operand2_sign) & (!e_N)) || ((!operand1_sign) && operand2_sign && e_N));
             e_C = ((!operand1_sign) && operand2_sign) || (e_N && ((!operand1_sign) || operand2_sign));
+        } 
+        else 
+        {
+            e_V = 0;
+            e_C = 0;
         }
 
         if( (instr_opcode >> 4) == 0x1) {
@@ -91,7 +103,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
                 ee_printf("V = %x | e_V = %x \n", V, e_V);
                 ee_printf("C = %x | e_C = %x \n", C, e_C);
                 ee_printf("Actual %x | Expected %x \n", ccr, e_N*8+e_Z*4+e_V*2+e_C);
-                ee_printf("Inputs are %d, %d\n",expected_out_2, expected_out_1);
+                ee_printf("Inputs are %x, %x\n",expected_out_2, expected_out_1);
                 ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
                 ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
                 ee_printf("----------------------------------------------------\n");

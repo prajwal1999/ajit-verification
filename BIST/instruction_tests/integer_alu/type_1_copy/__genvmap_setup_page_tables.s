@@ -230,6 +230,36 @@ page_table_setup:
    set 0x7c, %g5
    add %g5, %g1, %g3
    st %g2, [%g3]
+   !PTE: context=0, index=32, level=3,  ppnr=0x20000, p_addr=0x80, cacheable=0x1, acc=0x3
+   ! *(PAGE_TABLE_BASE + 0x80) = 0x208e (pte)
+   set 0x208e, %g2
+   set 0x80, %g5
+   add %g5, %g1, %g3
+   st %g2, [%g3]
+   !PTE: context=0, index=33, level=3,  ppnr=0x21000, p_addr=0x84, cacheable=0x1, acc=0x3
+   ! *(PAGE_TABLE_BASE + 0x84) = 0x218e (pte)
+   set 0x218e, %g2
+   set 0x84, %g5
+   add %g5, %g1, %g3
+   st %g2, [%g3]
+   !PTE: context=0, index=34, level=3,  ppnr=0x22000, p_addr=0x88, cacheable=0x1, acc=0x3
+   ! *(PAGE_TABLE_BASE + 0x88) = 0x228e (pte)
+   set 0x228e, %g2
+   set 0x88, %g5
+   add %g5, %g1, %g3
+   st %g2, [%g3]
+   !PTE: context=0, index=35, level=3,  ppnr=0x23000, p_addr=0x8c, cacheable=0x1, acc=0x3
+   ! *(PAGE_TABLE_BASE + 0x8c) = 0x238e (pte)
+   set 0x238e, %g2
+   set 0x8c, %g5
+   add %g5, %g1, %g3
+   st %g2, [%g3]
+   !PTE: context=0, index=36, level=3,  ppnr=0x24000, p_addr=0x90, cacheable=0x1, acc=0x3
+   ! *(PAGE_TABLE_BASE + 0x90) = 0x248e (pte)
+   set 0x248e, %g2
+   set 0x90, %g5
+   add %g5, %g1, %g3
+   st %g2, [%g3]
    retl;
    nop;
 ! done: page_table_setup

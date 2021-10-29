@@ -65,6 +65,8 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
+    ee_printf("Instruction generation started\n");
+
     unsigned char alu_op_codes[2];
 
     switch(instr_opcode) {
@@ -147,6 +149,7 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
 
     for(i=0; i<N_INPUTS; i++)
     {
+        // ee_printf("i = %d\n", i);
         seed_5 = prbs_5(seed_5);
         rs1 = seed_5;
         seed_5 = prbs_5(seed_5);
@@ -228,7 +231,7 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
     // }
     ee_printf("last address written 0x%x\n", test_program_ptr+13*N_INPUTS + 5);
     ee_printf("------------------- Instructions generation done -------------------\n");
-    return(1);
+    return seed_5;
 
 }
 

@@ -1,0 +1,23 @@
+inputs generation started. input seed is 1
+--------------------Inputs Outputs Generated----------------------
+mul 1 7 22
+mul 9 11 4
+mul 5 25 19
+mul 16 24 20
+mul 6 17 26
+mul 27 28 10
+mul 3 8 12
+mul 18 23 29
+mul 13 21 1
+mul 7 22 9
+last address written 0x28c
+------------------- Instructions generation done -------------------
+------------------------Starting tests-------------------
+>>> Tests for Instruction with opcode 0x10
+>>> Input seed is 0x1 | Register seed is 0x15
+Test failed - i - 1/10
+Inputs are 42021, 4080601
+result_msb 0x0,  Actual result 0x40c2622
+Actual Output 0x40c153c, 0x42021
+
+----------------------------------------------------

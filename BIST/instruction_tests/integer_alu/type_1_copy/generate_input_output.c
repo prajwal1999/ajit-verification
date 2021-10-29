@@ -37,7 +37,7 @@ int generate_input_output(int *results_section_ptr, int input_seed)
 
     ee_printf("--------------------Inputs Outputs Generated----------------------\n");
 
-    return 0;
+    return lfsr;
 
 }
 
