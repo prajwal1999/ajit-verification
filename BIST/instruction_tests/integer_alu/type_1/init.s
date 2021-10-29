@@ -1,6 +1,7 @@
 .global _start;
 .section .text.ajitstart
 _start:
+	
 	set 0xfff01ff8, %sp
   	set 0xfff01f00, %fp
 	!clr %fp
@@ -16,6 +17,7 @@ _start:
 	call page_table_setup 	
 	nop
 
+
 	! set context table pointer.
 	call set_context_table_pointer
 	nop
@@ -24,24 +26,42 @@ _start:
 	set 0x10E0, %l0	
 	wr %l0, %psr
 
+	set debug_space, %l6
+	set 0x45, %l4
+	st %l4, [%l6]
+
+
   	! enable mmu.
-	set 0x1, %o0
-	sta %o0, [%g0] 0xa   
-    
+	!set 0x1, %o0
+	!sta %o0, [%g0] 0xa   
+
+	set debug_space, %l6
+	st %l4, [%l6 + 4]
 
 	!-------------------------------
-loop:
-
 	set 0x1, %l1				! seed for generating input pairs
 	set 0x1, %l2				! seed for register - register_seed
 	set instr_arr_base, %l0
 	set 0x0, %l3				! instr_arr counter
 
+loop:
+
+	set debug_space, %l6
+	st %l4, [%l6 + 8]
 
 	set results_section, %o0
 	mov %l1, %o1 				! seed for generating input pairs
 	call generate_input_output
 	nop
+
+.global abcd;
+abcd:	set debug_space, %l6
+	st %l4, [%l6 + 12]
+
+	mov %l4, %g7
+	ta 0
+	nop
+
 
 	set test_program, %o0
 	set results_section, %o1
@@ -50,9 +70,10 @@ loop:
 	ldub [%l0 + %l3], %o4
 	call main
 	nop	
-		
-	ta 0
-	nop
+
+	set debug_space, %l6
+	st %l4, [%l6 + 16]
+	
 
 	call test_program
 	nop
@@ -100,6 +121,12 @@ rewind:
 	nop
 	ta 0
 !-------------------------------------------
+
+	.align 4
+	.global debug_space
+	debug_space:
+	.skip 64
+
 
 	.align 4
 	.global test_program
