@@ -6,14 +6,6 @@
 #include <stdbool.h>
 
 
-int16_t prbs(int16_t lfsr)
-{
-    bool bit;                    
-    bit  = ((lfsr >> 31) ^ (lfsr >> 28) ^ (lfsr >> 18) ^ (lfsr >> 5) ) & 1;
-    lfsr =  (lfsr >> 1) | (bit << 12);
-    return lfsr;
-}
-
 uint32_t prbs_32(uint32_t x)
 {
     x ^= x << 13;
@@ -22,22 +14,6 @@ uint32_t prbs_32(uint32_t x)
     return x;
 }
 
-// #include <math.h>
-int generate_input_output(){
-    __asm__ __volatile__( " set 0x10E0, %l0 \n\t " );
-    __asm__ __volatile__( " wr %l0, %psr \n\t " );
-    __asm__ __volatile__( " mov %l4, %g6 \n\t " );
-    // __asm__ __volatile__( " set 0x10E7, %l0 \n\t " );
-    // __asm__ __volatile__( " wr %l0, %psr \n\t " );
-    // __asm__ __volatile__( " restore \n\t " );
-    // __asm__ __volatile__( " ba abcd \n\t " );
-    __asm__ __volatile__( " retl \n\t " );
-    __asm__ __volatile__( " nop \n\t " );
-
-//   return 0;
-}
-
-/*
 int generate_input_output(int *results_section_ptr, int input_seed)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
@@ -59,16 +35,9 @@ int generate_input_output(int *results_section_ptr, int input_seed)
     }
     
 
-    // ee_printf("--------------------Inputs Outputs Generated----------------------\n");
+    ee_printf("--------------------Inputs Outputs Generated----------------------\n");
 
-
-    
-      return 0;
-    __asm__ __volatile__( " mov  1, %g1 \n\t " );
-    __asm__ __volatile__( " mov  %g1, %i0 \n\t " );
-    // __asm__ __volatile__( " restore \n\t " );
-    __asm__ __volatile__( " retl  \n\t " );
-    __asm__ __volatile__( " nop \n\t " );
+    return lfsr;
 
 }
 
@@ -83,4 +52,3 @@ int generate_input_output(int *results_section_ptr, int input_seed)
     // __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (inp_out[number_of_inputs + i]) );
     // __asm__ __volatile__( " st %l1, [%l0] \n\t " );
     // __asm__ __volatile__( " add %l0, 0x10, %l0\n\t " );
-    */
