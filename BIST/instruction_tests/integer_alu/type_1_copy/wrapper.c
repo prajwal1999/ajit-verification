@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 
-int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_coverage_ptr, int *data_coverage_ptr) {
+int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_coverage_ptr, int *data_coverage_ptr, int *save_register_ptr) {
 
     int input_pair_seed = 1;
     int register_seed = 1;
@@ -18,7 +18,7 @@ int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_cover
 
         int new_input_pair_seed = generate_input_output(results_section_ptr, input_pair_seed);
         
-        int new_register_seed = main(test_program_ptr, results_section_ptr, register_coverage_ptr, register_seed, instr_opcodes[1]);
+        int new_register_seed = main(test_program_ptr, results_section_ptr, register_coverage_ptr, register_seed, instr_opcodes[1], save_register_ptr);
         
         test_program();
 

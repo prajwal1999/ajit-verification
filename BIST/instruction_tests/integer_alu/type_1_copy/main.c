@@ -53,20 +53,16 @@ unsigned char prbs_5(unsigned char x)
     x &= 0b11111;
     x ^= x >> 1;
     x &= 0b11111;
-    if(x==14 || x==15 || x==30 || x==31 || x==2 || x==1 ) x=prbs_5(x);
     if(x==0) x=prbs_5(1);
     return x;
 }
 
 
-int main (int *test_program_ptr, int results_section_ptr, int *register_coverage_ptr, int register_seed, int instr_opcode)
+int main (int *test_program_ptr, int results_section_ptr, int *register_coverage_ptr, int register_seed, int instr_opcode, int *save_register_ptr)
 {   
-    
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-
     ee_printf("Instruction generation started\n");
-
     unsigned char alu_op_codes[2];
 
     switch(instr_opcode) {
@@ -122,28 +118,34 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
 
     unsigned char mem_mnemonic[3][3] = {'ld', 'st'};
     unsigned char mem_op_codes[3] = {0x00, 0x04};
-    char g2 =  0b00010; // g2
 
-    // int n_tests = 13*number_of_inputs+6;
-    // unsigned int tests[n_tests];
-
+    char seed_5 = register_seed;
+    seed_5 = prbs_5(seed_5);
+    char result_sec_base_reg = seed_5;
 
     // save instruction
-    // tests[0] = 0x9de3bfa0; // save %o6, -96, %o6
     *(test_program_ptr + 0) = 0x9de3bfa0; // save %o6, -96, %o6
 
-    unsigned int result_section_base = (results_section_ptr >> 10) << 10;
-    
-    // tests[1] = generate_opcode_00(g2, 0b100, result_section_base); //sethi %hi(0x40000000), %g2
-    *(test_program_ptr + 1) = generate_opcode_00(g2, 0b100, result_section_base); //sethi %hi(0x40000000), %g2
+    unsigned int save_register_base = (save_register_ptr >> 10) << 10;
+    *(test_program_ptr + 1) = generate_opcode_00(result_sec_base_reg, 0b100, save_register_base);
+    save_register_base = (save_register_ptr << 22) >> 22;
+    save_register_base &= 0x000003ff; 
+    *(test_program_ptr + 2) = generate_opcode_10(result_sec_base_reg, result_sec_base_reg, 0, 0x02, 1, save_register_base);
+
+    *(test_program_ptr + 3) = generate_opcode_11(0b01110, result_sec_base_reg, 0, mem_op_codes[1], 1, 0);
+    *(test_program_ptr + 4) = generate_opcode_11(0b01111, result_sec_base_reg, 0, mem_op_codes[1], 1, 4);
+    *(test_program_ptr + 5) = generate_opcode_11(0b11110, result_sec_base_reg, 0, mem_op_codes[1], 1, 8);
+    *(test_program_ptr + 6) = generate_opcode_11(0b11111, result_sec_base_reg, 0, mem_op_codes[1], 1, 12);
+
+
+    // set result section address
+    unsigned int result_section_base = (results_section_ptr >> 10) << 10;    
+    *(test_program_ptr + 7) = generate_opcode_00(result_sec_base_reg, 0b100, result_section_base); //sethi %hi(0x40000000), %result_sec_base_reg
     result_section_base = (results_section_ptr << 22) >> 22;
     result_section_base &= 0x000003ff; 
-    
-    // tests[2] = generate_opcode_10(g2, g2, 0, 0x02, 1, result_section_base); // or %g2, 0x2a8, %g2
-    *(test_program_ptr + 2) = generate_opcode_10(g2, g2, 0, 0x02, 1, result_section_base); // or %g2, 0x2a8, %g2
+    *(test_program_ptr + 8) = generate_opcode_10(result_sec_base_reg, result_sec_base_reg, 0, 0x02, 1, result_section_base); // or %result_sec_base_reg, 0x2a8, %result_sec_base_reg
 
     int i;
-    char seed_5 = register_seed;
     char rd, rs1, rs2;
 
 
@@ -159,53 +161,38 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
         // ee_printf("mul %d %d %d\n", rs1, rs2, rd);
 
         // load inputs in rs1 and rs2
-        // tests[13*i+3] = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, 0);
-        *(test_program_ptr + 13*i + 3) = generate_opcode_11(rs1, g2, 0, mem_op_codes[0], 1, 0);
-        // tests[13*i+4] = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
-        *(test_program_ptr + 13*i + 4) = generate_opcode_11(rs2, g2, 0, mem_op_codes[0], 1, 4);
+        *(test_program_ptr + 13*i + 9) = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[0], 1, 0);
+        *(test_program_ptr + 13*i + 10) = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[0], 1, 4);
 
 
         //  run main instruction operation
-        // tests[13*i+5] = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
-        *(test_program_ptr + 13*i + 5) = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
+        *(test_program_ptr + 13*i + 11) = generate_opcode_10(rd, rs1, rs2, alu_op_codes[0], 0, 0);
         //store result msb which is in Y for some instructions
-        // tests[13*i+6] = generate_opcode_10(0b00001, 0, 0, 0b101000, 0, 0);
-        *(test_program_ptr + 13*i + 6) = generate_opcode_10(0b00001, 0, 0, 0b101000, 0, 0);
-        // tests[13*i+7] = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 8);
-        *(test_program_ptr + 13*i + 7) = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 8);
+        *(test_program_ptr + 13*i + 12) = generate_opcode_10(0b00001, 0, 0, 0b101000, 0, 0);
+        *(test_program_ptr + 13*i + 13) = generate_opcode_11(0b00001, result_sec_base_reg, 0, mem_op_codes[1], 1, 8);
         //store result
-        // tests[13*i+8] = generate_opcode_11(rd, g2, 0, mem_op_codes[1], 1, 12);
-        *(test_program_ptr + 13*i + 8) = generate_opcode_11(rd, g2, 0, mem_op_codes[1], 1, 12);
+        *(test_program_ptr + 13*i + 14) = generate_opcode_11(rd, result_sec_base_reg, 0, mem_op_codes[1], 1, 12);
         // store psr
-        // tests[13*i+9] = generate_opcode_10(0b00001, 0, 0, 0b101001, 0, 0);
-        *(test_program_ptr + 13*i + 9) = generate_opcode_10(0b00001, 0, 0, 0b101001, 0, 0);
-        // tests[13*i+10] = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 16);
-        *(test_program_ptr + 13*i + 10) = generate_opcode_11(0b00001, g2, 0, mem_op_codes[1], 1, 16);
+        *(test_program_ptr + 13*i + 15) = generate_opcode_10(0b00001, 0, 0, 0b101001, 0, 0);
+        *(test_program_ptr + 13*i + 16) = generate_opcode_11(0b00001, result_sec_base_reg, 0, mem_op_codes[1], 1, 16);
 
         if(instr_opcode==0x04 || instr_opcode==0x14 || instr_opcode==0x0e || instr_opcode==0x1e) {
             //  run inverse instruction operation without CCR code update
-            // tests[13*i+11] = generate_opcode_10(rs1, rs1, rd, alu_op_codes[0], 0, 0);
-            // tests[13*i+12] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
-            *(test_program_ptr + 13*i + 11) = generate_opcode_10(rs1, rs1, rd, alu_op_codes[0], 0, 0);
-            *(test_program_ptr + 13*i + 12) = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
+            *(test_program_ptr + 13*i + 17) = generate_opcode_10(rs1, rs1, rd, alu_op_codes[0], 0, 0);
+            *(test_program_ptr + 13*i + 18) = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
         }
         else {
             //  run inverse instruction operation without CCR code update
-            // tests[13*i+11] = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
-            // tests[13*i+12] = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
-            *(test_program_ptr + 13*i + 11) = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
-            *(test_program_ptr + 13*i + 12) = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
+            *(test_program_ptr + 13*i + 17) = generate_opcode_10(rs1, rd, rs1, alu_op_codes[1], 0, 0);
+            *(test_program_ptr + 13*i + 18) = generate_opcode_10(rs2, rd, rs2, alu_op_codes[1], 0, 0);
         }
 
         // store inputs in rs1 and rs2
-        // tests[13*i+13] = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, 20);
-        // tests[13*i+14] = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, 24); 
-        *(test_program_ptr + 13*i + 13) = generate_opcode_11(rs1, g2, 0, mem_op_codes[1], 1, 20);
-        *(test_program_ptr + 13*i + 14) = generate_opcode_11(rs2, g2, 0, mem_op_codes[1], 1, 24);
+        *(test_program_ptr + 13*i + 19) = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[1], 1, 20);
+        *(test_program_ptr + 13*i + 20) = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[1], 1, 24);
 
-        // increment g2 = g2 + 24
-        // tests[13*i+15] = generate_opcode_10(g2, g2, 0, 0b000000, 1, 32); 
-        *(test_program_ptr + 13*i + 15) = generate_opcode_10(g2, g2, 0, 0b000000, 1, 32); 
+        // increment result_sec_base_reg = result_sec_base_reg + 24
+        *(test_program_ptr + 13*i + 21) = generate_opcode_10(result_sec_base_reg, result_sec_base_reg, 0, 0b000000, 1, 32); 
 
 
         // store register coverage
@@ -216,19 +203,25 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
 
     }
 
+    // load registers back
+    save_register_base = (save_register_ptr >> 10) << 10;
+    *(test_program_ptr + 13*N_INPUTS + 9) = generate_opcode_00(result_sec_base_reg, 0b100, save_register_base);
+    save_register_base = (save_register_ptr << 22) >> 22;
+    save_register_base &= 0x000003ff; 
+    *(test_program_ptr + 13*N_INPUTS + 10) = generate_opcode_10(result_sec_base_reg, result_sec_base_reg, 0, 0x02, 1, save_register_base);
+
+    *(test_program_ptr + 13*N_INPUTS + 11 ) = generate_opcode_11(0b01110, result_sec_base_reg, 0, mem_op_codes[0], 1, 0);
+    *(test_program_ptr + 13*N_INPUTS + 12 ) = generate_opcode_11(0b01111, result_sec_base_reg, 0, mem_op_codes[0], 1, 0);
+    *(test_program_ptr + 13*N_INPUTS + 13 ) = generate_opcode_11(0b11110, result_sec_base_reg, 0, mem_op_codes[0], 1, 0);
+    *(test_program_ptr + 13*N_INPUTS + 14 ) = generate_opcode_11(0b11111, result_sec_base_reg, 0, mem_op_codes[0], 1, 0);
+
+
     // instruction restore; retl; nop
-    // tests[13*N_INPUTS + 6-3] = 0x81e80000;
-    // tests[n_tests-2] = 0x81c3e008;
-    // tests[n_tests-1] = 0x01000000;
-    *(test_program_ptr + 13*N_INPUTS + 3) = 0x81e80000;
-    *(test_program_ptr + 13*N_INPUTS + 4) = 0x81c3e008;
-    *(test_program_ptr + 13*N_INPUTS + 5) = 0x01000000;
+    *(test_program_ptr + 13*N_INPUTS + 15) = 0x81e80000;
+    *(test_program_ptr + 13*N_INPUTS + 16) = 0x81c3e008;
+    *(test_program_ptr + 13*N_INPUTS + 17) = 0x01000000;
 
 
-    // for(i=0; i<n_tests; i++) {
-    //     *(test_program_ptr + i) = tests[i];
-    //     ee_printf("stored 0x%x at 0x%x\n", *(test_program_ptr + i), (test_program_ptr + i));
-    // }
     ee_printf("last address written 0x%x\n", test_program_ptr+13*N_INPUTS + 5);
     ee_printf("------------------- Instructions generation done -------------------\n");
     return seed_5;

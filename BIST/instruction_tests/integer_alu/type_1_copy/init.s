@@ -36,6 +36,7 @@ _start:
 	set results_section, %o1
 	set register_coverage, %o2
 	set data_coverage, %o3
+    set save_registers, %o4
 	call wrapper
 	nop
 
@@ -44,6 +45,11 @@ _start:
 
 
 !-------------------------------------------
+
+    .align 4
+    .global save_registers
+    save_registers:
+    .skip 128
 
 	.align 4
 	.global test_program
