@@ -1,0 +1,6 @@
+1. correct : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x0, 		addr = 0x4000005c (mask=0xffffffff)
+2. correct : 	mem,	mem_asi = 0xa,	expected = 0x0,  		actual = 0x0, 		addr = 0x4000025c (mask=0xffffffff)
+3. ERROR :	o0,	id = 8, 	expected = 0x0,  		actual = 0xa (mask=0xffffffff) core,thread=0,0
+4. ERROR :	i0,	id = 24, 	expected = 0x0,  		actual = 0x23 (mask=0xffffffff) core,thread=0,0
+5. ERROR :	i1,	id = 25, 	expected = 0x0,  		actual = 0x3b9 (mask=0xffffffff) core,thread=0,0
+6. ERROR :	o1,	id = 9, 	expected = 0x0,  		actual = 0x400400c0 (mask=0xffffffff) core,thread=0,0

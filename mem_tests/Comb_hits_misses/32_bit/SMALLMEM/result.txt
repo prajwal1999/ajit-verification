@@ -1,6 +1,0 @@
-Percentage of misses = 43.1640625
-Percentage of misses = 44.53125
-Percentage of misses = 42.67578125
-Percentage of misses = 45.01953125
-Percentage of misses = 42.7734375
-Percentage of misses = 42.08984375

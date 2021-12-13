@@ -13,7 +13,7 @@ makeLinkerScript.py -t 0x0 -d 0x80000 -o customLinkerScript.lnk
 			-s ../init.s -s $AAR/asm/trap_handlers.s \
 			-L customLinkerScript.lnk \
 			-I $AAR/include -I $PT/include \
-			-c ../main.c -c ../checker.c -C $AAR/src -C $PT/src -D VA_DATA_SECTION_START=0x80000 -D CLK_FREQUENCY=80000000
+			-c ../main.c -C $AAR/src -C $PT/src -D VA_DATA_SECTION_START=0x80000 -D CLK_FREQUENCY=80000000
 	ajit_C_system_model -m all_kinds_mem.mmap 
 	
 
