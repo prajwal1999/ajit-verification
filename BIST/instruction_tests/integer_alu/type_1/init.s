@@ -26,136 +26,44 @@ _start:
 	set 0x10E0, %l0	
 	wr %l0, %psr
 
-	set debug_space, %l6
-	set 0x45, %l4
-	st %l4, [%l6]
-
 
   	! enable mmu.
-	!set 0x1, %o0
-	!sta %o0, [%g0] 0xa   
-
-	set debug_space, %l6
-	st %l4, [%l6 + 4]
-
-	!-------------------------------
-	set 0x1, %l1				! seed for generating input pairs
-	set 0x1, %l2				! seed for register - register_seed
-	set instr_arr_base, %l0
-	set 0x0, %l3				! instr_arr counter
-
-loop:
-
-	set debug_space, %l6
-	st %l4, [%l6 + 8]
-
-	set results_section, %o0
-	mov %l1, %o1 				! seed for generating input pairs
-	call generate_input_output
-	nop
-
-.global abcd;
-abcd:	set debug_space, %l6
-	st %l4, [%l6 + 12]
-
-	mov %l4, %g7
-	ta 0
-	nop
+	set 0x1, %o0
+	sta %o0, [%g0] 0xa   
 
 
 	set test_program, %o0
 	set results_section, %o1
 	set register_coverage, %o2
-	mov %l2, %o3				! seed for register - register_seed
-	ldub [%l0 + %l3], %o4
-	call main
-	nop	
-
-	set debug_space, %l6
-	st %l4, [%l6 + 16]
-	
-
-	call test_program
+	set data_coverage, %o3
+    set save_registers, %o4
+	call wrapper
 	nop
 
-
-	set results_section, %o0
-	set data_coverage, %o1
-	set ccr_coverage, %o2
-	mov %l1, %o3
-	mov %l2, %o4
-	ldub [%l0 + %l3], %o5
-	call checker
-	nop
-
-	ba print
-	nop
-	ta 0
-
-print:
-	set register_coverage, %o0
-	set data_coverage, %o1
-	set ccr_coverage, %o2
-	mov %l1, %o3
-	mov %l2, %o4
-	call print_coverage
-	
-	!increment seed
-	add %l1, 0x1, %l1
-	add %l2, 0x1, %l2
-
-	add %l3, 0x1, %l3
-	cmp %l3, 0xc
-	be rewind
+	!-------------------------------
 
 
-	nop
-	ba loop
-	nop
-	ta 0
 
-rewind:
-	set instr_arr_base, %l0
-	nop
-	ba loop
-	nop
-	ta 0
 !-------------------------------------------
 
-	.align 4
-	.global debug_space
-	debug_space:
-	.skip 64
-
+    .align 4
+    .global save_registers
+    save_registers:
+    .skip 128
 
 	.align 4
 	.global test_program
 	test_program:
-	.skip	6000
+	.skip	54000
 
 
 	!.data
-
-	.align 16
-	instr_arr_base:
-	add: 	.byte 0x00
-	addcc: 	.byte 0x10
-	sub:	.byte 0x04
-	subcc:	.byte 0x14
-	xor:	.byte 0x03
-	xorcc:	.byte 0x13
-	xnor:	.byte 0x07
-	xnorcc:	.byte 0x17
-	umul:	.byte 0x0a
-	umulcc:	.byte 0x1a
-	smul:	.byte 0x0b
-	smulcc:	.byte 0x1b
 
 
 	.align 8
 	.global results_section 
 	results_section:
-	.skip	4000
+	.skip	32000
 
 !------------------------------------------
 	.align 4
@@ -169,9 +77,6 @@ rewind:
 	.global data_coverage
 	data_coverage:
 	.skip 16384
-	
-	.global ccr_coverage
-	ccr_coverage:
-	.skip 65536
+
 
 
