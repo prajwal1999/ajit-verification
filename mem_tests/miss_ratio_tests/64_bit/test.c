@@ -19,7 +19,7 @@ int test_1 (uint64_t* a, int length)
 		for(i=0; i < length; i++)
 		{
 			*(a) = i;
-			*(a+8192) = i;	
+			*(a+8192*2) = i;	
 		}
 #ifdef EXPAND		
     for (i = 0; i < length; i++)

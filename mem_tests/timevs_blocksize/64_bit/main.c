@@ -17,17 +17,31 @@ float convertToSeconds(long ut)
 	return result;
 }
 
-int march_test (uint64_t* a, int length)
+int access_time_loop_instrs(int length)
+{
+	int var,i;
+	for(i=0; i < length; i++)
+	{
+        var = i;
+    }
+	for(i=0; i < length; i++)
+	{
+        var = i;
+    }
+	return(1);
+}
+
+int march_test (uint32_t* a, int length, int stride)
 {
 	int err = 0;
-	uint64_t value;
+	uint32_t value;
 	int i;
-		for(i=0; i < length; i++)
+		for(i=0; i < length; i += stride)
 		{
 			*(a+i) = i;
 			
 		}
-		for(i=0; i < length; i++)
+		for(i=0; i < length; i += stride)
 		{
 			value = a[i];
 			if(value != i)
@@ -41,7 +55,6 @@ int march_test (uint64_t* a, int length)
 #endif 
 	return(err);
 }
-
 
 
 int main()
@@ -58,7 +71,8 @@ int main()
 	return(1);
 #endif
 	int I, err;
-	uint32_t t0 = ajit_barebones_clock();
+	uint32_t t0, t1, t2, t3;
+	t0 = ajit_barebones_clock();
 	
 	for(I = 0; I < NSWEEPS; I++)
 	{
@@ -68,9 +82,11 @@ int main()
 			ee_printf("Error cacheable\n");
 		}
 	}
-	uint32_t t1 = ajit_barebones_clock();
-	ee_printf("Cacheable: Time in ticks = %u\n",(t1 - t0));
-	
+	t1 = ajit_barebones_clock();
+	access_time_loop_instrs(TESTLENGTH*2);
+	t2 = ajit_barebones_clock();
+	t3 = t1 - t0 - (NSWEEPS*(t2-t1));
+	ee_printf("Cacheable: Time in ticks = %u\n",t3);	
 
 	t0 = ajit_barebones_clock();
 	for(I = 0; I < NSWEEPS; I++)
@@ -82,7 +98,10 @@ int main()
 		}
 	}
 	t1 = ajit_barebones_clock();
-	ee_printf("Cacheable: Time in ticks = %u\n",(t1 - t0));
+	access_time_loop_instrs(TESTLENGTH*4);
+	t2 = ajit_barebones_clock();
+	t3 = t1 - t0 - (NSWEEPS*(t2-t1));
+	ee_printf("Cacheable: Time in ticks = %u\n",t3);
 
 	t0 = ajit_barebones_clock();
 	for(I = 0; I < NSWEEPS; I++)
@@ -94,7 +113,10 @@ int main()
 		}
 	}
 	t1 = ajit_barebones_clock();
-	ee_printf("Cacheable: Time in ticks = %u\n",(t1 - t0));
+	access_time_loop_instrs(TESTLENGTH*8);
+	t2 = ajit_barebones_clock();
+	t3 = t1 - t0 - (NSWEEPS*(t2-t1));
+	ee_printf("Cacheable: Time in ticks = %u\n",t3);
 
 	t0 = ajit_barebones_clock();
 	for(I = 0; I < NSWEEPS; I++)
@@ -106,7 +128,10 @@ int main()
 		}
 	}
 	t1 = ajit_barebones_clock();
-	ee_printf("Cacheable: Time in ticks = %u\n",(t1 - t0));
+	access_time_loop_instrs(TESTLENGTH*16);
+	t2 = ajit_barebones_clock();
+	t3 = t1 - t0 - (NSWEEPS*(t2-t1));
+	ee_printf("Cacheable: Time in ticks = %u\n",t3);
 
 	t0 = ajit_barebones_clock();
 	for(I = 0; I < NSWEEPS; I++)
@@ -118,7 +143,10 @@ int main()
 		}
 	}
 	t1 = ajit_barebones_clock();
-	ee_printf("Cacheable: Time in ticks = %u\n",(t1 - t0));
+	access_time_loop_instrs(TESTLENGTH*24);
+	t2 = ajit_barebones_clock();
+	t3 = t1 - t0 - (NSWEEPS*(t2-t1));
+	ee_printf("Cacheable: Time in ticks = %u\n",t3);
 
 	t0 = ajit_barebones_clock();
 	for(I = 0; I < NSWEEPS; I++)
@@ -130,7 +158,10 @@ int main()
 		}
 	}
 	t1 = ajit_barebones_clock();
-	ee_printf("Cacheable: Time in ticks = %u\n",(t1 - t0));
+	access_time_loop_instrs(TESTLENGTH*32);
+	t2 = ajit_barebones_clock();
+	t3 = t1 - t0 - (NSWEEPS*(t2-t1));
+	ee_printf("Cacheable: Time in ticks = %u\n",t3);
 
 	ee_printf("done\n");
 }

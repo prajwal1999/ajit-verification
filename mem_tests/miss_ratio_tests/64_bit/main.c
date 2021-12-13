@@ -30,8 +30,8 @@ int main()
 	return(1);
 #endif
 	int I, err;
-	uint32_t t0 = ajit_barebones_clock();
-
+	uint32_t t0, t1 = ajit_barebones_clock();
+	/*
 	for(I = 0; I < NSWEEPS; I++)
 	{
 		err = test_1(cacheable_mem,TESTLENGTH*4);
@@ -40,13 +40,13 @@ int main()
 			ee_printf("Error cacheable\n");
 		}
 	}
-	uint32_t t1 = ajit_barebones_clock();
+	t1 = ajit_barebones_clock();
 	ee_printf("All misses: Time in ticks = %u\n",(t1 - t0));
-
+	*/
 	t0 = ajit_barebones_clock();
 	for(I = 0; I < NSWEEPS; I++)
 	{
-		err = test_2(cacheable_mem,TESTLENGTH*8);
+		err = test_2(cacheable_mem,TESTLENGTH*4);
 		if(err)
 		{
 			ee_printf("Error cacheable\n");
@@ -54,7 +54,7 @@ int main()
 	}
 	t1 = ajit_barebones_clock();
 	ee_printf("Only one miss: Time in ticks = %u\n",(t1 - t0));
-
+	
 	ee_printf("done\n");
 }
 
