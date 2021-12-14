@@ -9,7 +9,7 @@
 
 
 #define TESTLENGTH 256
-#define NSWEEPS    1000
+#define NSWEEPS    10
 
 // mapped to VA_DATA_SECTION_START  + 0x10000 for low mem
 // mapped to VA_DATA_SECTION_START at 0x40040000 and above for high mem

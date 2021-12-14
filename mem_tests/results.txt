@@ -1,0 +1,240 @@
+No. of misses = 664
+Time in ticks = 187
+Expected = 186
+Test passed
+No. of misses = 816
+Time in ticks = 207
+Expected = 207
+Test passed
+No. of misses = 861
+Time in ticks = 214
+Expected = 214
+Test passed
+No. of misses = 616
+Time in ticks = 180
+Expected = 180
+Test passed
+No. of misses = 792
+Time in ticks = 204
+Expected = 204
+Test passed
+No. of misses = 920
+Time in ticks = 222
+Expected = 222
+Test passed
+No. of misses = 736
+Time in ticks = 196
+Expected = 196
+Test passed
+No. of misses = 144
+Time in ticks = 115
+Expected = 115
+Test passed
+No. of misses = 942
+Time in ticks = 225
+Expected = 225
+Test passed
+No. of misses = 626
+Time in ticks = 181
+Expected = 181
+Test passed
+No. of misses = 906
+Time in ticks = 220
+Expected = 220
+Test passed
+No. of misses = 100
+Time in ticks = 109
+Expected = 109
+Test passed
+No. of misses = 670
+Time in ticks = 187
+Expected = 187
+Test passed
+No. of misses = 814
+Time in ticks = 207
+Expected = 207
+Test passed
+No. of misses = 900
+Time in ticks = 219
+Expected = 219
+Test passed
+No. of misses = 976
+Time in ticks = 229
+Expected = 229
+Test passed
+No. of misses = 964
+Time in ticks = 228
+Expected = 228
+Test passed
+No. of misses = 552
+Time in ticks = 171
+Expected = 171
+Test passed
+No. of misses = 652
+Time in ticks = 185
+Expected = 185
+Test passed
+No. of misses = 802
+Time in ticks = 206
+Expected = 205
+Test passed
+No. of misses = 574
+Time in ticks = 174
+Expected = 174
+Test passed
+No. of misses = 62
+Time in ticks = 104
+Expected = 103
+Test passed
+No. of misses = 538
+Time in ticks = 169
+Expected = 169
+Test passed
+No. of misses = 560
+Time in ticks = 172
+Expected = 172
+Test passed
+No. of misses = 518
+Time in ticks = 167
+Expected = 166
+Test passed
+No. of misses = 846
+Time in ticks = 212
+Expected = 211
+Test passed
+No. of misses = 918
+Time in ticks = 221
+Expected = 221
+Test passed
+No. of misses = 994
+Time in ticks = 232
+Expected = 232
+Test passed
+No. of misses = 1002
+Time in ticks = 233
+Expected = 233
+Test passed
+No. of misses = 590
+Time in ticks = 176
+Expected = 176
+Test passed
+No. of misses = 78
+Time in ticks = 106
+Expected = 105
+Test passed
+No. of misses = 976
+Time in ticks = 229
+Expected = 229
+Test passed
+No. of misses = 966
+Time in ticks = 228
+Expected = 228
+Test passed
+No. of misses = 278
+Time in ticks = 134
+Expected = 133
+Test passed
+No. of misses = 620
+Time in ticks = 181
+Expected = 180
+Test passed
+No. of misses = 716
+Time in ticks = 194
+Expected = 194
+Test passed
+No. of misses = 954
+Time in ticks = 226
+Expected = 226
+Test passed
+No. of misses = 1022
+Time in ticks = 236
+Expected = 236
+Test passed
+No. of misses = 856
+Time in ticks = 213
+Expected = 213
+Test passed
+No. of misses = 538
+Time in ticks = 169
+Expected = 169
+Test passed
+No. of misses = 558
+Time in ticks = 172
+Expected = 172
+Test passed
+No. of misses = 840
+Time in ticks = 211
+Expected = 211
+Test passed
+No. of misses = 774
+Time in ticks = 202
+Expected = 202
+Test passed
+No. of misses = 524
+Time in ticks = 167
+Expected = 167
+Test passed
+No. of misses = 548
+Time in ticks = 171
+Expected = 170
+Time in ticks = 119
+Expected = 118
+Test passed
+No. of misses = 752
+Time in ticks = 199
+Expected = 199
+Test passed
+No. of misses = 950
+Time in ticks = 226
+Expected = 226
+Test passed
+No. of misses = 544
+Time in ticks = 170
+Expected = 170
+Test passed
+No. of misses = 746
+Time in ticks = 198
+Expected = 198
+Test passed
+No. of misses = 776
+Time in ticks = 202
+Expected = 202
+Test passed
+No. of misses = 148
+Time in ticks = 116
+Expected = 115
+Test passed
+No. of misses = 114
+Time in ticks = 111
+Expected = 110
+Test passed
+No. of misses = 606
+Time in ticks = 179
+Expected = 178
+Test passed
+No. of misses = 106
+Time in ticks = 110
+Expected = 109
+Test passed
+No. of misses = 820
+Time in ticks = 208
+Expected = 208
+Test passed
+No. of misses = 524
+Time in ticks = 167
+Expected = 167
+Test passed
+No. of misses = 4
+Time in ticks = 96
+Expected = 95
+Test passed
+No. of misses = 26
+Time in ticks = 99
+Expected = 98
+Test passed
+No. of misses = 796
+Time in ticks = 205
+Expected = 205
+Test passed
+
+

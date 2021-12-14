@@ -9,7 +9,7 @@
 
 
 #define TESTLENGTH 256
-#define NSWEEPS    1000
+#define NSWEEPS    10
 
 // mapped to VA_DATA_SECTION_START  + 0x10000 for low mem
 // mapped to VA_DATA_SECTION_START at 0x40040000 and above for high mem
@@ -41,15 +41,16 @@ int main()
 	return(1);
 #endif
 	uint16_t seed, loc;
-	int I,J, no_hits, no_misses;
+	int I,J, no_hits;
+	double no_misses;
 	uint32_t t0, t1;
 	
-	seed = 55858+__ajit_get_clock_time();
-	no_misses = prbs(seed) & 0x3FF;
+	seed = 31040+__ajit_get_clock_time();
+	no_misses =(double)(prbs(seed) & 0x3FF);
 	no_hits = 1024 - no_misses;
 
 
-	ee_printf("No. of misses = %u\n", (no_misses));
+	ee_printf("No. of misses = %f\n", (no_misses/1024));
 	t0 = ajit_barebones_clock();
 	for(I = 0; I< NSWEEPS; I++){
 		for(J = 0; J<no_hits; J++){
