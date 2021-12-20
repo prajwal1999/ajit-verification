@@ -18,7 +18,7 @@ int generate_input_output(int *results_section_ptr, int input_seed)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
-    ee_printf("inputs generation started. input seed is %x\n", input_seed);
+    ee_printf("inputs generation started. input seed is 0x%x\n", input_seed);
 	
 
     int number_of_inputs = N_INPUTS;

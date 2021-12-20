@@ -9,7 +9,7 @@ DATABASE=0x30000
 CLKFREQ=80000000
 
 
-n_inputs=100
+n_inputs=50
 imm=0
 grid_dim=26
 instr_op=0x1b

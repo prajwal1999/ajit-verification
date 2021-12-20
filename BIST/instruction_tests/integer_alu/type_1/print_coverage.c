@@ -20,7 +20,7 @@ int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int input
         if(*(register_coverage_ptr + i*3) < lowest_reg_test_count_rs1) lowest_reg_test_count_rs1 = *(register_coverage_ptr + i*3);
         if(*(register_coverage_ptr + i*3 + 1) < lowest_reg_test_count_rs2) lowest_reg_test_count_rs2 = *(register_coverage_ptr + i*3 + 1);
         if(*(register_coverage_ptr + i*3 + 2) < lowest_reg_test_count_rd) lowest_reg_test_count_rd = *(register_coverage_ptr + i*3 + 2);
-        // ee_printf(">>> r%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage_ptr + i*3), *(register_coverage_ptr + i*3 + 1), *(register_coverage_ptr + i*3 + 2));
+        ee_printf(">>> r%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage_ptr + i*3), *(register_coverage_ptr + i*3 + 1), *(register_coverage_ptr + i*3 + 2));
     }
 
     // ee_printf("\n");
@@ -39,8 +39,8 @@ int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int input
     }
 
     // ee_printf("\n");
-    int reg_count_threshold = 1000;
-    int grid_count_threshold = 10;
+    int reg_count_threshold = 1;
+    int grid_count_threshold = 0;
     if( lowest_reg_test_count_rs1 > reg_count_threshold && 
         lowest_reg_test_count_rs2 > reg_count_threshold && 
         lowest_reg_test_count_rd > reg_count_threshold && 

@@ -46,24 +46,23 @@ _start:
 
 !-------------------------------------------
 
-    .align 4
-    .global save_registers
-    save_registers:
-    .skip 128
-
 	.align 4
 	.global test_program
 	test_program:
-	.skip	54000
+	.skip 54000
 
 
 	!.data
 
-
-	.align 8
+	.align 4
 	.global results_section 
 	results_section:
 	.skip	32000
+
+	.align 4
+    .global save_registers
+    save_registers:
+    .skip 16
 
 !------------------------------------------
 	.align 4
