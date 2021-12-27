@@ -12,3 +12,14 @@ sparc-obj;
 setup_page_table.s
 *.lnk
 *.trace.0_0
+
+.DS_Store
+._.DS_Store
+BIST/.DS_Store
+BIST/._.DS_Store
+BIST/instruction_tests/.DS_Store
+BIST/instruction_tests/._.DS_Store
+BIST/instruction_tests/fpu/.DS_Store
+BIST/instruction_tests/fpu/._.DS_Store
+BIST/instruction_tests/fpu/.DS_Store
+BIST/instruction_tests/fpu/._.DS_Store

@@ -12,22 +12,23 @@ int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int input
 
     // print register coverage
     int i;
-    int lowest_reg_test_count_rs1 = 1 << 31;
-    int lowest_reg_test_count_rs2 = 1 << 31;
-    int lowest_reg_test_count_rd = 1 << 31;
+    unsigned int lowest_reg_test_count_rs1 = 1 << 31;
+    unsigned int lowest_reg_test_count_rs2 = 1 << 31;
+    unsigned int lowest_reg_test_count_rd = 1 << 31;
     // ee_printf(">>> Register Coverage\n");
     for(i=0; i<32; i++) {
+        if(i==0) continue; // g0 register not used
         if(*(register_coverage_ptr + i*3) < lowest_reg_test_count_rs1) lowest_reg_test_count_rs1 = *(register_coverage_ptr + i*3);
         if(*(register_coverage_ptr + i*3 + 1) < lowest_reg_test_count_rs2) lowest_reg_test_count_rs2 = *(register_coverage_ptr + i*3 + 1);
         if(*(register_coverage_ptr + i*3 + 2) < lowest_reg_test_count_rd) lowest_reg_test_count_rd = *(register_coverage_ptr + i*3 + 2);
-        ee_printf(">>> r%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage_ptr + i*3), *(register_coverage_ptr + i*3 + 1), *(register_coverage_ptr + i*3 + 2));
+        // ee_printf(">>> r%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage_ptr + i*3), *(register_coverage_ptr + i*3 + 1), *(register_coverage_ptr + i*3 + 2));
     }
 
     // ee_printf("\n");
     // print data grid
     int grids_in_row = 1 << (32-GRID_DIM);
     int j;
-    int lowest_count_in_grid = 1 << 31;
+    unsigned int lowest_count_in_grid = 1 << 31;
     // ee_printf(">>> Data Grid\n");
     for(i=0; i<grids_in_row; i++) {
         // ee_printf(">>> ");
@@ -38,13 +39,17 @@ int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int input
         // ee_printf("\n");
     }
 
+    // ee_printf("lowest_reg_test_count_rs1 %d\n", lowest_reg_test_count_rs1);
+    // ee_printf("lowest_reg_test_count_rs2 %d\n", lowest_reg_test_count_rs2);
+    // ee_printf("lowest_reg_test_count_rd %d\n", lowest_reg_test_count_rd);
+    // ee_printf("lowest_count_in_grid %d\n", lowest_count_in_grid);
     // ee_printf("\n");
     int reg_count_threshold = 1;
     int grid_count_threshold = 0;
-    if( lowest_reg_test_count_rs1 > reg_count_threshold && 
-        lowest_reg_test_count_rs2 > reg_count_threshold && 
-        lowest_reg_test_count_rd > reg_count_threshold && 
-        lowest_count_in_grid > grid_count_threshold
+    if( lowest_reg_test_count_rs1 >= reg_count_threshold && 
+        lowest_reg_test_count_rs2 >= reg_count_threshold && 
+        lowest_reg_test_count_rd >= reg_count_threshold && 
+        lowest_count_in_grid >= grid_count_threshold
     ) {
         ee_printf("\n");
         ee_printf(">>> Coverage for Instruction with opcode 0x%x\n", INSTR_OP);

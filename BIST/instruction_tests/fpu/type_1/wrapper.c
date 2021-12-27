@@ -11,8 +11,8 @@ int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_cover
     int input_pair_seed = 0x4060601;
     int register_seed = 6;
 
-    char instr_opcodes[12] = {0x00, 0x10, 0x04, 0x14, 0x03, 0x13, 0x07, 0x17, 0x0a, 0x1a, 0x0b, 0x1b};
-
+    char instr_opcodes[14] = {0x41,  0x42,  0x43,  0x45,  0x46,  0x47,  0x29,   0x2a,   0x2b,   0x49,  0x4a,  0x4b,  0x69,   0x6e};
+    // char instr_memn[14] = {fadds, faddd, faddq, fsubs, fsubd, fsubq, fsqrts, fsqrtd, fsqrtq, fmuls, fmuld, fmulq, fsmuld, fdmulq};
     int opcode_ptr = 0;
 
     flush_mem(register_coverage_ptr, 32*3);
@@ -33,13 +33,13 @@ int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_cover
 
         checker(results_section_ptr, data_coverage_ptr, input_pair_seed, register_seed, instr_opcodes[opcode_ptr]);
         
-        bool change_op = print_coverage(register_coverage_ptr, data_coverage_ptr, input_pair_seed, register_seed);
-        if(change_op) {
-            opcode_ptr = opcode_ptr + 1;
-            opcode_ptr = opcode_ptr % 12;
-            flush_mem(register_coverage_ptr, 32*3);
-            flush_mem(data_coverage_ptr, 1<<(64-2*GRID_DIM));
-        }
+        // bool change_op = print_coverage(register_coverage_ptr, data_coverage_ptr, input_pair_seed, register_seed);
+        // if(change_op) {
+        //     opcode_ptr = opcode_ptr + 1;
+        //     opcode_ptr = opcode_ptr % 12;
+        //     flush_mem(register_coverage_ptr, 32*3);
+        //     flush_mem(data_coverage_ptr, 1<<(64-2*GRID_DIM));
+        // }
 
         input_pair_seed = new_input_pair_seed;
         register_seed = new_register_seed;

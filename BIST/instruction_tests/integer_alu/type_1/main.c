@@ -101,9 +101,6 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
 
         // ee_printf("%d. op %d %d %d\n",i+1, rs1, rs2, rd);
 
-        // store result_sec_base_reg temporary for now
-        *store_instr_at = generate_opcode_11(result_sec_base_reg, result_sec_base_reg, 0, mem_op_codes[1], 1, 28); store_instr_at++;
-
         // load inputs in rs1 and rs2
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[0], 1, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[0], 1, 4); store_instr_at++;
@@ -158,10 +155,6 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
     *store_instr_at = generate_opcode_11(0b01111, result_sec_base_reg, 0, mem_op_codes[0], 1, 4); store_instr_at++;
     *store_instr_at = generate_opcode_11(0b11110, result_sec_base_reg, 0, mem_op_codes[0], 1, 8); store_instr_at++;
     *store_instr_at = generate_opcode_11(0b11111, result_sec_base_reg, 0, mem_op_codes[0], 1, 12); store_instr_at++;
-    // *store_instr_at = 0x01000000; store_instr_at++;
-    // *store_instr_at = 0x01000000; store_instr_at++;
-    // *store_instr_at = 0x01000000; store_instr_at++;
-    // *store_instr_at = 0x01000000; store_instr_at++;
 
 
     // instruction restore; retl; nop
