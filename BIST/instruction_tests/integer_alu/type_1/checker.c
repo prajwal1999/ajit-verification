@@ -7,8 +7,6 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
-    ee_printf("------------------------Starting tests-------------------\n");
-
     int i;
     int instr;
     // ee_printf(">>> Tests for Instruction with opcode 0x%x\n", instr_opcode);
@@ -44,7 +42,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
             ee_printf("Inputs are 0x%x, 0x%x\n",expected_out_2, expected_out_1);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
-            ee_printf("----------------------------------------------------\n");
+            ee_printf("####################################################\n\n");
             __asm__ __volatile__( " ta 0 \n\t " );
         }
 
@@ -54,7 +52,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
             ee_printf("Inputs are %x, %x\n",expected_out_2, expected_out_1);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
-            ee_printf("----------------------------------------------------\n");
+            ee_printf("####################################################\n\n");
             __asm__ __volatile__( " ta 0 \n\t " );
         }
 
@@ -65,8 +63,8 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         }
 
         // verify ccr code
-        int operand1_sign = (expected_out_1 >> 31) & 1;
-        int operand2_sign = (expected_out_2 >> 31) & 1;
+        int operand1_sign = (expected_out_2 >> 31) & 1;
+        int operand2_sign = (expected_out_1 >> 31) & 1;
         int e_N;
         int e_Z;
         int e_V;
@@ -109,7 +107,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
                 ee_printf("Inputs are %x, %x\n",expected_out_2, expected_out_1);
                 ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
                 ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
-                ee_printf("----------------------------------------------------\n");
+                ee_printf("####################################################\n\n");
                 __asm__ __volatile__( " ta 0 \n\t " );
             } 
         }

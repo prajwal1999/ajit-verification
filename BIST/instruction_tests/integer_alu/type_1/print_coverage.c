@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 
-int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int inputs_seed, int register_seed )
+int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int inputs_seed, int register_seed, int instr_opcode )
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE );
 
@@ -44,17 +44,21 @@ int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int input
     // ee_printf("lowest_reg_test_count_rd %d\n", lowest_reg_test_count_rd);
     // ee_printf("lowest_count_in_grid %d\n", lowest_count_in_grid);
     // ee_printf("\n");
+
     int reg_count_threshold = 1;
-    int grid_count_threshold = 0;
-    if( lowest_reg_test_count_rs1 >= reg_count_threshold && 
-        lowest_reg_test_count_rs2 >= reg_count_threshold && 
-        lowest_reg_test_count_rd >= reg_count_threshold && 
+    int grid_count_threshold = 50;
+    if( 
+        // lowest_reg_test_count_rs1 >= reg_count_threshold && 
+        // lowest_reg_test_count_rs2 >= reg_count_threshold && 
+        // lowest_reg_test_count_rd >= reg_count_threshold && 
         lowest_count_in_grid >= grid_count_threshold
     ) {
         ee_printf("\n");
-        ee_printf(">>> Coverage for Instruction with opcode 0x%x\n", INSTR_OP);
-        ee_printf(">>> all registers except g0, acted as rs1, rs2, and atleast %d times ", reg_count_threshold);
-        ee_printf(">>> all grids covered atleast %d times ", grid_count_threshold);
+        ee_printf(">>> Coverage for Instruction with opcode 0x%x\n", instr_opcode);
+        ee_printf(">>> all registers except g0, acted as rs1 atleast %d times \n", lowest_reg_test_count_rs1);
+        ee_printf(">>> all registers except g0, acted as rs2 atleast %d times \n", lowest_reg_test_count_rs2);
+        ee_printf(">>> all registers except g0, acted as rd atleast %d times \n", lowest_reg_test_count_rd);
+        ee_printf(">>> all grids covered atleast %d times \n", grid_count_threshold);
         return true;
         // ee_printf(">>> Inputs seed is %d\n", inputs_seed);
         // ee_printf(">>> Register seed is %d\n", register_seed);

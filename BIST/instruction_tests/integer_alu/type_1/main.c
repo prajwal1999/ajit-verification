@@ -16,7 +16,7 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
 {   
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-    ee_printf("Instruction generation started\n");
+    // ee_printf("Instruction generation started\n");
     ee_printf(">>> Tests for Instruction with opcode 0x%x\n", instr_opcode);
     ee_printf(">>> Register seed is %d\n", register_seed);
     unsigned char inv_op_code;
@@ -54,7 +54,6 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
     seed_5 = prbs_5(seed_5, 0);
     if(seed_5==14 || seed_5==15 || seed_5==30 || seed_5==31 ) seed_5 = prbs_5(seed_5, 0);
     char result_sec_base_reg = seed_5;
-    ee_printf("result_sec_base_reg is r%d\n", result_sec_base_reg);
 
     int *store_instr_at = test_program_ptr;
     // save instruction
@@ -163,8 +162,8 @@ int main (int *test_program_ptr, int results_section_ptr, int *register_coverage
     *store_instr_at = 0x01000000; store_instr_at++;
 
 
-    ee_printf("last address written 0x%x\n", (store_instr_at-1));
-    ee_printf("------------------- Instructions generation done -------------------\n");
+    // ee_printf("last address written 0x%x\n", (store_instr_at-1));
+    // ee_printf("------------------- Instructions generation done -------------------\n");
     return seed_5;
 
 }
