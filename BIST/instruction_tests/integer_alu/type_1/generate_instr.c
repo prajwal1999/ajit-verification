@@ -142,8 +142,8 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
     *store_instr_at = 0x01000000; store_instr_at++;
 
 
-    // ee_printf("last address written 0x%x\n", (store_instr_at-1));
-    // ee_printf("------------------- Instructions generation done -------------------\n");
+    ee_printf("last address written 0x%x\n", (store_instr_at-1));
+    ee_printf("------------------- Instructions generation done -------------------\n");
     return seed_5;
 
 }

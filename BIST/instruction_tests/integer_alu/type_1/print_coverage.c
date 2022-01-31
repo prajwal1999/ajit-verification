@@ -24,7 +24,7 @@ int print_coverage(int *register_coverage_ptr, int *data_coverage_ptr, int input
         if(*(register_coverage_ptr + i*4 + 2) < lowest_reg_test_count_rd) lowest_reg_test_count_rd = *(register_coverage_ptr + i*4 + 2);
         if(*(register_coverage_ptr + i*4 + 3) < lowest_reg_test_count_ldst) lowest_reg_test_count_ldst = *(register_coverage_ptr + i*4 + 3);
         
-        // ee_printf(">>> r%d --- rs1 - %d, rs2 - %d, rd - %d\n", i, *(register_coverage_ptr + i*3), *(register_coverage_ptr + i*3 + 1), *(register_coverage_ptr + i*3 + 2));
+        ee_printf(">>> r%d --- rs1 - %d, rs2 - %d, rd - %d, ld_st - %d\n", i, *(register_coverage_ptr + i*4), *(register_coverage_ptr + i*4 + 1), *(register_coverage_ptr + i*4 + 2), *(register_coverage_ptr + i*4 + 3));
     }
 
     // ee_printf("\n");

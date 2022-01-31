@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 
-int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_coverage_ptr, int *data_coverage_ptr, int *save_register_ptr. int *instr_count) {
+int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_coverage_ptr, int *data_coverage_ptr, int *save_register_ptr, int *instr_count) {
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
@@ -35,7 +35,7 @@ int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_cover
 
         checker(results_section_ptr, data_coverage_ptr, input_pair_seed, register_seed, instr_opcodes[opcode_ptr]);
         
-        *(instr_count + opcode_ptr) = N_INPUTS;
+        *(instr_count + opcode_ptr) += N_INPUTS;
         // __asm__ __volatile__ (" ta 0 \n\t");
         // __asm__ __volatile__ (" nop \n\t");
 

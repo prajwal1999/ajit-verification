@@ -60,7 +60,7 @@ _start:
 	.align 4
 	.global test_program
 	test_program:
-	.skip 540000
+	.skip 64000
 
 
 	!.data
@@ -68,7 +68,7 @@ _start:
 	.align 4
 	.global results_section 
 	results_section:
-	.skip	340000
+	.skip	34000
 
 	.align 4
     .global save_registers
