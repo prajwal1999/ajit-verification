@@ -9,24 +9,23 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
 
     int i;
     int instr;
-    // ee_printf(">>> Tests for Instruction with opcode 0x%x\n", instr_opcode);
-    // ee_printf(">>> Input seed is 0x%x | Register seed is 0x%x\n", input_seed, register_seed);
 
     int n_correct_test = 0;
 
     for(i=0; i<N_INPUTS; i++) {
-        int expected_out_2 = *(results_section_ptr + 8*i);
-        int expected_out_1 = *(results_section_ptr + 8*i + 1);
+        int input_1 = *(results_section_ptr + 8*i);
+        int input_2 = *(results_section_ptr + 8*i + 1);
+        int initial_psr = *(results_section_ptr + 8*i + 2);
 
-        int result_msb = *(results_section_ptr + 8*i + 2);
-        int actual_result = *(results_section_ptr + 8*i + 3);
-
-
-        int actual_out_1 = *(results_section_ptr + 8*i + 5);
-        int actual_out_2 = *(results_section_ptr + 8*i + 6);
+        int result_msb = *(results_section_ptr + 8*i + 3);
+        int actual_result = *(results_section_ptr + 8*i + 4);
 
 
-        int psr = *(results_section_ptr + 8*i + 4);
+        int actual_out_1 = *(results_section_ptr + 8*i + 6);
+        int actual_out_2 = *(results_section_ptr + 8*i + 7);
+
+
+        int psr = *(results_section_ptr + 8*i + 5);
         int ccr = (psr & 0x00f00000) >> 20; 
         int N =  ((ccr & 0b1000)>>3);
         int Z = ((ccr & 0b0100)>>2);
@@ -36,20 +35,20 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
 
         char sub_test_1_correct = 0, sub_test_2_correct = 0;
 
-        if(expected_out_1 == actual_out_1) sub_test_1_correct = 1;
+        if(input_2 == actual_out_1) sub_test_1_correct = 1;
         else {
             ee_printf("Test failed - i - %d/%d\n", i+1, N_INPUTS);
-            ee_printf("Inputs are 0x%x, 0x%x\n",expected_out_2, expected_out_1);
+            ee_printf("Inputs are 0x%x, 0x%x\n",input_1, input_2);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
             ee_printf("####################################################\n\n");
             __asm__ __volatile__( " ta 0 \n\t " );
         }
 
-        if(expected_out_2 == actual_out_2) sub_test_2_correct = 1;
+        if(input_1 == actual_out_2) sub_test_2_correct = 1;
         else {
             ee_printf("Test failed - ii - %d/%d\n", i+1, N_INPUTS);
-            ee_printf("Inputs are %x, %x\n",expected_out_2, expected_out_1);
+            ee_printf("Inputs are %x, %x\n",input_1, input_2);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
             ee_printf("####################################################\n\n");
@@ -59,12 +58,12 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         if(sub_test_1_correct && sub_test_2_correct) {
             n_correct_test++;
             // if((ceil(log2(i+1)) == floor(log2(i+1))))
-            //     ee_printf("Test %d passed\n", i+1);
+                // ee_printf("Test %d passed\n", i+1);
         }
 
         // verify ccr code
-        int operand1_sign = (expected_out_2 >> 31) & 1;
-        int operand2_sign = (expected_out_1 >> 31) & 1;
+        int operand1_sign = (input_1 >> 31) & 1;
+        int operand2_sign = (input_2 >> 31) & 1;
         int e_N;
         int e_Z;
         int e_V;
@@ -104,12 +103,19 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
                 ee_printf("V = %x | e_V = %x \n", V, e_V);
                 ee_printf("C = %x | e_C = %x \n", C, e_C);
                 ee_printf("Actual %x | Expected %x \n", ccr, e_N*8+e_Z*4+e_V*2+e_C);
-                ee_printf("Inputs are %x, %x\n",expected_out_2, expected_out_1);
+                ee_printf("Inputs are %x, %x\n",input_1, input_2);
                 ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
                 ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
                 ee_printf("####################################################\n\n");
                 __asm__ __volatile__( " ta 0 \n\t " );
             } 
+        } else {
+            if(initial_psr != psr) {
+                ee_printf("CCR code changed illegally. %d/%d\n", i+1, N_INPUTS);
+                ee_printf("initial psr 0x%x, current psr 0x%x\n", initial_psr, psr);
+                ee_printf("####################################################\n\n");
+                __asm__ __volatile__( " ta 0 \n\t " );
+            }
         }
 
         // store data coverage

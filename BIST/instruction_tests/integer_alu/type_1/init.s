@@ -32,19 +32,30 @@ _start:
 	sta %o0, [%g0] 0xa   
 
 
+	!addcc two negative numbers
+	set -2, %l0
+	set -3, %l1
+	addcc %l0, %l1, %o2	! Expected o2=0xFFFFFFFB
+
+
 	set test_program, %o0
 	set results_section, %o1
 	set register_coverage, %o2
 	set data_coverage, %o3
     set save_registers, %o4
+	set instr_count, %o5
+	
 	call wrapper
 	nop
 
-	!-------------------------------
 
+!------------------------------------------
 
 
 !-------------------------------------------
+
+	ta 0
+	nop
 
 	.align 4
 	.global test_program
@@ -52,7 +63,7 @@ _start:
 	.skip 540000
 
 
-	.data
+	!.data
 
 	.align 4
 	.global results_section 
@@ -71,11 +82,28 @@ _start:
 
 	.global register_coverage
 	register_coverage:
-	.skip 384
+	.skip 512
 	
 	.global data_coverage
 	data_coverage:
 	.skip 16384
+
+	.global instr_count
+	instr_count:
+	add:   .skip 4
+	addcc: .skip 4 
+	addx:  .skip 4  
+	sub:   .skip 4    
+	subcc: .skip 4 
+	subx:  .skip 4  
+	xor:   .skip 4   
+	xorcc: .skip 4 
+	xnor:  .skip 4  
+	xnorcc:.skip 4 
+	umul:  .skip 4  
+	umulcc:.skip 4 
+	smul:  .skip 4  
+	smulcc:.skip 4
 
 
 
