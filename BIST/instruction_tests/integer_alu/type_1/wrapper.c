@@ -24,15 +24,19 @@ int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_cover
     flush_mem(instr_count, 14);
 
     while(1) {
+        // ee_printf("start\n");
 
         flush_mem(results_section_ptr, N_INPUTS*8);
+        // ee_printf("flushed result section\n");
         
         int new_input_pair_seed = generate_input_output(results_section_ptr, input_pair_seed);
 
-        int new_register_seed = generate_instr(test_program_ptr, results_section_ptr, register_coverage_ptr, register_seed, instr_opcodes[opcode_ptr], save_register_ptr);
-        
-        test_program();
+        // ee_printf("input output generated\n");
 
+        int new_register_seed = generate_instr(test_program_ptr, results_section_ptr, register_coverage_ptr, register_seed, instr_opcodes[opcode_ptr], save_register_ptr);
+        // ee_printf("instructions generated\n");
+        test_program();
+        // ee_printf("test program ran\n");
         checker(results_section_ptr, data_coverage_ptr, input_pair_seed, register_seed, instr_opcodes[opcode_ptr]);
         
         *(instr_count + opcode_ptr) += N_INPUTS;
