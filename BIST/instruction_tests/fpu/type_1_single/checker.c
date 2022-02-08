@@ -45,19 +45,49 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
             if(result_1 == input_1_1) n_correct_test++;
             else test_failed = 1;
         }
-
-        else if(float_type_1 == 0 || float_type_1 == 2 || float_type_2 == 0 || float_type_2 == 2) {
+        // after this float type is either normal or subnormal
+        // check when both inputs are normal 
+        else if(float_type_1 == 0 && float_type_2 == 0) {
+            int diff_exp_inp = ((input_1_1 & 0x7f800000) - (input_2_1 & 0x7f800000)) >> 23;
+            if(diff_exp_inp >= 23) { // input_1 exp is greater
+                if( (result_1 == input_1_1) && (result_1 == output_1_1) && (output_2_1 == 0) ) n_correct_test++;
+                else test_failed = 1; 
+            }
+            else if(diff_exp_inp <= -23) { // input_2 exp is greater
+                if( (result_1 == input_2_1) && (result_1 == output_2_1) && (output_1_1 == 0) ) n_correct_test++;
+                else test_failed = 1; 
+            }
+            else {
+                // check if both output has correct sign or not
+                if( (input_1_1 & 0x80000000) != (output_1_1 & 0x80000000) ) test_failed = 1;
+                else if( (input_2_1 & 0x80000000) != (output_2_1 & 0x80000000) ) test_failed = 1;
+                // now check if exponent match
+                else if( (input_1_1 & 0x7f800000) != (output_1_1 & 0x7f800000) ) test_failed = 1;
+                else if( (input_2_1 & 0x7f800000) != (output_2_1 & 0x7f800000) ) test_failed = 1;
+                else {
+                    // how check how much absolute difference is in the mantissa
+                    diff_1 = abs((input_1_1 & 0x007fffff) - (output_1_1 & 0x007fffff));
+                    diff_2 = abs((input_2_1 & 0x007fffff) - (output_2_1 & 0x007fffff));
+                }
+            }
+        }
+        // check when both inputs are subnormal
+        else if(float_type_1 == 2 && float_type_2 == 2) {
             // check if both output has correct sign or not
-            if( (input_1_1 & 0x80000000) != (output_2_1 & 0x80000000) ) test_failed = 1;
-            else if( (input_2_1 & 0x80000000) != (output_1_1 & 0x80000000) ) test_failed = 1;
+            if( (input_1_1 & 0x80000000) != (output_1_1 & 0x80000000) ) test_failed = 1;
+            else if( (input_2_1 & 0x80000000) != (output_2_1 & 0x80000000) ) test_failed = 1;
             // now check if exponent match
-            else if( (input_1_1 & 0x7f800000) != (output_2_1 & 0x7f800000) ) test_failed = 1;
-            else if( (input_2_1 & 0x7f800000) != (output_1_1 & 0x7f800000) ) test_failed = 1;
+            else if( (input_1_1 & 0x7f800000) != (output_1_1 & 0x7f800000) ) test_failed = 1;
+            else if( (input_2_1 & 0x7f800000) != (output_2_1 & 0x7f800000) ) test_failed = 1;
             else {
                 // how check how much absolute difference is in the mantissa
-                diff_1 = abs((input_1_1 & 0x007fffff) - (output_2_1 & 0x007fffff));
-                diff_2 = abs((input_2_1 & 0x007fffff) - (output_1_1 & 0x007fffff));
+                diff_1 = abs((input_1_1 & 0x007fffff) - (output_1_1 & 0x007fffff));
+                diff_2 = abs((input_2_1 & 0x007fffff) - (output_2_1 & 0x007fffff));
             }
+        }
+        // now one input is normal and other is subnormal
+        else {
+            ee_printf("one input is normal and other is subnormal\n");
         }
 
         // if(test_failed == 1) {
@@ -66,33 +96,9 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
             ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
             ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
             ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("Actual Output 0x%x, 0x%x\nc", output_1_1, output_2_1);
+            ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
             ee_printf("diff_1 - %d, diff_2 - %d\n", diff_1, diff_2);
             ee_printf("####################################################\n\n");
-        // }
-
-        // if(input_1_1==output_2_1) {
-        //     sub_test_1_correct = 1;
-        // }
-        // else {
-        //     ee_printf("Test failed - i - %d/%d\n", i+1, n_inputs);
-        //     ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-        //     ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_1);
-        //     ee_printf("Actual Output 0x%x, 0x%x\n\n", output_1_1, output_2_1);
-        //     ee_printf("####################################################\n\n");
-        //     __asm__ __volatile__( " ta 0 \n\t " );
-        // }
-
-        // if(input_2_1==output_1_1) {
-        //     sub_test_2_correct = 1;
-        // }
-        // else {
-        //     ee_printf("Test failed - ii - %d/%d\n", i+1, n_inputs);
-        //     ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-        //     ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_1);
-        //     ee_printf("Actual Output 0x%x, 0x%x\n\n", output_1_1, output_2_1);
-        //     ee_printf("####################################################\n\n");
-        //     __asm__ __volatile__( " ta 0 \n\t " );
         // }
 
 
@@ -108,7 +114,11 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
     }   
 
     if( n_correct_test == N_INPUTS) {
-        ee_printf("all tests passed\n");
+        ee_printf("all tests passed\n");    
+    } else {
+        ee_printf("%d out of %d tests passed\n", n_correct_test, N_INPUTS);    
+        __asm__ __volatile__ (" ta 0 \n\t");
+        __asm__ __volatile__ (" nop \n\t");
     }
 
     return(0);

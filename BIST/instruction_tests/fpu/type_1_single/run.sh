@@ -1,22 +1,21 @@
 #!/usr/bin/env bash
 AAR=$AJIT_ACCESS_ROUTINES_MT
 PT=$AJIT_MINIMAL_PRINTF_TIMER
-# TEXTBASE=0x40000000
-# DATABASE=0x40040000
-TEXTBASE=0x0
-# DATABASE=0x40000000
-DATABASE=0x30000
+TEXTBASE=0x40000000
+DATABASE=0x400f0000
+# TEXTBASE=0x0
+# DATABASE=0xf0000
 CLKFREQ=80000000
 
 
-n_inputs=20
+n_inputs=50
 grid_dim=26
 
 clear
 sh clean.sh
 makeLinkerScript.py -t $TEXTBASE -d $DATABASE -o customLinkerScript.lnk
 
-compileToSparcUclibc.py -N main -V 709_vmap.txt -W ./ \
+compileToSparcUclibc.py -N main -V high_vmap.txt -W ./ \
                 -D AJIT -D VA_DATA_SECTION_START=$DATABASE -D CLK_FREQUENCY=$CLKFREQ -D N_INPUTS=$n_inputs -D GRID_DIM=$grid_dim -U \
                 -s init.s -s trap_handlers.s -c helper.c \
                 -c generate_input_output.c -c flush_mem.c  \

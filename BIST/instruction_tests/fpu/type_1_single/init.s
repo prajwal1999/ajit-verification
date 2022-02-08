@@ -58,7 +58,7 @@ _start:
 	.align 4
 	.global test_program
 	test_program:
-	.skip 54000
+	.skip 5400
 
 
 	!.data
@@ -68,7 +68,7 @@ _start:
 	.align 32
 	.global results_section 
 	results_section:
-	.skip	32000
+	.skip	3200
 
 	.align 16
     .global save_registers
@@ -86,7 +86,8 @@ _start:
 	
 	.global data_coverage
 	data_coverage:
-	.skip 16384
+	.skip 4
+	!.skip 16384
 
 
 

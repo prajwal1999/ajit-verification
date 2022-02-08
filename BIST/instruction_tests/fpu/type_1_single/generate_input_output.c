@@ -9,7 +9,7 @@
 int generate_input_output(int *results_section_ptr, int input_seed)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-
+    ee_printf("generate_input_output started %d\n", N_INPUTS);
     int lfsr_32 = input_seed;
 
     // ee_printf("inputs generation started. input seed is 0x%x\n", input_seed);

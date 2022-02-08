@@ -9,7 +9,7 @@
 int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_coverage_ptr, int *data_coverage_ptr, int *save_register_ptr) {
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-
+    ee_printf("wrapper started\n");
     int input_pair_seed = 0x4060601;
     int register_seed = 6;
 
@@ -19,7 +19,7 @@ int wrapper(int *test_program_ptr, int *results_section_ptr, int *register_cover
 
 
     flush_mem(register_coverage_ptr, 32*3);
-    flush_mem(data_coverage_ptr, 1<<(64-2*GRID_DIM));
+    // flush_mem(data_coverage_ptr, 1<<(64-2*GRID_DIM));
 
     while(1) {
         flush_mem(results_section_ptr, N_INPUTS*8);

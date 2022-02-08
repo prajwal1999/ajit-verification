@@ -45,7 +45,7 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
         seed_5 = prbs_5(seed_5, 100);   rs1 = seed_5;
         seed_5 = prbs_5(seed_5, 100);   rs2 = seed_5;
         seed_5 = prbs_5(seed_5, 100);   rd = seed_5;
-        // ee_printf("%d. op f%d f%d f%d\n",i+1, rs1, rs2, rd);
+        ee_printf("%d. op f%d f%d f%d\n",i+1, rs1, rs2, rd);
 
         // load inputs in rs1 and rs2
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[1], 1, 0); store_instr_at++;
@@ -68,8 +68,8 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
         }
 
         // store inputs in rs1 and rs2
-        *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[3], 1, 20); store_instr_at++;
-        *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[3], 1, 24); store_instr_at++;
+        *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[3], 1, 24); store_instr_at++;
+        *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[3], 1, 20); store_instr_at++;
         // increment result_sec_base_reg = result_sec_base_reg + 32
         *store_instr_at = generate_opcode_10(result_sec_base_reg, result_sec_base_reg, 0, 0b000000, 1, 32); store_instr_at++;
         // store register coverage
