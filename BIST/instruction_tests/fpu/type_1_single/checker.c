@@ -25,7 +25,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         int float_type_2 = float_comb % 5;
 
         char test_failed = 0;
-        int diff_1, diff_2;
+        int diff_1=0, diff_2=0;
 
         if(float_type_1 == 3 || float_type_1 == 4) { // infinity or NAN
             if(result_1 == input_1_1) n_correct_test++;
@@ -48,6 +48,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         // after this float type is either normal or subnormal
         // check when both inputs are normal 
         else if(float_type_1 == 0 && float_type_2 == 0) {
+            ee_printf("both inputs are normal\n");
             int diff_exp_inp = ((input_1_1 & 0x7f800000) - (input_2_1 & 0x7f800000)) >> 23;
             if(diff_exp_inp >= 23) { // input_1 exp is greater
                 if( (result_1 == input_1_1) && (result_1 == output_1_1) && (output_2_1 == 0) ) n_correct_test++;
@@ -68,6 +69,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
                     // how check how much absolute difference is in the mantissa
                     diff_1 = abs((input_1_1 & 0x007fffff) - (output_1_1 & 0x007fffff));
                     diff_2 = abs((input_2_1 & 0x007fffff) - (output_2_1 & 0x007fffff));
+                    n_correct_test++;
                 }
             }
         }
@@ -83,11 +85,13 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
                 // how check how much absolute difference is in the mantissa
                 diff_1 = abs((input_1_1 & 0x007fffff) - (output_1_1 & 0x007fffff));
                 diff_2 = abs((input_2_1 & 0x007fffff) - (output_2_1 & 0x007fffff));
+                n_correct_test++;
             }
         }
         // now one input is normal and other is subnormal
         else {
             ee_printf("one input is normal and other is subnormal\n");
+            test_failed = 1;
         }
 
         // if(test_failed == 1) {
@@ -97,7 +101,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
             ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
             ee_printf("Actual result 0x%x\n", result_1);
             ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
-            ee_printf("diff_1 - %d, diff_2 - %d\n", diff_1, diff_2);
+            ee_printf("diff_1 - %x, diff_2 - %x\n", diff_1, diff_2);
             ee_printf("####################################################\n\n");
         // }
 
