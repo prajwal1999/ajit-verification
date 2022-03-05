@@ -6,10 +6,10 @@
 #include <stdbool.h>
 
 
-int generate_input_output(int *results_section_ptr, int input_seed)
+int generate_input_output(int *results_section_ptr, int input_seed, int number_of_inputs)
 {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-    ee_printf("generate_input_output started %d\n", N_INPUTS);
+    ee_printf("generate_input_output started\n");
     int lfsr_32 = input_seed;
 
     // ee_printf("inputs generation started. input seed is 0x%x\n", input_seed);
@@ -18,7 +18,7 @@ int generate_input_output(int *results_section_ptr, int input_seed)
     int float_type_1 = 0, float_type_2 = 0;
 
     int i;
-    for(i=0; i<N_INPUTS; i++) {
+    for(i=0; i<number_of_inputs; i++) {
         float_type_seed_1 = prbs_5(float_type_seed_1);
         float_type_seed_2 = prbs_5(float_type_seed_2);
         lfsr_32 = prbs_32(lfsr_32);

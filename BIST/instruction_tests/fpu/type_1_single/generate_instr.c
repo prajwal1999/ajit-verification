@@ -10,7 +10,7 @@ int generate_f_opcode_10(int rd,  int rs1,  int rs2,  int opf_code,  int FPop);
 int generate_opcode_11(int rd,  int rs1,  int rs2,  int op_code, char i,  short imm);
 
 
-int generate_instr(int *test_program_ptr, int results_section_ptr, int *register_coverage_ptr, int register_seed, int instr_opcode, int *save_register_ptr)
+int generate_instr(int *test_program_ptr, int results_section_ptr, int *register_coverage_ptr, int register_seed, int instr_opcode, int *save_register_ptr, int number_of_inputs)
 {   
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
@@ -39,7 +39,7 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
     int i;
     char rd, rs1, rs2;
 
-    for(i=0; i<N_INPUTS; i++)
+    for(i=0; i<number_of_inputs; i++)
     {
         // ee_printf("i = %d\n", i);
         seed_5 = prbs_5(seed_5, 100);   rs1 = seed_5;
