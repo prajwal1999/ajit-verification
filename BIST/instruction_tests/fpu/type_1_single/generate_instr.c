@@ -20,6 +20,7 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
 
     if(instr_opcode == 0x41) inv_op_code = 0x45; // fadds 
     else if(instr_opcode == 0x45) inv_op_code = 0x41; // fsubs 
+    else if(instr_opcode == 0x29) inv_op_code = 0x49; // fsqrts
 
     char mem_mnemonic[3][4] = {'ld', 'ldf', 'st', 'stf'};
     char mem_op_codes[4] =    {0x00, 0x20,  0x04, 0x24};
@@ -47,6 +48,8 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
         seed_5 = prbs_5(seed_5, 100);   rd = seed_5;
         // ee_printf("%d. op f%d f%d f%d\n",i+1, rs1, rs2, rd);
 
+        if(instr_opcode == 0x29) rs1 = 0;
+
         // load inputs in rs1 and rs2
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[1], 1, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[1], 1, 4); store_instr_at++;
@@ -60,6 +63,9 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
             //  run inverse instruction operation without CCR code update
             *store_instr_at = generate_f_opcode_10(rs1, rs1, rd, instr_opcode, 0b110100); store_instr_at++;
             *store_instr_at = generate_f_opcode_10(rs2, rd, rs2, inv_op_code, 0b110100); store_instr_at++;
+        }
+        else if(instr_opcode == 0x29) {
+            
         }
         else {
             //  run inverse instruction operation without CCR code update

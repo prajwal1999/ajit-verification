@@ -2,5 +2,5 @@
 
 # build the project
 
-cortos2 build "$@";
+cortos build "$@";
 

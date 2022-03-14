@@ -50,6 +50,8 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
         else if(float_type_1 == 0 && float_type_2 == 0) {
             ee_printf("Test number - %d\n", i+1);
             ee_printf("both inputs are normal\n");
+            // int sign_1 = (input_1_1 & 0x80000000) >> 31;
+            // int sign_2 = (input_2_1 & 0x80000000) >> 31; 
             int exp_1 = (input_1_1 & 0x7f800000) >> 23;
             int exp_2 = (input_2_1 & 0x7f800000) >> 23;
             int mantissa_1 = (input_1_1 & 0x007fffff);
@@ -65,16 +67,12 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
                 // change mantissa 2
                 real_val_1 = input_1_1;
                 mantissa_2 |= 0x800000;
-                // ee_printf("1. changed mantissa_2 is - 0x%x\n", mantissa_2);
                 mantissa_2 = mantissa_2 / (int)pow(2, diff_exp_inp);
-                // ee_printf("2. changed mantissa_2 is - 0x%x\n", mantissa_2);
                 mantissa_2 = mantissa_2 * (int)pow(2, diff_exp_inp);
-                // ee_printf("3. changed mantissa_2 is - 0x%x\n", mantissa_2);
                 mantissa_2 &= 0x007fffff;
-                // ee_printf("4. changed mantissa_2 is - 0x%x\n", mantissa_2);
                 if(mantissa_2 == 0) exp_2=0;
                 real_val_2 = (input_2_1 & 0x80000000);
-                real_val_2 = (exp_2 << 23);
+                real_val_2 |= (exp_2 << 23);
                 real_val_2 |= mantissa_2;
             }
             else if(exp_1 < exp_2) {
@@ -86,7 +84,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
                 mantissa_1 &= 0x007fffff;
                 if(mantissa_2 == 0) exp_2=0;
                 real_val_1 = (input_1_1 & 0x80000000);
-                real_val_1 = (exp_1 << 23);
+                real_val_1 |= (exp_1 << 23);
                 real_val_1 |= mantissa_1;
             } else {
                 real_val_1 = input_1_1;
@@ -102,6 +100,7 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
             ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
             // ee_printf("diff_1 - %x, diff_2 - %x\n", diff_1, diff_2);
             if(output_1_1 == real_val_1 && output_2_1 == real_val_2) {
+                n_correct_test ++;
                 ee_printf("Test passed\n");
             }
             ee_printf("####################################################\n\n");
