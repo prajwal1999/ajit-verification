@@ -8,11 +8,9 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
-    int i;
-    int instr;
-
     int n_correct_test = 0;
 
+    int i;
     for(i=0; i<number_of_inputs; i++) {
         int input_1 = *(results_section_ptr + 8*i);
         int input_2 = *(results_section_ptr + 8*i + 1);
@@ -36,18 +34,15 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
 
         char sub_test_1_correct = 0, sub_test_2_correct = 0;
 
-        if(input_2 == actual_out_1) sub_test_1_correct = 1;
-        else {
-            ee_printf("Test failed - i - %d/%d\n", i+1, number_of_inputs);
-            ee_printf("Inputs are 0x%x, 0x%x\n",input_1, input_2);
-            ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
-            ee_printf("Actual Output 0x%x, 0x%x\n\n",actual_out_1, actual_out_2);
-            ee_printf("####################################################\n\n");
-            __asm__ __volatile__( " ta 0 \n\t " );
-        }
 
+        if(input_2 == actual_out_1) sub_test_1_correct = 1;
         if(input_1 == actual_out_2) sub_test_2_correct = 1;
-        else {
+
+        if(sub_test_1_correct && sub_test_2_correct) {
+            n_correct_test++;
+            // if((ceil(log2(i+1)) == floor(log2(i+1))))
+                // ee_printf("Test %d passed\n", i+1);
+        } else {
             ee_printf("Test failed - ii - %d/%d\n", i+1, number_of_inputs);
             ee_printf("Inputs are %x, %x\n",input_1, input_2);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
@@ -56,19 +51,10 @@ int checker(int *results_section_ptr, int *data_coverage_ptr, int input_seed, in
             __asm__ __volatile__( " ta 0 \n\t " );
         }
 
-        if(sub_test_1_correct && sub_test_2_correct) {
-            n_correct_test++;
-            // if((ceil(log2(i+1)) == floor(log2(i+1))))
-                // ee_printf("Test %d passed\n", i+1);
-        }
-
         // verify ccr code
         int operand1_sign = (input_1 >> 31) & 1;
         int operand2_sign = (input_2 >> 31) & 1;
-        int e_N;
-        int e_Z;
-        int e_V;
-        int e_C;
+        int e_N, e_Z, e_V, e_C;
 
         if( (instr_opcode >> 4) == 0x1)
         {

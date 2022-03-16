@@ -28,7 +28,8 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
         lfsr = prbs_32(lfsr);
         *(results_section_ptr + 8*i) = lfsr;
 
-        bool is_imm = ((lfsr & 0xf) == 1);
+        // bool is_imm = ((lfsr & 0xf) == 1);
+        bool is_imm = 1;
 
         lfsr = prbs_32(lfsr);
         if(is_imm) {
@@ -39,7 +40,7 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
         *(results_section_ptr + 8*i + 1) = lfsr;
         *(results_section_ptr + 8*i + 2) = is_imm;
 
-        // ee_printf("i. %d, is_imm is %d, lfsr is 0x%x\n",i, is_imm, lfsr);
+        // ee_printf("i. %d, is_imm is %d, lfsr is 0x%x\n",i+1, is_imm, lfsr);
 
     }
     
