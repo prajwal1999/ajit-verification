@@ -76,3 +76,8 @@ int prbs_32(int x)
 	x ^= x << 5;
     return x;
 }
+
+int is_machine_eps_32(int num) {
+    if(num == 0x1) return 1;
+    else return 0;
+}

@@ -21,6 +21,7 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
     if(instr_opcode == 0x41) inv_op_code = 0x45; // fadds 
     else if(instr_opcode == 0x45) inv_op_code = 0x41; // fsubs 
     else if(instr_opcode == 0x29) inv_op_code = 0x49; // fsqrts
+    else if(instr_opcode == 0x49) inv_op_code = 0x4d; // fmuls
 
     char mem_mnemonic[3][4] = {'ld', 'ldf', 'st', 'stf'};
     char mem_op_codes[4] =    {0x00, 0x20,  0x04, 0x24};

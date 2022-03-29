@@ -5,9 +5,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 unsigned int GRID_DIM = 26;
-unsigned int N_INPUTS = 50;
+unsigned int N_INPUTS = 100;
 
-// int *test_program_ptr, int *results_section_ptr, int *register_coverage_ptr, int *data_coverage_ptr, int *save_register_ptr
 int main() {
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
@@ -16,7 +15,7 @@ int main() {
 
     char instr_opcodes[4] = {0x41,  0x45,  0x29,    0x49};
     // char instr_memn[4] = {fadds, fsubs, fsqrts,  fmuls};
-    int opcode_ptr = 1;
+    int opcode_ptr = 3;
 
     int* results_section_ptr = (uint32_t*)cortos_bget(sizeof(uint32_t) * 8 * N_INPUTS);
     int* register_coverage_ptr = (uint32_t*)cortos_bget(sizeof(uint32_t) * 128);
@@ -41,7 +40,12 @@ int main() {
         
         test_program_ptr();
 
-        checker(results_section_ptr, data_coverage_ptr, input_pair_seed, register_seed, instr_opcodes[opcode_ptr], N_INPUTS, GRID_DIM);
+        if(instr_opcodes[opcode_ptr] == 0x41 || instr_opcodes[opcode_ptr] == 0x41 == 0x45) {
+            checker_add_sub(results_section_ptr, data_coverage_ptr, input_pair_seed, register_seed, instr_opcodes[opcode_ptr], N_INPUTS, GRID_DIM);
+        }
+        else if(instr_opcodes[opcode_ptr] == 0x49) {
+            checker_mul(results_section_ptr, data_coverage_ptr, input_pair_seed, register_seed, instr_opcodes[opcode_ptr], N_INPUTS, GRID_DIM);
+        }
         
         // __asm__ __volatile__ (" ta 0 \n\t");
         // __asm__ __volatile__ (" nop \n\t");
