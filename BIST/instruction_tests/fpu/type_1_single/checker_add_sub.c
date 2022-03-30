@@ -11,6 +11,7 @@ int checker_add_sub(int *results_section_ptr, int *data_coverage_ptr, int input_
     int n_correct_test = 0;
 
     for(i=0; i<number_of_inputs; i++) {
+        ee_printf("Test number - %d\n", i+1);
 
         int input_1_1 = *(results_section_ptr + 8*i);
         int input_2_1 = *(results_section_ptr + 8*i + 1);
@@ -47,7 +48,6 @@ int checker_add_sub(int *results_section_ptr, int *data_coverage_ptr, int input_
         }
         // after this float type is either normal or subnormal
         else {
-            ee_printf("Test number - %d\n", i+1);
             int exp_1 = (input_1_1 & 0x7f800000) >> 23;
             int exp_2 = (input_2_1 & 0x7f800000) >> 23;
             int mantissa_1 = (input_1_1 & 0x007fffff);
@@ -65,11 +65,12 @@ int checker_add_sub(int *results_section_ptr, int *data_coverage_ptr, int input_
                 if(diff_exp_inp >= 24) real_val_2 = 0;
                 else {
                     int mask = ((1<<diff_exp_inp)-1); // 001111
-                    int rest = ((mantissa_2 & mask) >> (diff_exp_inp-1));
+                    int rest_sign = ((mantissa_2 & mask) >> (diff_exp_inp-1));
+                    ee_printf("rest_sign is %d\n", rest_sign);
                     mask = ~mask; // 11111000000
                     mantissa_2 &= mask;
                     mantissa_2 &= 0x007fffff;
-                    mantissa_2 += (rest << diff_exp_inp);
+                    mantissa_2 += (rest_sign << diff_exp_inp);
                     real_val_2 = (input_2_1 & 0x80000000);
                     real_val_2 |= (exp_2 << 23);
                     real_val_2 |= mantissa_2; 
@@ -81,10 +82,13 @@ int checker_add_sub(int *results_section_ptr, int *data_coverage_ptr, int input_
                 mantissa_1 |= (float_type_1 << 23);
                 if(diff_exp_inp >= 24) real_val_1 = 0;
                 else {
-                    int mask = ((1<<diff_exp_inp)-1);
+                    int mask = ((1<<diff_exp_inp)-1); // 001111
+                    int rest_sign = ((mantissa_1 & mask) >> (diff_exp_inp-1));
+                    ee_printf("rest_man is 0x%x\n", (mantissa_1 & mask));
                     mask = ~mask;
                     mantissa_1 &= mask; 
                     mantissa_1 &= 0x007fffff;
+                    mantissa_1 += (rest_sign << diff_exp_inp);
                     real_val_1 = (input_1_1 & 0x80000000);
                     real_val_1 |= (exp_1 << 23);
                     real_val_1 |= mantissa_1;
@@ -101,21 +105,25 @@ int checker_add_sub(int *results_section_ptr, int *data_coverage_ptr, int input_
             // ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
             if(output_1_1 == real_val_1 && output_2_1 == real_val_2) {
                 n_correct_test ++;
-                ee_printf("Test passed\n");
             } else {
                 test_failed = 1;
             }
-            ee_printf("####################################################\n\n");
         }
 
         if(test_failed) {
+            ee_printf("Test failed\n");
             ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
             ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
             ee_printf("Actual result 0x%x\n", result_1);
             ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
             ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
-            ee_printf("####################################################\n\n");
+            // ee_printf("####################################################\n\n");
+        } else {
+            ee_printf("Test passed\n");
         }
+
+        ee_printf("####################################################\n\n");
+
         // store data coverage
         // int in1 = *(results_section_ptr + 8*i);
         // int in2 = *(results_section_ptr + 8*i + 1);

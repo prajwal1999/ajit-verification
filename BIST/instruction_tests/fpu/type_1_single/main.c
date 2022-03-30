@@ -15,7 +15,7 @@ int main() {
 
     char instr_opcodes[4] = {0x41,  0x45,  0x29,    0x49};
     // char instr_memn[4] = {fadds, fsubs, fsqrts,  fmuls};
-    int opcode_ptr = 3;
+    int opcode_ptr = 0;
 
     int* results_section_ptr = (uint32_t*)cortos_bget(sizeof(uint32_t) * 8 * N_INPUTS);
     int* register_coverage_ptr = (uint32_t*)cortos_bget(sizeof(uint32_t) * 128);
