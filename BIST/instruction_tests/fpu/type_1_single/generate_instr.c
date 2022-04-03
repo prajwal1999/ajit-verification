@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include "core_portme.h"
-#include "ajit_access_routines.h"
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
+#include "cortos.h"
 
 int generate_opcode_10(int rd,  int rs1,  int rs2,  int op_code, char i,  short imm);
 int generate_f_opcode_10(int rd,  int rs1,  int rs2,  int opf_code,  int FPop);
@@ -13,15 +8,13 @@ int generate_opcode_11(int rd,  int rs1,  int rs2,  int op_code, char i,  short 
 int generate_instr(int *test_program_ptr, int results_section_ptr, int *register_coverage_ptr, int register_seed, int instr_opcode, int *save_register_ptr, int number_of_inputs)
 {   
 
-    __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-    ee_printf(">>> Tests for Instruction with opcode 0x%x\n", instr_opcode);
-    ee_printf(">>> Register seed is %d\n", register_seed);
     char inv_op_code;
 
     if(instr_opcode == 0x41) inv_op_code = 0x45; // fadds 
     else if(instr_opcode == 0x45) inv_op_code = 0x41; // fsubs 
     else if(instr_opcode == 0x29) inv_op_code = 0x49; // fsqrts
     else if(instr_opcode == 0x49) inv_op_code = 0x4d; // fmuls
+    else if(instr_opcode == 0x4d) inv_op_code = 0x49; // fdivs
 
     char mem_mnemonic[3][4] = {'ld', 'ldf', 'st', 'stf'};
     char mem_op_codes[4] =    {0x00, 0x20,  0x04, 0x24};
@@ -43,14 +36,13 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
 
     for(i=0; i<number_of_inputs; i++)
     {
-        // ee_printf("i = %d\n", i);
         seed_5 = prbs_5(seed_5, 100);   rs1 = seed_5;
         seed_5 = prbs_5(seed_5, 100);   rs2 = seed_5;
         seed_5 = prbs_5(seed_5, 100);   rd = seed_5;
-        // ee_printf("%d. op f%d f%d f%d\n",i+1, rs1, rs2, rd);
 
-        if(instr_opcode == 0x29) rs1 = 0;
-
+        if(instr_opcode == 0x29 || instr_opcode == 0x1){  // if instr is fsqrt or fmovs, rs1 is 0
+            rs1 = 0;
+        }
         // load inputs in rs1 and rs2
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[1], 1, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[1], 1, 4); store_instr_at++;
@@ -60,15 +52,16 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
         *store_instr_at = generate_opcode_11(0b00000, result_sec_base_reg, 0, 0b100101, 1, 12); // store later fsr
         *store_instr_at = generate_opcode_11(rd, result_sec_base_reg, 0, mem_op_codes[3], 1, 16); store_instr_at++; // store result
 
-        if(instr_opcode==0x45) {
+        if(instr_opcode==0x45 || instr_opcode == 0x4d) {
             //  run inverse instruction operation without CCR code update
             *store_instr_at = generate_f_opcode_10(rs1, rs1, rd, instr_opcode, 0b110100); store_instr_at++;
             *store_instr_at = generate_f_opcode_10(rs2, rd, rs2, inv_op_code, 0b110100); store_instr_at++;
         }
         else if(instr_opcode == 0x29) {
-            
+            *store_instr_at = generate_f_opcode_10(rs1, rd, rd, inv_op_code, 0b110100); store_instr_at++;
+            *store_instr_at = 0x01000000; store_instr_at++;
         }
-        else {
+        else if(instr_opcode == 0x41 || instr_opcode == 0x49) {
             //  run inverse instruction operation without CCR code update
             *store_instr_at = generate_f_opcode_10(rs1, rd, rs1, inv_op_code, 0b110100); store_instr_at++;
             *store_instr_at = generate_f_opcode_10(rs2, rd, rs2, inv_op_code, 0b110100); store_instr_at++;
@@ -79,11 +72,11 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
         *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[3], 1, 20); store_instr_at++;
         // increment result_sec_base_reg = result_sec_base_reg + 32
         *store_instr_at = generate_opcode_10(result_sec_base_reg, result_sec_base_reg, 0, 0b000000, 1, 32); store_instr_at++;
+        
         // store register coverage
         *(register_coverage_ptr + (rs1 & 0x1f)*3 ) += 1;
         *(register_coverage_ptr + (rs2 & 0x1f)*3 + 1) += 1;
         *(register_coverage_ptr + (rd & 0x1f)*3 + 2) += 1;
-
     }
 
     // load registers back
@@ -97,8 +90,6 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
     *store_instr_at = 0x81c3e008; store_instr_at++;
     *store_instr_at = 0x01000000; store_instr_at++;
 
-
-    ee_printf("last address written 0x%x\n", (store_instr_at-1));
     ee_printf("------------------- Instructions generation done -------------------\n");
     return seed_5;
 }
@@ -107,7 +98,7 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
 // other functions
  int generate_f_opcode_10( int rd, int rs1, int rs2, int opf_code, int FPop)
 {
-     int test = 0x80000000;
+    int test = 0x80000000;
     test |= rd << 25;
     test |= FPop << 19;
     test |= rs1 << 14;
@@ -145,10 +136,3 @@ int generate_instr(int *test_program_ptr, int results_section_ptr, int *register
     }
     return test;
 }
-
-
-
-        // __asm__ __volatile__( " set instr_section, %l0\n\t " );
-        // __asm__ __volatile__( " mov %0, %%l1 \n\t " : : "r" (tests[i]) );
-        // __asm__ __volatile__( " st %l1, [%l0] \n\t " );
-        // __asm__ __volatile__( " add %l0, 0x4, %l0\n\t " );

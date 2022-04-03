@@ -1,11 +1,6 @@
-#include <stdio.h>
-#include "core_portme.h"
-#include "ajit_access_routines.h"
-#include <math.h>
+#include "cortos.h"
 
-int checker_add_sub(int *results_section_ptr, int *data_coverage_ptr, int input_seed, int register_seed, int instr_opcode, int number_of_inputs, int GRID_DIM) {
-
-    __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
+int checker_add_sub(int *results_section_ptr, int *data_coverage_ptr, int instr_opcode, int number_of_inputs, int GRID_DIM) {
 
     int i;
     int n_correct_test = 0;

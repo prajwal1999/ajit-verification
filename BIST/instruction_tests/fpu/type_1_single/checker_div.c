@@ -1,6 +1,6 @@
 #include "cortos.h"
 
-int checker_mul(int *results_section_ptr, int *data_coverage_ptr, int instr_opcode, int number_of_inputs, int GRID_DIM) {
+int checker_div(int *results_section_ptr, int *data_coverage_ptr, int instr_opcode, int number_of_inputs, int GRID_DIM) {
 
     int i;
     int n_correct_test = 0;
@@ -78,14 +78,13 @@ int checker_mul(int *results_section_ptr, int *data_coverage_ptr, int instr_opco
             // ee_printf("####################################################\n\n");
         }
 
+        ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+        ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+        ee_printf("Actual result 0x%x\n", result_1);
+        ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+        ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
         if(test_failed) {
             ee_printf("Test failed\n");
-            ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-            ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-            ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
-            // ee_printf("####################################################\n\n");
         } else {
             ee_printf("Test passed\n");
         }
