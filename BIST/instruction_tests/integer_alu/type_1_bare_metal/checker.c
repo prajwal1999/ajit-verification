@@ -16,14 +16,27 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
         int output_2 = results_section[8*i + 7];
 
         int final_psr = results_section[8*i + 5];
+        int final_ccr = (final_psr & 0x00f00000) >> 20;
+
+        int c_i = (initial_psr >> 20) & 1; // get initial carry
+        int c_f = (final_psr >> 20) & 1; // get final carry
 
         bool test_passed = false;
         bool sub_test_1_correct = false, sub_test_2_correct = false, psr_correct = false;
 
-        if(input_1 == output_1) sub_test_1_correct = true;
-        if(input_2 == output_2) sub_test_2_correct = true;
+        if(instr_opcode == 0x18) {
+            if( (input_1 + c_i - c_f) == output_1 ) sub_test_1_correct = true;
+            if( (input_2 + c_i - c_f) == output_2 ) sub_test_2_correct = true;
+        }
+        else if(instr_opcode == 0x1c) {
+            if( (input_1 - c_i + c_f) == output_1 ) sub_test_1_correct = true;
+            if( (input_2 + c_i - c_f) == output_2 ) sub_test_2_correct = true;
+        }
+        else {
+            if(input_1 == output_1) sub_test_1_correct = true;
+            if(input_2 == output_2) sub_test_2_correct = true;
+        }
 
-        int final_ccr = (final_psr & 0x00f00000) >> 20; 
   
         // verify ccr code
         int operand1_sign = (input_1 >> 31) & 1;
@@ -40,11 +53,11 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
             e_Z = 0;
         }
 
-        if(instr_opcode == 0x10 ) {
+        if(instr_opcode == 0x10 || instr_opcode == 0x18) {
             e_V = ((operand1_sign & operand2_sign & !e_N) | (!operand1_sign & !operand2_sign & e_N));
             e_C = (operand1_sign & operand2_sign) | ((!e_N) & (operand1_sign | operand2_sign));
         }
-        else if(instr_opcode == 0x14) {
+        else if(instr_opcode == 0x14 || instr_opcode == 0x1c) {
             e_V = ((operand1_sign && (!operand2_sign) & (!e_N)) || ((!operand1_sign) && operand2_sign && e_N));
             e_C = ((!operand1_sign) && operand2_sign) || (e_N && ((!operand1_sign) || operand2_sign));
         } 
@@ -69,7 +82,10 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
         if(!test_passed) {
             ee_printf("Test failed - i - %d/%d\n", i+1, N_INPUTS);
             ee_printf("Inputs are 0x%x, 0x%x\n",input_1, input_2);
-            ee_printf("Initial psr - %x, Expected psr - %x, Final psr - %x\n", initial_psr, e_psr, final_psr);
+            ee_printf("sub_test_1_correct - %d, sub_test_2_correct - %d\n", sub_test_1_correct, sub_test_2_correct);
+            ee_printf("Initial psr - %x, ", initial_psr);
+            if(instr_opcode >> 4) ee_printf("Expected psr - %x, ", e_psr);
+            ee_printf("Final psr - %x\n", final_psr);
             ee_printf("result_msb 0x%x,  Actual result 0x%x\n", result_msb, actual_result);
             ee_printf("Actual Output 0x%x, 0x%x\n\n",output_1, output_2);
             ee_printf("####################################################\n\n");
@@ -89,8 +105,6 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
         }
     
     }   
-
-    
 
     return(0);
 }

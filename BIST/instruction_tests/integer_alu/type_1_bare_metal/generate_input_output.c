@@ -28,6 +28,10 @@ int generate_input_output(int *results_section, int input_seed)
 
         results_section[8*i + 1] = lfsr;
         results_section[8*i + 2] = is_imm;
+        lfsr = prbs_32(lfsr);
+        results_section[8*i + 6] = lfsr; // for addx instruction to generate carry
+        lfsr = prbs_32(lfsr);
+        results_section[8*i + 7] = lfsr; // // for addx instruction to generate carry
     }
     
     // ee_printf("--------------------Inputs Outputs Generated----------------------\n");
