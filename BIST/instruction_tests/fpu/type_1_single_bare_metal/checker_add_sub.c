@@ -96,15 +96,20 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
 
         if(test_failed) {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
-            ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-            ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-            ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
-            ee_printf("####################################################\n\n");
+            // ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+            // ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            // ee_printf("Actual result 0x%x\n", result_1);
+            // ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+            // ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
         } else {
-            // ee_printf("Test passed\n");
+            ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
         }
+
+        ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+        ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+        ee_printf("Actual result 0x%x\n", result_1);
+        ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+        ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
 
         ee_printf("####################################################\n\n");
 
@@ -123,8 +128,8 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
         ee_printf("all tests passed\n");    
     } else {
         ee_printf("%d out of %d tests passed\n", n_correct_test, number_of_inputs);    
-        // __asm__ __volatile__ (" ta 0 \n\t");
-        // __asm__ __volatile__ (" nop \n\t");
+        __asm__ __volatile__ (" ta 0 \n\t");
+        __asm__ __volatile__ (" nop \n\t");
     }
 
     return(0);

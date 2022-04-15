@@ -11,12 +11,12 @@ instructions test - fadds, fsubs, fsqrts, fmuls, fdivs
 int main(int *test_program_ptr) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 
-    int input_pair_seed = 0x4060601;
-    int register_seed = 4;
+    int input_pair_seed = 0x9b9d1366;
+    int register_seed = 20;
 
     char instr_opcodes[8] = {0x41,  0x45,  0x29,    0x49,  0x4d,  0x1,   0x5,   0x9};
     // char instr_memn[8] = {fadds, fsubs, fsqrts,  fmuls, fdivs, fmovs, fnegs, fabss};
-    int opcode_ptr = 7;
+    int opcode_ptr = 0;
 
     int results_section[8*N_INPUTS] = {0};
     int register_coverage[4*32] = {0};
@@ -85,8 +85,8 @@ int main(int *test_program_ptr) {
 
         ee_printf("####################################################\n\n");
 
-        // __asm__ __volatile__ (" ta 0 \n\t");
-        // __asm__ __volatile__ (" nop \n\t");
+        __asm__ __volatile__ (" ta 0 \n\t");
+        __asm__ __volatile__ (" nop \n\t");
     }
 
     return 0;
