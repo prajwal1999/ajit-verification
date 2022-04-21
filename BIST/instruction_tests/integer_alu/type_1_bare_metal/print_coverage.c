@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdbool.h>
 
-bool print_coverage(int *register_coverage, int **data_coverage, int instr_opcode )
+bool print_coverage(int *register_coverage, int *data_coverage, int instr_opcode )
 {
 
     // print register coverage
@@ -25,7 +25,7 @@ bool print_coverage(int *register_coverage, int **data_coverage, int instr_opcod
     unsigned int lowest_count_in_grid = 0x7fffffff;
     for(i=0; i<grids_in_row; i++) {
         for(j=0; j<grids_in_row; j++) {
-            lowest_count_in_grid = min(lowest_count_in_grid, data_coverage[i][j]);
+            lowest_count_in_grid = min(lowest_count_in_grid, *(data_coverage + i*grids_in_row + j) );
         }
     }
 

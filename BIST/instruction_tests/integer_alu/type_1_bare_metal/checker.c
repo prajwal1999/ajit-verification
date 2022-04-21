@@ -1,6 +1,6 @@
 #include <stdbool.h>
 
-int checker(int *results_section, int **data_coverage, int instr_opcode) {
+int checker(int *results_section, int *data_coverage, int instr_opcode) {
 
     int n_correct_test = 0;
 
@@ -60,7 +60,7 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
         else if(instr_opcode == 0x14 || instr_opcode == 0x1c) {
             e_V = ((operand1_sign && (!operand2_sign) & (!e_N)) || ((!operand1_sign) && operand2_sign && e_N));
             e_C = ((!operand1_sign) && operand2_sign) || (e_N && ((!operand1_sign) || operand2_sign));
-        } 
+        }
         else {
             e_V = 0;
             e_C = 0;
@@ -96,9 +96,10 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
 
         // store data coverage
         int grid_dim = (int)pow(2, GRID_DIM);
-        int grid_row = ( input_1 >> GRID_DIM ) & 0x1f;
-        int grid_col = ( input_2 >> GRID_DIM ) & 0x1f;
-        data_coverage[grid_row][grid_col] += 1;
+        int grids_in_row = 1 << (32-GRID_DIM);
+        int grid_row = ( input_1 >> GRID_DIM ) & 0x3f;
+        int grid_col = ( input_2 >> GRID_DIM ) & 0x3f;
+        *(data_coverage + grid_row*grids_in_row + grid_col) += 1;
 
         if( n_correct_test == N_INPUTS) {
             ee_printf("all tests passed\n");

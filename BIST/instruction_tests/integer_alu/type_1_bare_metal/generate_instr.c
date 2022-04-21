@@ -12,15 +12,14 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
 
     unsigned char inv_op_code;
 
-    if(instr_opcode == 0x00 || instr_opcode == 0x10) inv_op_code = 0x04; // add, addcc
+         if(instr_opcode == 0x00 || instr_opcode == 0x10) inv_op_code = 0x04; // add, addcc
+    else if(instr_opcode == 0x08 || instr_opcode == 0x18) inv_op_code = 0x0c; // addx addxcc
     else if(instr_opcode == 0x04 || instr_opcode == 0x14) inv_op_code = 0x00; // sub, subcc
+    else if(instr_opcode == 0x0c || instr_opcode == 0x1c) inv_op_code = 0x08; // subx subxcc
     else if(instr_opcode == 0x03 || instr_opcode == 0x13) inv_op_code = 0x03; // xor, xorcc
     else if(instr_opcode == 0x07 || instr_opcode == 0x17) inv_op_code = 0x07; // xnor, xnorcc
     else if(instr_opcode == 0x0a || instr_opcode == 0x1a) inv_op_code = 0x0e; // umul, umulcc
     else if(instr_opcode == 0x0b || instr_opcode == 0x1b) inv_op_code = 0x0f; // smul, smulcc
-    else if(instr_opcode == 0x08 || instr_opcode == 0x18) inv_op_code = 0x0c; // addx addxcc
-    else if(instr_opcode == 0x0c || instr_opcode == 0x1c) inv_op_code = 0x08; // subx subxcc
-    else if(instr_opcode == 0x0e) inv_op_code = 0x0a; // udiv
 
     unsigned char mem_mnemonic[2][3] = {'ld', 'st'};
     unsigned char mem_op_codes[2] = {0x00, 0x04};
@@ -86,20 +85,17 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
         seed_5 = prbs_5(seed_5, result_sec_base_reg);   rs2 = seed_5;
         seed_5 = prbs_5(seed_5, result_sec_base_reg);   rd = seed_5;
         seed_5 = prbs_5(seed_5, result_sec_base_reg);   temp_r = seed_5;
-        seed_5 = prbs_5(seed_5, result_sec_base_reg);   temp_r_2 = seed_5;
+
+        if(instr_opcode==0x8 || instr_opcode==0x18 || instr_opcode==0xc || instr_opcode==0x1c) {
+            // for addx, addxcc, subx, subxcc - to generate initial carry
+            *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[0], 1, 24); store_instr_at++;
+            *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[0], 1, 28); store_instr_at++;
+            *store_instr_at = generate_opcode_10(rd, rs1, rs2, 0x8, is_imm, immediate); store_instr_at++;
+        }
 
         // load inputs in rs1 and rs2
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[0], 1, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[0], 1, 4); store_instr_at++;
-
-
-        if(instr_opcode==0x8 || instr_opcode==0x18 || instr_opcode==0xc || instr_opcode==0x1c) {
-            // load inputs in temp_r and temp_r_2
-            // for addx, addxcc, subx, subxcc
-            *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[0], 1, 24); store_instr_at++;
-            *store_instr_at = generate_opcode_11(temp_r_2, result_sec_base_reg, 0, mem_op_codes[0], 1, 28); store_instr_at++;
-            *store_instr_at = generate_opcode_10(temp_r, temp_r, temp_r_2, 0x8, is_imm, immediate); store_instr_at++;
-        }
 
         // store initial psr
         *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
@@ -119,7 +115,7 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
         *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 20); store_instr_at++;
 
-        if(instr_opcode==0x04 || instr_opcode==0x14 || instr_opcode==0x0c || instr_opcode==0x1c || instr_opcode==0x0e) {
+        if(instr_opcode==0x04 || instr_opcode==0x14 || instr_opcode==0x0c || instr_opcode==0x1c) {
             //  run inverse instruction operation without CCR code update
             *store_instr_at = generate_opcode_10(rs1, rs1, rd, instr_opcode, 0, 0); store_instr_at++;
             *store_instr_at = generate_opcode_10(rs2, rd, rs2, inv_op_code, is_imm, immediate); store_instr_at++;
@@ -143,6 +139,7 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
         register_coverage[4*(rs2 & 0x1f) + 1] += 1;
         register_coverage[4*(rd & 0x1f) + 2] += 1;
         register_coverage[4*(temp_r & 0x1f) + 3] += 3;
+
     }
 
 
@@ -203,11 +200,12 @@ unsigned int generate_opcode_00(unsigned int rd, unsigned char op_code, unsigned
 
 unsigned char prbs_5(unsigned char x, unsigned char except)
 {
-    x ^= x << 2;
-    x &= 0b11111;
-    x ^= x >> 1;
-    x &= 0b11111;
+    // ee_printf("prbs - in - %d, ", x);
+    x ^= (x << 2) & 0b11111;
+    x ^= (x >> 3) & 0b11111;
+    x ^= (x << 1) & 0b11111;
     if(x == except) x=prbs_5(x, except);
     if(x==0) x=prbs_5(1, 0);
+    // ee_printf("prbs -> out - %d\n", x);
     return x;
 }
