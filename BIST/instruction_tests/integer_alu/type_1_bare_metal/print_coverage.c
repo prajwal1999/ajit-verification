@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdbool.h>
 
-bool print_coverage(int *register_coverage, int **data_coverage, int instr_opcode )
+bool print_coverage(int *register_coverage, int *data_coverage, int instr_opcode )
 {
 
     // print register coverage
@@ -20,14 +20,21 @@ bool print_coverage(int *register_coverage, int **data_coverage, int instr_opcod
     }
 
     // print data grid
+    // ee_printf("Grid Printing\n");
     int grids_in_row = 1 << (32-GRID_DIM);
     int j;
     unsigned int lowest_count_in_grid = 0x7fffffff;
     for(i=0; i<grids_in_row; i++) {
         for(j=0; j<grids_in_row; j++) {
-            lowest_count_in_grid = min(lowest_count_in_grid, data_coverage[i][j]);
+            lowest_count_in_grid = min(lowest_count_in_grid, data_coverage[64*i + j]);
+            // ee_printf("%u ", data_coverage[64*i + j]);
         }
+        // ee_printf("---------\n");
     }
+
+    
+    ee_printf(">>> Lowest count in grid is %u (just for debugging)\n", (unsigned int)lowest_count_in_grid);
+
 
     int grid_count_threshold = 1000;
     if(lowest_count_in_grid >= grid_count_threshold) {

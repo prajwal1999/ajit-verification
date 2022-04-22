@@ -98,7 +98,7 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
             // for addx, addxcc, subx, subxcc
             *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[0], 1, 24); store_instr_at++;
             *store_instr_at = generate_opcode_11(temp_r_2, result_sec_base_reg, 0, mem_op_codes[0], 1, 28); store_instr_at++;
-            *store_instr_at = generate_opcode_10(temp_r, temp_r, temp_r_2, 0x8, is_imm, immediate); store_instr_at++;
+            *store_instr_at = generate_opcode_10(temp_r, temp_r, temp_r_2, 0x10, is_imm, immediate); store_instr_at++;
         }
 
         // store initial psr

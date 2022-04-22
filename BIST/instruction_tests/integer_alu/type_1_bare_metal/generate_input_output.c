@@ -10,7 +10,7 @@ uint32_t prbs_32(uint32_t x)
     return x;
 }
 
-int generate_input_output(int *results_section, int input_seed)
+int generate_input_output(int *results_section, int input_seed, int* imm_count)
 {	
     int lfsr = input_seed;
     
@@ -21,12 +21,14 @@ int generate_input_output(int *results_section, int input_seed)
 
         bool is_imm = ((lfsr & 0xf) == 1);
         lfsr = prbs_32(lfsr);
+        int temp = lfsr;
         if(is_imm) {
-            lfsr &= 0x1fff;
-            if(lfsr >> 12 == 1) lfsr |= 0xffffe000;
+            (*imm_count)++;
+            temp &= 0x1fff;
+            if(temp >> 12 == 1) temp |= 0xffffe000;
         }
 
-        results_section[8*i + 1] = lfsr;
+        results_section[8*i + 1] = temp;
         results_section[8*i + 2] = is_imm;
         lfsr = prbs_32(lfsr);
         results_section[8*i + 6] = lfsr; // for addx instruction to generate carry

@@ -1,10 +1,12 @@
 #include <stdbool.h>
 
-int checker(int *results_section, int **data_coverage, int instr_opcode) {
+int checker(int *results_section, int *data_coverage, int instr_opcode, int* carry_set_count) {
 
     int n_correct_test = 0;
 
+
     int i;
+
     for(i=0; i<N_INPUTS; i++) {
         int input_1 = results_section[8*i + 0];
         int input_2 = results_section[8*i + 1];
@@ -23,6 +25,8 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
 
         bool test_passed = false;
         bool sub_test_1_correct = false, sub_test_2_correct = false, psr_correct = false;
+
+        (*carry_set_count) += c_i;
 
         if(instr_opcode == 0x18) {
             if( (input_1 + c_i - c_f) == output_1 ) sub_test_1_correct = true;
@@ -96,9 +100,17 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
 
         // store data coverage
         int grid_dim = (int)pow(2, GRID_DIM);
-        int grid_row = ( input_1 >> GRID_DIM ) & 0x1f;
-        int grid_col = ( input_2 >> GRID_DIM ) & 0x1f;
-        data_coverage[grid_row][grid_col] += 1;
+        int grids_in_row = 1 << (32-GRID_DIM);
+        int grid_row = ( (input_1 + (1 << 31)) >> GRID_DIM ) & 0x3f;
+        int grid_col = ( (input_2 + (1 << 31)) >> GRID_DIM ) & 0x3f;
+        // int grid_row = ( input_1 >> GRID_DIM ) & 0x3f;
+        // int grid_col = ( input_2 >> GRID_DIM ) & 0x3f;
+        
+        // ee_printf("grid_row - %u, grid_col - %u\n", grid_row, grid_col);
+        data_coverage[grids_in_row*grid_row + grid_col]++;
+        // ee_printf("data_coverage[%u][%u] from checker - %u\n", grid_row, grid_col, data_coverage[64*grid_row + grid_col] );
+
+        // ee_printf("data_coverage[%u][%u] from checker - %u\n", grid_row, grid_col, data_coverage[grid_row][grid_col]);
 
         if( n_correct_test == N_INPUTS) {
             ee_printf("all tests passed\n");
@@ -108,3 +120,8 @@ int checker(int *results_section, int **data_coverage, int instr_opcode) {
 
     return(0);
 }
+
+
+        // int grid_row = ( (unsigned int)(in1 + (int)pow(2, 31)) / grid_dim );
+        // int grid_col = ( (unsigned int)(in2 + (int)pow(2, 31)) / grid_dim ); 
+        // *(data_coverage + grid_row*grids_in_row + grid_col) += 1;
