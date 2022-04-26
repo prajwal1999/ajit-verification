@@ -47,3 +47,6 @@ void flush_mem(int *start_addr, int n_words) {
     for(i=0; i<n_words; i++) start_addr[i] = 0;
 }
 
+void print_trap(int t) {
+    ee_printf("Trap occured - 0x%x\n", t);
+}
