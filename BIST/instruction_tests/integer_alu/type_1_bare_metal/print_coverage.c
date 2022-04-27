@@ -26,10 +26,8 @@ bool print_coverage(int *register_coverage, int *data_coverage, int instr_opcode
     unsigned int lowest_count_in_grid = 0x7fffffff;
     for(i=0; i<grids_in_row; i++) {
         for(j=0; j<grids_in_row; j++) {
-            lowest_count_in_grid = min(lowest_count_in_grid, data_coverage[64*i + j]);
-            // ee_printf("%u ", data_coverage[64*i + j]);
+            lowest_count_in_grid = min(lowest_count_in_grid, *(data_coverage + i*grids_in_row + j) );
         }
-        // ee_printf("---------\n");
     }
 
     
