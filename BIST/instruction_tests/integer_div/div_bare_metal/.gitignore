@@ -1,0 +1,14 @@
+*.hex 
+*.objdump 
+*.elf 
+*.wtrace*
+sparc-assembly 
+sparc-obj
+*.log
+*.mmap
+*.mmap.remapped
+*.vars
+setup_page_table.s
+*.lnk
+*.trace.0_0
+__genvmap_setup_page_tables.s
