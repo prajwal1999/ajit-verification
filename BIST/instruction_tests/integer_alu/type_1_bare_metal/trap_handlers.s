@@ -114,14 +114,14 @@ trap_table_base:
 hardware_trap_table_base:
 HW_trap_0x00: ta 0; nop; nop; nop;
 HW_trap_0x01: ta 0; nop; nop; nop;
-HW_trap_0x02: set 0x107, %o0; call ee_printf; ta 0; nop;
+HW_trap_0x02: add %l2, 0x0, %o0; set 0x2, %o1; call print_trap; nop;
 HW_trap_0x03: ta 0; nop; nop; nop;
 HW_trap_0x04: ta 0; nop; nop; nop;
 HW_trap_0x05: ! window overflow trap
 	ba window_overflow_trap_handler; nop; nop; nop;
 HW_trap_0x06: ! window underflow trap
 	ba window_underflow_trap_handler; nop; nop; nop;
-HW_trap_0x07: ta 0; nop; nop; nop;
+HW_trap_0x07: add %l2, 0x0, %o0; set 0x2, %o1; call print_trap; nop;
 
 HW_trap_0x08: ta 0; nop; nop; nop;
 HW_trap_0x09: ta 0; nop; nop; nop;
@@ -246,7 +246,7 @@ HW_trap_0x7f: ta 0; nop; nop; nop;
 
 software_trap_table_base:
 
-SW_trap_0x80: add %l2, 0x0, %o0; call print_trap; nop; ta 0;
+SW_trap_0x80: ta 0; nop; nop; nop;
 SW_trap_0x81: ta 0; nop; nop; nop;
 SW_trap_0x82: ta 0; nop; nop; nop;
 SW_trap_0x83: ta 0; nop; nop; nop;

@@ -11,7 +11,7 @@ int main(int *test_program_ptr) {
 
     char instr_opcodes[16] = {0x00, 0x10, 0x08, 0x18,  0x04, 0x14, 0x0c, 0x1c,  0x03, 0x13, 0x07, 0x17,  0x0a, 0x1a,  0x0b, 0x1b};
     //                        add   addcc addx  addxcc sub   subcc subx  subxcc xor   xorcc xnor  xnorcc umul  umulcc smul  smulcc
-    int opcode_ptr = 2;
+    int opcode_ptr = 0;
 
     int results_section[8*N_INPUTS] = {0};
     int register_coverage[4*32] = {0};
@@ -32,7 +32,7 @@ int main(int *test_program_ptr) {
         
         int new_input_pair_seed = generate_input_output(results_section, input_pair_seed, &instr_metadata[opcode_ptr][1]);
 
-        // ee_printf("input output generated\n");
+        ee_printf("input pair seed returned - 0x%x\n", new_input_pair_seed);
 
         int new_register_seed = generate_instr(test_program_ptr, results_section, register_coverage, register_seed, instr_opcodes[opcode_ptr], save_register);
         // ee_printf("instructions generated\n");
