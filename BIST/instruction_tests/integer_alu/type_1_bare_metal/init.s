@@ -45,7 +45,7 @@ _start:
 	ta 0
 	nop
 
-	.align 4
+	.align 262144
 	.global test_program
 	test_program:
 	.skip 64000
