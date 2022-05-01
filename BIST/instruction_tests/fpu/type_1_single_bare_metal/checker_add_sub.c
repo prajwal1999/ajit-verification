@@ -1,3 +1,6 @@
+#include <math.h>
+
+
 int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, int number_of_inputs) {
 
     int i;
@@ -21,6 +24,9 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
         int real_val_1 = 0, real_val_2 = 0;
         char test_failed = 0;
 
+        int g_exp_1 = (input_1_1 & 0x7f800000) >> 23;
+        int g_exp_2 = (input_2_1 & 0x7f800000) >> 23;
+
         if(float_type_1 == 3 || float_type_1 == 4) { // infinity or NAN
             if(result_1 == input_1_1) n_correct_test++;
             else test_failed = 1;
@@ -41,47 +47,59 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
         else {
             int exp_1 = (input_1_1 & 0x7f800000) >> 23;
             int exp_2 = (input_2_1 & 0x7f800000) >> 23;
+            int exp_res = (result_1 & 0x7f800000) >> 23;
+
+            if(exp_1 == 0) exp_1 = -126; else exp_1 -= 127;
+            if(exp_2 == 0) exp_2 = -126; else exp_2 -= 127;
+
             int mantissa_1 = (input_1_1 & 0x007fffff);
             int mantissa_2 = (input_2_1 & 0x007fffff);
             int diff_exp_inp = abs(exp_1 - exp_2);
 
-            // ee_printf("exp_1 - %d, exp_2 - %d\n", exp_1, exp_2);
-            // ee_printf("mantissa_1 - 0x%x, mantissa_2 - 0x%x\n", mantissa_1, mantissa_2);
-            // ee_printf("diff_exp_inp is %d\n", diff_exp_inp);
+            // if(i==372) {
+            //     ee_printf("exp_1 - %d, exp_2 - %d\n", exp_1, exp_2);
+            //     ee_printf("mantissa_1 - 0x%x, mantissa_2 - 0x%x\n", mantissa_1, mantissa_2);
+            //     ee_printf("diff_exp_inp is %d\n", diff_exp_inp);
+            // }
 
             if(exp_1 > exp_2) {
                 // change mantissa 2
                 real_val_1 = input_1_1;
                 mantissa_2 |= (float_type_2 << 23);
-                if(diff_exp_inp >= 24) real_val_2 = 0;
-                else {
-                    int mask = ((1<<diff_exp_inp)-1); // 001111
-                    int rest_sign = ((mantissa_2 & mask) >> (diff_exp_inp-1));
-                    mask = ~mask; // 11111000000
-                    mantissa_2 &= mask;
-                    mantissa_2 &= 0x007fffff;
-                    mantissa_2 += (rest_sign << diff_exp_inp);
-                    real_val_2 = (input_2_1 & 0x80000000);
-                    real_val_2 |= (exp_2 << 23);
-                    real_val_2 |= mantissa_2; 
+                mantissa_2 = (mantissa_2 >> (diff_exp_inp-1));
+                int rest_sign = mantissa_2 & 1;
+                mantissa_2 >>= 1;
+                mantissa_2 += rest_sign;
+                if(mantissa_2 == (1<<(24-diff_exp_inp))) {
+                    diff_exp_inp--;
+                    exp_2++;
                 }
+                mantissa_2 <<= diff_exp_inp;
+                real_val_2 = (input_2_1 & 0x80000000);
+                if(exp_2 == -126) exp_2 = 0; else exp_2 += 127;
+                real_val_2 |= (exp_2 << 23);
+                real_val_2 |= (mantissa_2 & 0x7fffff); 
+                if(diff_exp_inp >= 24) real_val_2 = 0;
             }
             else if(exp_1 < exp_2) {
                 // change mantissa 1
                 real_val_2 = input_2_1;
                 mantissa_1 |= (float_type_1 << 23);
-                if(diff_exp_inp >= 24) real_val_1 = 0;
-                else {
-                    int mask = ((1<<diff_exp_inp)-1); // 001111
-                    int rest_sign = ((mantissa_1 & mask) >> (diff_exp_inp-1));
-                    mask = ~mask;
-                    mantissa_1 &= mask; 
-                    mantissa_1 &= 0x007fffff;
-                    mantissa_1 += (rest_sign << diff_exp_inp);
-                    real_val_1 = (input_1_1 & 0x80000000);
-                    real_val_1 |= (exp_1 << 23);
-                    real_val_1 |= mantissa_1;
+                mantissa_1 = (mantissa_1 >> (diff_exp_inp-1));
+                int rest_sign = mantissa_1 & 1;
+                mantissa_1 >>= 1;
+                // if(i==337) ee_printf("mantisa 1 is 0x%x\n", mantissa_1);
+                mantissa_1 += rest_sign;
+                if(mantissa_1 == (1<<(24-diff_exp_inp))) {
+                    diff_exp_inp--;
+                    exp_1++;
                 }
+                mantissa_1 <<= diff_exp_inp;
+                real_val_1 = (input_1_1 & 0x80000000);
+                if(exp_1 == -126) exp_1 = 0; else exp_1 += 127;
+                real_val_1 |= (exp_1 << 23);
+                real_val_1 |= (mantissa_1 & 0x7fffff);
+                if(diff_exp_inp >= 24) real_val_1 = 0;
             } else {
                 real_val_1 = input_1_1;
                 real_val_2 = input_2_1;
@@ -96,22 +114,27 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
 
         if(test_failed) {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
-            // ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            // ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-            // ee_printf("Actual result 0x%x\n", result_1);
-            // ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-            // ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+            ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+            ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            ee_printf("exp_1 - %d, exp_2 - %d\n", g_exp_1, g_exp_2);
+            ee_printf("diff_exp_inp is %d\n",  abs(g_exp_1 - g_exp_2));
+            ee_printf("Actual result 0x%x\n", result_1);
+            ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+            ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+            ee_printf("####################################################\n\n");
+            // __asm__ __volatile__ (" ta 0 \n\t");
+            // __asm__ __volatile__ (" nop \n\t");
         } else {
-            ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
+            // ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
         }
 
-        ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-        ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-        ee_printf("Actual result 0x%x\n", result_1);
-        ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-        ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+        // ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+        // ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+        // ee_printf("Actual result 0x%x\n", result_1);
+        // ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+        // ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
 
-        ee_printf("####################################################\n\n");
+        // ee_printf("####################################################\n\n");
 
         // store data coverage
         // int in1 = *(results_section + 8*i);
