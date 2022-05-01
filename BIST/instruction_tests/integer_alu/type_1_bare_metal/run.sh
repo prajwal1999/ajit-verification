@@ -8,7 +8,7 @@ DATABASE=0x400f0000
 CLKFREQ=80000000
 
 
-n_inputs=10
+n_inputs=1000
 grid_dim=26
 
 clear

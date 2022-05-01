@@ -31,21 +31,6 @@ _start:
 	set 0x1, %o0
 	sta %o0, [%g0] 0xa   
 !------------------------------------------
-	
-	set D, %l0
-	set E, %l1
-	ld [%l0], %f5	
-	ld [%l1], %f6		
-	!fadds %f5, %f6, %f7	
-	
-	
-	set A, %l3		
-	set B, %l4
-	set C, %l5		
-	ld [%l3], %f10		
-	ld [%l4], %f11		
-	fadds %f10, %f11, %f16	
-	st %f16, [%l5]
 
 	set test_program, %o0
 	call print
