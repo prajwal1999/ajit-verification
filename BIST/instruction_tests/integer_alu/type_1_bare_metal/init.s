@@ -45,11 +45,10 @@ _start:
 	ta 0
 	nop
 
-	.align 262144
+	.align 4096
 	.global test_program
 	test_program:
-	.skip 64000
-
+	.skip 131072 ! 128kb  !18*N + 20
 
 
 

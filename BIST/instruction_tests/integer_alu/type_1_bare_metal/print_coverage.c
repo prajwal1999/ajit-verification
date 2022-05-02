@@ -34,7 +34,7 @@ bool print_coverage(int *register_coverage, int *data_coverage, int instr_opcode
     ee_printf(">>> Lowest count in grid is %u (just for debugging)\n", (unsigned int)lowest_count_in_grid);
 
 
-    int grid_count_threshold = 1;
+    int grid_count_threshold = 1000;
     if(lowest_count_in_grid >= grid_count_threshold) {
         ee_printf("\n");
         ee_printf(">>> Coverage for Instruction with opcode 0x%x\n", instr_opcode);
