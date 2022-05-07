@@ -47,8 +47,9 @@ void flush_mem(int *start_addr, int n_words) {
     for(i=0; i<n_words; i++) start_addr[i] = 0;
 }
 
-void print_trap(int npc, int trap_type) {
-    ee_printf("Trap occured npc - 0x%x, trap type - %d\n", npc, trap_type);
+void print_trap(int *npc, int trap_type) {
+    ee_printf("Trap occured npc - 0x%x, trap type - %x\n", npc, trap_type);
+    ee_printf("Value at PC=0x%x, Value at NPC=0x%x\n", *(npc-1), *npc);
     __asm__ __volatile__ (" ta 0 \n\t");
     __asm__ __volatile__ (" nop \n\t");
 }

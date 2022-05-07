@@ -120,6 +120,17 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
             *store_instr_at = generate_opcode_10(rs1, rs1, rd, instr_opcode, 0, 0); store_instr_at++;
             *store_instr_at = generate_opcode_10(rs2, rd, rs2, inv_op_code, is_imm, immediate); store_instr_at++;
         }
+        else if(instr_opcode==0xa || instr_opcode==0x1a || instr_opcode==0xb || instr_opcode==0x1b) {
+            if(immediate == 0) {
+                *store_instr_at = generate_opcode_10(rs2, rd, rs1, 0x0, 0, 0); store_instr_at++;
+                *store_instr_at = generate_opcode_10(rs1, rd, rd, 0x0, 0, 0); store_instr_at++;
+            }
+            else {
+                //  run inverse instruction operation without CCR code update
+                *store_instr_at = generate_opcode_10(rs1, rd, rs1, inv_op_code, 0, 0); store_instr_at++;
+                *store_instr_at = generate_opcode_10(rs2, rd, rs2, inv_op_code, is_imm, immediate); store_instr_at++;
+            }
+        }
         else {
             //  run inverse instruction operation without CCR code update
             *store_instr_at = generate_opcode_10(rs1, rd, rs1, inv_op_code, 0, 0); store_instr_at++;

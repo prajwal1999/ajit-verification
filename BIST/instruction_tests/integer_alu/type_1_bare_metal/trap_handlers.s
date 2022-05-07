@@ -113,20 +113,20 @@ window_underflow_trap_handler:
 trap_table_base:
 hardware_trap_table_base:
 HW_trap_0x00: ta 0; nop; nop; nop;
-HW_trap_0x01: ta 0; nop; nop; nop;
+HW_trap_0x01: add %l2, 0x0, %o0; set 0x1, %o1; call print_trap; nop;
 HW_trap_0x02: add %l2, 0x0, %o0; set 0x2, %o1; call print_trap; nop;
-HW_trap_0x03: ta 0; nop; nop; nop;
-HW_trap_0x04: ta 0; nop; nop; nop;
+HW_trap_0x03: add %l2, 0x0, %o0; set 0x3, %o1; call print_trap; nop;
+HW_trap_0x04: add %l2, 0x0, %o0; set 0x4, %o1; call print_trap; nop;
 HW_trap_0x05: ! window overflow trap
 	ba window_overflow_trap_handler; nop; nop; nop;
 HW_trap_0x06: ! window underflow trap
 	ba window_underflow_trap_handler; nop; nop; nop;
-HW_trap_0x07: add %l2, 0x0, %o0; set 0x2, %o1; call print_trap; nop;
+HW_trap_0x07: add %l2, 0x0, %o0; set 0x7, %o1; call print_trap; nop;
 
-HW_trap_0x08: ta 0; nop; nop; nop;
-HW_trap_0x09: ta 0; nop; nop; nop;
-HW_trap_0x0a: ta 0; nop; nop; nop;
-HW_trap_0x0b: ta 0; nop; nop; nop;
+HW_trap_0x08: add %l2, 0x0, %o0; set 0x8, %o1; call print_trap; nop;
+HW_trap_0x09: add %l2, 0x0, %o0; set 0x9, %o1; call print_trap; nop;
+HW_trap_0x0a: add %l2, 0x0, %o0; set 0xa, %o1; call print_trap; nop;
+HW_trap_0x0b: add %l2, 0x0, %o0; set 0xb, %o1; call print_trap; nop;
 HW_trap_0x0c: ta 0; nop; nop; nop;
 HW_trap_0x0d: ta 0; nop; nop; nop;
 HW_trap_0x0e: ta 0; nop; nop; nop;
@@ -147,19 +147,19 @@ HW_trap_0x1c: ta 0; nop; nop; nop;
 HW_trap_0x1d: ta 0; nop; nop; nop;
 HW_trap_0x1e: ta 0; nop; nop; nop;
 HW_trap_0x1f: ta 0; nop; nop; nop;
-HW_trap_0x20: ta 0; nop; nop; nop;
-HW_trap_0x21: ta 0; nop; nop; nop;
+HW_trap_0x20: add %l2, 0x0, %o0; set 0x20, %o1; call print_trap; nop;
+HW_trap_0x21: add %l2, 0x0, %o0; set 0x21, %o1; call print_trap; nop;
 HW_trap_0x22: ta 0; nop; nop; nop;
 HW_trap_0x23: ta 0; nop; nop; nop;
-HW_trap_0x24: ta 0; nop; nop; nop;
-HW_trap_0x25: ta 0; nop; nop; nop;
+HW_trap_0x24: add %l2, 0x0, %o0; set 0x24, %o1; call print_trap; nop;
+HW_trap_0x25: add %l2, 0x0, %o0; set 0x25, %o1; call print_trap; nop;
 HW_trap_0x26: ta 0; nop; nop; nop;
 HW_trap_0x27: ta 0; nop; nop; nop;
-HW_trap_0x28: ta 0; nop; nop; nop;
-HW_trap_0x29: ta 0; nop; nop; nop;
-HW_trap_0x2a: ta 0; nop; nop; nop;
-HW_trap_0x2b: ta 0; nop; nop; nop;
-HW_trap_0x2c: ta 0; nop; nop; nop;
+HW_trap_0x28: add %l2, 0x0, %o0; set 0x28, %o1; call print_trap; nop;
+HW_trap_0x29: add %l2, 0x0, %o0; set 0x29, %o1; call print_trap; nop;
+HW_trap_0x2a: add %l2, 0x0, %o0; set 0x2a, %o1; call print_trap; nop;
+HW_trap_0x2b: add %l2, 0x0, %o0; set 0x2b, %o1; call print_trap; nop;
+HW_trap_0x2c: add %l2, 0x0, %o0; set 0x2c, %o1; call print_trap; nop;
 HW_trap_0x2d: ta 0; nop; nop; nop;
 HW_trap_0x2e: ta 0; nop; nop; nop;
 HW_trap_0x2f: ta 0; nop; nop; nop;
@@ -175,7 +175,7 @@ HW_trap_0x38: ta 0; nop; nop; nop;
 HW_trap_0x39: ta 0; nop; nop; nop;
 HW_trap_0x3a: ta 0; nop; nop; nop;
 HW_trap_0x3b: ta 0; nop; nop; nop;
-HW_trap_0x3c: ta 0; nop; nop; nop;
+HW_trap_0x3c: add %l2, 0x0, %o0; set 0x3c, %o1; call print_trap; nop;
 HW_trap_0x3d: ta 0; nop; nop; nop;
 HW_trap_0x3e: ta 0; nop; nop; nop;
 HW_trap_0x3f: ta 0; nop; nop; nop;
