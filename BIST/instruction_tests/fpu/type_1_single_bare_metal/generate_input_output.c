@@ -64,7 +64,7 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
             case 0: results_section_ptr[8*i] = (lfsr_32 & 0x807fffff); break;
             case 2: results_section_ptr[8*i] = (lfsr_32 & 0x80000000); break;
             case 3: results_section_ptr[8*i] = (lfsr_32 & 0x80000000) | 0x7f800000; break;
-            case 4: results_section_ptr[8*i] = (lfsr_32 | 0xffc00000); break;
+            case 4: results_section_ptr[8*i] = (lfsr_32 | 0xff800000); break;
         }
 
         lfsr_32 = prbs_32(lfsr_32);
@@ -83,7 +83,7 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
             case 0: results_section_ptr[8*i + 1] = (lfsr_32 & 0x807fffff); break;
             case 2: results_section_ptr[8*i + 1] = (lfsr_32 & 0x80000000); break;
             case 3: results_section_ptr[8*i + 1] = (lfsr_32 & 0x80000000) | 0x7f800000; break;
-            case 4: results_section_ptr[8*i + 1] = (lfsr_32 | 0xffc00000); break;
+            case 4: results_section_ptr[8*i + 1] = (lfsr_32 | 0xff800000); break;
         }
 
         results_section_ptr[8*i + 7] = 5*float_type_1 + float_type_2; // store combination of both floating types 
