@@ -86,7 +86,7 @@ int checker(int *results_section, int *data_coverage, int instr_opcode, int* car
         if(!test_passed) {
             ee_printf("Test failed - i - %d/%d\n", i+1, N_INPUTS);
             ee_printf("Inputs are 0x%x, 0x%x\n",input_1, input_2);
-            ee_printf("sub_test_1_correct - %d, sub_test_2_correct - %d\n", sub_test_1_correct, sub_test_2_correct);
+            // ee_printf("sub_test_1_correct - %d, sub_test_2_correct - %d\n", sub_test_1_correct, sub_test_2_correct);
             ee_printf("Initial psr - %x, ", initial_psr);
             if(instr_opcode >> 4) ee_printf("Expected psr - %x, ", e_psr);
             ee_printf("Final psr - %x\n", final_psr);
@@ -101,9 +101,6 @@ int checker(int *results_section, int *data_coverage, int instr_opcode, int* car
         // store data coverage
         int grid_dim = (int)pow(2, GRID_DIM);
         int grids_in_row = 1 << (32-GRID_DIM);
-        // int grid_row = ( (input_1 + (1 << 31)) >> GRID_DIM ) & 0x3f;
-        // int grid_col = ( (input_2 + (1 << 31)) >> GRID_DIM ) & 0x3f;        
-        // data_coverage[grids_in_row*grid_row + grid_col]++;
         int grid_row = ( input_1 >> GRID_DIM ) & 0x3f;
         int grid_col = ( input_2 >> GRID_DIM ) & 0x3f;
         *(data_coverage + grid_row*grids_in_row + grid_col) += 1;

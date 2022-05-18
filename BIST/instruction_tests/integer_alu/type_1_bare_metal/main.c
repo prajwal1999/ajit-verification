@@ -6,12 +6,12 @@
 int main(int *test_program_ptr) {
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
-    int input_pair_seed = 0xd0fcae1e;
-    int register_seed = 1;
+    int input_pair_seed = 0xf10d399b;
+    int register_seed = 4;
 
     char instr_opcodes[16] = {0x00, 0x10, 0x08, 0x18,  0x04, 0x14, 0x0c, 0x1c,  0x03, 0x13, 0x07, 0x17,  0x0a, 0x1a,  0x0b, 0x1b};
     //                        add   addcc addx  addxcc sub   subcc subx  subxcc xor   xorcc xnor  xnorcc umul  umulcc smul  smulcc
-    int opcode_ptr = 12;
+    int opcode_ptr = 11;
 
     int results_section[8*N_INPUTS] = {0};
     int register_coverage[4*32] = {0};
