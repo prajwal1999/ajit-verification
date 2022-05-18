@@ -3,15 +3,15 @@
 #include <stdbool.h>
 
 
-int main(int *test_program_ptr) {
+int main(int *test_program_ptr, int *current_instr_number) {
 
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
     int input_pair_seed = 0x9de13224;
     int register_seed = 7;
 
     char instr_opcodes[2] = {0x20, 0x22};
-    //                        tadcc taddcctv
-    int opcode_ptr = 1;
+    //                        taddcc taddcctv
+    int opcode_ptr = 0;
 
     int results_section[8*N_INPUTS] = {0};
     int register_coverage[4*32] = {0};
@@ -30,7 +30,7 @@ int main(int *test_program_ptr) {
 
         // ee_printf("input output generated\n");
 
-        int new_register_seed = generate_instr(test_program_ptr, results_section, register_coverage, register_seed, instr_opcodes[opcode_ptr], save_register);
+        int new_register_seed = generate_instr(test_program_ptr, results_section, register_coverage, register_seed, instr_opcodes[opcode_ptr], save_register, current_instr_number);
         // ee_printf("instructions generated\n");
         test_program();
         // ee_printf("test program ran\n");

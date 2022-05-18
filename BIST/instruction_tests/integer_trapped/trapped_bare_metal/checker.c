@@ -18,24 +18,12 @@ int checker(int *results_section, int *data_coverage, int instr_opcode) {
         int final_psr = results_section[8*i + 5];
         int final_ccr = (final_psr & 0x00f00000) >> 20;
 
-        int c_i = (initial_psr >> 20) & 1; // get initial carry
-        int c_f = (final_psr >> 20) & 1; // get final carry
-
         bool test_passed = false;
         bool sub_test_1_correct = false, sub_test_2_correct = false, psr_correct = false;
 
-        if(instr_opcode == 0x18) {
-            if( (input_1 + c_i - c_f) == output_1 ) sub_test_1_correct = true;
-            if( (input_2 + c_i - c_f) == output_2 ) sub_test_2_correct = true;
-        }
-        else if(instr_opcode == 0x1c) {
-            if( (input_1 - c_i + c_f) == output_1 ) sub_test_1_correct = true;
-            if( (input_2 + c_i - c_f) == output_2 ) sub_test_2_correct = true;
-        }
-        else {
-            if(input_1 == output_1) sub_test_1_correct = true;
-            if(input_2 == output_2) sub_test_2_correct = true;
-        }
+
+        if(input_1 == output_1) sub_test_1_correct = true;
+        if(input_2 == output_2) sub_test_2_correct = true;
 
   
         // verify ccr code

@@ -9,7 +9,8 @@ int checker(int *results_section, int *data_coverage, int instr_opcode) {
         int input_1_msb = results_section[8*i + 0];
         int input_1 = results_section[8*i + 1];
         int input_2 = results_section[8*i + 2];
-        int initial_psr = results_section[8*i + 3];
+        // int initial_psr = results_section[8*i + 3];
+        int result_msb = results_section[8*i + 3];
         int actual_result = results_section[8*i + 4];
 
         int output_1 = results_section[8*i + 6];
@@ -18,8 +19,8 @@ int checker(int *results_section, int *data_coverage, int instr_opcode) {
         int final_psr = results_section[8*i + 5];
         int final_ccr = (final_psr & 0x00f00000) >> 20;
 
-        int c_i = (initial_psr >> 20) & 1; // get initial carry
-        int c_f = (final_psr >> 20) & 1; // get final carry
+        // int c_i = (initial_psr >> 20) & 1; // get initial carry
+        // int c_f = (final_psr >> 20) & 1; // get final carry
 
         bool test_passed = false;
         bool sub_test_1_correct = false, sub_test_2_correct = false, psr_correct = false;

@@ -8,7 +8,7 @@ This section contains verification of integer alu instruction by using inverse i
 
 
 Each test consists 2-inputs for which 2-outputs are expected.
-Result section - input_1 input_1 input_2 initial_psr result_lsb psr output_1 output_2 
+Result section - input_1 input_1 input_2 result_msb result_lsb psr output_1 output_2 
 
 
 --- stats store for register coverage
@@ -16,3 +16,6 @@ Result section - input_1 input_1 input_2 initial_psr result_lsb psr output_1 out
  - used as rd for load/store instructions
 
 --- instruction count - note how many times a opcode is checked 
+
+
+input_1

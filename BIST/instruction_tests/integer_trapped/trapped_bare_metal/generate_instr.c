@@ -7,12 +7,16 @@ unsigned char prbs_5(unsigned char x, unsigned char except);
 
 
 
-int generate_instr(int *test_program_ptr, int *results_section, int *register_coverage, int register_seed, int instr_opcode, int save_register)
+int generate_instr(int *test_program_ptr, int *results_section, int *register_coverage, int register_seed, 
+                    int instr_opcode, int save_register, int *current_instr_number)
 {   
 
     unsigned char inv_op_code;
+    unsigned char simple_op_code;
 
-         if(instr_opcode == 0x20 || instr_opcode == 0x22) inv_op_code = 0x04; // add, addcc
+         if(instr_opcode == 0x20 || instr_opcode == 0x22) inv_op_code = 0x04; // taddcc, taddcctv
+
+         if(instr_opcode == 0x20 || instr_opcode == 0x22) simple_op_code = 0x00; 
     // else if(instr_opcode == 0x04 || instr_opcode == 0x14) inv_op_code = 0x00; // sub, subcc
 
     unsigned char mem_mnemonic[2][3] = {'ld', 'st'};
@@ -80,36 +84,31 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
         seed_5 = prbs_5(seed_5, result_sec_base_reg);   rd = seed_5;
         seed_5 = prbs_5(seed_5, result_sec_base_reg);   temp_r = seed_5;
 
-        if(instr_opcode==0x8 || instr_opcode==0x18 || instr_opcode==0xc || instr_opcode==0x1c) {
-            // for addx, addxcc, subx, subxcc - to generate initial carry
-            *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[0], 1, 24); store_instr_at++;
-            *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[0], 1, 28); store_instr_at++;
-            *store_instr_at = generate_opcode_10(rd, rs1, rs2, 0x8, is_imm, immediate); store_instr_at++;
-        }
-
         // load inputs in rs1 and rs2
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[0], 1, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[0], 1, 4); store_instr_at++;
 
-        // store initial psr
+        // run simple instruction and store result
+        *store_instr_at = generate_opcode_10(rd, rs1, rs2, simple_op_code, is_imm, immediate); store_instr_at++;
+        *store_instr_at = generate_opcode_11(rd, result_sec_base_reg, 0, mem_op_codes[1], 1, 12); store_instr_at++;
+        // store psr 
         *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 8); store_instr_at++;
         
-        // run main instruction operation
+        // store the currnt executing instr number - indexed 0
+        store_instr_at = load_result_section_base((int)current_instr_number, store_instr_at, temp_r);
+        *store_instr_at = generate_opcode_10(rd, rd, 0, 0b000001, 1, 0); store_instr_at++; // rd = rd & 0
+        *store_instr_at = generate_opcode_10(rd, rd, 0, 0b000001, 1, i); store_instr_at++; // rd = rd + 1
+
+        // *(current_instr_number) = i;
+        // run main instruction and store result
         *store_instr_at = generate_opcode_10(rd, rs1, rs2, instr_opcode, is_imm, immediate); store_instr_at++;
-
-        //store result msb which is in Y for some instructions
-        *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101000, 0, 0); store_instr_at++;
-        *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 12); store_instr_at++;
-
-        //store result
-        *store_instr_at = generate_opcode_11(rd, result_sec_base_reg, 0, mem_op_codes[1], 1, 16); store_instr_at++;
-
-        // store final psr
+        *store_instr_at = generate_opcode_11(rd, result_sec_base_reg, 0, mem_op_codes[1], 1, 20); store_instr_at++;
+        // store psr 
         *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
-        *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 20); store_instr_at++;
+        *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 16); store_instr_at++;
 
-        if(instr_opcode==0x04 || instr_opcode==0x14 || instr_opcode==0x0c || instr_opcode==0x1c) {
+        if(instr_opcode==0x21 || instr_opcode==0x23) {
             //  run inverse instruction operation without CCR code update
             *store_instr_at = generate_opcode_10(rs1, rs1, rd, instr_opcode, 0, 0); store_instr_at++;
             *store_instr_at = generate_opcode_10(rs2, rd, rs2, inv_op_code, is_imm, immediate); store_instr_at++;
@@ -133,7 +132,6 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
         register_coverage[4*(rs2 & 0x1f) + 1] += 1;
         register_coverage[4*(rd & 0x1f) + 2] += 1;
         register_coverage[4*(temp_r & 0x1f) + 3] += 3;
-
     }
 
 

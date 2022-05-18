@@ -30,6 +30,13 @@ int main(int *test_program_ptr) {
         int64_t new_input_pair_seed = 0;
         generate_input_output(results_section, input_pair_seed, &new_input_pair_seed);
 
+        // int i=0;
+        // for(i; i<N_INPUTS; i++) {
+        //     ee_printf("i=%d\n", i);
+        //     ee_printf("input_1 - 0x%x%x, ", results_section[i*8], results_section[i*8+1]);
+        //     ee_printf("input_2 - 0x%x, is_imm=%d\n", results_section[i*8+2], results_section[i*8+3]);
+        // }
+
         // ee_printf("input output generated\n");
 
         int new_register_seed = generate_instr(test_program_ptr, results_section, register_coverage, register_seed, instr_opcodes[opcode_ptr], save_register);

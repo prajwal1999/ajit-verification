@@ -72,8 +72,8 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
     for(i=0; i<N_INPUTS; i++)
     {
         seed_5 = prbs_5(seed_5, result_sec_base_reg);   rs1 = seed_5;
-        is_imm = results_section[8*i + 2];
-        if(is_imm) immediate = results_section[8*i + 1];
+        is_imm = results_section[8*i + 3];
+        if(is_imm) immediate = results_section[8*i + 2];
         else immediate = 0;
         
         seed_5 = prbs_5(seed_5, result_sec_base_reg);   rs2 = seed_5;
@@ -82,13 +82,13 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
 
         // load inputs in Y, rs1 and rs2
         *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[0], 1, 0); store_instr_at++;
-        *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
+        *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b110000, 0, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[0], 1, 4); store_instr_at++;
         *store_instr_at = generate_opcode_11(rs2, result_sec_base_reg, 0, mem_op_codes[0], 1, 8); store_instr_at++;
 
         // store initial psr
-        *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
-        *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 12); store_instr_at++;
+        // *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
+        // *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 12); store_instr_at++;
         
         // run main instruction operation
         *store_instr_at = generate_opcode_10(rd, rs1, rs2, instr_opcode, is_imm, immediate); store_instr_at++;
@@ -97,15 +97,18 @@ int generate_instr(int *test_program_ptr, int *results_section, int *register_co
         //store result
         *store_instr_at = generate_opcode_11(rd, result_sec_base_reg, 0, mem_op_codes[1], 1, 16); store_instr_at++;
 
+        // store result msb
+        *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101000, 0, 0); store_instr_at++;
+        *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 12); store_instr_at++;
+
+
         // store final psr
         *store_instr_at = generate_opcode_10(temp_r, 0, 0, 0b101001, 0, 0); store_instr_at++;
         *store_instr_at = generate_opcode_11(temp_r, result_sec_base_reg, 0, mem_op_codes[1], 1, 20); store_instr_at++;
 
-        // else if(instr_opcode==0x0e || instr_opcode==0x1e || instr_opcode==0x0f || instr_opcode==0x1f) {
-            // rs1 = rd*rs2 + r
+        // rs1 = rd*rs2 + r
         *store_instr_at = generate_opcode_10(rs2, rd, rs2, inv_op_code, is_imm, immediate); store_instr_at++; // rs2 = rd*rs2
         *store_instr_at = generate_opcode_10(rs1, rs1, rs2, 0x04, 0, 0); store_instr_at++; // rs1 = r
-        // }
 
         // store inputs in rs1 and rs2
         *store_instr_at = generate_opcode_11(rs1, result_sec_base_reg, 0, mem_op_codes[1], 1, 28); store_instr_at++;
