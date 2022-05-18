@@ -10,13 +10,14 @@ instructions test - fadds, fsubs, fsqrts, fmuls, fdivs
 
 int main(int *test_program_ptr) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
+    ee_printf("started------\n");
 
     int input_pair_seed = 0x9b9d1366;
     int register_seed = 20;
 
     char instr_opcodes[8] = {0x41,  0x45,  0x29,    0x49,  0x4d,  0x1,   0x5,   0x9};
     // char instr_memn[8] = {fadds, fsubs, fsqrts,  fmuls, fdivs, fmovs, fnegs, fabss};
-    int opcode_ptr = 0;
+    int opcode_ptr = 3;
 
     int results_section[8*N_INPUTS] = {0};
     int register_coverage[4*32] = {0};
@@ -45,14 +46,14 @@ int main(int *test_program_ptr) {
             case 0x45:
                 checker_add_sub(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
                 break;
+            case 0x29:
+                checker_sqrt(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
+                break;
             case 0x49:
                 checker_mul(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
                 break;
             case 0x4d:
                 checker_div(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
-                break;
-            case 0x29:
-                checker_sqrt(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
                 break;
             case 0x1:
                 checker_fmovs_fnegs_fabss(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);

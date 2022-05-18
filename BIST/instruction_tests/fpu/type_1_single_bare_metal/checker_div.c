@@ -68,8 +68,8 @@ int checker_div(int *results_section, int *data_coverage, int instr_opcode, int 
             int diff_1 = abs(output_1_1 - real_val_1);
             int diff_2 = abs(output_2_1 - real_val_2);
             int sub_test_1 = 0, sub_test_2 = 0;
-            if( (output_1_1 == real_val_1) || is_machine_eps_32(diff_1) ) sub_test_1 = 1;
-            if( (output_2_1 == real_val_2) || is_machine_eps_32(diff_2) ) sub_test_2 = 1;
+            if( (output_1_1 == real_val_1) || is_machine_eps_32_or_zero(diff_1) ) sub_test_1 = 1;
+            if( (output_2_1 == real_val_2) || is_machine_eps_32_or_zero(diff_2) ) sub_test_2 = 1;
 
             if(sub_test_1 == 1 && sub_test_2 == 1) n_correct_test ++;
             else test_failed = 1;

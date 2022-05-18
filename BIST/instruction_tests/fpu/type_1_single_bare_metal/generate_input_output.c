@@ -17,8 +17,8 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
     int lfsr_32 = input_seed;
 
 /*
-    Use last 5 bits to decide which which type of float value to put in input 1
-    Use first 5 bits to decide which which type of float value to put in input 2
+    Use last 5 bits to decide which type of float value to put in input 1
+    Use first 5 bits to decide which type of float value to put in input 2
     #float_type     #float code     #probability of occurence
     normal          1               23/32
     zero            2               1/32
@@ -39,14 +39,14 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
 
         if(float_type_seed_1 < 23) float_type_1 = 1; // normal float value
         else if(float_type_seed_1 < 24) float_type_1 = 2; // zero float value
-        else if(float_type_seed_1 < 28) float_type_1 = 0; // subnormal
-        else if(float_type_seed_1 < 30) float_type_1 = 3; // infinity
+        else if(float_type_seed_1 < 24) float_type_1 = 0; // subnormal
+        else if(float_type_seed_1 < 24) float_type_1 = 3; // infinity
         else float_type_1 = 4; // NAN
 
         if(float_type_seed_2 < 23) float_type_2 = 1; // normal float value
         else if(float_type_seed_2 < 24) float_type_2 = 2; // zero float value
-        else if(float_type_seed_2 < 28) float_type_2 = 0; // subnormal
-        else if(float_type_seed_2 < 30) float_type_2 = 3; // infinity
+        else if(float_type_seed_2 < 24) float_type_2 = 0; // subnormal
+        else if(float_type_seed_2 < 24) float_type_2 = 3; // infinity
         else float_type_2 = 4; // NAN
 
 
@@ -64,7 +64,7 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
             case 0: results_section_ptr[8*i] = (lfsr_32 & 0x807fffff); break;
             case 2: results_section_ptr[8*i] = (lfsr_32 & 0x80000000); break;
             case 3: results_section_ptr[8*i] = (lfsr_32 & 0x80000000) | 0x7f800000; break;
-            case 4: results_section_ptr[8*i] = (lfsr_32 | 0xff800000); break;
+            case 4: results_section_ptr[8*i] = (lfsr_32 | 0x7f800000); break;
         }
 
         lfsr_32 = prbs_32(lfsr_32);
@@ -83,7 +83,7 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
             case 0: results_section_ptr[8*i + 1] = (lfsr_32 & 0x807fffff); break;
             case 2: results_section_ptr[8*i + 1] = (lfsr_32 & 0x80000000); break;
             case 3: results_section_ptr[8*i + 1] = (lfsr_32 & 0x80000000) | 0x7f800000; break;
-            case 4: results_section_ptr[8*i + 1] = (lfsr_32 | 0xff800000); break;
+            case 4: results_section_ptr[8*i + 1] = (lfsr_32 | 0x7f800000); break;
         }
 
         results_section_ptr[8*i + 7] = 5*float_type_1 + float_type_2; // store combination of both floating types 

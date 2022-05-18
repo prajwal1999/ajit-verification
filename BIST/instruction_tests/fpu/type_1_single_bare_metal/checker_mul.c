@@ -2,7 +2,7 @@
 int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int number_of_inputs) {
 
     int i;
-    int n_correct_test = 0;
+    int n_correct_tests = 0;
 
     for(i=0; i<number_of_inputs; i++) {
 
@@ -27,22 +27,28 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
         int mantissa_1 = (input_1_1 & 0x007fffff);
         int mantissa_2 = (input_2_1 & 0x007fffff);
 
-        if(float_type_1 == 3 || float_type_1 == 4) { // infinity or NAN
-            if(result_1 == input_1_1) n_correct_test++;
+        if(float_type_1 == 4) { // NAN
+            if(is_NAN(result_1, (input_1_1 >> 31) )) n_correct_tests++;
+            else { test_failed = 1; } 
+        }
+        else if(float_type_2 == 4) { // NAN
+            if(is_NAN(result_1, (input_2_1 >> 31) )) n_correct_tests++;
+            else { test_failed = 1; } 
+        }
+        else if(float_type_1 == 3) { // infinity
+            if(result_1 == input_1_1) n_correct_tests++;
             else test_failed = 1;
         } 
-        else if(float_type_2 == 3 || float_type_2 == 4) { // infinity or NAN
-            if(result_1 == input_2_1) n_correct_test++;
+        else if(float_type_2 == 3) { // infinity
+            if(result_1 == input_2_1) n_correct_tests++;
             else test_failed = 1;
         }
-
         else if(float_type_1 == 2) { // zero
-            if(result_1 == (input_2_1 & 0x80000000)) n_correct_test++;
+            if(result_1 == (input_2_1 & 0x80000000)) n_correct_tests++;
             else test_failed = 1;
         }
-
         else if(float_type_2 == 2) { // zero
-            if(result_1 == (input_1_1 & 0x80000000)) n_correct_test++;
+            if(result_1 == (input_1_1 & 0x80000000)) n_correct_tests++;
             else test_failed = 1;
         }
         // after this float type is either normal or subnormal
@@ -68,10 +74,10 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
             int diff_1 = abs(output_1_1 - real_val_1);
             int diff_2 = abs(output_2_1 - real_val_2);
             int sub_test_1 = 0, sub_test_2 = 0;
-            if( (output_1_1 == real_val_1) || is_machine_eps_32(diff_1) ) sub_test_1 = 1;
-            if( (output_2_1 == real_val_2) || is_machine_eps_32(diff_2) ) sub_test_2 = 1;
+            if( (output_1_1 == real_val_1) || is_machine_eps_32_or_zero(diff_1) ) sub_test_1 = 1;
+            if( (output_2_1 == real_val_2) || is_machine_eps_32_or_zero(diff_2) ) sub_test_2 = 1;
 
-            if(sub_test_1 == 1 && sub_test_2 == 1) n_correct_test ++;
+            if(sub_test_1 == 1 && sub_test_2 == 1) n_correct_tests ++;
             else test_failed = 1;
         }
 
@@ -97,10 +103,10 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
 
     }   
 
-    if( n_correct_test == number_of_inputs) {
+    if( n_correct_tests == number_of_inputs) {
         ee_printf("all tests passed\n");    
     } else {
-        ee_printf("%d out of %d tests passed\n", n_correct_test, number_of_inputs);    
+        ee_printf("%d out of %d tests passed\n", n_correct_tests, number_of_inputs);    
         // __asm__ __volatile__ (" ta 0 \n\t");
         // __asm__ __volatile__ (" nop \n\t");
     }

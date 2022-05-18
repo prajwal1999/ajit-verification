@@ -67,7 +67,15 @@ int prbs_32(int x)
     return x;
 }
 
-int is_machine_eps_32(int num) {
-    if(num == 0x1) return 1;
+int is_machine_eps_32_or_zero(int num) {
+    if(num == 0x1 || num == 0x0) return 1;
+    else return 0;
+}
+
+int is_NAN(int num, int sign) {
+    int e_NAN = 0x7fc00000;
+    // ee_printf("-----------e_nan is 0x%x----------\n", e_NAN);
+    // ee_printf("-----------num is 0x%x----------\n", (num & 0xffc00000) );
+    if( (num & 0x7fc00000) == e_NAN) return 1;
     else return 0;
 }

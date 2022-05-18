@@ -11,4 +11,6 @@ sparc-obj
 setup_page_table.s
 *.lnk
 *.trace.0_0
-__genvmap_setup_page_tables.s
+__genvmap_setup_page_tables.
+
+*.txt
