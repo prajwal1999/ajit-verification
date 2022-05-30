@@ -17,7 +17,7 @@ int main(int *test_program_ptr) {
 
     char instr_opcodes[8] = {0x41,  0x45,  0x29,    0x49,  0x4d,  0x1,   0x5,   0x9};
     // char instr_memn[8] = {fadds, fsubs, fsqrts,  fmuls, fdivs, fmovs, fnegs, fabss};
-    int opcode_ptr = 3;
+    int opcode_ptr = 4;
 
     int results_section[8*N_INPUTS] = {0};
     int register_coverage[4*32] = {0};
@@ -41,10 +41,10 @@ int main(int *test_program_ptr) {
 
         switch(instr_opcodes[opcode_ptr]) {
             case 0x41:
-                checker_add_sub(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
+                checker_add_sub(results_section, data_coverage, 0x41, N_INPUTS);
                 break;
             case 0x45:
-                checker_add_sub(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
+                checker_add_sub(results_section, data_coverage, 0x45, N_INPUTS);
                 break;
             case 0x29:
                 checker_sqrt(results_section, data_coverage, instr_opcodes[opcode_ptr], N_INPUTS);
@@ -74,20 +74,19 @@ int main(int *test_program_ptr) {
 
         // bool change_op = print_coverage(register_coverage_ptr, data_coverage_ptr, input_pair_seed, register_seed);
         // if(change_op) {
-        //     opcode_ptr = opcode_ptr + 1;
-        //     opcode_ptr = opcode_ptr % 12;
+            opcode_ptr = opcode_ptr + 1;
+            opcode_ptr = opcode_ptr % 8;
         //     flush_mem(register_coverage_ptr, 32*3);
         //     flush_mem(data_coverage_ptr, 1<<(64-2*GRID_DIM));
         // flush_mem(instr_count, 4);
         // }
-
         input_pair_seed = new_input_pair_seed;
         register_seed = new_register_seed;
 
-        ee_printf("####################################################\n\n");
+        ee_printf("########################################################################################################\n\n");
 
-        __asm__ __volatile__ (" ta 0 \n\t");
-        __asm__ __volatile__ (" nop \n\t");
+        // __asm__ __volatile__ (" ta 0 \n\t");
+        // __asm__ __volatile__ (" nop \n\t");
     }
 
     return 0;

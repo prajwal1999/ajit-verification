@@ -22,60 +22,83 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
         char test_failed = 0;
 
         ////////////////
-        int exp_1 = (input_1_1 & 0x7f800000) >> 23;
-        int exp_2 = (input_2_1 & 0x7f800000) >> 23;
-        int mantissa_1 = (input_1_1 & 0x007fffff);
-        int mantissa_2 = (input_2_1 & 0x007fffff);
+        int g_exp_1 = (input_1_1 & 0x7f800000) >> 23;
+        int g_exp_2 = (input_2_1 & 0x7f800000) >> 23;
+        int g_exp_res = (result_1 & 0x7f800000) >> 23;
 
         if(float_type_1 == 4) { // NAN
-            if(is_NAN(result_1, (input_1_1 >> 31) )) n_correct_tests++;
+            if(is_NAN(result_1)) n_correct_tests++;
             else { test_failed = 1; } 
         }
         else if(float_type_2 == 4) { // NAN
-            if(is_NAN(result_1, (input_2_1 >> 31) )) n_correct_tests++;
+            if(is_NAN(result_1)) n_correct_tests++;
             else { test_failed = 1; } 
         }
         else if(float_type_1 == 3) { // infinity
-            if(result_1 == input_1_1) n_correct_tests++;
+            int exp_result = 0x7f800000 | ((input_1_1^input_2_1) & 0x80000000);
+            if(result_1 == exp_result) n_correct_tests++;
             else test_failed = 1;
         } 
         else if(float_type_2 == 3) { // infinity
-            if(result_1 == input_2_1) n_correct_tests++;
+            int exp_result = 0x7f800000 | ((input_1_1^input_2_1) & 0x80000000);
+            if(result_1 == exp_result) n_correct_tests++;
             else test_failed = 1;
         }
         else if(float_type_1 == 2) { // zero
-            if(result_1 == (input_2_1 & 0x80000000)) n_correct_tests++;
+            int exp_result = 0x00000000 | ((input_1_1^input_2_1) & 0x80000000);
+            if(result_1 == exp_result) n_correct_tests++;
             else test_failed = 1;
         }
         else if(float_type_2 == 2) { // zero
-            if(result_1 == (input_1_1 & 0x80000000)) n_correct_tests++;
+            int exp_result = 0x00000000 | ((input_1_1^input_2_1) & 0x80000000);
+            if(result_1 == exp_result) n_correct_tests++;
             else test_failed = 1;
         }
         // after this float type is either normal or subnormal
         else {
-
-            // ee_printf("exp_1 - %d, exp_2 - %d\n", exp_1, exp_2);
-            // ee_printf("mantissa_1 - 0x%x, mantissa_2 - 0x%x\n", mantissa_1, mantissa_2);
-
-            if(exp_1 + exp_2 -127 < 0) {
+            int mantissa_1 = (input_1_1 & 0x007fffff);
+            int mantissa_2 = (input_2_1 & 0x007fffff);
+            int exp_1 = (input_1_1 & 0x7f800000) >> 23;
+            int exp_2 = (input_2_1 & 0x7f800000) >> 23;
+            int sub_test_1 = 0, sub_test_2 = 0;
+            
+            if(exp_1 + exp_2 - 127 < -24) {
+                // result is either zero or neg zero
                 real_val_1 = (input_1_1 & 0x80000000);
                 real_val_2 = (input_2_1 & 0x80000000);
             }
-            else if(exp_1 + exp_2 -127 > 255) {
-                // answer is +inf
-                real_val_1 = (input_1_1 & 0x80000000) | 0x7f800000;
-                real_val_2 = (input_2_1 & 0x80000000) | 0x7f800000;
-            } 
+            else if(exp_1 + exp_2 - 127 < 0) {
+                int neg_overflow = abs(exp_1 + exp_2 - 127);
+                int mask = (1 << neg_overflow) - 1;
+                mask = ~ mask;
+                // ee_printf("i. %d, this is the one, mask is - %x\n", i+1, mask);
+                output_1_1 &= mask;
+                output_2_1 &= mask;
+                real_val_1 = input_1_1 & mask;
+                real_val_2 = input_2_1 & mask;
+            }
             else {
-                real_val_1 = input_1_1;
-                real_val_2 = input_2_1;
+                unsigned long long int expec_mantissa = (mantissa_1 * mantissa_2);
+                expec_mantissa = expec_mantissa / (1<<27);
+                expec_mantissa = expec_mantissa / (1<<20);
+                // ee_printf("i. %d, res_mantissa is %d\n",i+1, expec_mantissa);
+                if(exp_1 + exp_2 - 127 >= 255) {
+                        // answer is +inf
+                        // ee_printf("i. %d, answer is +-infinity\n", i+1);
+                        real_val_1 = (input_1_1 & 0x80000000) | 0x7f800000;
+                        real_val_2 = (input_2_1 & 0x80000000) | 0x7f800000;
+                        // ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+                }
+                else {
+                    real_val_1 = input_1_1;
+                    real_val_2 = input_2_1;
+                }
             }
 
-            int diff_1 = abs(output_1_1 - real_val_1);
-            int diff_2 = abs(output_2_1 - real_val_2);
-            int sub_test_1 = 0, sub_test_2 = 0;
-            if( (output_1_1 == real_val_1) || is_machine_eps_32_or_zero(diff_1) ) sub_test_1 = 1;
-            if( (output_2_1 == real_val_2) || is_machine_eps_32_or_zero(diff_2) ) sub_test_2 = 1;
+                int diff_1 = abs(output_1_1 - real_val_1);
+                int diff_2 = abs(output_2_1 - real_val_2);
+                if( (output_1_1 == real_val_1) || is_machine_eps_32_or_zero(diff_1) ) sub_test_1 = 1;
+                if( (output_2_1 == real_val_2) || is_machine_eps_32_or_zero(diff_2) ) sub_test_2 = 1;
 
             if(sub_test_1 == 1 && sub_test_2 == 1) n_correct_tests ++;
             else test_failed = 1;
@@ -85,12 +108,22 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
             ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
             ee_printf("Actual result 0x%x\n", result_1);
             ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
             ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
             ee_printf("####################################################\n\n");
         } else {
-            // ee_printf("Test passed\n");
+            // if(float_type_1 == 1 || float_type_2 == 1) {
+            //     ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
+            //     ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+            //     ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            //     ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
+            //     ee_printf("Actual result 0x%x\n", result_1);
+            //     ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+            //     ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+            //     ee_printf("####################################################\n\n");
+            // }
         }
         // store data coverage
         // int in1 = *(results_section + 8*i);
