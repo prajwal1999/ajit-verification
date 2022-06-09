@@ -13,8 +13,8 @@ int main(int *test_program_ptr) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
     ee_printf("started------\n");
 
-    uint64_t input_pair_seed = 0x7271856ECCAAEA3F;
-    int register_seed = 20;
+    uint64_t input_pair_seed = 0x77BA4D5199953E82;
+    int register_seed = 4;
 
     char instr_opcodes[5] = {0x42,  0x46,  0x2a,    0x4a,  0x4e};
     // char instr_memn[5] = {faddd, fsubd, fsqrtd,  fmuld, fdivd};
@@ -26,8 +26,9 @@ int main(int *test_program_ptr) {
     int data_coverage[64][64] = {0};
     int instr_count[5] = {0};
 
+    int iteration = 0;
     while(1) {
-        flush_mem(results_section, 8*N_INPUTS);
+        flush_mem(results_section, 16*N_INPUTS);
         flush_mem(save_register, 4);
 
         ee_printf(">>> Tests for Instruction with opcode 0x%x\n", instr_opcodes[opcode_ptr]);
@@ -35,8 +36,13 @@ int main(int *test_program_ptr) {
         ee_printf("Register seed is - %d\n", register_seed);
 
         uint64_t new_input_pair_seed = 0;
-        generate_input_output(results_section, input_pair_seed, &new_input_pair_seed);
-        // ee_printf("new_input_pair_seed is 0x%x %x\n", new_input_pair_seed, new_input_pair_seed);
+        int float_type_1 = iteration/2;
+        int float_type_2 = iteration % 2;
+        // int float_type_1 = 0; 
+        // int float_type_2 = 2;
+        ee_printf(">>> Float Types are ----- %d, %d\n", float_type_1, float_type_2);
+        generate_input_output(results_section, input_pair_seed, &new_input_pair_seed, float_type_1, float_type_2);
+        ee_printf("new_input_pair_seed is 0x%x %x\n", new_input_pair_seed, new_input_pair_seed);
         int new_register_seed = generate_instr(test_program_ptr, results_section, register_coverage, register_seed, instr_opcodes[opcode_ptr], save_register, N_INPUTS);
         
         test_program();
@@ -78,10 +84,13 @@ int main(int *test_program_ptr) {
         input_pair_seed = new_input_pair_seed;
         register_seed = new_register_seed;
 
-        ee_printf("####################################################\n\n");
+        ee_printf("%dth Iteration Ended ####################################################\n\n", iteration);
 
-        __asm__ __volatile__ (" ta 0 \n\t");
-        __asm__ __volatile__ (" nop \n\t");
+        iteration++;
+        if(iteration >= 4) {
+            __asm__ __volatile__ (" ta 0 \n\t");
+            __asm__ __volatile__ (" nop \n\t");
+        }
     }
 
     return 0;

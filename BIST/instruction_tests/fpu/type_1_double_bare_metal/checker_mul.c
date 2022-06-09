@@ -45,9 +45,12 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
             if(is_NAN_64(result)) n_correct_tests++;
             else { test_failed = 1; } 
         }
+        else if( ((float_type_1==3) && (float_type_2==2)) || ((float_type_1==2) && (float_type_2==3)) ) {
+            if(is_NAN_64(result)) n_correct_tests++;
+            else { test_failed = 1; } 
+        }
         else if( (float_type_1 == 3) || (float_type_2 == 3)) { // infinity
             int exp_result_1 = 0x7ff00000 | ((input_1_1^input_2_1) & 0x80000000);
-            // ee_printf("i. %d, exp result_1 - %x\n", i+1, exp_result_1);
             if((result_1 == exp_result_1) && (result_2 == 0) ) n_correct_tests++;
             else test_failed = 1;
         }
@@ -108,15 +111,15 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
         if(test_failed) {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            ee_printf("Inputs are 0x%x %x, ", input_1_1, input_1_2);
-            ee_printf("0x%x %x\n", input_2_1, input_2_2);
+            ee_printf("@Inputs are %x %x,", input_1_1, input_1_2);
+            ee_printf("%x %x\n", input_2_1, input_2_2);
 
             ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
-            ee_printf("Actual result 0x%x %x\n", result);
-            ee_printf("real 1 is 0x%x %x, \n", real_val_1, real_val_1);
-            ee_printf("real 2 is 0x%x %x\n", real_val_2, real_val_2);
-            ee_printf("Actual Output 0x%x %x, ", output_1_1, output_1_2);
-            ee_printf("0x%x %x\n", output_2_1, output_2_2);
+            ee_printf("@Actual result %x %x\n", result);
+            ee_printf("real 1 is %x %x, \n", real_val_1, real_val_1);
+            ee_printf("real 2 is %x %x\n", real_val_2, real_val_2);
+            ee_printf("Actual Output %x %x, ", output_1_1, output_1_2);
+            ee_printf("%x %x\n", output_2_1, output_2_2);
             ee_printf("####################################################\n\n");
         } else {
             // if(float_type_1 == 1 || float_type_2 == 1) {

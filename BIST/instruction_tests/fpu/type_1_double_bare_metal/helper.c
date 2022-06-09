@@ -70,12 +70,8 @@ int prbs_32(int x)
 }
 
 int is_machine_eps_64_or_zero(int64_t num) {
-    if(num == (uint64_t)1 || num == (uint64_t)0) return 1;
-    else return 0;
-}
-
-int is_machine_eps_32_or_zero(int num) {
-    if(num == 0x1 || num == 0x0) return 1;
+    // if(num == (uint64_t)1 || num == (uint64_t)0) return 1;
+    if(num == (uint64_t)0) return 1;
     else return 0;
 }
 

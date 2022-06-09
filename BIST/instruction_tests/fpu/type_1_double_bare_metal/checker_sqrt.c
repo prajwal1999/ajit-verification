@@ -32,8 +32,9 @@ int checker_sqrt(int *results_section, int *data_coverage, int instr_opcode, int
         }
 
         else if(float_type_2 == 4) { // NAN
-            if(result == (uint64_t)0) n_correct_tests++;
-            else test_failed = 1;
+            if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; 
+            // if(result == (uint64_t)0) n_correct_tests++;
+            // else test_failed = 1;
         }
 
         else if(float_type_2 == 3) { // infinity
@@ -55,9 +56,11 @@ int checker_sqrt(int *results_section, int *data_coverage, int instr_opcode, int
         if(test_failed) {
             ee_printf("Test Failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("float_type_2 - %d\n",float_type_2);
-            ee_printf("Inputs are 0x%x\n", input_2_1);
-            ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("Actual Output 0x%x\n", output_2_1);
+            ee_printf("@Inputs are %x %x,", 0, 0);
+            ee_printf("%x %x\n", input_2_1, input_2_2);
+            ee_printf("@Actual result %x %x\n", result_1, result_2);
+            ee_printf("Actual Output %x %x, ", 0, 0);
+            ee_printf("%x %x\n", output_2_1, output_2_2);
             ee_printf("####################################################\n\n");
         } else {
             // ee_printf("Test Passed - %d/%d\n", i+1, number_of_inputs);

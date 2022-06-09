@@ -2,9 +2,7 @@
 AAR=$AJIT_ACCESS_ROUTINES_MT
 PT=$AJIT_MINIMAL_PRINTF_TIMER
 TEXTBASE=0x40000000
-DATABASE=0x400f0000
-# TEXTBASE=0x0
-# DATABASE=0xf0000
+DATABASE=0x4001e000
 CLKFREQ=80000000
 
 
@@ -20,7 +18,10 @@ compileToSparcUclibc.py -N main -V high_vmap.txt -W ./ \
                 -s init.s -s trap_handlers.s  \
                 -c generate_instr.c -c main.c -c helper.c \
                 -c generate_input_output.c -c flush_mem.c \
-                -c checker_add_sub.c -c checker_fmovs_fnegs_fabss.c -c checker_mul.c -c checker_div.c -c checker_sqrt.c\
+                -c checker_add_sub.c \
+                -c checker_mul.c \
+                -c checker_div.c \
+                -c checker_sqrt.c\
                 -L customLinkerScript.lnk \
                 -I $AJIT_UCLIBC_HEADERS_DIR -I $AAR/include -C $AAR/src -I $PT/include -C $PT/src -g 
                 

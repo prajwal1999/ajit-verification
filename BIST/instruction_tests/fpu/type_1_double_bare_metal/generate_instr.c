@@ -65,8 +65,6 @@ int generate_instr(int *test_program, int results_section, int *register_coverag
             seed_5 = prbs_5(seed_5, rs2);
             rd = seed_5 & 0x1e;
         } while(rd==rs1 || rd==rs2);
-        // seed_5 = prbs_5(seed_5, 100);   rs2 = (seed_5 << 1) & 0x1f;
-        // seed_5 = prbs_5(seed_5, 100);   rd = (seed_5 << 1) & 0x1f;
 
         if(instr_opcode == 0x2a){  // if instr is fsqrtd, rs1 is 0
             rs1 = 0;

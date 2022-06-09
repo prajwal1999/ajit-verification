@@ -20,9 +20,9 @@ uint64_t prbs_64(uint64_t x)
     return x;
 }
 
-void generate_input_output(int *results_section_ptr, uint64_t input_seed, uint64_t* new_input_pair_seed)
+void generate_input_output(int *results_section_ptr, uint64_t input_seed, uint64_t* new_input_pair_seed,
+                            int float_type_1, int float_type_2)
 {
-
     uint64_t lfsr_64 = input_seed;
 
     // ee_printf("initial lfsr_64 - 0x%x %x\n", lfsr_64, lfsr_64);
@@ -42,23 +42,24 @@ void generate_input_output(int *results_section_ptr, uint64_t input_seed, uint64
     char float_type_seed_2 = (lfsr_64 & 0x1f);
 
     int i;
+
     for(i=0; i<N_INPUTS; i++) {
-        int float_type_1 = 0, float_type_2 = 0;
-        float_type_seed_1 = prbs_5(float_type_seed_1);
-        float_type_seed_2 = prbs_5(float_type_seed_2);
+        // int float_type_1 = 0, float_type_2 = 0;
+        // float_type_seed_1 = prbs_5(float_type_seed_1);
+        // float_type_seed_2 = prbs_5(float_type_seed_2);
         lfsr_64 = prbs_64(lfsr_64);
 
-        if(float_type_seed_1 < 23) float_type_1 = 1; // normal float value
-        else if(float_type_seed_1 < 24) float_type_1 = 0; // subnormal
-        else if(float_type_seed_1 < 28) float_type_1 = 2; // zero float value
-        else if(float_type_seed_1 < 30) float_type_1 = 3; // infinity
-        else float_type_1 = 4; // NAN
+        // if(float_type_seed_1 < 23) float_type_1 = 1; // normal float value
+        // else if(float_type_seed_1 < 24) float_type_1 = 0; // subnormal
+        // else if(float_type_seed_1 < 28) float_type_1 = 2; // zero float value
+        // else if(float_type_seed_1 < 30) float_type_1 = 3; // infinity
+        // else float_type_1 = 4; // NAN
 
-        if(float_type_seed_2 < 23) float_type_2 = 1; // normal float value
-        else if(float_type_seed_2 < 24) float_type_2 = 0; // subnormal
-        else if(float_type_seed_2 < 28) float_type_2 = 2; // zero float value
-        else if(float_type_seed_2 < 30) float_type_2 = 3; // infinity
-        else float_type_2 = 4; // NAN
+        // if(float_type_seed_2 < 23) float_type_2 = 1; // normal float value
+        // else if(float_type_seed_2 < 24) float_type_2 = 0; // subnormal
+        // else if(float_type_seed_2 < 28) float_type_2 = 2; // zero float value
+        // else if(float_type_seed_2 < 30) float_type_2 = 3; // infinity
+        // else float_type_2 = 4; // NAN
 
 
         switch(float_type_1){
@@ -98,10 +99,13 @@ void generate_input_output(int *results_section_ptr, uint64_t input_seed, uint64
                 results_section_ptr[16*i + 0] = msb;
                 results_section_ptr[16*i + 1] = (lfsr_64 & 0xffffffff);
                 break;
+            default:
+                ee_printf("Unkown float type\n");
+                __asm__ __volatile__ (" ta 0 \n\t");
+                __asm__ __volatile__ (" nop \n\t");
+                break;
         }
 
-        // ee_printf("float type is - %d, ", float_type_1);
-        // ee_printf("inputs is = 0x%x%x\n", results_section_ptr[16*i + 0], results_section_ptr[16*i + 1]);
 
         lfsr_64 = prbs_64(lfsr_64);
 
@@ -142,15 +146,16 @@ void generate_input_output(int *results_section_ptr, uint64_t input_seed, uint64
                 results_section_ptr[16*i + 2] = msb;
                 results_section_ptr[16*i + 3] = (lfsr_64 & 0xffffffff);
                 break;
+            default:
+                ee_printf("Unkown float type\n");
+                __asm__ __volatile__ (" ta 0 \n\t");
+                __asm__ __volatile__ (" nop \n\t");
+                break;
         }
+
 
         results_section_ptr[16*i + 10] = 5*float_type_1 + float_type_2; // store combination of both floating types 
         lfsr_64 = prbs_64(lfsr_64);
-
-        // results_section_ptr[16*i + 0] = 0x967f1589;
-        // results_section_ptr[16*i + 1] = 0xf81577ce;
-        // results_section_ptr[16*i + 2] = 0x973badbc;
-        // results_section_ptr[16*i + 3] = 0x7b168e52;
     }
 
     // return lfsr_64;
