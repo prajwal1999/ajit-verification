@@ -1,0 +1,10 @@
+input_1_1
+input_1_2
+input_2_1
+input_2_2
+result_1
+result_2
+output_1_1
+output_1_2
+output_2_1
+output_2_2
