@@ -69,13 +69,14 @@ int prbs_32(int x)
 
 int is_machine_eps_32_or_zero(int num) {
     if(num == 0x1 || num == 0x0) return 1;
+    // if(num == 0x0) return 1;
     else return 0;
 }
 
 int is_NAN(int num) {
+    int exp = (num & 0x7f800000) >> 23;
+    int mantissa = num & 0x7fffff;
     int e_NAN = 0x7fc00000;
-    // ee_printf("-----------e_nan is 0x%x----------\n", e_NAN);
-    // ee_printf("-----------num is 0x%x----------\n", (num & 0xffc00000) );
-    if( (num & 0x7fc00000) == e_NAN) return 1;
+    if( (exp == 0xff) && (mantissa != 0) ) return 1;
     else return 0;
 }

@@ -12,12 +12,12 @@ int main(int *test_program_ptr) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
     ee_printf("started------\n");
 
-    int input_pair_seed = 0x9b9d1366;
+    int input_pair_seed = 0xe7dbdd66;
     int register_seed = 20;
 
     char instr_opcodes[8] = {0x41,  0x45,  0x29,    0x49,  0x4d,  0x1,   0x5,   0x9};
     // char instr_memn[8] = {fadds, fsubs, fsqrts,  fmuls, fdivs, fmovs, fnegs, fabss};
-    int opcode_ptr = 4;
+    int opcode_ptr = 0;
 
     int results_section[8*N_INPUTS] = {0};
     int register_coverage[4*32] = {0};
@@ -25,6 +25,7 @@ int main(int *test_program_ptr) {
     int data_coverage[64][64] = {0};
     int instr_count[8] = {0};
 
+    int iteration = 0;
     while(1) {
         flush_mem(results_section, 8*N_INPUTS);
         flush_mem(save_register, 4);
@@ -32,7 +33,12 @@ int main(int *test_program_ptr) {
         ee_printf(">>> Tests for Instruction with opcode 0x%x\n", instr_opcodes[opcode_ptr]);
         ee_printf(">>> Input seed is - 0x%x, Register seed is - %d\n", input_pair_seed, register_seed);
 
-        int new_input_pair_seed = generate_input_output(results_section, input_pair_seed, N_INPUTS); // returned lfsr will be used for next input pair
+        int float_type_1 = iteration/5;
+        int float_type_2 = iteration % 5;
+        // int float_type_1 = 1; 
+        // int float_type_2 = 1;
+        ee_printf(">>> Float Types are ----- %d, %d\n", float_type_1, float_type_2);
+        int new_input_pair_seed = generate_input_output(results_section, input_pair_seed, float_type_1, float_type_2); // returned lfsr will be used for next input pair
         
         int new_register_seed = generate_instr(test_program_ptr, results_section, register_coverage, register_seed, instr_opcodes[opcode_ptr], save_register, N_INPUTS);
         
@@ -74,8 +80,8 @@ int main(int *test_program_ptr) {
 
         // bool change_op = print_coverage(register_coverage_ptr, data_coverage_ptr, input_pair_seed, register_seed);
         // if(change_op) {
-            opcode_ptr = opcode_ptr + 1;
-            opcode_ptr = opcode_ptr % 8;
+            // opcode_ptr = opcode_ptr + 1;
+            // opcode_ptr = opcode_ptr % 8;
         //     flush_mem(register_coverage_ptr, 32*3);
         //     flush_mem(data_coverage_ptr, 1<<(64-2*GRID_DIM));
         // flush_mem(instr_count, 4);
@@ -83,10 +89,13 @@ int main(int *test_program_ptr) {
         input_pair_seed = new_input_pair_seed;
         register_seed = new_register_seed;
 
-        ee_printf("########################################################################################################\n\n");
+        ee_printf("%dth Iteration ended ########################################################################################################\n\n", iteration);
+        iteration++;
+        if(iteration >10) {
+            __asm__ __volatile__ (" ta 0 \n\t");
+            __asm__ __volatile__ (" nop \n\t");
 
-        // __asm__ __volatile__ (" ta 0 \n\t");
-        // __asm__ __volatile__ (" nop \n\t");
+        }
     }
 
     return 0;

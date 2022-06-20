@@ -48,7 +48,7 @@ _start:
 	.align 4096
 	.global test_program
 	test_program:
-	.skip 131072 ! 128kb  !18*N + 20
+	.skip 77824  !18*N + 20
 
 
 

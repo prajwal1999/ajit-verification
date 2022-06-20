@@ -26,10 +26,13 @@ int checker_div(int *results_section, int *data_coverage, int instr_opcode, int 
         int exp_res = (result_1 & 0x7f800000) >> 23;
         int sub_test_1 = 0, sub_test_2 = 0;
 
-        if(float_type_1 == 4) { // NAN
+        if(float_type_1 == 2 && float_type_2 == 2) {
             if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1; 
         }
-        else if(float_type_2 == 4) { // NAN
+        else if(float_type_1 == 3 && float_type_2 == 3) {
+            if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1;
+        }
+        else if( (float_type_1 == 4) || (float_type_2 == 4) ) { // NAN
             if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1;
         }
         else if(float_type_1 == 3) { // infinity
@@ -61,12 +64,10 @@ int checker_div(int *results_section, int *data_coverage, int instr_opcode, int 
 
             if(exp_1 - exp_2 + 127 < -24) {
                 // result is either zero or neg zero
-                ee_printf("i. %d, comes in this category - %d\n", i+1, exp_1 - exp_2 + 127);
                 real_val_1 = (input_1_1 & 0x80000000);
                 real_val_2 = (input_2_1 & 0x80000000) | 0x7f800000;
             }
             else if(exp_1 - exp_2 + 127 < 0) {
-                ee_printf("i. %d, comes in this category - %d\n", i+1, exp_1 - exp_2 + 127);
                 int neg_overflow = abs(exp_1 - exp_2 + 127);
                 int mask = (1 << neg_overflow) - 1;
                 mask = ~ mask;
@@ -80,7 +81,6 @@ int checker_div(int *results_section, int *data_coverage, int instr_opcode, int 
                 int mantissa_1 = (input_1_1 & 0x007fffff) | (float_type_1 << 23);
                 int mantissa_2 = (input_2_1 & 0x007fffff) | (float_type_2 << 23);
                 int expec_mantissa = (mantissa_1 / mantissa_2);
-                if(i==446) ee_printf("i. %d, expec_mantissa - %x\n", i+1, expec_mantissa);
                 if(exp_1 - exp_2 + 127 >= 255) {
                     // answer is +inf
                     // ee_printf("i. %d, answer is +-infinity\n", i+1);
@@ -105,11 +105,11 @@ int checker_div(int *results_section, int *data_coverage, int instr_opcode, int 
         if(test_failed) {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            ee_printf("@Inputs are %x, %x\n", input_1_1, input_2_1);
             ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", exp_1, exp_2, exp_res);
-            ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-            ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+            ee_printf("@Actual result %x\n", result_1);
+            ee_printf("real 1 is %x, real 2 is %x\n", real_val_1, real_val_2);
+            ee_printf("Actual Output %x, %x\n", output_1_1, output_2_1);
             ee_printf("####################################################\n\n");
         } else {
             // ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
@@ -140,8 +140,8 @@ int checker_div(int *results_section, int *data_coverage, int instr_opcode, int 
         // __asm__ __volatile__ (" nop \n\t");
     }
 
-    __asm__ __volatile__ (" ta 0 \n\t");
-    __asm__ __volatile__ (" nop \n\t");
+    // __asm__ __volatile__ (" ta 0 \n\t");
+    // __asm__ __volatile__ (" nop \n\t");
 
     return(0);
 }

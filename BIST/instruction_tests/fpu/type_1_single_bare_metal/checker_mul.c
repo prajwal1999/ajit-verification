@@ -26,30 +26,20 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
         int g_exp_2 = (input_2_1 & 0x7f800000) >> 23;
         int g_exp_res = (result_1 & 0x7f800000) >> 23;
 
-        if(float_type_1 == 4) { // NAN
+        if( (float_type_1 == 4) || (float_type_2 == 4) ) { // NAN
             if(is_NAN(result_1)) n_correct_tests++;
             else { test_failed = 1; } 
         }
-        else if(float_type_2 == 4) { // NAN
+        else if( ((float_type_1==3) && (float_type_2==2)) || ((float_type_1==2) && (float_type_2==3)) ) {
             if(is_NAN(result_1)) n_correct_tests++;
             else { test_failed = 1; } 
         }
-        else if(float_type_1 == 3) { // infinity
+        else if( (float_type_1 == 3) || (float_type_2 == 3) ) { // infinity
             int exp_result = 0x7f800000 | ((input_1_1^input_2_1) & 0x80000000);
             if(result_1 == exp_result) n_correct_tests++;
             else test_failed = 1;
         } 
-        else if(float_type_2 == 3) { // infinity
-            int exp_result = 0x7f800000 | ((input_1_1^input_2_1) & 0x80000000);
-            if(result_1 == exp_result) n_correct_tests++;
-            else test_failed = 1;
-        }
-        else if(float_type_1 == 2) { // zero
-            int exp_result = 0x00000000 | ((input_1_1^input_2_1) & 0x80000000);
-            if(result_1 == exp_result) n_correct_tests++;
-            else test_failed = 1;
-        }
-        else if(float_type_2 == 2) { // zero
+        else if( (float_type_1 == 2) || (float_type_2 == 2) ) { // zero
             int exp_result = 0x00000000 | ((input_1_1^input_2_1) & 0x80000000);
             if(result_1 == exp_result) n_correct_tests++;
             else test_failed = 1;
@@ -107,23 +97,21 @@ int checker_mul(int *results_section, int *data_coverage, int instr_opcode, int 
         if(test_failed) {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            ee_printf("@Inputs are %x, %x\n", input_1_1, input_2_1);
             ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
-            ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-            ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+            ee_printf("@Actual result %x\n", result_1);
+            ee_printf("real 1 is %x, real 2 is %x\n", real_val_1, real_val_2);
+            ee_printf("Actual Output %x, %x\n", output_1_1, output_2_1);
             ee_printf("####################################################\n\n");
         } else {
-            // if(float_type_1 == 1 || float_type_2 == 1) {
-            //     ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
-            //     ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            //     ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-            //     ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
-            //     ee_printf("Actual result 0x%x\n", result_1);
-            //     ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-            //     ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
-            //     ee_printf("####################################################\n\n");
-            // }
+            // ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
+            // ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+            // ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            // ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
+            // ee_printf("Actual result 0x%x\n", result_1);
+            // ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
+            // ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+            // ee_printf("####################################################\n\n");
         }
         // store data coverage
         // int in1 = *(results_section + 8*i);

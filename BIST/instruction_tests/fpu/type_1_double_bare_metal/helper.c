@@ -70,18 +70,24 @@ int prbs_32(int x)
 }
 
 int is_machine_eps_64_or_zero(int64_t num) {
-    // if(num == (uint64_t)1 || num == (uint64_t)0) return 1;
-    if(num == (uint64_t)0) return 1;
+    if(num == (uint64_t)1 || num == (uint64_t)0) return 1;
+    // if(num == (uint64_t)0) return 1;
     else return 0;
 }
 
+
 int is_NAN_64(int64_t num) {
-    int e_NAN_1 = 0x7ff00000;
-    int e_NAN_2 = 0x00000000;
-    int num_1 = (num >> 32) & 0x7ff00000;
-    int num_2 = (num & 0xffffffff) & 0x00000000;
-    // ee_printf("-----------e_nan is 0x%x %x----------\n", e_NAN_1, e_NAN_2);
-    // ee_printf("-----------num is 0x%x %x----------\n",num_1, num_2 );
-    if(num_1 == e_NAN_1 && num_2 == e_NAN_2) return 1;
+    int num_1 = (num >> 32);
+    int num_2 = (num & 0xffffffff);
+    
+    int exp = (num_1 & 0x7ff00000) >> 20;
+    int mantissa_1 = num_1 & 0xfffff;
+    int mantissa_2 = num_2;
+
+    // ee_printf("num is %x %x\n", num_1, num_2);
+    // ee_printf("exp - %x, man1 - %x, man2 - %x\n", exp, mantissa_1, mantissa_2);
+
+    if( (exp == 0x7ff) && ((mantissa_1 !=0 ) || (mantissa_2 !=0 ) ) ) return 1;
     else return 0;
 }
+

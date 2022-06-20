@@ -245,8 +245,8 @@ HW_trap_0x7e: ta 0; nop; nop; nop;
 HW_trap_0x7f: ta 0; nop; nop; nop;
 
 software_trap_table_base:
-
-SW_trap_0x80: add %l2, 0x0, %o0; set 0x80, %o1; call print_trap; nop;
+!add %l2, 0x0, %o0; set 0x80, %o1; call print_trap; nop;
+SW_trap_0x80: ta 0; nop; nop; nop;
 SW_trap_0x81: ta 0; nop; nop; nop;
 SW_trap_0x82: ta 0; nop; nop; nop;
 SW_trap_0x83: ta 0; nop; nop; nop;

@@ -26,17 +26,16 @@ int checker_sqrt(int *results_section, int *data_coverage, int instr_opcode, int
 
         char test_failed = 0;
 
-        if( (input_2_1 >> 31) & 1 == 1) { // number is negative
-            if(result == (uint64_t)0) n_correct_tests++;
+        if( (input_2_1 == 0x80000000) && (input_2_2 == 0) ) {
+            if( (result_1 == 0x80000000) && (result_2 == 0) ) n_correct_tests++; else test_failed = 1;
+        }
+        else if( (input_2_1 >> 31) & 1 == 1) { // number is negative
+            if(is_NAN_64(result)) n_correct_tests++;
             else test_failed = 1;
         }
-
         else if(float_type_2 == 4) { // NAN
             if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; 
-            // if(result == (uint64_t)0) n_correct_tests++;
-            // else test_failed = 1;
         }
-
         else if(float_type_2 == 3) { // infinity
             if((result_1 == input_2_1) && (result_2 == input_2_2)) n_correct_tests++;
             else test_failed = 1;

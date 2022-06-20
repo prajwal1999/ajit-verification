@@ -41,10 +41,44 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
         int g_exp_res = (result_1 & 0x7ff00000) >> 20;
 
 
-        if(float_type_2 == 4) { // NAN
-            if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; 
+        if(instr_opcode == 0x42) {
+            if( (input_1_1==0x7ff00000) && (input_1_2==0) && (input_2_1==0xfff00000) && (input_2_2==0) ) {
+                if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (input_1_1==0xfff00000) && (input_1_2==0) && (input_2_1==0x7ff00000) && (input_2_2==0) ) {
+                if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; continue;
+            }
+
+            if( (input_1_1==0x80000000) && (input_1_2==0) && (input_2_1==0x80000000) && (input_2_2==0) ) {
+                if( (result_1 == 0x80000000) && (result_2==0) ) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (float_type_1==2) && (float_type_2==2) ) {
+                if(result == (uint64_t)0) n_correct_tests++; else test_failed = 1; continue;
+            }
         }
-        else if(float_type_1 == 4) { // NAN
+        else if(instr_opcode == 0x46) {
+            if( (input_1_1==0x7ff00000) && (input_1_2==0) && (input_2_1==0x7ff00000) && (input_2_2==0) ) {
+                if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (input_1_1==0xfff00000) && (input_1_2==0) && (input_2_1==0xfff00000) && (input_2_2==0) ) {
+                if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; continue;
+            }
+
+            if( (input_1_1==0x80000000) && (input_1_2==0) && (input_2_1==0x0) && (input_2_2==0) ) {
+                if( (result_1 == 0x80000000) && (result_2==0) ) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (float_type_1==2) && (float_type_2==2) ) {
+                if(result == (uint64_t)0) n_correct_tests++; else test_failed = 1; continue;
+            }
+        }
+        else {
+            ee_printf(">>> Unknown Instruction\n");
+            __asm__ __volatile__ (" ta 0 \n\t");
+            __asm__ __volatile__ (" nop \n\t");
+        }
+
+
+        if( (float_type_2 == 4) || (float_type_1 == 4) ) { // NAN
             if(is_NAN_64(result)) n_correct_tests++; else test_failed = 1; 
         }
         else if(float_type_1 == 3) { // infinity

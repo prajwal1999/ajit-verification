@@ -71,8 +71,8 @@ int prbs_32(int x)
 
 
 int is_machine_eps_32_or_zero(int num) {
-    // if(num == 0x1 || num == 0x0) return 1;
-    if(num == 0x0) return 1;
+    if(num == 0x1 || num == 0x0) return 1;
+    // if(num == 0x0) return 1;
     else return 0;
 }
 

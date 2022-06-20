@@ -11,7 +11,8 @@ results section structure
 input_1     input_2     initial_fsr     later_fsr   result      output_1    output_2    float_comb
 #####################################################*/
 
-int generate_input_output(int *results_section_ptr, int input_seed, int number_of_inputs)
+int generate_input_output(int *results_section_ptr, int input_seed, 
+                            int float_type_1, int float_type_2)
 {
 
     int lfsr_32 = input_seed;
@@ -31,23 +32,23 @@ int generate_input_output(int *results_section_ptr, int input_seed, int number_o
     char float_type_seed_2 = (lfsr_32 & 0x1f);
 
     int i;
-    for(i=0; i<number_of_inputs; i++) {
-        int float_type_1 = 0, float_type_2 = 0;
-        float_type_seed_1 = prbs_5(float_type_seed_1);
-        float_type_seed_2 = prbs_5(float_type_seed_2);
+    for(i=0; i<N_INPUTS; i++) {
+        // int float_type_1 = 0, float_type_2 = 0;
+        // float_type_seed_1 = prbs_5(float_type_seed_1);
+        // float_type_seed_2 = prbs_5(float_type_seed_2);
         lfsr_32 = prbs_32(lfsr_32);
 
-        if(float_type_seed_1 < 23) float_type_1 = 1; // normal float value
-        else if(float_type_seed_1 < 24) float_type_1 = 2; // zero float value
-        else if(float_type_seed_1 < 24) float_type_1 = 0; // subnormal
-        else if(float_type_seed_1 < 24) float_type_1 = 3; // infinity
-        else float_type_1 = 4; // NAN
+        // if(float_type_seed_1 < 23) float_type_1 = 1; // normal float value
+        // else if(float_type_seed_1 < 24) float_type_1 = 2; // zero float value
+        // else if(float_type_seed_1 < 28) float_type_1 = 0; // subnormal
+        // else if(float_type_seed_1 < 30) float_type_1 = 3; // infinity
+        // else float_type_1 = 4; // NAN
 
-        if(float_type_seed_2 < 23) float_type_2 = 1; // normal float value
-        else if(float_type_seed_2 < 24) float_type_2 = 2; // zero float value
-        else if(float_type_seed_2 < 24) float_type_2 = 0; // subnormal
-        else if(float_type_seed_2 < 24) float_type_2 = 3; // infinity
-        else float_type_2 = 4; // NAN
+        // if(float_type_seed_2 < 23) float_type_2 = 1; // normal float value
+        // else if(float_type_seed_2 < 24) float_type_2 = 2; // zero float value
+        // else if(float_type_seed_2 < 28) float_type_2 = 0; // subnormal
+        // else if(float_type_seed_2 < 30) float_type_2 = 3; // infinity
+        // else float_type_2 = 4; // NAN
 
 
         switch(float_type_1){

@@ -13,7 +13,7 @@ int main(int *test_program_ptr) {
     __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
     ee_printf("started------\n");
 
-    uint64_t input_pair_seed = 0x77BA4D5199953E82;
+    uint64_t input_pair_seed = 0xd74A4D919f953E82;
     int register_seed = 4;
 
     char instr_opcodes[5] = {0x42,  0x46,  0x2a,    0x4a,  0x4e};
@@ -36,8 +36,8 @@ int main(int *test_program_ptr) {
         ee_printf("Register seed is - %d\n", register_seed);
 
         uint64_t new_input_pair_seed = 0;
-        int float_type_1 = iteration/2;
-        int float_type_2 = iteration % 2;
+        int float_type_1 = iteration/5;
+        int float_type_2 = iteration % 5;
         // int float_type_1 = 0; 
         // int float_type_2 = 2;
         ee_printf(">>> Float Types are ----- %d, %d\n", float_type_1, float_type_2);
@@ -87,7 +87,7 @@ int main(int *test_program_ptr) {
         ee_printf("%dth Iteration Ended ####################################################\n\n", iteration);
 
         iteration++;
-        if(iteration >= 4) {
+        if(iteration > 30) {
             __asm__ __volatile__ (" ta 0 \n\t");
             __asm__ __volatile__ (" nop \n\t");
         }

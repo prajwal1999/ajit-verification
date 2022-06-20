@@ -20,15 +20,15 @@ int checker_sqrt(int *results_section, int *data_coverage, int instr_opcode, int
         int mantissa_2 = (input_2_1 & 0x007fffff);
 
 
-        if( (input_2_1 >> 31) & 1 == 1) { // number is negative
-            if(result_1 == 0x0) n_correct_tests++;
-            else test_failed = 1;
+        if(input_2_1 == 0x80000000) {
+            if(result_1 == 0x80000000) n_correct_tests++; else test_failed = 1;
+        }
+        else if( (input_2_1 >> 31) & 1 == 1) { // number is negative
+            if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1;
         }
 
         else if(float_type_2 == 4) { // NAN
-            // if(is_NAN(result_1)) n_correct_tests++;
-            if(result_1 == 0x0) n_correct_tests++;
-            else test_failed = 1;
+            if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1;
         }
 
         else if(float_type_2 == 3) { // infinity
@@ -49,9 +49,9 @@ int checker_sqrt(int *results_section, int *data_coverage, int instr_opcode, int
         if(test_failed) {
             ee_printf("Test Failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("float_type_2 - %d\n",float_type_2);
-            ee_printf("Inputs are 0x%x\n", input_2_1);
-            ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("Actual Output 0x%x\n", output_2_1);
+            ee_printf("@Inputs are  %x, %x\n",0, input_2_1);
+            ee_printf("@Actual result %x\n", result_1);
+            ee_printf("Actual Output %x\n", output_2_1);
             ee_printf("####################################################\n\n");
         } else {
             // ee_printf("Test Passed - %d/%d\n", i+1, number_of_inputs);

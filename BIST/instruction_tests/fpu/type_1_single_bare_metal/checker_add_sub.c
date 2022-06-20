@@ -1,10 +1,11 @@
 
 int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, int number_of_inputs) {
-
     int i;
     int n_correct_tests = 0;
 
     for(i=0; i<number_of_inputs; i++) {
+        // ee_printf("%dth itereation \n", i+1);
+        // ee_printf("results_section addr - %x\n", &results_section[8*i]);
         int input_1_1 = results_section[8*i];
         int input_2_1 = results_section[8*i + 1];
         int initial_fsr = results_section[8*i + 2];
@@ -17,6 +18,7 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
         int float_type_1 = float_comb/5;
         int float_type_2 = float_comb % 5;
 
+
         int real_val_1 = 0, real_val_2 = 0;
         char test_failed = 0;
 
@@ -25,10 +27,43 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
         int g_exp_res = (result_1 & 0x7f800000) >> 23;
 
 
-        if(float_type_2 == 4) { // NAN
-            if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1; 
+        if(instr_opcode == 0x41) {
+            if( (input_1_1==0x7f800000) && (input_2_1==0xff800000) ) {
+                if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (input_1_1==0xff800000) && (input_2_1==0x7f800000) ) {
+                if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1; continue;
+            }
+
+            if( (input_1_1==0x80000000) && (input_2_1==0x80000000) ) {
+                if(result_1 == 0x80000000) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (float_type_1==2) && (float_type_2==2) ) {
+                if(result_1 == 0x0) n_correct_tests++; else test_failed = 1; continue;
+            }
         }
-        else if(float_type_1 == 4) { // NAN
+        else if(instr_opcode == 0x45) {
+            if( (input_1_1==0x7f800000) && (input_2_1==0x7f800000) ) {
+                if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (input_1_1==0xff800000) && (input_2_1==0xff800000) ) {
+                if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1; continue;
+            }
+
+            if( (input_1_1==0x80000000) && (input_2_1==0x0) ) {
+                if(result_1 == 0x80000000) n_correct_tests++; else test_failed = 1; continue;
+            }
+            else if( (float_type_1==2) && (float_type_2==2) ) {
+                if(result_1 == 0x0) n_correct_tests++; else test_failed = 1; continue;
+            }
+        }
+        else {
+            ee_printf(">>> Unknown Instruction\n");
+            __asm__ __volatile__ (" ta 0 \n\t");
+            __asm__ __volatile__ (" nop \n\t");
+        }
+        
+        if( (float_type_2 == 4) || (float_type_1 == 4) ) { // NAN
             if(is_NAN(result_1)) n_correct_tests++; else test_failed = 1; 
         }
         else if(float_type_1 == 3) { // infinity
@@ -109,35 +144,31 @@ int checker_add_sub(int *results_section, int *data_coverage, int instr_opcode, 
                 if(diff_exp2_res >= 24) real_val_2 = 0;
             } else real_val_2 = input_2_1;
 
-            if( is_machine_eps_32_or_zero(abs(output_1_1 - real_val_1)) && is_machine_eps_32_or_zero(abs(output_2_1 - real_val_2)) ) {
-                n_correct_tests++;
-            }
-            else test_failed = 1;  
+            int test_1_correct = is_machine_eps_32_or_zero(abs(output_1_1 - real_val_1));
+            int test_2_correct = is_machine_eps_32_or_zero(abs(output_2_1 - real_val_2));
+            if( test_1_correct && test_2_correct ) n_correct_tests++; else test_failed = 1;
         }
 
         if(test_failed) {
             ee_printf("Test failed - %d/%d\n", i+1, number_of_inputs);
             ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-            ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
+            ee_printf("@Inputs are %x, %x\n", input_1_1, input_2_1);
             ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
-            ee_printf("Actual result 0x%x\n", result_1);
-            ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-            ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
+            ee_printf("@Actual result %x\n", result_1);
+            ee_printf("real 1 is %x, real 2 is %x\n", real_val_1, real_val_2);
+            ee_printf("Actual Output %x, %x\n", output_1_1, output_2_1);
             ee_printf("####################################################\n\n");
             // __asm__ __volatile__ (" ta 0 \n\t");
             // __asm__ __volatile__ (" nop \n\t");
         } else {
-            if(input_1_1 == result_1 || input_2_1 == result_1) continue;
-            else {
-                // ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
-                // ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
-                // ee_printf("Inputs are 0x%x, 0x%x\n", input_1_1, input_2_1);
-                // ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
-                // ee_printf("Actual result 0x%x\n", result_1);
-                // ee_printf("real 1 is 0x%x, real 2 is 0x%x\n", real_val_1, real_val_2);
-                // ee_printf("Actual Output 0x%x, 0x%x\n", output_1_1, output_2_1);
-                // ee_printf("####################################################\n\n");
-            }
+            // ee_printf("Test passed - %d/%d\n", i+1, number_of_inputs);
+            // ee_printf("float_type_1 - %d, float_type_2 - %d\n", float_type_1, float_type_2);
+            // ee_printf("@Inputs are %x, %x\n", input_1_1, input_2_1);
+            // ee_printf("exp_1 - %d, exp_2 - %d, exp_res - %d\n", g_exp_1, g_exp_2, g_exp_res);
+            // ee_printf("@Actual result %x\n", result_1);
+            // ee_printf("real 1 is %x, real 2 is %x\n", real_val_1, real_val_2);
+            // ee_printf("Actual Output %x, %x\n", output_1_1, output_2_1);
+            // ee_printf("####################################################\n\n");
         }
 
         
